@@ -57,7 +57,7 @@
         label.text = Myself.arrOfLabelContent_one[pageIndex];
 
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:18];
+        label.font = [UIFont systemFontOfSize:16];
         label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
         label.textColor = [UIColor whiteColor];
         label.adjustsFontSizeToFitWidth = YES;
@@ -72,6 +72,7 @@
     self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor =[UIColor clearColor];
     [self.view addSubview:self.tableView];
     
@@ -134,9 +135,10 @@
     CGRect rect = CGRectMake(0, 7, 210, 30);
     UIView *topview=[[UIView alloc] initWithFrame:rect];
     topview.layer.masksToBounds=YES;
-    topview.backgroundColor = [UIColor magentaColor];
+    topview.backgroundColor = [UIColor blackColor];
     topview.layer.cornerRadius=15;
     self.navigationItem.titleView = topview;
+    self.navigationItem.titleView.alpha = 0.2;
     
 }
 
