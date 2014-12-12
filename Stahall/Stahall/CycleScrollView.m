@@ -30,7 +30,7 @@
 
 @implementation CycleScrollView
 
-- (MyPageControl *)pageControl:(BOOL)hideControlDot
+- (MyPageControl *)pageControl
 {
     //少于或者等于一页的话，没有必要显示pageControl
     if (self.totalPageCount > 1) {
@@ -50,15 +50,7 @@
                                                highlightedImage:highlightDotImage
                                                      dotsNumber:totalPageCounts sideLength:dotGapWidth dotsGap:dotGapWidth];
             
-            if(hideControlDot){
-            
-                 _pageControl.hidden = YES;
-            }else{
-                
-                _pageControl.hidden = NO;
-            }
-          
-           
+            _pageControl.hidden = NO;
             self.scrollView.showsVerticalScrollIndicator = NO;
             
         }

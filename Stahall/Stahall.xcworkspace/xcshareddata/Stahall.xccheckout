@@ -10,14 +10,14 @@
 	<string>Stahall</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>5F997F532576EC64FA5BEC50CF2798DA7841ECBD</key>
+		<key>4C455D2EDFE687C82E1DC7D4683992A155CCA9F4</key>
 		<string>github.com:frankfan1990/Stahall.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Stahall/Stahall.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>5F997F532576EC64FA5BEC50CF2798DA7841ECBD</key>
+		<key>4C455D2EDFE687C82E1DC7D4683992A155CCA9F4</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5F997F532576EC64FA5BEC50CF2798DA7841ECBD</string>
+	<string>4C455D2EDFE687C82E1DC7D4683992A155CCA9F4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5F997F532576EC64FA5BEC50CF2798DA7841ECBD</string>
+			<string>4C455D2EDFE687C82E1DC7D4683992A155CCA9F4</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Stahall</string>
 		</dict>
