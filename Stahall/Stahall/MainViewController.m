@@ -10,14 +10,12 @@
 #import "MainViewController.h"
 #import "CycleScrollView.h"
 #import "Marcos.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    
-   
     
     NSArray *arrOfTitle;
     NSArray *arrOfTitleOther;
-    
+    int a;
     CycleScrollView *headScrollView;
 }
 
@@ -44,7 +42,7 @@
      *  开始创建tableView,构建骨架，5个section
      */
     
-    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 210) animationDuration:-1];
+    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:-1];
     headScrollView.backgroundColor = [UIColor clearColor];
     __weak typeof (self)Myself = self;
     headScrollView.totalPagesCount = ^NSInteger(void){
@@ -69,11 +67,12 @@
     };
     
     
-    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-64)];
+    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-64) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor =[UIColor clearColor];
+    self.tableView.sectionHeaderHeight = 0.1;
     [self.view addSubview:self.tableView];
     
     
@@ -86,6 +85,7 @@
     _arrOfLabelContent_one = [NSMutableArray arrayWithObjects:@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场", nil];
     arrOfTitle = @[@"预告",@"案例",@"行程"];
     arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
+    a = 0;
     
 }
 #pragma mark - TabBar的设置
@@ -158,9 +158,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        return 245;
+        return 220;
     }else if(indexPath.section == 1){
-        return 100;
+        return 80;
+    }else if(indexPath.section == 2){
+        return 180;
     }
     return 100;
 }
@@ -202,7 +204,7 @@
     if (section >1) {
         return 53;
     }else{
-        return 0;
+        return 0.1;
     }
 }
 
@@ -217,7 +219,7 @@
         [cell_One addSubview:headScrollView];
         return cell_One;
     }
-    if (indexPath.section == 1) {
+    else if (indexPath.section == 1) {
         UITableViewCell *cell_two = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell_two.backgroundColor = [UIColor clearColor];
         UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -246,6 +248,26 @@
         [cell_two.contentView addSubview:btn3];
         return cell_two;
     }
+    else if (indexPath.section == 2){
+        
+        UITableViewCell *cell_there = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell_there.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell_there.backgroundColor = [UIColor clearColor];
+        UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
+        layoutView.itemSize = CGSizeMake(Mywidth-10, 160);
+    
+        [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        
+        
+        UICollectionView *collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, Mywidth, 160) collectionViewLayout:layoutView];
+        collectionView.pagingEnabled = YES;
+        collectionView.delegate = self;
+        collectionView.dataSource = self;
+        collectionView.backgroundColor = [UIColor clearColor];
+        [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"MyCollectionViewCell_One"];
+        [cell_there addSubview:collectionView];
+        return cell_there;
+    }
     
     static NSString *cellName = @"cell";
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellName];
@@ -261,6 +283,35 @@
     
 }
 
+
+#pragma mark - UICollectionView的代理
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 4;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell_one = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"MyCollectionViewCell_One" forIndexPath:indexPath];
+
+    UIImageView *imageV = [[UIImageView alloc] init];
+    
+    if (indexPath.row == 3) {
+        [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        imageV.frame = CGRectMake(0, 0,Mywidth-20, 160);
+    }else{
+         [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+         imageV.frame = CGRectMake(10, 0,Mywidth-20, 160);
+    }
+    
+    imageV.image = [UIImage imageNamed:@"陈奕迅"];
+    [cell_one addSubview:imageV];
+
+    return cell_one;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%@",indexPath);
+}
 #pragma mark - 左上角按钮 跳到侧滑栏
 -(void)didGoLeftMenu
 {
