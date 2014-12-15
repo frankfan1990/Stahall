@@ -25,6 +25,12 @@
 		631DC2121A37396900F5E9AA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC2111A37396900F5E9AA /* MainViewController.m */; };
 		631DC2171A37403100F5E9AA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC2161A37403100F5E9AA /* Reachability.m */; };
 		631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC21B1A37408000F5E9AA /* Email_Phone.m */; };
+		63258B361A3D8A490089C3F1 /* MyShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B351A3D8A490089C3F1 /* MyShowViewController.m */; };
+		63258B391A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63258B381A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png */; };
+		63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B3B1A3D97A40089C3F1 /* StarHallViewController.m */; };
+		63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */; };
+		63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */; };
+		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
 		63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63BC6A591A3747F400087DFB /* MJRefresh.bundle */; };
 		63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5C1A3747F400087DFB /* MJRefreshBaseView.m */; };
 		63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5E1A3747F400087DFB /* MJRefreshConst.m */; };
@@ -92,6 +98,16 @@
 		631DC2161A37403100F5E9AA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		631DC21A1A37408000F5E9AA /* Email_Phone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Email_Phone.h; sourceTree = "<group>"; };
 		631DC21B1A37408000F5E9AA /* Email_Phone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Email_Phone.m; sourceTree = "<group>"; };
+		63258B341A3D8A490089C3F1 /* MyShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyShowViewController.h; sourceTree = "<group>"; };
+		63258B351A3D8A490089C3F1 /* MyShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyShowViewController.m; sourceTree = "<group>"; };
+		63258B381A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "朝左箭头icon@2x.png"; sourceTree = "<group>"; };
+		63258B3A1A3D97A40089C3F1 /* StarHallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarHallViewController.h; sourceTree = "<group>"; };
+		63258B3B1A3D97A40089C3F1 /* StarHallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarHallViewController.m; sourceTree = "<group>"; };
+		63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StaHallBackImage.png; sourceTree = "<group>"; };
+		63258B901A3E78170089C3F1 /* StaHallCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionReusableView.h; sourceTree = "<group>"; };
+		63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionReusableView.m; sourceTree = "<group>"; };
+		63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionViewCell.h; sourceTree = "<group>"; };
+		63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionViewCell.m; sourceTree = "<group>"; };
 		63BC6A591A3747F400087DFB /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		63BC6A5A1A3747F400087DFB /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		63BC6A5B1A3747F400087DFB /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -168,6 +184,8 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */,
+				63258B381A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png */,
 				5C5EF67C1A3A8DB800EE8D78 /* 七夕.png */,
 				5C5EF6781A3A844C00EE8D78 /* 面包.png */,
 				5C047A821A3ADBAC00C33B02 /* 陈奕迅.png */,
@@ -226,6 +244,7 @@
 			children = (
 				631DC2131A37398200F5E9AA /* APPDelegate */,
 				5C5EF67F1A3A8FE600EE8D78 /* SystemConstant */,
+				63258B931A3E79F30089C3F1 /* Views */,
 				631DC2141A37398B00F5E9AA /* Controllers */,
 				631DC1F71A3738EF00F5E9AA /* Images.xcassets */,
 				63BC6AB51A39F42700087DFB /* imageSource */,
@@ -278,6 +297,9 @@
 				631DC2111A37396900F5E9AA /* MainViewController.m */,
 				63BC6AB61A39F47F00087DFB /* LeftMenuViewController.h */,
 				63BC6AB71A39F47F00087DFB /* LeftMenuViewController.m */,
+				63258B3A1A3D97A40089C3F1 /* StarHallViewController.h */,
+				63258B3B1A3D97A40089C3F1 /* StarHallViewController.m */,
+				63258B371A3D8A4C0089C3F1 /* InSideMenuControllers */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -320,6 +342,34 @@
 				63BC6A581A3747F400087DFB /* MJRefresh */,
 			);
 			name = Vendors;
+			sourceTree = "<group>";
+		};
+		63258B371A3D8A4C0089C3F1 /* InSideMenuControllers */ = {
+			isa = PBXGroup;
+			children = (
+				63258B341A3D8A490089C3F1 /* MyShowViewController.h */,
+				63258B351A3D8A490089C3F1 /* MyShowViewController.m */,
+			);
+			name = InSideMenuControllers;
+			sourceTree = "<group>";
+		};
+		63258B931A3E79F30089C3F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63258B941A3E7CAC0089C3F1 /* AboutStahallCollectionView */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		63258B941A3E7CAC0089C3F1 /* AboutStahallCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				63258B901A3E78170089C3F1 /* StaHallCollectionReusableView.h */,
+				63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */,
+				63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */,
+				63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */,
+			);
+			name = AboutStahallCollectionView;
 			sourceTree = "<group>";
 		};
 		63BC6A581A3747F400087DFB /* MJRefresh */ = {
@@ -503,8 +553,10 @@
 				5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */,
 				5C5EF67A1A3A844C00EE8D78 /* 面包.png in Resources */,
 				63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */,
+				63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */,
 				5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */,
 				63BC6AB41A39F41F00087DFB /* backgroundImage.png in Resources */,
+				63258B391A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png in Resources */,
 				5C5EF6871A3A91DE00EE8D78 /* page_state_highlight@2x.png in Resources */,
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
@@ -559,10 +611,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */,
 				63BC6A6C1A3747F400087DFB /* MJRefreshFooterView.m in Sources */,
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
+				63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */,
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
 				63BC6AB81A39F47F00087DFB /* LeftMenuViewController.m in Sources */,
@@ -573,6 +627,7 @@
 				63BC6A7C1A374A1100087DFB /* TPKeyboardAvoidingTableView.m in Sources */,
 				63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */,
 				63BC6A7B1A374A1100087DFB /* TPKeyboardAvoidingScrollView.m in Sources */,
+				63258B361A3D8A490089C3F1 /* MyShowViewController.m in Sources */,
 				63BC6A701A3747F400087DFB /* UIView+MJExtension.m in Sources */,
 				5C65EDA01A3A9C7C00027A63 /* MyPageControl.m in Sources */,
 				631DC2171A37403100F5E9AA /* Reachability.m in Sources */,
@@ -583,6 +638,7 @@
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
+				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,
 				63BC6A7A1A374A1100087DFB /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				631DC1ED1A3738EF00F5E9AA /* main.m in Sources */,
 			);
