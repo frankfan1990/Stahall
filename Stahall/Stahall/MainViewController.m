@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "LeftMenuViewController.h"
 #import "LeftMenuViewController.h"
+#import "StarHallViewController.h"
 #import "CCSegmentedControl.h"
 #import "CycleScrollView.h"
 #import "RESideMenu.h"
@@ -142,7 +143,7 @@
     topview.backgroundColor = [UIColor blackColor];
     topview.layer.cornerRadius=15;
     self.navigationItem.titleView = topview;
-    self.navigationItem.titleView.alpha = 0.2;
+    self.navigationItem.titleView.alpha = 0.1;
     
 }
 
@@ -471,6 +472,8 @@
 #pragma mark - 去 艺人堂页面 按钮
 -(void)didBtn2:(UIButton *)sender{
     NSLog(@"去 艺人堂页面 按钮");
+    StarHallViewController *starCtrl = [[StarHallViewController alloc] init];
+    [self.navigationController pushViewController:starCtrl animated:YES];
 }
 #pragma mark - 去 秀MALL页面 按钮
 -(void)didBtn3:(UIButton *)sender{
@@ -491,7 +494,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setTabBar];
+}
 
 #pragma mark - UIlabel的方法
 -(void)Customlable:(UILabel *)label text:(NSString *)textStr fontSzie:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment adjustsFontSizeToFitWidth:(BOOL)state numberOfLines:(NSInteger)numberOfLines
