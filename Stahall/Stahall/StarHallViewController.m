@@ -139,7 +139,7 @@
 #pragma mark - 导航栏事件触发
 - (void)buttonClicked:(UIButton *)sender{
 
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
