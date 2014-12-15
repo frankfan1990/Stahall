@@ -28,6 +28,7 @@
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
+    
     self.navigationController.navigationBar.clipsToBounds = YES;
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
     title.text = @"艺人堂";
