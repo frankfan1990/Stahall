@@ -213,7 +213,7 @@
     if(indexPath.row==2){//测试
     
         StarHallViewController *starHallViewController =[StarHallViewController new];
-        [self showTheContentViewControll:starHallViewController];
+//        [self showTheContentViewControll:starHallViewController];
     }
 
 }
