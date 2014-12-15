@@ -453,6 +453,13 @@
 			name = AboutStahallCollectionView;
 			sourceTree = "<group>";
 		};
+		63258BD41A3ECB500089C3F1 /* FrankfanImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = FrankfanImage;
+			sourceTree = "<group>";
+		};
 		63BC6A581A3747F400087DFB /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +536,7 @@
 		63BC6AB51A39F42700087DFB /* imageSource */ = {
 			isa = PBXGroup;
 			children = (
+				63258BD41A3ECB500089C3F1 /* FrankfanImage */,
 				5C5EF6761A3A817600EE8D78 /* TestImage */,
 				63BC6AB91A39FEE300087DFB /* MainViewBackImage.png */,
 				63BC6AB31A39F41F00087DFB /* backgroundImage.png */,

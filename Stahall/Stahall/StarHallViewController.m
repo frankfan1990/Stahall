@@ -61,7 +61,7 @@
     flowLayout.minimumLineSpacing = 5;
     
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width-20, self.view.bounds.size.height-50) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width-20, self.view.bounds.size.height-50-10) collectionViewLayout:flowLayout];
     
     [self.collectionView registerClass:[StaHallCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.collectionView registerClass:[StaHallCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
@@ -75,6 +75,9 @@
 }
 
 
+
+
+
 #pragma mark - 创建section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
 
@@ -85,7 +88,7 @@
 #pragma mark - 创建cell个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
-    return 6;
+    return 16;
 }
 
 
@@ -126,15 +129,35 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     StaHallCollectionViewCell *cell =(StaHallCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor =[UIColor orangeColor];
+    
+#warning fake date
+    
+    if(indexPath.row%2==0){
+        
+        cell.zoneDot.backgroundColor =[UIColor magentaColor];
+        cell.starImage.image =[UIImage imageNamed:@"七夕"];
+        cell.starName.text = @"汪峰";
+    }else{
+    
+        cell.zoneDot.backgroundColor =[UIColor greenColor];
+        cell.starImage.image =[UIImage imageNamed:@"张杰"];
+        cell.starName.text = @"刘德华";
+    }
 
+    
+    
+    
+    
 
     return cell;
 }
 
 
+#pragma mark - viewWillAppear
+- (void)viewWillAppear:(BOOL)animated{
 
-
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 
 #pragma mark - 导航栏事件触发
