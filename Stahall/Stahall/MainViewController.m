@@ -143,7 +143,7 @@
     topview.backgroundColor = [UIColor blackColor];
     topview.layer.cornerRadius=15;
     self.navigationItem.titleView = topview;
-    self.navigationItem.titleView.alpha = 0.2;
+    self.navigationItem.titleView.alpha = 0.1;
     
 }
 
