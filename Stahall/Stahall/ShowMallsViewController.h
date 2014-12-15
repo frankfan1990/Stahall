@@ -1,5 +1,5 @@
 //
-//  AdvanceNoticeViewController.h
+//  ShowMallsViewController.h
 //  Stahall
 //
 //  Created by JM_Pro on 14-12-15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AdvanceNoticeViewController : UIViewController
+@interface ShowMallsViewController : UIViewController
 @property(nonatomic,strong)NSString *titleViewStr;
 @end

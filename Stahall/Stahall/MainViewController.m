@@ -11,6 +11,8 @@
 #import "LeftMenuViewController.h"
 #import "LeftMenuViewController.h"
 #import "StarHallViewController.h"
+#import "AdvanceNoticeViewController.h"
+#import "ShowMallsViewController.h"
 #import "CCSegmentedControl.h"
 #import "CycleScrollView.h"
 #import "RESideMenu.h"
@@ -34,6 +36,11 @@
 @end
 
 @implementation MainViewController
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTabBar];
@@ -70,7 +77,7 @@
         NSLog(@"%ld",(long)pageIndex);
     };
     
-    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-64) style:UITableViewStyleGrouped];
+    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height-65) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -96,55 +103,34 @@
 #pragma mark - TabBar的设置
 -(void)setTabBar
 {
-    self.navigationController.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
-    self.navigationController.navigationBar.translucent = YES;
-    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-    }
+    UIView *tabBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 65)];
+    tabBarView.backgroundColor = [UIColor clearColor];
     
-    [self.view setBackgroundColor:[UIColor clearColor]];
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
-    btnLeft.layer.cornerRadius = 20;
-    [btnLeft setFrame:CGRectMake(0, 0, 40, 40)];
+    btnLeft.layer.cornerRadius = 25;
+    [btnLeft setFrame:CGRectMake(10, 15, 50, 50)];
     [btnLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateNormal];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [btnLeft addTarget:self action:@selector(didGoLeftMenu) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *btnLeftitem = [[UIBarButtonItem alloc] initWithCustomView:btnLeft];
+    [tabBarView addSubview:btnLeft];
     
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    [btn2 setBackgroundImage:[UIImage imageNamed:@"面包"]  forState:UIControlStateNormal];
-    
-    
-    [btn2 setFrame:CGRectMake(0, 5, 40, 45)];;
-    [btn2 addTarget:self action:@selector(didSearch) forControlEvents:UIControlEventTouchUpInside];
-    [btn2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //    [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
-    UIBarButtonItem *btnright = [[UIBarButtonItem alloc] initWithCustomView:btn2];
-    
-    if(([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0?20:0)){
-        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        negativeSpacer.width = -10;
-        self.navigationItem.leftBarButtonItems= @[negativeSpacer, btnLeftitem];
-        self.navigationItem.rightBarButtonItems= @[negativeSpacer, btnright];
-        
-    }else{
-        self.navigationItem.leftBarButtonItem = btnLeftitem;
-        self.navigationItem.rightBarButtonItem = btnright;
-    }
-    
-    CGRect rect = CGRectMake(0, 7, 210, 30);
+    CGRect rect = CGRectMake(Mywidth/2-95,25, 200, 30);
     UIView *topview=[[UIView alloc] initWithFrame:rect];
     topview.layer.masksToBounds=YES;
     topview.backgroundColor = [UIColor blackColor];
+    topview.alpha = 0.2;
     topview.layer.cornerRadius=15;
-    self.navigationItem.titleView = topview;
-    self.navigationItem.titleView.alpha = 0.1;
+    [tabBarView addSubview:topview];
     
+    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
+    [btn2 setBackgroundImage:[UIImage imageNamed:@"面包"]  forState:UIControlStateNormal];
+    [btn2 setFrame:CGRectMake(Mywidth-45, 15, 40, 45)];
+    [btn2 addTarget:self action:@selector(didSearch) forControlEvents:UIControlEventTouchUpInside];
+    [tabBarView addSubview:btn2];
+    [self.view  addSubview:tabBarView];
 }
 
 #pragma mark - 创建分段个数
@@ -186,7 +172,7 @@
         
         [headView addSubview:labelTitleOther];
         
-        UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"向右灰"]];
+        UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lc向右灰"]];
         imageV.frame = CGRectMake(labelTitle.frame.origin.x + labelTitle.frame.size.width, 12, 17, 17);
         imageV.layer.masksToBounds = YES;
         imageV.layer.cornerRadius = imageV.frame.size.width/2;
@@ -205,7 +191,11 @@
             [headView addSubview:segmentCtrl];
         }
         
-        
+        UIButton *headBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, imageV.frame.size.width+imageV.frame.origin.x+20, 53)];
+        headBtn.tag = 66666+section;
+        headBtn.backgroundColor = [UIColor clearColor];
+        [headBtn addTarget:self action:@selector(didHeadBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [headView addSubview:headBtn];
         return headView;
     }else{
         return nil;
@@ -331,7 +321,10 @@
     }
     
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
+}
 
 #pragma mark - UICollectionView的代理
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -378,8 +371,6 @@
         UICollectionViewCell *cell_two = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_Two" forIndexPath:indexPath];
         
         UIImageView *imageV = [[UIImageView alloc] init];
-        [cell_two.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        
         imageV.frame = CGRectMake(0, 0,120, 170);
         imageV.image = [UIImage imageNamed:@"张杰"];
         [cell_two addSubview:imageV];
@@ -448,6 +439,17 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
+    
+    if (collectionView.tag == 10002) {
+        advanceCtrl.titleViewStr = @"预告详情";
+    }else if (collectionView.tag == 10003){
+        advanceCtrl.titleViewStr = @"案例详情";
+    }else if (collectionView.tag == 10004){
+        advanceCtrl.titleViewStr = @"行程详情";
+    }
+   [self.navigationController pushViewController:advanceCtrl animated:YES];
     NSLog(@"%@",indexPath);
 }
 
@@ -466,6 +468,9 @@
 
 #pragma mark - 去 堂汇页面 按钮
 -(void)didBtn1:(UIButton *)sender{
+    ShowMallsViewController *showCtrl = [[ShowMallsViewController alloc] init];
+    showCtrl.titleViewStr = @"堂 汇";
+    [self.navigationController pushViewController:showCtrl animated:YES];
     NSLog(@"去 堂汇页面  按钮");
 }
 
@@ -475,9 +480,20 @@
     StarHallViewController *starCtrl = [[StarHallViewController alloc] init];
     [self.navigationController pushViewController:starCtrl animated:YES];
 }
+
 #pragma mark - 去 秀MALL页面 按钮
 -(void)didBtn3:(UIButton *)sender{
+    ShowMallsViewController *showCtrl = [[ShowMallsViewController alloc] init];
+     showCtrl.titleViewStr = @"秀MALL";
+    [self.navigationController pushViewController:showCtrl animated:YES];
     NSLog(@"去 秀MALL页面 按钮");
+}
+
+#pragma mark -点击cell头部
+-(void)didHeadBtn:(UIButton *)sender
+{
+    NSLog(@"%ld",(long)sender.tag);
+    
 }
 
 #pragma mark - 点击 分段控制器
@@ -494,10 +510,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
--(void)viewWillAppear:(BOOL)animated
-{
-    [self setTabBar];
-}
+
 
 #pragma mark - UIlabel的方法
 -(void)Customlable:(UILabel *)label text:(NSString *)textStr fontSzie:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment adjustsFontSizeToFitWidth:(BOOL)state numberOfLines:(NSInteger)numberOfLines

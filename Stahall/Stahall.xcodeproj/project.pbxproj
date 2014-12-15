@@ -22,6 +22,13 @@
 		5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65ED9A1A3A9C7C00027A63 /* CycleScrollView.m */; };
 		5C65EDA01A3A9C7C00027A63 /* MyPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65ED9C1A3A9C7C00027A63 /* MyPageControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65ED9E1A3A9C7C00027A63 /* NSTimer+Addition.m */; };
+		5C9E087F1A3ED027007072E0 /* MarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E087E1A3ED027007072E0 /* MarkupParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5C9E08831A3ED02E007072E0 /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08821A3ED02E007072E0 /* CustomLabel.m */; };
+		5C9E08871A3EEA5E007072E0 /* lc汪峰头像.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E08861A3EEA5E007072E0 /* lc汪峰头像.png */; };
+		5C9E08891A3EF0C2007072E0 /* lc向右灰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E08881A3EF0C2007072E0 /* lc向右灰.png */; };
+		5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */; };
+		5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */; };
+		5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */; };
 		5CE0D8A81A3EAFA300CBC562 /* AdvanceNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */; };
 		631DC1ED1A3738EF00F5E9AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EC1A3738EF00F5E9AA /* main.m */; };
 		631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EF1A3738EF00F5E9AA /* AppDelegate.m */; };
@@ -93,6 +100,17 @@
 		5C65ED9C1A3A9C7C00027A63 /* MyPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageControl.m; sourceTree = "<group>"; };
 		5C65ED9D1A3A9C7C00027A63 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		5C65ED9E1A3A9C7C00027A63 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
+		5C9E087D1A3ED027007072E0 /* MarkupParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupParser.h; sourceTree = "<group>"; };
+		5C9E087E1A3ED027007072E0 /* MarkupParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkupParser.m; sourceTree = "<group>"; };
+		5C9E08811A3ED02E007072E0 /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
+		5C9E08821A3ED02E007072E0 /* CustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLabel.m; sourceTree = "<group>"; };
+		5C9E08861A3EEA5E007072E0 /* lc汪峰头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc汪峰头像.png"; sourceTree = "<group>"; };
+		5C9E08881A3EF0C2007072E0 /* lc向右灰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc向右灰.png"; sourceTree = "<group>"; };
+		5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc汪峰2.png"; sourceTree = "<group>"; };
+		5C9E08F61A3F07C9007072E0 /* ShowMallsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowMallsViewController.h; sourceTree = "<group>"; };
+		5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallsViewController.m; sourceTree = "<group>"; };
+		5C9E08FA1A3F094D007072E0 /* ShowMallsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowMallsTableViewCell.h; sourceTree = "<group>"; };
+		5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallsTableViewCell.m; sourceTree = "<group>"; };
 		5CE0D8A61A3EAFA300CBC562 /* AdvanceNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceNoticeViewController.h; sourceTree = "<group>"; };
 		5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceNoticeViewController.m; sourceTree = "<group>"; };
 		631DC1E71A3738EF00F5E9AA /* Stahall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stahall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +223,9 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */,
+				5C9E08861A3EEA5E007072E0 /* lc汪峰头像.png */,
+				5C9E08881A3EF0C2007072E0 /* lc向右灰.png */,
 				63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */,
 				63258B381A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png */,
 				5C4CF1851A3E890F00F6EC11 /* 张杰.png */,
@@ -241,6 +262,34 @@
 				5C65ED9E1A3A9C7C00027A63 /* NSTimer+Addition.m */,
 			);
 			name = DisplayImages;
+			sourceTree = "<group>";
+		};
+		5C9E087C1A3ED027007072E0 /* MarkupParser */ = {
+			isa = PBXGroup;
+			children = (
+				5C9E087D1A3ED027007072E0 /* MarkupParser.h */,
+				5C9E087E1A3ED027007072E0 /* MarkupParser.m */,
+			);
+			path = MarkupParser;
+			sourceTree = "<group>";
+		};
+		5C9E08801A3ED02E007072E0 /* CustomLabel */ = {
+			isa = PBXGroup;
+			children = (
+				5C9E08811A3ED02E007072E0 /* CustomLabel.h */,
+				5C9E08821A3ED02E007072E0 /* CustomLabel.m */,
+			);
+			name = CustomLabel;
+			path = MarkupParser/CustomLabel;
+			sourceTree = "<group>";
+		};
+		5C9E08F91A3F08F8007072E0 /* AboutShowMallsCell */ = {
+			isa = PBXGroup;
+			children = (
+				5C9E08FA1A3F094D007072E0 /* ShowMallsTableViewCell.h */,
+				5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */,
+			);
+			name = AboutShowMallsCell;
 			sourceTree = "<group>";
 		};
 		631DC1DE1A3738EF00F5E9AA = {
@@ -323,6 +372,8 @@
 				63BC6AB71A39F47F00087DFB /* LeftMenuViewController.m */,
 				63258B3A1A3D97A40089C3F1 /* StarHallViewController.h */,
 				63258B3B1A3D97A40089C3F1 /* StarHallViewController.m */,
+				5C9E08F61A3F07C9007072E0 /* ShowMallsViewController.h */,
+				5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */,
 				5CE0D8A61A3EAFA300CBC562 /* AdvanceNoticeViewController.h */,
 				5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */,
 				63258B371A3D8A4C0089C3F1 /* InSideMenuControllers */,
@@ -360,6 +411,8 @@
 		631DC2371A37411400F5E9AA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				5C9E08801A3ED02E007072E0 /* CustomLabel */,
+				5C9E087C1A3ED027007072E0 /* MarkupParser */,
 				5C4CF1811A3E88D100F6EC11 /* CCSegmentedControl */,
 				5C65EDA21A3A9C8600027A63 /* DisplayImages */,
 				63BC6A961A3751DB00087DFB /* RESideMenu */,
@@ -383,6 +436,7 @@
 		63258B931A3E79F30089C3F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C9E08F91A3F08F8007072E0 /* AboutShowMallsCell */,
 				63258B941A3E7CAC0089C3F1 /* AboutStahallCollectionView */,
 			);
 			name = Views;
@@ -584,13 +638,16 @@
 				5C5EF6831A3A91D500EE8D78 /* page_state_normal@2x.png in Resources */,
 				5C5EF67B1A3A844C00EE8D78 /* 拍照.png in Resources */,
 				5C5EF6861A3A91DE00EE8D78 /* page_state_highlight.png in Resources */,
+				5C9E08891A3EF0C2007072E0 /* lc向右灰.png in Resources */,
 				5C5EF67D1A3A8DB800EE8D78 /* 七夕.png in Resources */,
 				5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */,
 				5C5EF67A1A3A844C00EE8D78 /* 面包.png in Resources */,
 				63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */,
 				63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */,
 				5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */,
+				5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */,
 				5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */,
+				5C9E08871A3EEA5E007072E0 /* lc汪峰头像.png in Resources */,
 				63BC6AB41A39F41F00087DFB /* backgroundImage.png in Resources */,
 				63258B391A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png in Resources */,
 				5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */,
@@ -653,6 +710,7 @@
 				63BC6A6C1A3747F400087DFB /* MJRefreshFooterView.m in Sources */,
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
+				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
 				63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */,
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
@@ -661,6 +719,7 @@
 				5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */,
 				63BC6A9D1A3751DB00087DFB /* RECommonFunctions.m in Sources */,
 				5CE0D8A81A3EAFA300CBC562 /* AdvanceNoticeViewController.m in Sources */,
+				5C9E087F1A3ED027007072E0 /* MarkupParser.m in Sources */,
 				631DC2121A37396900F5E9AA /* MainViewController.m in Sources */,
 				63BC6A6E1A3747F400087DFB /* UIScrollView+MJExtension.m in Sources */,
 				63BC6A7C1A374A1100087DFB /* TPKeyboardAvoidingTableView.m in Sources */,
@@ -672,6 +731,7 @@
 				5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */,
 				631DC2171A37403100F5E9AA /* Reachability.m in Sources */,
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
+				5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */,
 				63BC6A6D1A3747F400087DFB /* MJRefreshHeaderView.m in Sources */,
 				63BC6A951A374C5800087DFB /* NSObject+FBKVOController.m in Sources */,
 				63BC6A941A374C5800087DFB /* FBKVOController.m in Sources */,
@@ -681,6 +741,7 @@
 				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,
 				63BC6A7A1A374A1100087DFB /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				631DC1ED1A3738EF00F5E9AA /* main.m in Sources */,
+				5C9E08831A3ED02E007072E0 /* CustomLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,7 +847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Stahall/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -799,7 +860,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Stahall/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
