@@ -20,16 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *staurBar =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
-    staurBar.backgroundColor = [UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1];
-    [[[[UIApplication sharedApplication].keyWindow subviews]lastObject]addSubview:staurBar];
+
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"StaHallBackImage"].CGImage;
     
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
     
-    self.navigationController.navigationBar.clipsToBounds = YES;
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
     title.text = @"艺人堂";
     title.textColor = [UIColor whiteColor];
