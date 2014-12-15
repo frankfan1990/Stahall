@@ -319,7 +319,6 @@
 				5C5EF67F1A3A8FE600EE8D78 /* SystemConstant */,
 				63258B931A3E79F30089C3F1 /* Views */,
 				631DC2141A37398B00F5E9AA /* Controllers */,
-				631DC1F71A3738EF00F5E9AA /* Images.xcassets */,
 				63BC6AB51A39F42700087DFB /* imageSource */,
 				631DC2371A37411400F5E9AA /* Vendors */,
 				631DC2191A37404900F5E9AA /* Utils */,
@@ -529,6 +528,7 @@
 		63BC6AB51A39F42700087DFB /* imageSource */ = {
 			isa = PBXGroup;
 			children = (
+				631DC1F71A3738EF00F5E9AA /* Images.xcassets */,
 				5C5EF6761A3A817600EE8D78 /* TestImage */,
 				63BC6AB91A39FEE300087DFB /* MainViewBackImage.png */,
 				63BC6AB31A39F41F00087DFB /* backgroundImage.png */,
