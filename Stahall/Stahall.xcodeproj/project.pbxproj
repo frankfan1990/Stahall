@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C047A821A3ADBAC00C33B02 /* 陈奕迅.png */; };
 		5C1E1F0F1A3FCAD20085BD64 /* ShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */; };
+		5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1E1F101A401B6E0085BD64 /* lc2.png */; };
 		5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */; };
 		5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1851A3E890F00F6EC11 /* 张杰.png */; };
 		5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */; };
 		5C4CF18A1A3E893A00F6EC11 /* 汪峰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1891A3E893A00F6EC11 /* 汪峰.png */; };
-		5C5EF67A1A3A844C00EE8D78 /* 面包.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5EF6781A3A844C00EE8D78 /* 面包.png */; };
+		5C5EF67A1A3A844C00EE8D78 /* 面包@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5EF6781A3A844C00EE8D78 /* 面包@2x.png */; };
 		5C5EF67B1A3A844C00EE8D78 /* 拍照.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5EF6791A3A844C00EE8D78 /* 拍照.png */; };
 		5C5EF67D1A3A8DB800EE8D78 /* 七夕.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5EF67C1A3A8DB800EE8D78 /* 七夕.png */; };
 		5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5EF6801A3A91D500EE8D78 /* page_state_normal.png */; };
@@ -84,12 +85,13 @@
 		5C047A821A3ADBAC00C33B02 /* 陈奕迅.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "陈奕迅.png"; sourceTree = "<group>"; };
 		5C1E1F0D1A3FCAD20085BD64 /* ShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDetailsViewController.h; sourceTree = "<group>"; };
 		5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDetailsViewController.m; sourceTree = "<group>"; };
+		5C1E1F101A401B6E0085BD64 /* lc2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc2.png; sourceTree = "<group>"; };
 		5C4CF1821A3E88D100F6EC11 /* CCSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSegmentedControl.h; sourceTree = "<group>"; };
 		5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSegmentedControl.m; sourceTree = "<group>"; };
 		5C4CF1851A3E890F00F6EC11 /* 张杰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "张杰.png"; sourceTree = "<group>"; };
 		5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "甲壳虫.png"; sourceTree = "<group>"; };
 		5C4CF1891A3E893A00F6EC11 /* 汪峰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "汪峰.png"; sourceTree = "<group>"; };
-		5C5EF6781A3A844C00EE8D78 /* 面包.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面包.png"; sourceTree = "<group>"; };
+		5C5EF6781A3A844C00EE8D78 /* 面包@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "面包@2x.png"; sourceTree = "<group>"; };
 		5C5EF6791A3A844C00EE8D78 /* 拍照.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "拍照.png"; sourceTree = "<group>"; };
 		5C5EF67C1A3A8DB800EE8D78 /* 七夕.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "七夕.png"; sourceTree = "<group>"; };
 		5C5EF67E1A3A8FD900EE8D78 /* Marcos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Marcos.h; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5C1E1F101A401B6E0085BD64 /* lc2.png */,
 				5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */,
 				5C9E08861A3EEA5E007072E0 /* lc汪峰头像.png */,
 				5C9E08881A3EF0C2007072E0 /* lc向右灰.png */,
@@ -235,7 +238,7 @@
 				5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */,
 				5C5EF67C1A3A8DB800EE8D78 /* 七夕.png */,
 				5C4CF1891A3E893A00F6EC11 /* 汪峰.png */,
-				5C5EF6781A3A844C00EE8D78 /* 面包.png */,
+				5C5EF6781A3A844C00EE8D78 /* 面包@2x.png */,
 				5C047A821A3ADBAC00C33B02 /* 陈奕迅.png */,
 				5C5EF6791A3A844C00EE8D78 /* 拍照.png */,
 			);
@@ -646,7 +649,7 @@
 				5C9E08891A3EF0C2007072E0 /* lc向右灰.png in Resources */,
 				5C5EF67D1A3A8DB800EE8D78 /* 七夕.png in Resources */,
 				5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */,
-				5C5EF67A1A3A844C00EE8D78 /* 面包.png in Resources */,
+				5C5EF67A1A3A844C00EE8D78 /* 面包@2x.png in Resources */,
 				63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */,
 				63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */,
 				5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */,
@@ -659,6 +662,7 @@
 				5C4CF18A1A3E893A00F6EC11 /* 汪峰.png in Resources */,
 				5C5EF6871A3A91DE00EE8D78 /* page_state_highlight@2x.png in Resources */,
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
+				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
 				63BC6A8C1A374B8200087DFB /* ProgressHUD.bundle in Resources */,
 			);
