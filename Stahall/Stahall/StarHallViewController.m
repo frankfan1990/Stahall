@@ -10,6 +10,7 @@
 #import "StarHallViewController.h"
 #import "StaHallCollectionReusableView.h"
 #import "StaHallCollectionViewCell.h"
+#import "StahallValuationViewController.h"
 
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -37,9 +38,6 @@
 
     
     /*title*/
-    self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
-    
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
     title.text = @"艺人堂";
     title.textColor = [UIColor whiteColor];
@@ -91,7 +89,7 @@
     [Hallvaluation setBackgroundColor:[UIColor purpleColor]];
     [self.view addSubview:Hallvaluation];
     [Hallvaluation setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
-  
+    [Hallvaluation addTarget:self action:@selector(stahallValueButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -147,7 +145,7 @@
 #pragma mark - reusableView将要出现
 - (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
     
-    UIButton *arrowButton = (UIButton *)[[[view subviews]firstObject] subviews][0];
+//    UIButton *arrowButton = (UIButton *)[[[view subviews]firstObject] subviews][0];
 //    UIView *superView = [arrowButton superview];
     
     
@@ -184,6 +182,15 @@
     return cell;
 }
 
+
+
+#pragma mark - 堂估价按钮触发
+- (void)stahallValueButtonClicked{
+
+    StahallValuationViewController *stahallvaluation =[StahallValuationViewController new];
+    [self.navigationController pushViewController:stahallvaluation animated:YES];
+
+}
 
 
 #pragma mark - 三个箭头button被点击
@@ -239,6 +246,10 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
+    
+
 }
 
 

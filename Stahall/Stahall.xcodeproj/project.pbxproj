@@ -47,6 +47,8 @@
 		63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */; };
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
 		63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */; };
+		63A9EA7B1A3FDE2F00C5DAE6 /* StahallValuationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */; };
+		63A9EA7E1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */; };
 		63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63BC6A591A3747F400087DFB /* MJRefresh.bundle */; };
 		63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5C1A3747F400087DFB /* MJRefreshBaseView.m */; };
 		63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5E1A3747F400087DFB /* MJRefreshConst.m */; };
@@ -148,6 +150,10 @@
 		63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionViewCell.h; sourceTree = "<group>"; };
 		63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionViewCell.m; sourceTree = "<group>"; };
 		63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "朝右箭头icon@2x.png"; sourceTree = "<group>"; };
+		63A9EA791A3FDE2F00C5DAE6 /* StahallValuationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallValuationViewController.h; sourceTree = "<group>"; };
+		63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallValuationViewController.m; sourceTree = "<group>"; };
+		63A9EA7C1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallEvalueCollectionViewCell.h; sourceTree = "<group>"; };
+		63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallEvalueCollectionViewCell.m; sourceTree = "<group>"; };
 		63BC6A591A3747F400087DFB /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		63BC6A5A1A3747F400087DFB /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		63BC6A5B1A3747F400087DFB /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -377,6 +383,7 @@
 		631DC2141A37398B00F5E9AA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				63A9EA801A40387200C5DAE6 /* frankfan */,
 				631DC2101A37396900F5E9AA /* MainViewController.h */,
 				631DC2111A37396900F5E9AA /* MainViewController.m */,
 				63BC6AB61A39F47F00087DFB /* LeftMenuViewController.h */,
@@ -451,6 +458,7 @@
 		63258B931A3E79F30089C3F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				63A9EA7F1A40173D00C5DAE6 /* AboutStahallEvalueCollectionCell */,
 				5C9E08F91A3F08F8007072E0 /* AboutShowMallsCell */,
 				63258B941A3E7CAC0089C3F1 /* AboutStahallCollectionView */,
 			);
@@ -474,6 +482,24 @@
 				63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */,
 			);
 			name = FrankfanImage;
+			sourceTree = "<group>";
+		};
+		63A9EA7F1A40173D00C5DAE6 /* AboutStahallEvalueCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				63A9EA7C1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.h */,
+				63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */,
+			);
+			name = AboutStahallEvalueCollectionCell;
+			sourceTree = "<group>";
+		};
+		63A9EA801A40387200C5DAE6 /* frankfan */ = {
+			isa = PBXGroup;
+			children = (
+				63A9EA791A3FDE2F00C5DAE6 /* StahallValuationViewController.h */,
+				63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */,
+			);
+			name = frankfan;
 			sourceTree = "<group>";
 		};
 		63BC6A581A3747F400087DFB /* MJRefresh */ = {
@@ -749,6 +775,7 @@
 				63BC6A701A3747F400087DFB /* UIView+MJExtension.m in Sources */,
 				5C65EDA01A3A9C7C00027A63 /* MyPageControl.m in Sources */,
 				5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */,
+				63A9EA7B1A3FDE2F00C5DAE6 /* StahallValuationViewController.m in Sources */,
 				631DC2171A37403100F5E9AA /* Reachability.m in Sources */,
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
 				5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */,
@@ -758,6 +785,7 @@
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
+				63A9EA7E1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m in Sources */,
 				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,
 				63BC6A7A1A374A1100087DFB /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				631DC1ED1A3738EF00F5E9AA /* main.m in Sources */,

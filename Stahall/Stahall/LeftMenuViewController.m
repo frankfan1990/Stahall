@@ -161,7 +161,7 @@
     
     //用户头像
     UIImageView *userHeaderImageView = (UIImageView *)[cell viewWithTag:1001];
-    userHeaderImageView.image =[UIImage imageNamed:@"陈奕迅"];
+    userHeaderImageView.image =[UIImage imageNamed:@"lc汪峰头像"];
     
     //用户名
     UILabel *nameLabel =(UILabel *)[cell viewWithTag:1002];
