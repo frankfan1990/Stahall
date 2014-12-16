@@ -31,7 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setTabBar];
+
     [self Variableinitialization];
     self.view.backgroundColor = [UIColor whiteColor];
     btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -69,9 +71,12 @@
     [addNewShowBtn addTarget:self action:@selector(didAddNewShow) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addNewShowBtn];
     
+
     
 }
+
 #pragma mark - tabBar的设置
+
 -(void)setTabBar{
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -80,6 +85,7 @@
     }
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+
     
     UIButton *btnLeft1 = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft1.layer.masksToBounds = YES;

@@ -24,16 +24,28 @@
      
         
         //白色圆圈
-        UIButton *circleView =[UIButton buttonWithType:UIButtonTypeCustom];
-        circleView.frame = CGRectMake(5, 15, 20, 20);
-        circleView.layer.cornerRadius = 10;
-        circleView.backgroundColor =[UIColor colorWithWhite:1 alpha:0.45];
+//        self.circleView =[UIButton buttonWithType:UIButtonTypeCustom];
+        self.circleView = [[UIView alloc]init];
+        self.circleView.frame = CGRectMake(5, 15, 20, 20);
+        self.circleView.layer.cornerRadius = 10;
+        self.circleView.backgroundColor =[UIColor colorWithWhite:1 alpha:0.45];
+        
+        
+        self.arrowButton = nil;
+        _arrowButton =[UIButton buttonWithType:UIButtonTypeCustom];
+//        _arrowButton =[[UIImageView alloc]init];
+        _arrowButton.userInteractionEnabled = YES;
+//        _arrowButton.image =[UIImage imageNamed:@"朝右箭头icon"];
+        _arrowButton.frame = CGRectMake(0, 0, 20, 20);
+        [_arrowButton setImage:[UIImage imageNamed:@"朝右箭头icon"] forState:UIControlStateNormal];
+        _arrowButton.layer.masksToBounds = YES;
+        _arrowButton.layer.cornerRadius = 10;
+        [self.circleView addSubview:self.arrowButton];
         
         
         
         
-        
-        [self addSubview:circleView];
+        [self addSubview:self.circleView];
         [self addSubview:self.nameLabel];
         
         

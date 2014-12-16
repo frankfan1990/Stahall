@@ -12,7 +12,16 @@
 #import "StaHallCollectionViewCell.h"
 
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+{
 
+    UIButton *arrowButton1;
+    UIButton *arrowButton2;
+    UIButton *arrowButton3;
+    
+    
+    NSMutableArray *recodeRotateExpend;//记录展开
+//    NSMutableArray *recodeColla;//记录收起
+}
 @property (nonatomic,strong)UICollectionView *collectionView;
 @end
 
@@ -21,7 +30,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    recodeRotateExpend =[NSMutableArray array];
+//    recodeColla =[NSMutableArray array];
+    
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"StaHallBackImage"].CGImage;
+
     
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
@@ -53,12 +66,11 @@
     UICollectionViewFlowLayout *flowLayout =[[UICollectionViewFlowLayout alloc]init];
     flowLayout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width-20, 50);
     
-    flowLayout.itemSize = CGSizeMake(60, 60);
-    flowLayout.minimumInteritemSpacing = 10;
-    flowLayout.minimumLineSpacing = 5;
+    flowLayout.itemSize = CGSizeMake(65, 70);
+ 
     
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width-20, self.view.bounds.size.height-50-10) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width-20, self.view.bounds.size.height-50-20-50) collectionViewLayout:flowLayout];
     
     [self.collectionView registerClass:[StaHallCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.collectionView registerClass:[StaHallCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
@@ -69,8 +81,18 @@
     [self.view addSubview:self.collectionView];
     self.collectionView.showsVerticalScrollIndicator = NO;
     
+    
+    //堂估价按钮
+    UIButton *Hallvaluation =[UIButton buttonWithType:UIButtonTypeCustom];
+    Hallvaluation.frame = CGRectMake(10,455, self.view.bounds.size.width-20, 45);
+    Hallvaluation.layer.cornerRadius = 3;
+    [Hallvaluation setTitle:@"堂估价" forState:UIControlStateNormal];
+    [Hallvaluation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [Hallvaluation setBackgroundColor:[UIColor purpleColor]];
+    [self.view addSubview:Hallvaluation];
+    [Hallvaluation setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
+  
 }
-
 
 
 
@@ -85,7 +107,7 @@
 #pragma mark - 创建cell个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
-    return 16;
+    return 18;
 }
 
 
@@ -95,16 +117,13 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
    StaHallCollectionReusableView *reusableView = (StaHallCollectionReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
+
     
-    if(!reusableView){
-    
-        reusableView =[[StaHallCollectionReusableView alloc]initWithFrame:CGRectMake(0, 0, 320, 200)];
-        
-    }
     
     if(indexPath.section==0){
     
         reusableView.nameLabel.text = @"热门艺人";
+        
         
     }else if (indexPath.section==1){
         
@@ -113,13 +132,29 @@
     }else{
     
         reusableView.nameLabel.text = @"推荐艺人";
+        
     }
     
+    [reusableView.arrowButton addTarget:self action:@selector(threeButtonsClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+  
     
     return reusableView;
 
 }
+
+
+#pragma mark - reusableView将要出现
+- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
+    
+    UIButton *arrowButton = (UIButton *)[[[view subviews]firstObject] subviews][0];
+//    UIView *superView = [arrowButton superview];
+    
+    
+    
+}
+
+
 
 
 #pragma mark - 创建collectionViewCell
@@ -134,6 +169,8 @@
         cell.zoneDot.backgroundColor =[UIColor magentaColor];
         cell.starImage.image =[UIImage imageNamed:@"七夕"];
         cell.starName.text = @"汪峰";
+        
+        
     }else{
     
         cell.zoneDot.backgroundColor =[UIColor greenColor];
@@ -142,12 +179,60 @@
     }
 
     
-    
-    
-    
 
+    
     return cell;
 }
+
+
+
+#pragma mark - 三个箭头button被点击
+- (void)threeButtonsClicked:(UIButton *)sender{
+
+    sender.selected = !sender.selected;
+
+  
+    if(sender.tag==3001){
+        
+        
+        if(sender.selected){//展开
+            
+        }else{//收起
+
+        }
+        NSLog(@"热门艺人");
+        
+      
+    }else if (sender.tag==3002){
+    
+        if(sender.selected){//展开
+           
+            
+        }else{//收起
+        
+            
+        }
+        
+        NSLog(@"本地艺人");
+        
+    }else{
+    
+        if(sender.selected){//展开
+        
+        
+        }else{//收起
+        
+         
+        
+        }
+        
+        NSLog(@"推荐艺人");
+    }
+
+}
+
+
+
 
 
 #pragma mark - viewWillAppear
