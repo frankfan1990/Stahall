@@ -13,6 +13,7 @@
 #import "StarHallViewController.h"
 #import "AdvanceNoticeViewController.h"
 #import "ShowDetailsViewController.h"
+#import "SearchStarViewController.h"
 #import "ShowMallsViewController.h"
 #import "CCSegmentedControl.h"
 #import "CycleScrollView.h"
@@ -54,7 +55,7 @@
      *  开始创建tableView,构建骨架，5个section
      */
     
-    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:-1];
+    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:-1 andShowControlDot:YES];
     headScrollView.backgroundColor = [UIColor clearColor];
     __weak typeof (self)Myself = self;
     headScrollView.totalPagesCount = ^NSInteger(void){
@@ -476,7 +477,8 @@
 #pragma mark - 右上角按钮 跳到搜索艺人的页面
 -(void)didSearch
 {
-    
+    SearchStarViewController *seacrchCtrl = [[SearchStarViewController alloc] init];
+    [self.navigationController pushViewController:seacrchCtrl animated:YES];
 }
 
 #pragma mark - 去 堂汇页面 按钮

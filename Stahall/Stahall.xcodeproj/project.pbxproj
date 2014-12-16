@@ -10,6 +10,7 @@
 		5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C047A821A3ADBAC00C33B02 /* 陈奕迅.png */; };
 		5C1E1F0F1A3FCAD20085BD64 /* ShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */; };
 		5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1E1F101A401B6E0085BD64 /* lc2.png */; };
+		5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E1F131A4026C10085BD64 /* SearchStarViewController.m */; };
 		5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */; };
 		5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1851A3E890F00F6EC11 /* 张杰.png */; };
 		5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */; };
@@ -87,6 +88,8 @@
 		5C1E1F0D1A3FCAD20085BD64 /* ShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDetailsViewController.h; sourceTree = "<group>"; };
 		5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDetailsViewController.m; sourceTree = "<group>"; };
 		5C1E1F101A401B6E0085BD64 /* lc2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc2.png; sourceTree = "<group>"; };
+		5C1E1F121A4026C10085BD64 /* SearchStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStarViewController.h; sourceTree = "<group>"; };
+		5C1E1F131A4026C10085BD64 /* SearchStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStarViewController.m; sourceTree = "<group>"; };
 		5C4CF1821A3E88D100F6EC11 /* CCSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSegmentedControl.h; sourceTree = "<group>"; };
 		5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSegmentedControl.m; sourceTree = "<group>"; };
 		5C4CF1851A3E890F00F6EC11 /* 张杰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "张杰.png"; sourceTree = "<group>"; };
@@ -386,6 +389,8 @@
 				5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */,
 				5CE0D8A61A3EAFA300CBC562 /* AdvanceNoticeViewController.h */,
 				5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */,
+				5C1E1F121A4026C10085BD64 /* SearchStarViewController.h */,
+				5C1E1F131A4026C10085BD64 /* SearchStarViewController.m */,
 				63258B371A3D8A4C0089C3F1 /* InSideMenuControllers */,
 			);
 			name = Controllers;
@@ -729,6 +734,7 @@
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
 				63BC6AB81A39F47F00087DFB /* LeftMenuViewController.m in Sources */,
+				5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */,
 				5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */,
 				63BC6A9D1A3751DB00087DFB /* RECommonFunctions.m in Sources */,
 				5CE0D8A81A3EAFA300CBC562 /* AdvanceNoticeViewController.m in Sources */,
