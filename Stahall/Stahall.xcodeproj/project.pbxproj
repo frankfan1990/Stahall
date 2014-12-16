@@ -43,6 +43,7 @@
 		63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */; };
 		63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */; };
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
+		63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */; };
 		63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63BC6A591A3747F400087DFB /* MJRefresh.bundle */; };
 		63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5C1A3747F400087DFB /* MJRefreshBaseView.m */; };
 		63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5E1A3747F400087DFB /* MJRefreshConst.m */; };
@@ -138,6 +139,7 @@
 		63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionReusableView.m; sourceTree = "<group>"; };
 		63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionViewCell.h; sourceTree = "<group>"; };
 		63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionViewCell.m; sourceTree = "<group>"; };
+		63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "朝右箭头icon@2x.png"; sourceTree = "<group>"; };
 		63BC6A591A3747F400087DFB /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		63BC6A5A1A3747F400087DFB /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		63BC6A5B1A3747F400087DFB /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 		63258BD41A3ECB500089C3F1 /* FrankfanImage */ = {
 			isa = PBXGroup;
 			children = (
+				63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */,
 			);
 			name = FrankfanImage;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */,
 				5C4CF18A1A3E893A00F6EC11 /* 汪峰.png in Resources */,
 				5C5EF6871A3A91DE00EE8D78 /* page_state_highlight@2x.png in Resources */,
+				63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */,
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
 				63BC6A8C1A374B8200087DFB /* ProgressHUD.bundle in Resources */,

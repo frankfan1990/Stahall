@@ -39,6 +39,10 @@
     sideMenu.menuPreferredStatusBarStyle = UIStatusBarStyleLightContent;
     sideMenu.panGestureEnabled = YES;
     
+    //消除navigationBar的阴影
+    [[UINavigationBar appearance]setShadowImage:[[UIImage alloc]init]];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+
     
     self.window.rootViewController = sideMenu;
     
