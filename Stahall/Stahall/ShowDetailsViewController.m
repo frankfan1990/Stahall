@@ -1,23 +1,19 @@
 //
-//  MyShowViewController.m
+//  ShowDetailsViewController.m
 //  Stahall
 //
-//  Created by frankfan on 14/12/14.
+//  Created by JM_Pro on 14-12-16.
 //  Copyright (c) 2014年 Rching. All rights reserved.
 //
-//FIXME: 我的演出
 
-#import "MyShowViewController.h"
-#import "RESideMenu.h"
-#import "MainViewController.h"
+#import "ShowDetailsViewController.h"
+#pragma mark -  轮播海报  堂汇 艺人堂 内容详情
+@interface ShowDetailsViewController ()
 
-@interface MyShowViewController ()<UITableViewDelegate,UITableViewDataSource>
-{
-    UITableView *_tableView;
-}
 @end
 
-@implementation MyShowViewController
+@implementation ShowDetailsViewController
+
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
@@ -27,9 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTabBar];
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 -(void)setTabBar{
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -47,7 +41,7 @@
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateNormal];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [btnLeft addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [btnLeft addTarget:self action:@selector(didGoBack) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *btnLeftitem = [[UIBarButtonItem alloc] initWithCustomView:btnLeft];
     
     
@@ -62,21 +56,16 @@
     
     
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
-    title.text = @"我的演出";
+    title.text = _titleViewStr;
     title.font = [UIFont systemFontOfSize:19];
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
 }
-#pragma mark - 导航栏按钮触发
-- (void)buttonClicked:(UIButton *)sender{
 
-    MainViewController *mainViewController =[MainViewController new];
-    [self.sideMenuViewController setContentViewController:[[UINavigationController alloc]initWithRootViewController:mainViewController] animated:YES];
-    [self.sideMenuViewController presentLeftMenuViewController];
-  
+-(void)didGoBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -84,14 +73,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

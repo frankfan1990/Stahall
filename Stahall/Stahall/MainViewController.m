@@ -12,6 +12,7 @@
 #import "LeftMenuViewController.h"
 #import "StarHallViewController.h"
 #import "AdvanceNoticeViewController.h"
+#import "ShowDetailsViewController.h"
 #import "ShowMallsViewController.h"
 #import "CCSegmentedControl.h"
 #import "CycleScrollView.h"
@@ -73,7 +74,14 @@
         [imageV addSubview:label];
         return imageV;
     };
+    
+#pragma mark - 点击轮播图
     headScrollView.TapActionBlock = ^(NSInteger pageIndex){
+        
+        ShowDetailsViewController *details = [[ShowDetailsViewController alloc] init];
+        details.titleViewStr  = @"海报详情";
+        details.type = 1;
+        [Myself.navigationController pushViewController:details animated:YES];
         NSLog(@"%ld",(long)pageIndex);
     };
     
@@ -444,10 +452,14 @@
     
     if (collectionView.tag == 10002) {
         advanceCtrl.titleViewStr = @"预告详情";
+        advanceCtrl.type = 1;
+        
     }else if (collectionView.tag == 10003){
         advanceCtrl.titleViewStr = @"案例详情";
+        advanceCtrl.type = 2;
     }else if (collectionView.tag == 10004){
         advanceCtrl.titleViewStr = @"行程详情";
+        advanceCtrl.type = 3;
     }
    [self.navigationController pushViewController:advanceCtrl animated:YES];
     NSLog(@"%@",indexPath);
@@ -470,6 +482,7 @@
 -(void)didBtn1:(UIButton *)sender{
     ShowMallsViewController *showCtrl = [[ShowMallsViewController alloc] init];
     showCtrl.titleViewStr = @"堂 汇";
+    showCtrl.type = 1;
     [self.navigationController pushViewController:showCtrl animated:YES];
     NSLog(@"去 堂汇页面  按钮");
 }
@@ -485,6 +498,7 @@
 -(void)didBtn3:(UIButton *)sender{
     ShowMallsViewController *showCtrl = [[ShowMallsViewController alloc] init];
      showCtrl.titleViewStr = @"秀MALL";
+    showCtrl.type = 2;
     [self.navigationController pushViewController:showCtrl animated:YES];
     NSLog(@"去 秀MALL页面 按钮");
 }

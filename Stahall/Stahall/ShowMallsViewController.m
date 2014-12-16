@@ -8,7 +8,10 @@
 
 #import "ShowMallsViewController.h"
 #import "ShowMallsTableViewCell.h"
+#import "ShowDetailsViewController.h"
 #import "Marcos.h"
+
+#pragma mark - 堂汇 艺人堂 内容列表
 @interface ShowMallsViewController()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -44,7 +47,7 @@
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
     btnLeft.layer.cornerRadius = 20;
-    [btnLeft setFrame:CGRectMake(0, 0, 40, 40)];
+    [btnLeft setFrame:CGRectMake(0, 0, 35, 35)];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateNormal];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
@@ -95,6 +98,18 @@
     
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShowDetailsViewController *details = [[ShowDetailsViewController alloc] init];
+    if (_type+1 == 2) {
+        details.titleViewStr  = @"堂汇详情";
+    }else if (_type+1 == 3){
+        details.titleViewStr  = @"秀MALL详情";
+    }
+    details.type = _type+1;
+    [self.navigationController pushViewController:details animated:YES];
+}
+
 -(void)didGoBack
 {
     [self.navigationController popViewControllerAnimated:YES];

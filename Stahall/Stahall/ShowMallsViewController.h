@@ -10,4 +10,5 @@
 
 @interface ShowMallsViewController : UIViewController
 @property(nonatomic,strong)NSString *titleViewStr;
+@property(nonatomic,assign)NSInteger type;//1:堂汇    2:秀MALL
 @end
