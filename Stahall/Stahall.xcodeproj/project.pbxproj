@@ -377,6 +377,7 @@
 		631DC2141A37398B00F5E9AA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				63A9EA801A40387200C5DAE6 /* frankfan */,
 				631DC2101A37396900F5E9AA /* MainViewController.h */,
 				631DC2111A37396900F5E9AA /* MainViewController.m */,
 				63BC6AB61A39F47F00087DFB /* LeftMenuViewController.h */,
@@ -389,8 +390,6 @@
 				5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */,
 				5CE0D8A61A3EAFA300CBC562 /* AdvanceNoticeViewController.h */,
 				5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */,
-				63A9EA791A3FDE2F00C5DAE6 /* StahallValuationViewController.h */,
-				63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */,
 				63258B371A3D8A4C0089C3F1 /* InSideMenuControllers */,
 			);
 			name = Controllers;
@@ -484,6 +483,15 @@
 				63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */,
 			);
 			name = AboutStahallEvalueCollectionCell;
+			sourceTree = "<group>";
+		};
+		63A9EA801A40387200C5DAE6 /* frankfan */ = {
+			isa = PBXGroup;
+			children = (
+				63A9EA791A3FDE2F00C5DAE6 /* StahallValuationViewController.h */,
+				63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */,
+			);
+			name = frankfan;
 			sourceTree = "<group>";
 		};
 		63BC6A581A3747F400087DFB /* MJRefresh */ = {
