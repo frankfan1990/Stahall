@@ -14,6 +14,7 @@
 @interface CycleScrollView () <UIScrollViewDelegate>
 {
     CGFloat scrollViewStartContentOffsetX;
+    BOOL globalShowDot;
 }
 @property (nonatomic , assign) NSInteger currentPageIndex;
 @property (nonatomic , assign) NSInteger totalPageCount;
@@ -76,7 +77,12 @@
             self.scrollView.scrollEnabled = NO;
         }
         [self configContentViews];
-        [self addSubview:self.pageControl];
+        
+        if(globalShowDot){
+        
+            [self addSubview:self.pageControl];
+        }
+        
     }
 }
 
@@ -124,6 +130,25 @@
     }
     return self;
 }
+
+
+- (id)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)animationDuration andShowControlDot:(BOOL)showDot{
+
+    self = [self initWithFrame:frame];
+    if (animationDuration > 0.0) {
+        self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:(self.animationDuration = animationDuration)
+                                                               target:self
+                                                             selector:@selector(animationTimerDidFired:)
+                                                             userInfo:nil
+                                                              repeats:YES];
+        [self.animationTimer pauseTimer];
+    }
+    
+    globalShowDot = showDot;
+    return self;
+}
+
+
 
 #pragma mark -
 #pragma mark - 私有函数

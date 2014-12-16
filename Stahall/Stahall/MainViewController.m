@@ -13,6 +13,7 @@
 #import "StarHallViewController.h"
 #import "AdvanceNoticeViewController.h"
 #import "ShowDetailsViewController.h"
+#import "SearchStarViewController.h"
 #import "ShowMallsViewController.h"
 #import "CCSegmentedControl.h"
 #import "CycleScrollView.h"
@@ -54,7 +55,7 @@
      *  开始创建tableView,构建骨架，5个section
      */
     
-    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:-1];
+    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:-1 andShowControlDot:YES];
     headScrollView.backgroundColor = [UIColor clearColor];
     __weak typeof (self)Myself = self;
     headScrollView.totalPagesCount = ^NSInteger(void){
@@ -116,20 +117,21 @@
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
-    btnLeft.layer.cornerRadius = 25;
-    [btnLeft setFrame:CGRectMake(10, 15, 50, 50)];
+    [btnLeft setFrame:CGRectMake(10, 17, 48, 48)];
+     btnLeft.layer.cornerRadius = btnLeft.frame.size.width/2;
     [btnLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btnLeft setBackgroundImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateNormal];
-    [btnLeft setBackgroundImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateHighlighted];
+    
+    [btnLeft setBackgroundImage:[UIImage imageNamed:@"lc汪峰头像.png"] forState:UIControlStateNormal];
+    [btnLeft setBackgroundImage:[UIImage imageNamed:@"lc汪峰头像.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [btnLeft addTarget:self action:@selector(didGoLeftMenu) forControlEvents:UIControlEventTouchUpInside];
     [tabBarView addSubview:btnLeft];
     
-    CGRect rect = CGRectMake(Mywidth/2-95,25, 200, 30);
+    CGRect rect = CGRectMake(Mywidth/2-95+2,25, 200, 30);
     UIView *topview=[[UIView alloc] initWithFrame:rect];
     topview.layer.masksToBounds=YES;
-    topview.backgroundColor = [UIColor blackColor];
-    topview.alpha = 0.2;
+    topview.backgroundColor = [UIColor purpleColor];
+    topview.alpha = 0.4;
     topview.layer.cornerRadius=15;
     [tabBarView addSubview:topview];
     
@@ -193,7 +195,7 @@
             segmentCtrl.segmentTextColor = [UIColor whiteColor];
             segmentCtrl.selectedSegmentTextColor = [UIColor orangeColor];
             segmentCtrl.backgroundColor = [UIColor clearColor];
-            UIImageView *selecImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"2"]];
+            UIImageView *selecImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lc2"]];
             [segmentCtrl addTarget:self action:@selector(didSegment:) forControlEvents:UIControlEventValueChanged];
             segmentCtrl.selectedStainView = selecImageView;
             [headView addSubview:segmentCtrl];
@@ -475,7 +477,8 @@
 #pragma mark - 右上角按钮 跳到搜索艺人的页面
 -(void)didSearch
 {
-    
+    SearchStarViewController *seacrchCtrl = [[SearchStarViewController alloc] init];
+    [self.navigationController pushViewController:seacrchCtrl animated:YES];
 }
 
 #pragma mark - 去 堂汇页面 按钮

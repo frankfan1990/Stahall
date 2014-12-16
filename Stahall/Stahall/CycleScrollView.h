@@ -23,6 +23,9 @@
  */
 - (id)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)animationDuration;
 
+
+- (id)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)animationDuration andShowControlDot:(BOOL)showDot;
+
 //是否显示控制点
 @property (nonatomic,assign)BOOL hidePageControl;
 

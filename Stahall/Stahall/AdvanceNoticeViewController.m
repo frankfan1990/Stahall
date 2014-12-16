@@ -8,6 +8,7 @@
 
 #import "AdvanceNoticeViewController.h"
 #import "MarkupParser.h"
+#import "CycleScrollView.h"
 #import "CustomLabel.h"
 #import "Marcos.h"
 
@@ -16,6 +17,7 @@
 {
     UITableView *_tableView;
     UICollectionView *_collectionView;
+    CycleScrollView *cycSroView;
 }
 @end
 @implementation AdvanceNoticeViewController
@@ -158,15 +160,18 @@
          cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
          cell2.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
          cell2.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, Mywidth-20, 140)];
         backView.backgroundColor = [UIColor whiteColor];
         backView.layer.masksToBounds = YES;
         backView.layer.cornerRadius = 6;
         backView.layer.borderWidth =0.5;
         backView.layer.borderColor = [UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1].CGColor;
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, Mywidth-20, 0.5)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 40-0.5, Mywidth-20, 0.5)];
         lineView.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
         [backView addSubview:lineView];
+        
+        
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(15, 12, 20, 20)];
         imageV.backgroundColor = [UIColor orangeColor];
         imageV.layer.masksToBounds = YES;
@@ -178,15 +183,32 @@
         [backView addSubview:labelOftitle];
         [cell2.contentView addSubview:backView];
         
-        UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake(13, 40+15, 65, 65)];
-        imageV2.image = [UIImage imageNamed:@"lc汪峰头像"];
-        imageV2.layer.masksToBounds = YES;
-        imageV2.layer.cornerRadius = imageV2.frame.size.width/2;
-        [backView addSubview:imageV2];
+        cycSroView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 40, Mywidth-20, 100) animationDuration:4 andShowControlDot:NO];
+        cycSroView.backgroundColor = [UIColor whiteColor];
+         __weak typeof (self)Myself = self;
+        cycSroView.totalPagesCount = ^NSInteger(void){
+            return 5;
+        };
+        cycSroView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex){
+            
+            UIView *viewBackOther = [[UIView alloc] initWithFrame:CGRectMake(0, 40, Myself.view.frame.size.width-20, 100)];
+            viewBackOther.backgroundColor = [UIColor whiteColor];
+            
+            UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake(13, 15, 65, 65)];
+            imageV2.image = [UIImage imageNamed:@"lc汪峰头像"];
+            imageV2.layer.masksToBounds = YES;
+            imageV2.layer.cornerRadius = imageV2.frame.size.width/2;
+            [viewBackOther addSubview:imageV2];
+            
+            
+            UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(imageV2.frame.size.width+imageV2.frame.origin.x+22, 10, Myself.view.frame.size.width-(imageV2.frame.size.width+imageV2.frame.origin.x+22+40), 80)];
+            [Myself Customlable:labelContent text:@"汪峰,祖籍江苏常熟,1971年6月29日出生于北京。中国大陆摇滚歌手、音乐创作人、作词人、作曲家,鲍家街43号乐队队长 很厉害很厉害很厉害" fontSzie:15 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:10];
+            [viewBackOther addSubview:labelContent];
+            return viewBackOther;
+
+        };
         
-        UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(imageV2.frame.size.width+imageV2.frame.origin.x+22, 50, Mywidth-(imageV2.frame.size.width+imageV2.frame.origin.x+22+40), 80)];
-        [self Customlable:labelContent text:@"汪峰,祖籍江苏常熟,1971年6月29日出生于北京。中国大陆摇滚歌手、音乐创作人、作词人、作曲家,鲍家街43号乐队队长 很厉害很厉害很厉害" fontSzie:15 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:10];
-        [backView addSubview:labelContent];
+        [backView addSubview:cycSroView];
         
         UIImageView *imageV3 = [[UIImageView alloc] initWithFrame:CGRectMake(Mywidth-20-20, 80, 20, 20)];
         imageV3.image = [UIImage imageNamed:@"lc向右灰"];
@@ -259,6 +281,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 #pragma mark - 根据字长算 高度或宽度
 - (CGFloat)caculateTheTextHeight:(NSString *)string andFontSize:(int)fontSize andDistance:(CGFloat)distance{
