@@ -11,7 +11,10 @@
 #import "StahallEvalueCollectionViewCell.h"
 
 @interface StahallValuationViewController ()<UITextFieldDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,StarNameInput>
-
+{
+    NSMutableArray *starsSelected;//
+    BOOL deleteMode;
+}
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @property (nonatomic,strong)UICollectionView *collectionView;
 @end
@@ -21,7 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor whiteColor];
- 
+    
+    //初始化变量
+    starsSelected =[NSMutableArray arrayWithObject:@"end"];
+    deleteMode = NO;
+
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
     
@@ -96,8 +103,9 @@
     
     UICollectionViewFlowLayout *flowLayout =[[UICollectionViewFlowLayout alloc]init];
     flowLayout.itemSize = CGSizeMake(65, 70);
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 220, self.view.bounds.size.width-20, self.view.bounds.size.height-200-55) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 220, self.view.bounds.size.width-20, self.view.bounds.size.height-200-130) collectionViewLayout:flowLayout];
     
     
     [self.collectionView registerClass:[StahallEvalueCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
@@ -105,6 +113,7 @@
     self.collectionView.dataSource = self;
     [self.tpscrollerView addSubview:self.collectionView];
     self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.showsVerticalScrollIndicator = NO;
     
     //编辑按钮
     UIButton *editable =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -116,6 +125,7 @@
     [editable setTitle:@"编辑" forState:UIControlStateNormal];
     [editable setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [self.view addSubview:editable];
+    [editable addTarget:self action:@selector(editButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -132,6 +142,23 @@
     textField.font =[UIFont systemFontOfSize:14];
 
     return textField;
+}
+
+
+#pragma mark - 编辑按钮触发
+- (void)editButtonClicked:(UIButton *)sender{
+
+    sender.selected = !sender.selected;
+    if(sender.selected){//打开编辑
+    
+        deleteMode = YES;
+        [self.collectionView reloadData];
+        
+    }else{//关闭编辑
+    
+        deleteMode = NO;
+        [self.collectionView reloadData];
+    }
 }
 
 
@@ -153,16 +180,46 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
 
-    return 12;
+    return [starsSelected count];
 }
 
 #pragma mark - 创建cell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     StahallEvalueCollectionViewCell *stahallEvalueCell =[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    stahallEvalueCell.userInteractionEnabled = YES;
     stahallEvalueCell.delegate = self;
+    if(!deleteMode){
+    
+        stahallEvalueCell.deleteButton.hidden = YES;
+    }else{
+        stahallEvalueCell.deleteButton.hidden = NO;
+    }
 
+    if([starsSelected count]==1){//如果数据源只有一个数据
+        
+        stahallEvalueCell.addIcon.image =[UIImage imageNamed:@"fz加"];
+        
+    }else{//如果数据源超过一个数据
+    
+        NSInteger indexRow = [starsSelected count]-1;
+        if(indexPath.row==indexRow){
+        
+            stahallEvalueCell.addIcon.image =[UIImage imageNamed:@"fz加"];
+            
+        }else{
+        
+            stahallEvalueCell.addIcon.image = nil;
+        }
+        
+        if(indexRow==19){
+        
+            stahallEvalueCell.addIcon.image =nil;
+        }
+    }
+    
+    stahallEvalueCell.starName.text = starsSelected[indexPath.row];;
+    
+    
     return stahallEvalueCell;
 }
 
@@ -171,6 +228,45 @@
 - (void)starNameInputName:(NSString *)inputName{
 
     NSLog(@"inputName:%@",inputName);
+}
+
+
+#pragma mark - cell被选中
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    if([starsSelected count]==1){
+    
+        [starsSelected insertObject:@"placeHolder" atIndex:0];
+        
+        [self.collectionView reloadData];
+        
+    }else{
+    
+        NSInteger indexRow = [starsSelected count]-1;
+        if(indexRow == indexPath.row && indexRow < 19){
+        
+            [starsSelected insertObject:@"placeHolder" atIndex:0];
+            [self.collectionView reloadData];
+        }
+    
+    }
+    
+    NSLog(@"跳到挑选艺人界面");
+}
+
+
+#pragma mark - 删除按钮代理
+- (void)deletaButtonClicked:(UICollectionViewCell *)cell andButton:(UIButton *)deleteButton{
+
+    CGPoint buttonPosition =[deleteButton convertPoint:CGPointZero toView:self.collectionView];
+    NSIndexPath *indexPath =[self.collectionView indexPathForItemAtPoint:buttonPosition];
+    
+    if([starsSelected count]>1){
+
+        [starsSelected removeObjectAtIndex:indexPath.row];
+        [self.collectionView reloadData];
+
+    }
 }
 
 

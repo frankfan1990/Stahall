@@ -8,18 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol StarNameInput <NSObject>
 
+@optional
 - (void)starNameInputName:(NSString *)inputName;
+- (void)deletaButtonClicked:(UICollectionViewCell *)cell andButton:(UIButton *)deleteButton;
 
 @end
 
 
 @interface StahallEvalueCollectionViewCell : UICollectionViewCell<UITextFieldDelegate>
 
-@property (nonatomic,strong)UIImageView *starHeaderImage;
+@property (nonatomic,strong)UIImageView *starHeaderImage;//艺人头像
 @property (nonatomic,strong)UIButton *deleteButton;//删除按钮
 @property (nonatomic,strong)UITextField *starName;//艺人姓名
+@property (nonatomic,strong)UIImageView *addIcon;
 
 @property (nonatomic,assign)id<StarNameInput>delegate;
 @end

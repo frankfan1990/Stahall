@@ -28,11 +28,13 @@
         self.deleteButton =[UIButton buttonWithType:UIButtonTypeCustom];
         self.deleteButton.frame = CGRectMake(50, 7, 15, 15);
         self.deleteButton.layer.masksToBounds = YES;
-        self.deleteButton.layer.borderWidth = 1;
-        self.deleteButton.layer.borderColor = [UIColor colorWithWhite:0.5 alpha:0.95].CGColor;
-        self.deleteButton.backgroundColor =[UIColor orangeColor];
+        self.deleteButton.layer.borderWidth = 1.5;
+        self.deleteButton.layer.borderColor = [UIColor colorWithWhite:0.85 alpha:0.5].CGColor;
         [self.contentView addSubview:self.deleteButton];
+        [self.deleteButton setImage:[UIImage imageNamed:@"fz删除"] forState:UIControlStateNormal];
+        self.deleteButton.backgroundColor =[UIColor colorWithWhite:0.85 alpha:1];
         self.deleteButton.layer.cornerRadius = 7.5;
+        [self.deleteButton addTarget:self action:@selector(deleteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         //艺人姓名
         self.starName =[[UITextField alloc]initWithFrame:CGRectMake(5, 62, 55, 17)];
@@ -43,10 +45,21 @@
         self.starName.delegate = self;
         self.starName.font =[UIFont systemFontOfSize:12];
         
+        self.addIcon =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+        self.addIcon.center = self.starHeaderImage.center;
+        [self.contentView addSubview:self.addIcon];
     }
     
     return self;
 }
+
+#pragma mark - 按钮触发
+- (void)deleteButtonClicked:(UIButton *)sender{
+
+    [self.delegate deletaButtonClicked:self andButton:sender];
+}
+
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
 
