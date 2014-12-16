@@ -148,7 +148,7 @@
 - (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
     
     UIButton *arrowButton = (UIButton *)[[[view subviews]firstObject] subviews][0];
-    UIView *superView = [arrowButton superview];
+//    UIView *superView = [arrowButton superview];
     
     
     
