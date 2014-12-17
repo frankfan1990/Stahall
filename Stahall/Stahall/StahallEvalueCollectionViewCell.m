@@ -44,10 +44,12 @@
         self.starName.userInteractionEnabled = YES;
         self.starName.delegate = self;
         self.starName.font =[UIFont systemFontOfSize:12];
+        self.starName.textAlignment = NSTextAlignmentCenter;
         
         self.addIcon =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
         self.addIcon.center = self.starHeaderImage.center;
         [self.contentView addSubview:self.addIcon];
+        
     }
     
     return self;

@@ -15,13 +15,13 @@
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
 
-    UIButton *arrowButton1;
-    UIButton *arrowButton2;
-    UIButton *arrowButton3;
+    UIButton *_arrowButton;
     
     
     NSMutableArray *recodeRotateExpend;//记录展开
 //    NSMutableArray *recodeColla;//记录收起
+    NSMutableArray *arrowButtonStatue;//记录arrowButton动画状态
+    
 }
 @property (nonatomic,strong)UICollectionView *collectionView;
 @end
@@ -32,7 +32,7 @@
     [super viewDidLoad];
 
     recodeRotateExpend =[NSMutableArray array];
-//    recodeColla =[NSMutableArray array];
+    arrowButtonStatue =[NSMutableArray arrayWithObjects:@0,@0,@0, nil];
     
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"StaHallBackImage"].CGImage;
 
@@ -99,13 +99,13 @@
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
 
     
-    return 3;
+    return [arrowButtonStatue count];
 }
 
 #pragma mark - 创建cell个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
-    return 18;
+    return 58;
 }
 
 
@@ -115,13 +115,10 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
    StaHallCollectionReusableView *reusableView = (StaHallCollectionReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
-
-    
-    
+   
     if(indexPath.section==0){
     
         reusableView.nameLabel.text = @"热门艺人";
-        
         
     }else if (indexPath.section==1){
         
@@ -130,8 +127,26 @@
     }else{
     
         reusableView.nameLabel.text = @"推荐艺人";
-        
+      
     }
+    
+    
+    NSNumber *number = arrowButtonStatue[indexPath.section];
+    NSInteger statue =  [number integerValue];
+    
+    UIView *view =[reusableView viewWithTag:2999];
+    UIButton *button =(UIButton *)[view viewWithTag:3000];
+    
+   
+    if(statue){
+    
+        button.backgroundColor =[UIColor orangeColor];
+    }else{
+    
+        button.backgroundColor =[UIColor clearColor];
+    }
+    
+    
     
     [reusableView.arrowButton addTarget:self action:@selector(threeButtonsClicked:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -144,10 +159,6 @@
 
 #pragma mark - reusableView将要出现
 - (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
-    
-//    UIButton *arrowButton = (UIButton *)[[[view subviews]firstObject] subviews][0];
-//    UIView *superView = [arrowButton superview];
-    
     
     
 }
@@ -198,43 +209,57 @@
 
     sender.selected = !sender.selected;
 
-  
-    if(sender.tag==3001){
+    if(sender.selected){//展开
         
         
-        if(sender.selected){//展开
+        if(/* DISABLES CODE */ (1)){//热门艺人
             
-        }else{//收起
+            [arrowButtonStatue removeObjectAtIndex:0];
+            [arrowButtonStatue insertObject:@1 atIndex:0];
+            NSLog(@"热门艺人");
+
+        }else if (sender.tag==1001){//本地艺人
+        
+            [arrowButtonStatue removeObjectAtIndex:1];
+            [arrowButtonStatue insertObject:@1 atIndex:1];
+             NSLog(@"本地艺人");
+        
+        }else{//推荐艺人
+        
+        
+            [arrowButtonStatue removeObjectAtIndex:2];
+            [arrowButtonStatue insertObject:@1 atIndex:2];
+             NSLog(@"推荐艺人");
+        }
+        
+        
+    }else{//收起
+      
+        
+        
+        if(sender.tag==1000){//热门艺人
+            
+            [arrowButtonStatue removeObjectAtIndex:0];
+            [arrowButtonStatue insertObject:@0 atIndex:0];
+             NSLog(@"热门艺人");
+            
+        }else if (sender.tag==1001){//本地艺人
+            
+            [arrowButtonStatue removeObjectAtIndex:1];
+            [arrowButtonStatue insertObject:@0 atIndex:1];
+             NSLog(@"本地艺人");
+            
+        }else{//推荐艺人
+            
+            [arrowButtonStatue removeObjectAtIndex:2];
+            [arrowButtonStatue insertObject:@0 atIndex:2];
+            NSLog(@"推荐艺人");
 
         }
-        NSLog(@"热门艺人");
-        
-      
-    }else if (sender.tag==3002){
-    
-        if(sender.selected){//展开
-           
-            
-        }else{//收起
-        
-            
-        }
-        
-        NSLog(@"本地艺人");
-        
-    }else{
-    
-        if(sender.selected){//展开
-        
-        
-        }else{//收起
-        
-         
-        
-        }
-        
-        NSLog(@"推荐艺人");
+
     }
+
+
 
 }
 

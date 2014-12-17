@@ -234,22 +234,15 @@
 #pragma mark - cell被选中
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
-    if([starsSelected count]==1){
+    
+    NSInteger indexRow = [starsSelected count]-1;
+    if(indexPath.row==indexRow && indexRow < 19){
     
         [starsSelected insertObject:@"placeHolder" atIndex:0];
-        
         [self.collectionView reloadData];
-        
-    }else{
-    
-        NSInteger indexRow = [starsSelected count]-1;
-        if(indexRow == indexPath.row && indexRow < 19){
-        
-            [starsSelected insertObject:@"placeHolder" atIndex:0];
-            [self.collectionView reloadData];
-        }
-    
+
     }
+    
     
     NSLog(@"跳到挑选艺人界面");
 }
