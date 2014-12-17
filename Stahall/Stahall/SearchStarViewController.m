@@ -90,7 +90,6 @@
     btn5.selected = YES;
     btn6.selected = YES;
     
-    
     UIButton *searchBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     searchBtn.frame = CGRectMake(0, Myheight-45-64,Mywidth, 45);
     [searchBtn setTitle:@"立即搜索" forState:UIControlStateNormal];
@@ -98,11 +97,6 @@
     searchBtn.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1];
     [searchBtn addTarget:self action:@selector(didImmediatelySearch) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:searchBtn];
-    
-    
-//    UIView *backView = [[UIView alloc] initWithFrame:self.view.frame];
-//    backView.backgroundColor = [UIColor clearColor];
-//    [self.view addSubview:backView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 10, 10) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -231,6 +225,7 @@
     //再没有选择内容时 就点击其他按钮 则把前面那个按钮的选中状态 变成YES
     if (MyBtn != nil && MyBtn.tag != sender.tag) {
         MyBtn.selected = YES;
+         _tableView.alpha = 0;
     }
 
     //取得当前点击的Button
@@ -258,7 +253,7 @@
     
     _tableView.frame = CGRectMake(sender.frame.origin.x, sender.frame.origin.y+sender.frame.size.height,sender.frame.size.width, height);
     
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         if (sender.selected) {
             _tableView.alpha = 1;
             sender.selected = NO;

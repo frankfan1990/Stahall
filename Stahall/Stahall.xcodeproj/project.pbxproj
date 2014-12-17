@@ -313,6 +313,13 @@
 			name = AboutShowMallsCell;
 			sourceTree = "<group>";
 		};
+		5CF40D3A1A41680800769E67 /* LuCanViewCtrl */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = LuCanViewCtrl;
+			sourceTree = "<group>";
+		};
 		631DC1DE1A3738EF00F5E9AA = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +394,7 @@
 		631DC2141A37398B00F5E9AA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5CF40D3A1A41680800769E67 /* LuCanViewCtrl */,
 				63A9EA801A40387200C5DAE6 /* frankfan */,
 				631DC2101A37396900F5E9AA /* MainViewController.h */,
 				631DC2111A37396900F5E9AA /* MainViewController.m */,

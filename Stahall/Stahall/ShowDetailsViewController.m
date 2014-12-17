@@ -136,7 +136,7 @@
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:str];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UILabel *lable1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 110, 25)];
         lable1.tag = 1000;
         
@@ -150,7 +150,7 @@
         
     }
     UILabel *label1 = (UILabel *)[cell.contentView viewWithTag:1000];
-     UILabel *label2 = (UILabel *)[cell.contentView viewWithTag:10000];
+    UILabel *label2 = (UILabel *)[cell.contentView viewWithTag:10000];
     if (indexPath.row>0 && indexPath.row<arrOfTitle.count+1) {
         label1.text = arrOfTitle[indexPath.row-1];
         label2.text = arrOfcontent[indexPath.row-1];
