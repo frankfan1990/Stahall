@@ -183,7 +183,7 @@
         [backView addSubview:labelOftitle];
         [cell2.contentView addSubview:backView];
         
-        cycSroView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 40, Mywidth-20, 100) animationDuration:4 andShowControlDot:NO];
+        cycSroView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 40, Mywidth-20, 100) animationDuration:3 andShowControlDot:NO];
         cycSroView.backgroundColor = [UIColor whiteColor];
          __weak typeof (self)Myself = self;
         cycSroView.totalPagesCount = ^NSInteger(void){

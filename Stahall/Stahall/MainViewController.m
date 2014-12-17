@@ -55,7 +55,7 @@
      *  开始创建tableView,构建骨架，5个section
      */
     
-    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:-1 andShowControlDot:YES];
+    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:3 andShowControlDot:YES];
     headScrollView.backgroundColor = [UIColor clearColor];
     __weak typeof (self)Myself = self;
     headScrollView.totalPagesCount = ^NSInteger(void){

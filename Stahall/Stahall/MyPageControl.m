@@ -114,7 +114,7 @@
             
             [UIView animateWithDuration:0.1f delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^(void){
                 self.highlightedDotImageView.frame = newRect;
-                NSLog(@"newRect:%@",NSStringFromCGRect(newRect));
+//                NSLog(@"newRect:%@",NSStringFromCGRect(newRect));
             } completion:^(BOOL finished){}];
 
         
@@ -122,7 +122,7 @@
         
             [UIView animateWithDuration:0.3f delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^(void){
                 self.highlightedDotImageView.frame = newRect;
-                NSLog(@"newRect:%@",NSStringFromCGRect(newRect));
+//                NSLog(@"newRect:%@",NSStringFromCGRect(newRect));
             } completion:^(BOOL finished){}];
 
         
