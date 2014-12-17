@@ -26,6 +26,7 @@
         
         //删除按钮
         self.deleteButton =[UIButton buttonWithType:UIButtonTypeCustom];
+        self.deleteButton.tag = 2002;
         self.deleteButton.frame = CGRectMake(50, 7, 15, 15);
         self.deleteButton.layer.masksToBounds = YES;
         self.deleteButton.layer.borderWidth = 1.5;

@@ -10,10 +10,12 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "StahallEvalueCollectionViewCell.h"
 
+bool selected;
 @interface StahallValuationViewController ()<UITextFieldDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,StarNameInput>
 {
     NSMutableArray *starsSelected;//
     BOOL deleteMode;
+    UIButton *editable;
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -105,6 +107,9 @@
     flowLayout.itemSize = CGSizeMake(65, 70);
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
+    flowLayout.minimumLineSpacing = 20;
+    flowLayout.minimumInteritemSpacing = 10;
+    
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 220, self.view.bounds.size.width-20, self.view.bounds.size.height-200-130) collectionViewLayout:flowLayout];
     
     
@@ -116,7 +121,7 @@
     self.collectionView.showsVerticalScrollIndicator = NO;
     
     //编辑按钮
-    UIButton *editable =[UIButton buttonWithType:UIButtonTypeCustom];
+    editable =[UIButton buttonWithType:UIButtonTypeCustom];
     editable.frame = CGRectMake(self.view.bounds.size.width-50, 35+10+10+35+10+10+35+15+32+5, 45, 18);
     editable.backgroundColor =[UIColor orangeColor];
     editable.layer.cornerRadius = 2;
@@ -127,6 +132,18 @@
     [self.view addSubview:editable];
     [editable addTarget:self action:@selector(editButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    //提交估价
+    UIButton *commitEvalution =[UIButton buttonWithType:UIButtonTypeCustom];
+    commitEvalution.frame = CGRectMake(10, self.view.bounds.size.height-115,self.view.bounds.size.width-20 , 35);
+    commitEvalution.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1];
+    [commitEvalution setTitle:@"提交估价" forState:UIControlStateNormal];
+    [commitEvalution setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [commitEvalution setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:commitEvalution];
+    commitEvalution.layer.cornerRadius = 3;
+    commitEvalution.titleLabel.font =[UIFont systemFontOfSize:12];
+    [commitEvalution addTarget:self action:@selector(commitTheHallEvalution) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -146,20 +163,36 @@
 
 
 #pragma mark - 编辑按钮触发
+
 - (void)editButtonClicked:(UIButton *)sender{
 
-    sender.selected = !sender.selected;
-    if(sender.selected){//打开编辑
+    if([starsSelected count]==1){
     
-        deleteMode = YES;
+        return;
+    }
+    
+    if(!selected){//打开编辑
+    
+        selected = YES;
+        [sender setTitle:@"取消" forState:UIControlStateNormal];
         [self.collectionView reloadData];
         
     }else{//关闭编辑
     
-        deleteMode = NO;
+        selected = NO;
+        [sender setTitle:@"编辑" forState:UIControlStateNormal];
         [self.collectionView reloadData];
     }
 }
+
+
+#pragma mark - 提交堂估价
+- (void)commitTheHallEvalution{
+
+
+    NSLog(@"堂估价提交");
+}
+
 
 
 
@@ -188,11 +221,27 @@
     
     StahallEvalueCollectionViewCell *stahallEvalueCell =[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     stahallEvalueCell.delegate = self;
-    if(!deleteMode){
+    if(!selected){
     
         stahallEvalueCell.deleteButton.hidden = YES;
     }else{
-        stahallEvalueCell.deleteButton.hidden = NO;
+        
+        if(indexPath.row!=[starsSelected count]-1){
+        
+            stahallEvalueCell.deleteButton.hidden = NO;
+        }else{
+        
+            if([starsSelected count]!=20){
+        
+                stahallEvalueCell.deleteButton.hidden = YES;
+
+            }else{
+            
+                stahallEvalueCell.deleteButton.hidden = NO;
+            }
+            
+        }
+        
     }
 
     if([starsSelected count]==1){//如果数据源只有一个数据
@@ -234,13 +283,29 @@
 #pragma mark - cell被选中
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
+    if(selected){
+    
+        return;
+    }
     
     NSInteger indexRow = [starsSelected count]-1;
     if(indexPath.row==indexRow && indexRow < 19){
     
         [starsSelected insertObject:@"placeHolder" atIndex:0];
         [self.collectionView reloadData];
+        
+        NSLog(@"被选中：%ld",(long)indexPath.row);
+    }
+    
+    if([starsSelected count]==9 || [starsSelected count]==13){
+    
+        [self.collectionView setContentOffset:CGPointMake(0, 120) animated:YES];
+        
+    }
 
+    if([starsSelected count]==17){
+        
+        [self.collectionView setContentOffset:CGPointMake(0, 220) animated:YES];
     }
     
     
@@ -260,6 +325,19 @@
         [self.collectionView reloadData];
 
     }
+    
+    if([starsSelected count]==1){
+    
+        [editable setTitle:@"编辑" forState:UIControlStateNormal];
+        selected = NO;
+        
+    }
+    
+    
+    
+    
+    
+    NSLog(@"删除的indexPath:%ld",(long)indexPath.row);
 }
 
 

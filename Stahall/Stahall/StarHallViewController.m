@@ -11,6 +11,7 @@
 #import "StaHallCollectionReusableView.h"
 #import "StaHallCollectionViewCell.h"
 #import "StahallValuationViewController.h"
+#import "StahallFooterReusableView.h"
 
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -63,6 +64,8 @@
     
     UICollectionViewFlowLayout *flowLayout =[[UICollectionViewFlowLayout alloc]init];
     flowLayout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width-20, 50);
+    flowLayout.footerReferenceSize = CGSizeMake(self.view.bounds.size.width-20, 35);
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0);
     
     flowLayout.itemSize = CGSizeMake(65, 70);
  
@@ -72,6 +75,7 @@
     
     [self.collectionView registerClass:[StaHallCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.collectionView registerClass:[StaHallCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+    [self.collectionView registerClass:[StahallFooterReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
 
     self.collectionView.backgroundColor =[UIColor clearColor];
     self.collectionView.delegate = self;
@@ -114,59 +118,65 @@
 #pragma mark - 创建headerView
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
+
    StaHallCollectionReusableView *reusableView = (StaHallCollectionReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
-   
-    if(indexPath.section==0){
     
-        reusableView.nameLabel.text = @"热门艺人";
-        
-    }else if (indexPath.section==1){
-        
-        reusableView.nameLabel.text = @"本地艺人";
-        
-    }else{
+    StahallFooterReusableView *reusableFooterView =(StahallFooterReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
+
+    if([kind isEqualToString:UICollectionElementKindSectionHeader]){//头部
     
-        reusableView.nameLabel.text = @"推荐艺人";
-      
+        if(indexPath.section==0){
+            
+            reusableView.nameLabel.text = @"热门艺人";
+            
+        }else if (indexPath.section==1){
+            
+            reusableView.nameLabel.text = [NSString stringWithFormat:@"本地艺人【%@】",@"长沙"];
+            
+        }else{
+            
+            reusableView.nameLabel.text = @"推荐艺人";
+            
+        }
+        
+        reusableView.arrowButton.tag = indexPath.section+1000;
+        
+        if([arrowButtonStatue[indexPath.section] integerValue]){//展开
+            
+            [UIView animateWithDuration:0 animations:^{
+                
+                reusableView.arrowButton.transform = CGAffineTransformMakeRotation(M_PI_2);
+            }];
+            
+        }else{//收起
+            
+            [UIView animateWithDuration:0 animations:^{
+                
+                reusableView.arrowButton.transform = CGAffineTransformMakeRotation(0);
+            }];
+            
+        }
+        
+        
+        
+        [reusableView.arrowButton addTarget:self action:@selector(threeButtonsClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return reusableView;
+        
+    }else{//尾部
+    
+        reusableFooterView.loadMoreButton.tag = indexPath.section+2000;
+        
+        
+        [reusableFooterView.loadMoreButton addTarget:self action:@selector(loadMoreButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return reusableFooterView;
+        
     }
     
-    reusableView.arrowButton.tag = indexPath.section+1000;
-    
-    if([arrowButtonStatue[indexPath.section] integerValue]){//展开
-    
-        [UIView animateWithDuration:0 animations:^{
-            
-            reusableView.arrowButton.transform = CGAffineTransformMakeRotation(M_PI_2);
-        }];
-    
-    }else{//收起
-    
-        [UIView animateWithDuration:0 animations:^{
-            
-            reusableView.arrowButton.transform = CGAffineTransformMakeRotation(0);
-        }];
-    
-    }
-    
-    
-    
-    
-    [reusableView.arrowButton addTarget:self action:@selector(threeButtonsClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-  
-    
-    return reusableView;
-
-}
-
-
-#pragma mark - reusableView将要出现
-- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
-    
+    return nil;
     
 }
-
 
 
 
@@ -284,6 +294,27 @@ bool isExpand;
    
 }
 
+
+#pragma mark - 加载更多按钮触发
+- (void)loadMoreButtonClicked:(UIButton *)sender{
+    
+    NSInteger indexTag = sender.tag;
+    switch (indexTag) {
+        case 2000://热门艺人加载
+            
+            NSLog(@"热门艺人加载更多");
+            break;
+            
+        case 2001://本地艺人加载更多
+            NSLog(@"本地艺人加载更多");
+            break;
+        case 2002://推荐艺人加载更多
+            NSLog(@"推荐艺人加载更多");
+            break;
+    }
+
+
+}
 
 
 
