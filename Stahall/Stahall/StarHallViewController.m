@@ -80,9 +80,9 @@
     self.collectionView.showsVerticalScrollIndicator = NO;
     
     
-    //堂估价按钮
+    //堂估价按钮455
     UIButton *Hallvaluation =[UIButton buttonWithType:UIButtonTypeCustom];
-    Hallvaluation.frame = CGRectMake(10,455, self.view.bounds.size.width-20, 45);
+    Hallvaluation.frame = CGRectMake(10,self.view.bounds.size.height-115, self.view.bounds.size.width-20, 45);
     Hallvaluation.layer.cornerRadius = 3;
     [Hallvaluation setTitle:@"堂估价" forState:UIControlStateNormal];
     [Hallvaluation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
