@@ -201,7 +201,8 @@
             [headView addSubview:segmentCtrl];
         }
         
-        UIButton *headBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, imageV.frame.size.width+imageV.frame.origin.x+20, 53)];
+        UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        headBtn.frame = CGRectMake(0, 0, imageV.frame.size.width+imageV.frame.origin.x+20, 53);
         headBtn.tag = 66666+section;
         headBtn.backgroundColor = [UIColor clearColor];
         [headBtn addTarget:self action:@selector(didHeadBtn:) forControlEvents:UIControlEventTouchUpInside];
