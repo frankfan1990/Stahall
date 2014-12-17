@@ -19,7 +19,7 @@
     
     
     NSMutableArray *recodeRotateExpend;//记录展开
-//    NSMutableArray *recodeColla;//记录收起
+
     NSMutableArray *arrowButtonStatue;//记录arrowButton动画状态
     
 }
@@ -105,7 +105,7 @@
 #pragma mark - 创建cell个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
-    return 58;
+    return 18;
 }
 
 
@@ -130,25 +130,29 @@
       
     }
     
+    reusableView.arrowButton.tag = indexPath.section+1000;
     
-    NSNumber *number = arrowButtonStatue[indexPath.section];
-    NSInteger statue =  [number integerValue];
+    if([arrowButtonStatue[indexPath.section] integerValue]){//展开
     
-    UIView *view =[reusableView viewWithTag:2999];
-    UIButton *button =(UIButton *)[view viewWithTag:3000];
+        [UIView animateWithDuration:0 animations:^{
+            
+            reusableView.arrowButton.transform = CGAffineTransformMakeRotation(M_PI_2);
+        }];
     
-   
-    if(statue){
+    }else{//收起
     
-        button.backgroundColor =[UIColor orangeColor];
-    }else{
+        [UIView animateWithDuration:0 animations:^{
+            
+            reusableView.arrowButton.transform = CGAffineTransformMakeRotation(0);
+        }];
     
-        button.backgroundColor =[UIColor clearColor];
     }
     
     
     
+    
     [reusableView.arrowButton addTarget:self action:@selector(threeButtonsClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
     
   
     
@@ -203,64 +207,81 @@
 
 }
 
-
+bool isExpand;
 #pragma mark - 三个箭头button被点击
 - (void)threeButtonsClicked:(UIButton *)sender{
-
-    sender.selected = !sender.selected;
-
-    if(sender.selected){//展开
+    
+    NSInteger index = sender.tag-1000;
+    
+    if(![arrowButtonStatue[index] integerValue]){//展开
         
+        [arrowButtonStatue removeObjectAtIndex:index];
+        [arrowButtonStatue insertObject:@1 atIndex:index];
         
-        if(/* DISABLES CODE */ (1)){//热门艺人
+        [UIView animateWithDuration:0.35 animations:^{
             
-            [arrowButtonStatue removeObjectAtIndex:0];
-            [arrowButtonStatue insertObject:@1 atIndex:0];
-            NSLog(@"热门艺人");
-
-        }else if (sender.tag==1001){//本地艺人
+            sender.transform = CGAffineTransformMakeRotation(M_PI_2);
+        }];
         
-            [arrowButtonStatue removeObjectAtIndex:1];
-            [arrowButtonStatue insertObject:@1 atIndex:1];
-             NSLog(@"本地艺人");
-        
-        }else{//推荐艺人
-        
-        
-            [arrowButtonStatue removeObjectAtIndex:2];
-            [arrowButtonStatue insertObject:@1 atIndex:2];
-             NSLog(@"推荐艺人");
-        }
-        
+        isExpand = YES;
         
     }else{//收起
-      
         
+        [arrowButtonStatue removeObjectAtIndex:index];
+        [arrowButtonStatue insertObject:@0 atIndex:index];
         
-        if(sender.tag==1000){//热门艺人
+        [UIView animateWithDuration:0.35 animations:^{
             
-            [arrowButtonStatue removeObjectAtIndex:0];
-            [arrowButtonStatue insertObject:@0 atIndex:0];
-             NSLog(@"热门艺人");
-            
-        }else if (sender.tag==1001){//本地艺人
-            
-            [arrowButtonStatue removeObjectAtIndex:1];
-            [arrowButtonStatue insertObject:@0 atIndex:1];
-             NSLog(@"本地艺人");
-            
-        }else{//推荐艺人
-            
-            [arrowButtonStatue removeObjectAtIndex:2];
-            [arrowButtonStatue insertObject:@0 atIndex:2];
-            NSLog(@"推荐艺人");
+            sender.transform = CGAffineTransformMakeRotation(0);
+        }];
 
-        }
-
+        isExpand = NO;
     }
+    
+    switch (sender.tag) {
+        case 1000://热门艺人
+            
+            if(isExpand){//执行展开执行方法
+            
+            NSLog(@"热门艺人展开");
+            }else{//展开收起执行方法
+                
+            NSLog(@"热门艺人收起");
+            }
+            
+            
+            
+            
+            break;
+            
+        case 1001://本地艺人
+           
+            if(isExpand){//执行展开执行方法
+                
+                NSLog(@"本地艺人展开");
+            }else{//展开收起执行方法
+                
+                NSLog(@"本地艺人收起");
+            }
 
+            break;
+            
+        case 1002://推荐艺人
+            
+            if(isExpand){//执行展开执行方法
+                
+                NSLog(@"推荐艺人展开");
+            }else{//展开收起执行方法
+                
+                NSLog(@"推荐艺人收起");
+            }
 
-
+            break;
+            
+    }
+    
+    
+   
 }
 
 

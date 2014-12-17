@@ -34,14 +34,11 @@
         
         self.arrowButton = nil;
         _arrowButton =[UIButton buttonWithType:UIButtonTypeCustom];
-//        _arrowButton =[[UIImageView alloc]init];
         _arrowButton.userInteractionEnabled = YES;
-//        _arrowButton.image =[UIImage imageNamed:@"朝右箭头icon"];
         _arrowButton.frame = CGRectMake(0, 0, 20, 20);
         [_arrowButton setImage:[UIImage imageNamed:@"朝右箭头icon"] forState:UIControlStateNormal];
         _arrowButton.layer.masksToBounds = YES;
         _arrowButton.layer.cornerRadius = 10;
-        _arrowButton.tag = 3000;
         [self.circleView addSubview:self.arrowButton];
         
         
