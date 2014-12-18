@@ -51,6 +51,7 @@
 		63A9EA7E1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */; };
 		63A9EA821A40649700C5DAE6 /* fz删除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA811A40649700C5DAE6 /* fz删除@2x.png */; };
 		63A9EA841A40649B00C5DAE6 /* fz加@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA831A40649B00C5DAE6 /* fz加@2x.png */; };
+		63A9EAF81A41C07600C5DAE6 /* StahallFooterReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */; };
 		63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63BC6A591A3747F400087DFB /* MJRefresh.bundle */; };
 		63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5C1A3747F400087DFB /* MJRefreshBaseView.m */; };
 		63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5E1A3747F400087DFB /* MJRefreshConst.m */; };
@@ -158,6 +159,8 @@
 		63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallEvalueCollectionViewCell.m; sourceTree = "<group>"; };
 		63A9EA811A40649700C5DAE6 /* fz删除@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz删除@2x.png"; sourceTree = "<group>"; };
 		63A9EA831A40649B00C5DAE6 /* fz加@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz加@2x.png"; sourceTree = "<group>"; };
+		63A9EAF61A41C07600C5DAE6 /* StahallFooterReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallFooterReusableView.h; sourceTree = "<group>"; };
+		63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallFooterReusableView.m; sourceTree = "<group>"; };
 		63BC6A591A3747F400087DFB /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		63BC6A5A1A3747F400087DFB /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		63BC6A5B1A3747F400087DFB /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -470,6 +473,7 @@
 		63258B931A3E79F30089C3F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				63A9EAF11A41BF2100C5DAE6 /* frankfan */,
 				63A9EA7F1A40173D00C5DAE6 /* AboutStahallEvalueCollectionCell */,
 				5C9E08F91A3F08F8007072E0 /* AboutShowMallsCell */,
 				63258B941A3E7CAC0089C3F1 /* AboutStahallCollectionView */,
@@ -510,10 +514,51 @@
 		63A9EA801A40387200C5DAE6 /* frankfan */ = {
 			isa = PBXGroup;
 			children = (
+				63A9EAF21A41BF3300C5DAE6 /* Controllers */,
+			);
+			name = frankfan;
+			sourceTree = "<group>";
+		};
+		63A9EAF01A41BEF700C5DAE6 /* AboutStarHallControllers */ = {
+			isa = PBXGroup;
+			children = (
 				63A9EA791A3FDE2F00C5DAE6 /* StahallValuationViewController.h */,
 				63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */,
 			);
+			name = AboutStarHallControllers;
+			sourceTree = "<group>";
+		};
+		63A9EAF11A41BF2100C5DAE6 /* frankfan */ = {
+			isa = PBXGroup;
+			children = (
+				63A9EAF41A41BF5B00C5DAE6 /* Views */,
+			);
 			name = frankfan;
+			sourceTree = "<group>";
+		};
+		63A9EAF21A41BF3300C5DAE6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				63A9EAF01A41BEF700C5DAE6 /* AboutStarHallControllers */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		63A9EAF41A41BF5B00C5DAE6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63A9EAF51A41C03D00C5DAE6 /* AboutStarHallModelView */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		63A9EAF51A41C03D00C5DAE6 /* AboutStarHallModelView */ = {
+			isa = PBXGroup;
+			children = (
+				63A9EAF61A41C07600C5DAE6 /* StahallFooterReusableView.h */,
+				63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */,
+			);
+			name = AboutStarHallModelView;
 			sourceTree = "<group>";
 		};
 		63BC6A581A3747F400087DFB /* MJRefresh */ = {
@@ -776,6 +821,7 @@
 				63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */,
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
+				63A9EAF81A41C07600C5DAE6 /* StahallFooterReusableView.m in Sources */,
 				63BC6AB81A39F47F00087DFB /* LeftMenuViewController.m in Sources */,
 				5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */,
 				5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */,

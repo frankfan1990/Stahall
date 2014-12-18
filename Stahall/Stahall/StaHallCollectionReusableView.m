@@ -17,7 +17,7 @@
     
     
         //item名字
-        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, 100, 50)];
+        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, 200, 50)];
         self.nameLabel.backgroundColor =[UIColor clearColor];
         self.nameLabel.textColor =[UIColor whiteColor];
         
