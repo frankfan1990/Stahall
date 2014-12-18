@@ -15,6 +15,8 @@
 #import "ShowDetailsViewController.h"
 #import "SearchStarViewController.h"
 #import "ShowMallsViewController.h"
+#import "TangHuiListViewController.h"
+#import "ListAdvanceViewController.h"
 #import "CCSegmentedControl.h"
 #import "CycleScrollView.h"
 #import "RESideMenu.h"
@@ -484,10 +486,8 @@
 
 #pragma mark - 去 堂汇页面 按钮
 -(void)didBtn1:(UIButton *)sender{
-    ShowMallsViewController *showCtrl = [[ShowMallsViewController alloc] init];
-    showCtrl.titleViewStr = @"堂 汇";
-    showCtrl.type = 1;
-    [self.navigationController pushViewController:showCtrl animated:YES];
+    TangHuiListViewController *TangCtrl = [[TangHuiListViewController alloc] init];
+    [self.navigationController pushViewController:TangCtrl animated:YES];
     NSLog(@"去 堂汇页面  按钮");
 }
 
@@ -501,8 +501,6 @@
 #pragma mark - 去 秀MALL页面 按钮
 -(void)didBtn3:(UIButton *)sender{
     ShowMallsViewController *showCtrl = [[ShowMallsViewController alloc] init];
-     showCtrl.titleViewStr = @"秀MALL";
-    showCtrl.type = 2;
     [self.navigationController pushViewController:showCtrl animated:YES];
     NSLog(@"去 秀MALL页面 按钮");
 }
@@ -511,7 +509,9 @@
 -(void)didHeadBtn:(UIButton *)sender
 {
     NSLog(@"%ld",(long)sender.tag);
-    
+    ListAdvanceViewController *listCtrl = [[ListAdvanceViewController alloc] init];
+    listCtrl.type = sender.tag - 66667;
+    [self.navigationController pushViewController:listCtrl animated:YES];
 }
 
 #pragma mark - 点击 分段控制器

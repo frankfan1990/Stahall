@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C047A821A3ADBAC00C33B02 /* 陈奕迅.png */; };
+		5C1C8C411A42675900A94E7A /* TangHuiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1C8C401A42675900A94E7A /* TangHuiListViewController.m */; };
+		5C1C8C461A42D6AE00A94E7A /* ListAdvanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1C8C451A42D6AE00A94E7A /* ListAdvanceViewController.m */; };
 		5C1E1F0F1A3FCAD20085BD64 /* ShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */; };
 		5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1E1F101A401B6E0085BD64 /* lc2.png */; };
 		5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E1F131A4026C10085BD64 /* SearchStarViewController.m */; };
@@ -90,6 +92,10 @@
 /* Begin PBXFileReference section */
 		3921515187F041715D8DB15C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C047A821A3ADBAC00C33B02 /* 陈奕迅.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "陈奕迅.png"; sourceTree = "<group>"; };
+		5C1C8C3F1A42675900A94E7A /* TangHuiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TangHuiListViewController.h; sourceTree = "<group>"; };
+		5C1C8C401A42675900A94E7A /* TangHuiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TangHuiListViewController.m; sourceTree = "<group>"; };
+		5C1C8C441A42D6AE00A94E7A /* ListAdvanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListAdvanceViewController.h; sourceTree = "<group>"; };
+		5C1C8C451A42D6AE00A94E7A /* ListAdvanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListAdvanceViewController.m; sourceTree = "<group>"; };
 		5C1E1F0D1A3FCAD20085BD64 /* ShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDetailsViewController.h; sourceTree = "<group>"; };
 		5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDetailsViewController.m; sourceTree = "<group>"; };
 		5C1E1F101A401B6E0085BD64 /* lc2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc2.png; sourceTree = "<group>"; };
@@ -319,6 +325,10 @@
 		5CF40D3A1A41680800769E67 /* LuCanViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
+				5C1C8C3F1A42675900A94E7A /* TangHuiListViewController.h */,
+				5C1C8C401A42675900A94E7A /* TangHuiListViewController.m */,
+				5C1C8C441A42D6AE00A94E7A /* ListAdvanceViewController.h */,
+				5C1C8C451A42D6AE00A94E7A /* ListAdvanceViewController.m */,
 			);
 			name = LuCanViewCtrl;
 			sourceTree = "<group>";
@@ -833,6 +843,7 @@
 				5C1E1F0F1A3FCAD20085BD64 /* ShowDetailsViewController.m in Sources */,
 				63BC6A7C1A374A1100087DFB /* TPKeyboardAvoidingTableView.m in Sources */,
 				63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */,
+				5C1C8C461A42D6AE00A94E7A /* ListAdvanceViewController.m in Sources */,
 				63BC6A7B1A374A1100087DFB /* TPKeyboardAvoidingScrollView.m in Sources */,
 				63258B361A3D8A490089C3F1 /* MyShowViewController.m in Sources */,
 				63BC6A701A3747F400087DFB /* UIView+MJExtension.m in Sources */,
@@ -849,6 +860,7 @@
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
 				63A9EA7E1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m in Sources */,
+				5C1C8C411A42675900A94E7A /* TangHuiListViewController.m in Sources */,
 				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,
 				63BC6A7A1A374A1100087DFB /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				631DC1ED1A3738EF00F5E9AA /* main.m in Sources */,
