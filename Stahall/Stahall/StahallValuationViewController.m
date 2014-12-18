@@ -9,13 +9,25 @@
 #import "StahallValuationViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "StahallEvalueCollectionViewCell.h"
+#import "NSDate+Category.h"
+#import "ProgressHUD.h"
+#import "StarHallViewController.h"
+
 
 bool selected;
 @interface StahallValuationViewController ()<UITextFieldDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,StarNameInput>
 {
     NSMutableArray *starsSelected;//
+    
     BOOL deleteMode;
+    
     UIButton *editable;
+    
+    UIDatePicker *datePicker;
+    
+    UIView *datePickerBackView;//时间选择器的承载
+    
+    NSDateFormatter *dateFormatter;
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -30,9 +42,8 @@ bool selected;
     //初始化变量
     starsSelected =[NSMutableArray arrayWithObject:@"end"];
     deleteMode = NO;
-
-    self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+    dateFormatter =[[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
@@ -74,10 +85,15 @@ bool selected;
     
     //演出时间
     UITextField *showTimeTextField =[self createTextFieldWithTag:1003 andPlceholder:@"演出时间" andFrame:CGRectMake(10,35+10+10, self.view.bounds.size.width/2.0-25, 35)];
+    showTimeTextField.delegate = self;
+    showTimeTextField.tag = 3000;
     [self.tpscrollerView addSubview:showTimeTextField];
+    [showTimeTextField resignFirstResponder];
     
     //备选时间
     UITextField *anotherTimeTextField =[self createTextFieldWithTag:1004 andPlceholder:@"备选时间" andFrame:CGRectMake(self.view.bounds.size.width/2.0-25+40, 35+10+10, self.view.bounds.size.width/2.0-25, 35)];
+    anotherTimeTextField.delegate = self;
+    anotherTimeTextField.tag = 3001;
     [self.tpscrollerView addSubview:anotherTimeTextField];
     
     //直飞机场
@@ -144,6 +160,18 @@ bool selected;
     commitEvalution.layer.cornerRadius = 3;
     commitEvalution.titleLabel.font =[UIFont systemFontOfSize:12];
     [commitEvalution addTarget:self action:@selector(commitTheHallEvalution) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    //创建时间选择器
+    datePickerBackView =[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.height, 230)];
+    datePickerBackView.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1];
+    
+    
+    datePicker =[[UIDatePicker alloc]initWithFrame:CGRectMake(0, 0, datePickerBackView.bounds.size.width, datePickerBackView.bounds.size.height)];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [datePickerBackView addSubview:datePicker];
+    [self.view addSubview:datePickerBackView];
+    
 }
 
 
@@ -196,10 +224,51 @@ bool selected;
 
 
 
+#pragma mark - textField开始编辑
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    [UIView animateWithDuration:0.35 animations:^{
+        
+        datePickerBackView.transform = CGAffineTransformMakeTranslation(0, -230);
+        
+    }];
+    
+    textField.inputView =[[UIView alloc]initWithFrame:CGRectZero];
+ 
+}
+
+
 #pragma mark - textfield代理
 - (void)textFieldDidEndEditing:(UITextField *)textField{
 
-
+  
+    NSString *dateString =[dateFormatter stringFromDate:datePicker.date];
+    
+    NSString *todayString = [NSString stringWithFormat:@"%@",[NSDate date]];
+    NSArray *timeArray =[todayString componentsSeparatedByString:@" "];
+    NSString *timeString = [timeArray firstObject];
+    
+    if(![datePicker.date isInFuture] && ![todayString isEqualToString:timeString]){//过去时间
+        
+        [ProgressHUD showError:@"非法时间"];
+        textField.text = nil;
+        NSLog(@"过去时间");
+        
+    }else{//未来时间
+        
+        textField.text = dateString;
+    }
+    
+    NSLog(@"date:%@",dateString);
+    
+    
+    [UIView animateWithDuration:0.35 animations:^{
+        
+        datePickerBackView.transform = CGAffineTransformMakeTranslation(0, 230);
+        
+    }];
+   
+    
 }
 
 
@@ -309,6 +378,10 @@ bool selected;
     }
     
     
+    StarHallViewController *staHallViewController =[StarHallViewController new];
+    staHallViewController.isSearchMode = YES;
+    [self.navigationController pushViewController:staHallViewController animated:YES];
+    
     NSLog(@"跳到挑选艺人界面");
 }
 
@@ -332,10 +405,7 @@ bool selected;
         selected = NO;
         
     }
-    
-    
-    
-    
+   
     
     NSLog(@"删除的indexPath:%ld",(long)indexPath.row);
 }

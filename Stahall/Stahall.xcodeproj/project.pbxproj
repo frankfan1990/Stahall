@@ -46,6 +46,11 @@
 		63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */; };
 		63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */; };
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
+		6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */; };
+		6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */; };
+		6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */; };
+		6397FDCE1A429E9B0021B9E2 /* fs_main_login_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6397FDCC1A429E9B0021B9E2 /* fs_main_login_normal@2x.png */; };
+		6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6397FDCD1A429E9B0021B9E2 /* fs_main_login_selected@2x.png */; };
 		63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */; };
 		63A9EA7B1A3FDE2F00C5DAE6 /* StahallValuationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */; };
 		63A9EA7E1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */; };
@@ -152,6 +157,14 @@
 		63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionReusableView.m; sourceTree = "<group>"; };
 		63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionViewCell.h; sourceTree = "<group>"; };
 		63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionViewCell.m; sourceTree = "<group>"; };
+		6397FDC11A426C3A0021B9E2 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
+		6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
+		6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
+		6397FDC61A426EE10021B9E2 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
+		6397FDC81A429E430021B9E2 /* ZSYPopoverListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSYPopoverListView.h; sourceTree = "<group>"; };
+		6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSYPopoverListView.m; sourceTree = "<group>"; };
+		6397FDCC1A429E9B0021B9E2 /* fs_main_login_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fs_main_login_normal@2x.png"; sourceTree = "<group>"; };
+		6397FDCD1A429E9B0021B9E2 /* fs_main_login_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fs_main_login_selected@2x.png"; sourceTree = "<group>"; };
 		63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "朝右箭头icon@2x.png"; sourceTree = "<group>"; };
 		63A9EA791A3FDE2F00C5DAE6 /* StahallValuationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallValuationViewController.h; sourceTree = "<group>"; };
 		63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallValuationViewController.m; sourceTree = "<group>"; };
@@ -422,6 +435,7 @@
 		631DC2191A37404900F5E9AA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6397FDC41A426C400021B9E2 /* DateUtils */,
 				631DC21D1A37408600F5E9AA /* IsValiadOfPhoneNumber */,
 				631DC2181A37403C00F5E9AA /* Reachability */,
 			);
@@ -440,6 +454,7 @@
 		631DC2371A37411400F5E9AA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				6397FDCB1A429E4B0021B9E2 /* ZSPOPView */,
 				5C9E08801A3ED02E007072E0 /* CustomLabel */,
 				5C9E087C1A3ED027007072E0 /* MarkupParser */,
 				5C4CF1811A3E88D100F6EC11 /* CCSegmentedControl */,
@@ -492,6 +507,28 @@
 				63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */,
 			);
 			name = FrankfanImage;
+			sourceTree = "<group>";
+		};
+		6397FDC41A426C400021B9E2 /* DateUtils */ = {
+			isa = PBXGroup;
+			children = (
+				6397FDC11A426C3A0021B9E2 /* NSDate+Category.h */,
+				6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */,
+				6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */,
+				6397FDC61A426EE10021B9E2 /* NSDateFormatter+Category.h */,
+			);
+			name = DateUtils;
+			sourceTree = "<group>";
+		};
+		6397FDCB1A429E4B0021B9E2 /* ZSPOPView */ = {
+			isa = PBXGroup;
+			children = (
+				6397FDCC1A429E9B0021B9E2 /* fs_main_login_normal@2x.png */,
+				6397FDCD1A429E9B0021B9E2 /* fs_main_login_selected@2x.png */,
+				6397FDC81A429E430021B9E2 /* ZSYPopoverListView.h */,
+				6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */,
+			);
+			name = ZSPOPView;
 			sourceTree = "<group>";
 		};
 		63A9EA7F1A40173D00C5DAE6 /* AboutStahallEvalueCollectionCell */ = {
@@ -733,6 +770,7 @@
 				5C5EF6861A3A91DE00EE8D78 /* page_state_highlight.png in Resources */,
 				5C9E08891A3EF0C2007072E0 /* lc向右灰.png in Resources */,
 				5C5EF67D1A3A8DB800EE8D78 /* 七夕.png in Resources */,
+				6397FDCE1A429E9B0021B9E2 /* fs_main_login_normal@2x.png in Resources */,
 				5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */,
 				5C5EF67A1A3A844C00EE8D78 /* 面包@2x.png in Resources */,
 				63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */,
@@ -751,6 +789,7 @@
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
+				6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */,
 				63BC6A8C1A374B8200087DFB /* ProgressHUD.bundle in Resources */,
 				63A9EA821A40649700C5DAE6 /* fz删除@2x.png in Resources */,
 			);
@@ -805,6 +844,7 @@
 			files = (
 				63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */,
 				63BC6A6C1A3747F400087DFB /* MJRefreshFooterView.m in Sources */,
+				6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */,
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
@@ -813,6 +853,7 @@
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
 				63A9EAF81A41C07600C5DAE6 /* StahallFooterReusableView.m in Sources */,
+				6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */,
 				63BC6AB81A39F47F00087DFB /* LeftMenuViewController.m in Sources */,
 				5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */,
 				5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */,
@@ -832,6 +873,7 @@
 				63A9EA7B1A3FDE2F00C5DAE6 /* StahallValuationViewController.m in Sources */,
 				631DC2171A37403100F5E9AA /* Reachability.m in Sources */,
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
+				6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */,
 				5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */,
 				63BC6A6D1A3747F400087DFB /* MJRefreshHeaderView.m in Sources */,
 				63BC6A951A374C5800087DFB /* NSObject+FBKVOController.m in Sources */,

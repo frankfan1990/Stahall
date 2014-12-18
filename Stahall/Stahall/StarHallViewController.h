@@ -10,4 +10,5 @@
 
 @interface StarHallViewController : UIViewController
 
+@property (nonatomic,assign)BOOL isSearchMode;//标志位
 @end

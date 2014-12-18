@@ -13,4 +13,7 @@
 @property (nonatomic,strong)UILabel *nameLabel;
 @property (nonatomic,strong)UIView *circleView;
 @property (nonatomic,strong)UIButton *arrowButton;
+@property (nonatomic,strong)UIButton *sortButton1;//分类按钮
+@property (nonatomic,strong)UIButton *sortButton2;//分类按钮
+@property (nonatomic,strong)UIButton *sortButton3;//分类按钮
 @end
