@@ -496,6 +496,7 @@
     NSLog(@"去 艺人堂页面 按钮");
     StarHallViewController *starCtrl = [[StarHallViewController alloc] init];
     [self.navigationController pushViewController:starCtrl animated:YES];
+    starCtrl.isSearchMode = NO;
 }
 
 #pragma mark - 去 秀MALL页面 按钮
