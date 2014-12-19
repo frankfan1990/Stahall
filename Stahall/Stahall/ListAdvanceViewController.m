@@ -10,7 +10,7 @@
 #import "GNWheelView.h"
 #import "Marcos.h"
 #import "UIImageView+WebCache.h"
-
+#import "AdvanceNoticeViewController.h"
 @interface ListAdvanceViewController ()<GNWheelViewDelegate>
 {
     NSMutableArray *arrays;
@@ -42,7 +42,7 @@
     
     arrays =[NSMutableArray array];
     for (int i= 0; i<activityImages_my.count; i++) {
-        UIImageView *imageView =[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 300-16, 160)];
+        UIImageView *imageView =[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 300-16, 160-20)];
         [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i]]];
         __weak typeof (self)myself = self;
         [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -135,6 +135,13 @@
     UIView *viewBack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth-20,180)];
     viewBack.backgroundColor = [UIColor whiteColor];
     [viewBack addSubview:arrays[index]];
+    UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(15, 150, viewBack.frame.size.width-95, 25)];
+    [self Customlable:label1 text:@"张杰跨年全国巡回演唱会" fontSzie:15 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
+    [viewBack addSubview:label1];
+    
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(viewBack.frame.size.width-90, 151,80, 25)];
+    [self Customlable:label2 text:@"2014-11-05" fontSzie:12 textColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1] textAlignment:NSTextAlignmentRight adjustsFontSizeToFitWidth:NO numberOfLines:1];
+    [viewBack addSubview:label2];
     
     return viewBack;
     
@@ -153,6 +160,25 @@
     
     return YES;
 }
+
+-(void)wheelView:(GNWheelView *)wheelView didSelectedRowAtIndex:(NSInteger)index
+{
+    AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
+    
+    if (_type == 1) {
+        advanceCtrl.titleViewStr = @"预告详情";
+        advanceCtrl.type = 1;
+        
+    }else if (_type == 1){
+        advanceCtrl.titleViewStr = @"案例详情";
+        advanceCtrl.type = 2;
+    }else if (_type == 1){
+        advanceCtrl.titleViewStr = @"行程详情";
+        advanceCtrl.type = 3;
+    }
+    [self.navigationController pushViewController:advanceCtrl animated:YES];
+}
+
 - (void)theAnimationStoped{
     
     
@@ -189,4 +215,14 @@
     return grayImage;
 }
 
+#pragma mark - UIlabel的方法
+-(void)Customlable:(UILabel *)label text:(NSString *)textStr fontSzie:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment adjustsFontSizeToFitWidth:(BOOL)state numberOfLines:(NSInteger)numberOfLines
+{
+    label.text = textStr;
+    label.font = [UIFont systemFontOfSize:font];
+    label.textColor = textColor;
+    label.textAlignment = textAlignment;
+    label.adjustsFontSizeToFitWidth = state;
+    label.numberOfLines = numberOfLines;
+}
 @end
