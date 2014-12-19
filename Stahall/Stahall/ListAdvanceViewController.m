@@ -7,9 +7,16 @@
 //
 
 #import "ListAdvanceViewController.h"
+#import "GNWheelView.h"
+#import "Marcos.h"
 
-@interface ListAdvanceViewController ()
 
+@interface ListAdvanceViewController ()<GNWheelViewDelegate>
+{
+    NSMutableArray *arrays;
+    NSMutableArray *activityImages_my;
+    GNWheelView *gnView;
+}
 @end
 
 @implementation ListAdvanceViewController
@@ -22,8 +29,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:160/255.0 green:160/255.0 blue:160/255.0 alpha:1];
     [self setTabBar];
+     activityImages_my = [NSMutableArray arrayWithObjects:@"http://pic17.nipic.com/20111102/7015943_083452063000_2.jpg",@"http://pic24.nipic.com/20121015/9095554_134755084000_2.jpg",@"http://pic.nipic.com/2007-12-20/200712206539308_2.jpg",@"http://pic1.nipic.com/2008-10-13/2008101312210298_2.jpg",@"http://pic24.nipic.com/20121014/9095554_130006147000_2.jpg",@"http://pic1a.nipic.com/2008-10-27/2008102793623630_2.jpg",@"http://pic17.nipic.com/20111102/7015943_083452063000_2.jpg",nil];
+    
+    arrays =[NSMutableArray array];
+    for (int i= 0; i<activityImages_my.count; i++) {
+        UIImageView *imageView =[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 300-16, 160)];
+//        [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i-1]]];
+//        __weak typeof (self)myself = self;
+//        [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i-1]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//            imageView.image = [myself grayImage:image];
+//        }];
+        imageView.tag = 1001+i;
+        [arrays addObject:imageView];
+    }
+
+    gnView =[[GNWheelView alloc]initWithFrame:self.view.bounds];
+    gnView.delegate = self;
+    [self.view addSubview:gnView];
+    [gnView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,19 +104,78 @@
     
 }
 
+- (NSInteger)numberOfRowsOfWheelView:(GNWheelView *)wheelView{
+    
+    
+    return [arrays count];
+}
+
+- (float)rowWidthInWheelView:(GNWheelView *)wheelView{
+    
+    return Mywidth-20;
+    
+}
+
+- (float)rowHeightInWheelView:(GNWheelView *)wheelView{
+    
+    return 180;
+    
+}
+
+
+- (UIView *)wheelView:(GNWheelView *)wheelView viewForRowAtIndex:(NSInteger)index{
+    
+    UIView *viewBack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth-20,180)];
+    viewBack.backgroundColor = [UIColor whiteColor];
+    [viewBack addSubview:arrays[index]];
+    
+    return viewBack;
+    
+}
+
+
+#pragma mark - 在这里取到当前滚动索引
+- (BOOL)wheelView:(GNWheelView *)wheelView shouldEnterIdleStateForRowAtIndex:(NSInteger)index animated:(BOOL *)animated{
+    
+    for (UIImageView *vv in arrays) {
+        vv.image = [self grayImage:vv.image];
+    }
+    
+    UIImageView *imageV = (UIImageView *)[wheelView viewWithTag:1001+index];
+//    [imageV sd_setImageWithURL:[NSURL URLWithString:activityImages_my[index]]];
+    
+    return YES;
+}
+
 
 -(void)didGoBack
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - RGB转灰度
+-(UIImage *)grayImage:(UIImage *)sourceImage
+{
+    int bitmapInfo = kCGImageAlphaNone;
+    int width = sourceImage.size.width;
+    int height = sourceImage.size.height;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+    CGContextRef context = CGBitmapContextCreate (nil,
+                                                  width,
+                                                  height,
+                                                  8,      // bits per component
+                                                  0,
+                                                  colorSpace,
+                                                  bitmapInfo);
+    CGColorSpaceRelease(colorSpace);
+    if (context == NULL) {
+        return nil;
+    }
+    CGContextDrawImage(context,
+                       CGRectMake(0, 0, width, height), sourceImage.CGImage);
+    UIImage *grayImage = [UIImage imageWithCGImage:CGBitmapContextCreateImage(context)];
+    CGContextRelease(context);
+    return grayImage;
 }
-*/
 
 @end

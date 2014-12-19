@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ListAdvanceViewController : UIViewController
-@property(nonatomic,assign)NSInteger type;
+@property(nonatomic,assign)NSInteger type;//1预告  2案例  3行程
 @end
