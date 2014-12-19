@@ -1,4 +1,2 @@
-pod 'TMCache', '~> 1.2.2'
 pod 'Mantle', '~> 1.5.1'
-pod 'AFNetworking', '~> 2.5.0'
-pod 'SDWebImage', '~> 3.7.1'
+pod 'TMCache', '~> 1.2.3'
