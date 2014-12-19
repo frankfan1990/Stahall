@@ -18,7 +18,11 @@
     
     UIButton *allowCheck;
     UIButton *unallowCheck;
+    
     NSMutableArray *checkBoxState;
+    
+    UILabel *allowLabel;
+    UILabel *unAllow;
     
 }
 @property (nonatomic,strong)UITableView *tableView;
@@ -53,7 +57,7 @@
     self.navigationItem.leftBarButtonItem = leftitem;
 
     //
-    self.tableView =[[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-64) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = NO;
@@ -67,7 +71,7 @@
     //
     
     rtlabel =[[RTLabel alloc]initWithFrame:CGRectMake(10, 10, self.view.bounds.size.width-20, 0)];
-    NSString *testString = @"堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格";
+    NSString *testString = @"堂估款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台<p>大量交易数据分堂估款-堂估价是艺人堂\n根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是</p>艺人堂根据平台大量交易堂估款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台<p>大量交易堂估款</p>-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易堂估款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易析得出的艺人演艺价格";
     rtlabel.text = [self handleStringForRTLabel:testString];
     cellHeight = rtlabel.optimumSize.height;
    
@@ -75,10 +79,26 @@
     //
     allowCheck =[UIButton buttonWithType:UIButtonTypeCustom];
     allowCheck.tag = 1001;
-   
+    [allowCheck addTarget:self action:@selector(checkOrUncheckButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [allowCheck setImage:[UIImage imageNamed:@"fz对勾"] forState:UIControlStateNormal];
+    
     
     unallowCheck =[UIButton buttonWithType:UIButtonTypeCustom];
     unallowCheck.tag = 1002;
+    [unallowCheck addTarget:self action:@selector(checkOrUncheckButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    allowLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2.0+10, 0, 100, 35)];
+    allowLabel.font =[UIFont systemFontOfSize:14];
+    allowLabel.text = @"同意";
+    allowCheck.backgroundColor =[UIColor whiteColor];
+
+    
+    unAllow = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2.0+10, 0, 100, 35)];
+    unAllow.font =[UIFont systemFontOfSize:14];
+    unAllow.text = @"不同意";
+    unallowCheck.backgroundColor =[UIColor whiteColor];
+    
     
     
     // Do any additional setup after loading the view.
@@ -95,7 +115,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 
-    return cellHeight+180;
+    return cellHeight+210;
 }
 
 
@@ -110,10 +130,21 @@
         cell.backgroundColor =[UIColor orangeColor];
         
         rtlabel.frame = CGRectMake(10, 10, self.view.bounds.size.width-20, cellHeight);
+        allowLabel.frame = CGRectMake(self.view.bounds.size.width/2.0-10, cellHeight+45, 100, 35);
+        unAllow.frame = CGRectMake(self.view.bounds.size.width/2.0-10, cellHeight+45+35+20, 100, 35);
+        
+        allowCheck.frame = CGRectMake(self.view.bounds.size.width/2.0-25-10, cellHeight+45+10, 15, 15);
+        unallowCheck.frame = CGRectMake(self.view.bounds.size.width/2.0-25-10, cellHeight+45+35+20+10, 15, 15);
+        
+        
+        [cell.contentView addSubview:allowCheck];
+        [cell.contentView addSubview:unallowCheck];
+        [cell.contentView addSubview:allowLabel];
+        [cell.contentView addSubview:unAllow];
         [cell.contentView addSubview:rtlabel];
         
         //
-        UILabel *allowLabel = [];
+       
         
         
     }
@@ -151,6 +182,32 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+
+#pragma mark - 同意/不同意 - 方法触发
+
+- (void)checkOrUncheckButtonClicked:(UIButton *)sender{
+    
+    if(sender.tag==1001){//同意
+    
+        if(!sender.currentImage){
+        
+         
+            [unallowCheck setImage:nil forState:UIControlStateNormal];
+        }
+    
+    }else{//不同意
+    
+        if(!sender.currentImage){
+        
+            
+            [allowCheck setImage:nil forState:UIControlStateNormal];
+        }
+    
+    }
+    
+    [sender setImage:[UIImage imageNamed:@"fz对勾"] forState:UIControlStateNormal];
+}
 
 
 - (void)didReceiveMemoryWarning {

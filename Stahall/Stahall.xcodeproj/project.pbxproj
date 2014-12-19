@@ -87,7 +87,7 @@
 		636F44881A44091300FD6783 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F44761A44091300FD6783 /* UIImageView+HighlightedWebCache.m */; };
 		636F44891A44091300FD6783 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F44781A44091300FD6783 /* UIImageView+WebCache.m */; };
 		636F448A1A44091300FD6783 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F447A1A44091300FD6783 /* UIView+WebCacheOperation.m */; };
-		636F44961A44214300FD6783 /* fz对勾.png in Resources */ = {isa = PBXBuildFile; fileRef = 636F44951A44214300FD6783 /* fz对勾.png */; };
+		636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636F44951A44214300FD6783 /* fz对勾@2x.png */; };
 		6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */; };
 		6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */; };
 		6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */; };
@@ -282,7 +282,7 @@
 		636F44781A44091300FD6783 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		636F44791A44091300FD6783 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		636F447A1A44091300FD6783 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
-		636F44951A44214300FD6783 /* fz对勾.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz对勾.png"; sourceTree = "<group>"; };
+		636F44951A44214300FD6783 /* fz对勾@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz对勾@2x.png"; sourceTree = "<group>"; };
 		6397FDC11A426C3A0021B9E2 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
@@ -657,7 +657,7 @@
 		63258BD41A3ECB500089C3F1 /* FrankfanImage */ = {
 			isa = PBXGroup;
 			children = (
-				636F44951A44214300FD6783 /* fz对勾.png */,
+				636F44951A44214300FD6783 /* fz对勾@2x.png */,
 				63A9EA831A40649B00C5DAE6 /* fz加@2x.png */,
 				63A9EA811A40649700C5DAE6 /* fz删除@2x.png */,
 				63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */,
@@ -1085,7 +1085,7 @@
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
-				636F44961A44214300FD6783 /* fz对勾.png in Resources */,
+				636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */,
 				6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */,
 				63BC6A8C1A374B8200087DFB /* ProgressHUD.bundle in Resources */,
 				63A9EA821A40649700C5DAE6 /* fz删除@2x.png in Resources */,
