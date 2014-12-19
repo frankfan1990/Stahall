@@ -22,6 +22,8 @@
     
     
     
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -35,6 +37,16 @@
     NSString *resultString =[tempString stringByReplacingOccurrencesOfString:@"div" withString:@"br" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [tempString length])];
     
     return resultString;
+}
+
+
+
+#pragma mark - view将要出现
+- (void)viewWillAppear:(BOOL)animated{
+
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
 }
 
 

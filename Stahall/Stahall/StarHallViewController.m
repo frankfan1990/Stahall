@@ -14,6 +14,7 @@
 #import "StahallFooterReusableView.h"
 #import "ZSYPopoverListView.h"
 #import "FXBlurView.h"
+#import "HallEvalutionIlerItemViewController.h"
 
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZSYPopoverListDelegate,ZSYPopoverListDatasource,UITextFieldDelegate,FxBlurViewDidTouchDelegate>
 {
@@ -409,8 +410,8 @@
 #pragma mark - 堂估价按钮触发
 - (void)stahallValueButtonClicked{
 
-    StahallValuationViewController *stahallvaluation =[StahallValuationViewController new];
-    [self.navigationController pushViewController:stahallvaluation animated:YES];
+    HallEvalutionIlerItemViewController *hallevalutionItem = [HallEvalutionIlerItemViewController new];
+    [self.navigationController pushViewController:hallevalutionItem animated:YES];
 
 }
 
