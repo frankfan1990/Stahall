@@ -9,7 +9,7 @@
 #import "ListAdvanceViewController.h"
 #import "GNWheelView.h"
 #import "Marcos.h"
-
+#import "UIImageView+WebCache.h"
 
 @interface ListAdvanceViewController ()<GNWheelViewDelegate>
 {
@@ -29,23 +29,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:160/255.0 green:160/255.0 blue:160/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1];
     [self setTabBar];
-     activityImages_my = [NSMutableArray arrayWithObjects:@"http://pic17.nipic.com/20111102/7015943_083452063000_2.jpg",@"http://pic24.nipic.com/20121015/9095554_134755084000_2.jpg",@"http://pic.nipic.com/2007-12-20/200712206539308_2.jpg",@"http://pic1.nipic.com/2008-10-13/2008101312210298_2.jpg",@"http://pic24.nipic.com/20121014/9095554_130006147000_2.jpg",@"http://pic1a.nipic.com/2008-10-27/2008102793623630_2.jpg",@"http://pic17.nipic.com/20111102/7015943_083452063000_2.jpg",nil];
+     activityImages_my = [NSMutableArray arrayWithObjects:
+                          @"http://imgs.focus.cn/upload/news/7094/a_70932259.jpg",
+                          @"http://photocdn.sohu.com/20101125/Img277908901.jpg",
+                          @"http://photocdn.sohu.com/20080625/Img257738894.jpg",
+                          @"http://ent.taiwan.cn/list/201310/W020131021414396230095.jpg",
+                          @"http://ent.shangdu.com/report/20140408/P_5892825_0__363882803.jpg",
+                          @"http://photocdn.sohu.com/20101125/Img277908901.jpg",
+                          @"http://ent.shangdu.com/report/20140408/P_5892825_0__363882803.jpg",nil];
     
     arrays =[NSMutableArray array];
     for (int i= 0; i<activityImages_my.count; i++) {
         UIImageView *imageView =[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 300-16, 160)];
-//        [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i-1]]];
-//        __weak typeof (self)myself = self;
-//        [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i-1]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//            imageView.image = [myself grayImage:image];
-//        }];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i]]];
+        __weak typeof (self)myself = self;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:activityImages_my[i]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            imageView.image = [myself grayImage:image];
+        }];
         imageView.tag = 1001+i;
         [arrays addObject:imageView];
     }
 
-    gnView =[[GNWheelView alloc]initWithFrame:self.view.bounds];
+    gnView =[[GNWheelView alloc]initWithFrame:CGRectMake(0, -20, Mywidth, Myheight-40)];
     gnView.delegate = self;
     [self.view addSubview:gnView];
     [gnView reloadData];
@@ -142,11 +149,15 @@
     }
     
     UIImageView *imageV = (UIImageView *)[wheelView viewWithTag:1001+index];
-//    [imageV sd_setImageWithURL:[NSURL URLWithString:activityImages_my[index]]];
+    [imageV sd_setImageWithURL:[NSURL URLWithString:activityImages_my[index]]];
     
     return YES;
 }
-
+- (void)theAnimationStoped{
+    
+    
+    
+}
 
 -(void)didGoBack
 {
