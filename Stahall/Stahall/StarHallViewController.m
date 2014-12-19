@@ -13,8 +13,9 @@
 #import "StahallValuationViewController.h"
 #import "StahallFooterReusableView.h"
 #import "ZSYPopoverListView.h"
+#import "FXBlurView.h"
 
-@interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZSYPopoverListDelegate,ZSYPopoverListDatasource,UITextFieldDelegate>
+@interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZSYPopoverListDelegate,ZSYPopoverListDatasource,UITextFieldDelegate,FxBlurViewDidTouchDelegate>
 {
 
     UIButton *_arrowButton;
@@ -27,6 +28,8 @@
     NSArray *popViewDateSource;
     
     UITextField *searchView;
+    
+    FXBlurView *blurView;
     
 }
 @property (nonatomic,strong)ZSYPopoverListView *popView;
@@ -58,7 +61,10 @@
     
         searchView =[[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width-120, 30)];
         searchView.layer.cornerRadius = 13;
-      
+        searchView.tag = 13;
+        searchView.delegate = self;
+        searchView.layer.masksToBounds = YES;
+        
         searchView.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"搜索艺人" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:[UIColor colorWithWhite:0.65 alpha:0.8]}];
        
         searchView.backgroundColor =[UIColor whiteColor];
@@ -118,6 +124,34 @@
     [Hallvaluation addTarget:self action:@selector(stahallValueButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
+
+#pragma mark - 开始点击搜索框
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+
+    blurView = [[FXBlurView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height)];
+    blurView.delegate = self;
+    blurView.alpha = 0;
+    blurView.blurRadius = 16;
+    blurView.blurEnabled = YES;
+    blurView.tintColor =[UIColor blackColor];
+    [[UIApplication sharedApplication].keyWindow addSubview:blurView];
+    
+    [UIView animateWithDuration:0.1 animations:^{
+        
+        blurView.alpha = 1;
+    }];
+}
+
+#pragma mark blurView被点击
+- (void)fxblueViewDidTouched:(UIView *)fxblurView{
+
+    [searchView resignFirstResponder];
+    if([[[UIApplication sharedApplication].keyWindow subviews]containsObject:fxblurView]){
+        
+        [fxblurView removeFromSuperview];
+        fxblurView = nil;
+    }
+}
 
 
 
@@ -197,44 +231,57 @@
         [reusableView.sortButton2 addTarget:self action:@selector(sortButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [reusableView.sortButton3 addTarget:self action:@selector(sortButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
-        if(indexPath.section==0){
+        if(self.isSearchMode){
         
             reusableView.sortButton1.hidden = YES;
+            reusableView.sortButton2.hidden = YES;
+            reusableView.sortButton3.hidden = YES;
             
-            [reusableView.sortButton2 setTitle:@"热门1" forState:UIControlStateNormal];
-            [reusableView.sortButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reusableView.sortButton2.titleLabel.font =[UIFont systemFontOfSize:12];
-            
-            [reusableView.sortButton3 setTitle:@"热门2" forState:UIControlStateNormal];
-            [reusableView.sortButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reusableView.sortButton3.titleLabel.font =[UIFont systemFontOfSize:12];
-
-        }else if (indexPath.section==1){
-        
-            [reusableView.sortButton1 setTitle:@"本地1" forState:UIControlStateNormal];
-            [reusableView.sortButton1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reusableView.sortButton1.titleLabel.font =[UIFont systemFontOfSize:12];
-
-            
-            [reusableView.sortButton2 setTitle:@"本地2" forState:UIControlStateNormal];
-            [reusableView.sortButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reusableView.sortButton2.titleLabel.font =[UIFont systemFontOfSize:12];
-            
-            [reusableView.sortButton3 setTitle:@"本地3" forState:UIControlStateNormal];
-            [reusableView.sortButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reusableView.sortButton3.titleLabel.font =[UIFont systemFontOfSize:12];
-        
         }else{
         
-            reusableView.sortButton1.hidden = YES;
             
-            [reusableView.sortButton2 setTitle:@"推荐1" forState:UIControlStateNormal];
-            [reusableView.sortButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reusableView.sortButton2.titleLabel.font =[UIFont systemFontOfSize:12];
-            
-            [reusableView.sortButton3 setTitle:@"推荐2" forState:UIControlStateNormal];
-            [reusableView.sortButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reusableView.sortButton3.titleLabel.font =[UIFont systemFontOfSize:12];
+            if(indexPath.section==0){
+                
+                reusableView.sortButton1.hidden = YES;
+                
+                [reusableView.sortButton2 setTitle:@"热门1" forState:UIControlStateNormal];
+                [reusableView.sortButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                reusableView.sortButton2.titleLabel.font =[UIFont systemFontOfSize:12];
+                
+                [reusableView.sortButton3 setTitle:@"热门2" forState:UIControlStateNormal];
+                [reusableView.sortButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                reusableView.sortButton3.titleLabel.font =[UIFont systemFontOfSize:12];
+                
+            }else if (indexPath.section==1){
+                
+                reusableView.sortButton1.hidden = NO;
+                reusableView.sortButton1.alpha = 1;
+                [reusableView.sortButton1 setTitle:@"本地1" forState:UIControlStateNormal];
+                [reusableView.sortButton1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                reusableView.sortButton1.titleLabel.font =[UIFont systemFontOfSize:12];
+                
+                
+                [reusableView.sortButton2 setTitle:@"本地2" forState:UIControlStateNormal];
+                [reusableView.sortButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                reusableView.sortButton2.titleLabel.font =[UIFont systemFontOfSize:12];
+                
+                [reusableView.sortButton3 setTitle:@"本地3" forState:UIControlStateNormal];
+                [reusableView.sortButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                reusableView.sortButton3.titleLabel.font =[UIFont systemFontOfSize:12];
+                
+            }else{
+                
+                reusableView.sortButton1.hidden = YES;
+                
+                [reusableView.sortButton2 setTitle:@"推荐1" forState:UIControlStateNormal];
+                [reusableView.sortButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                reusableView.sortButton2.titleLabel.font =[UIFont systemFontOfSize:12];
+                
+                [reusableView.sortButton3 setTitle:@"推荐2" forState:UIControlStateNormal];
+                [reusableView.sortButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                reusableView.sortButton3.titleLabel.font =[UIFont systemFontOfSize:12];
+                
+            }
 
         }
         
@@ -338,7 +385,6 @@
 
     StaHallCollectionViewCell *cell =(StaHallCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-#warning fake date
     
     if(indexPath.row%2==0){
         
@@ -519,6 +565,15 @@ bool isExpand;
 
 }
 
+#pragma mark - viewWillDisappear
+- (void)viewWillDisappear:(BOOL)animated{
+
+    if([[[UIApplication sharedApplication].keyWindow subviews]containsObject:blurView]){
+    
+        [blurView removeFromSuperview];
+    }
+
+}
 
 
 
@@ -529,8 +584,7 @@ bool isExpand;
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
-    
-
+  
 }
 
 

@@ -49,11 +49,14 @@
 		63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */; };
 		63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */; };
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
+		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; };
+		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
 		6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */; };
 		6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */; };
 		6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */; };
 		6397FDCE1A429E9B0021B9E2 /* fs_main_login_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6397FDCC1A429E9B0021B9E2 /* fs_main_login_normal@2x.png */; };
 		6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6397FDCD1A429E9B0021B9E2 /* fs_main_login_selected@2x.png */; };
+		6397FDD21A430A910021B9E2 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDD11A430A910021B9E2 /* FXBlurView.m */; };
 		63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */; };
 		63A9EA7B1A3FDE2F00C5DAE6 /* StahallValuationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */; };
 		63A9EA7E1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EA7D1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m */; };
@@ -165,6 +168,10 @@
 		63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionReusableView.m; sourceTree = "<group>"; };
 		63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionViewCell.h; sourceTree = "<group>"; };
 		63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionViewCell.m; sourceTree = "<group>"; };
+		63468EF81A43D07400938E1E /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
+		63468EF91A43D07400938E1E /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
+		63468EFE1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallEvalutionIlerItemViewController.h; sourceTree = "<group>"; };
+		63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallEvalutionIlerItemViewController.m; sourceTree = "<group>"; };
 		6397FDC11A426C3A0021B9E2 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
@@ -173,6 +180,8 @@
 		6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSYPopoverListView.m; sourceTree = "<group>"; };
 		6397FDCC1A429E9B0021B9E2 /* fs_main_login_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fs_main_login_normal@2x.png"; sourceTree = "<group>"; };
 		6397FDCD1A429E9B0021B9E2 /* fs_main_login_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fs_main_login_selected@2x.png"; sourceTree = "<group>"; };
+		6397FDD01A430A910021B9E2 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		6397FDD11A430A910021B9E2 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		63A9EA771A3F30F000C5DAE6 /* 朝右箭头icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "朝右箭头icon@2x.png"; sourceTree = "<group>"; };
 		63A9EA791A3FDE2F00C5DAE6 /* StahallValuationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallValuationViewController.h; sourceTree = "<group>"; };
 		63A9EA7A1A3FDE2F00C5DAE6 /* StahallValuationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallValuationViewController.m; sourceTree = "<group>"; };
@@ -475,6 +484,8 @@
 		631DC2371A37411400F5E9AA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				63468EFB1A43D07700938E1E /* RTLabel */,
+				6397FDD31A430A980021B9E2 /* BlurView */,
 				6397FDCB1A429E4B0021B9E2 /* ZSPOPView */,
 				5C9E08801A3ED02E007072E0 /* CustomLabel */,
 				5C9E087C1A3ED027007072E0 /* MarkupParser */,
@@ -530,6 +541,31 @@
 			name = FrankfanImage;
 			sourceTree = "<group>";
 		};
+		63468EFB1A43D07700938E1E /* RTLabel */ = {
+			isa = PBXGroup;
+			children = (
+				63468EF81A43D07400938E1E /* RTLabel.h */,
+				63468EF91A43D07400938E1E /* RTLabel.m */,
+			);
+			name = RTLabel;
+			sourceTree = "<group>";
+		};
+		63468EFC1A43D2CF00938E1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		63468EFD1A43D2DD00938E1E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				63468EFE1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.h */,
+				63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		6397FDC41A426C400021B9E2 /* DateUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +586,15 @@
 				6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */,
 			);
 			name = ZSPOPView;
+			sourceTree = "<group>";
+		};
+		6397FDD31A430A980021B9E2 /* BlurView */ = {
+			isa = PBXGroup;
+			children = (
+				6397FDD01A430A910021B9E2 /* FXBlurView.h */,
+				6397FDD11A430A910021B9E2 /* FXBlurView.m */,
+			);
+			name = BlurView;
 			sourceTree = "<group>";
 		};
 		63A9EA7F1A40173D00C5DAE6 /* AboutStahallEvalueCollectionCell */ = {
@@ -581,7 +626,9 @@
 		63A9EAF11A41BF2100C5DAE6 /* frankfan */ = {
 			isa = PBXGroup;
 			children = (
+				63468EFC1A43D2CF00938E1E /* Model */,
 				63A9EAF41A41BF5B00C5DAE6 /* Views */,
+				63468EFD1A43D2DD00938E1E /* Controllers */,
 			);
 			name = frankfan;
 			sourceTree = "<group>";
@@ -877,6 +924,7 @@
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
 				63A9EAF81A41C07600C5DAE6 /* StahallFooterReusableView.m in Sources */,
 				6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */,
+				6397FDD21A430A910021B9E2 /* FXBlurView.m in Sources */,
 				63BC6AB81A39F47F00087DFB /* LeftMenuViewController.m in Sources */,
 				5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */,
 				5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */,
@@ -890,12 +938,14 @@
 				63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */,
 				5C1C8C461A42D6AE00A94E7A /* ListAdvanceViewController.m in Sources */,
 				63BC6A7B1A374A1100087DFB /* TPKeyboardAvoidingScrollView.m in Sources */,
+				63468EFA1A43D07400938E1E /* RTLabel.m in Sources */,
 				63258B361A3D8A490089C3F1 /* MyShowViewController.m in Sources */,
 				63BC6A701A3747F400087DFB /* UIView+MJExtension.m in Sources */,
 				5C65EDA01A3A9C7C00027A63 /* MyPageControl.m in Sources */,
 				5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */,
 				63A9EA7B1A3FDE2F00C5DAE6 /* StahallValuationViewController.m in Sources */,
 				631DC2171A37403100F5E9AA /* Reachability.m in Sources */,
+				63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */,
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
 				6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */,
 				5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */,
