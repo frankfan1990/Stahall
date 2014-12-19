@@ -35,6 +35,7 @@
 		5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */; };
 		5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */; };
 		5CD5FD391A43B9C700316965 /* lc张学友.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD5FD381A43B9C700316965 /* lc张学友.png */; };
+		5CD5FE651A43F87E00316965 /* GNWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD5FE641A43F87E00316965 /* GNWheelView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5CE0D8A81A3EAFA300CBC562 /* AdvanceNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */; };
 		631DC1ED1A3738EF00F5E9AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EC1A3738EF00F5E9AA /* main.m */; };
 		631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EF1A3738EF00F5E9AA /* AppDelegate.m */; };
@@ -141,6 +142,8 @@
 		5C9E08FA1A3F094D007072E0 /* ShowMallsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowMallsTableViewCell.h; sourceTree = "<group>"; };
 		5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallsTableViewCell.m; sourceTree = "<group>"; };
 		5CD5FD381A43B9C700316965 /* lc张学友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc张学友.png"; sourceTree = "<group>"; };
+		5CD5FE631A43F87E00316965 /* GNWheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNWheelView.h; sourceTree = "<group>"; };
+		5CD5FE641A43F87E00316965 /* GNWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNWheelView.m; sourceTree = "<group>"; };
 		5CE0D8A61A3EAFA300CBC562 /* AdvanceNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceNoticeViewController.h; sourceTree = "<group>"; };
 		5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceNoticeViewController.m; sourceTree = "<group>"; };
 		631DC1E71A3738EF00F5E9AA /* Stahall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stahall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +350,15 @@
 			name = AboutShowMallsCell;
 			sourceTree = "<group>";
 		};
+		5CD5FE661A43F88400316965 /* GNWheelView */ = {
+			isa = PBXGroup;
+			children = (
+				5CD5FE631A43F87E00316965 /* GNWheelView.h */,
+				5CD5FE641A43F87E00316965 /* GNWheelView.m */,
+			);
+			name = GNWheelView;
+			sourceTree = "<group>";
+		};
 		5CF40D3A1A41680800769E67 /* LuCanViewCtrl */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +496,7 @@
 		631DC2371A37411400F5E9AA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				5CD5FE661A43F88400316965 /* GNWheelView */,
 				63468EFB1A43D07700938E1E /* RTLabel */,
 				6397FDD31A430A980021B9E2 /* BlurView */,
 				6397FDCB1A429E4B0021B9E2 /* ZSPOPView */,
@@ -959,6 +972,7 @@
 				5C1C8C411A42675900A94E7A /* TangHuiListViewController.m in Sources */,
 				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,
 				63BC6A7A1A374A1100087DFB /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				5CD5FE651A43F87E00316965 /* GNWheelView.m in Sources */,
 				631DC1ED1A3738EF00F5E9AA /* main.m in Sources */,
 				5C9E08831A3ED02E007072E0 /* CustomLabel.m in Sources */,
 			);
