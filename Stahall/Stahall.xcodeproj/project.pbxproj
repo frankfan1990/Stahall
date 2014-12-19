@@ -34,6 +34,7 @@
 		5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */; };
 		5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */; };
 		5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */; };
+		5CD5FD391A43B9C700316965 /* lc张学友.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD5FD381A43B9C700316965 /* lc张学友.png */; };
 		5CE0D8A81A3EAFA300CBC562 /* AdvanceNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */; };
 		631DC1ED1A3738EF00F5E9AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EC1A3738EF00F5E9AA /* main.m */; };
 		631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EF1A3738EF00F5E9AA /* AppDelegate.m */; };
@@ -136,6 +137,7 @@
 		5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallsViewController.m; sourceTree = "<group>"; };
 		5C9E08FA1A3F094D007072E0 /* ShowMallsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowMallsTableViewCell.h; sourceTree = "<group>"; };
 		5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallsTableViewCell.m; sourceTree = "<group>"; };
+		5CD5FD381A43B9C700316965 /* lc张学友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc张学友.png"; sourceTree = "<group>"; };
 		5CE0D8A61A3EAFA300CBC562 /* AdvanceNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceNoticeViewController.h; sourceTree = "<group>"; };
 		5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceNoticeViewController.m; sourceTree = "<group>"; };
 		631DC1E71A3738EF00F5E9AA /* Stahall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stahall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +267,7 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5CD5FD381A43B9C700316965 /* lc张学友.png */,
 				5C1E1F101A401B6E0085BD64 /* lc2.png */,
 				5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */,
 				5C9E08861A3EEA5E007072E0 /* lc汪峰头像.png */,
@@ -788,6 +791,7 @@
 				5C5EF67B1A3A844C00EE8D78 /* 拍照.png in Resources */,
 				5C5EF6861A3A91DE00EE8D78 /* page_state_highlight.png in Resources */,
 				5C9E08891A3EF0C2007072E0 /* lc向右灰.png in Resources */,
+				5CD5FD391A43B9C700316965 /* lc张学友.png in Resources */,
 				5C5EF67D1A3A8DB800EE8D78 /* 七夕.png in Resources */,
 				6397FDCE1A429E9B0021B9E2 /* fs_main_login_normal@2x.png in Resources */,
 				5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */,

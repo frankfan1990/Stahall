@@ -95,9 +95,9 @@
         cell.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.labelOfTitle.text = @"陈奕迅 2015年全国巡演演唱会";
+    cell.labelOfTitle.text = @"张学友 2015年全国巡演演唱会";
     cell.labelOfDate.text = @"2015-01-01";
-    cell.imageV.image = [UIImage imageNamed:@"陈奕迅"];
+    cell.imageV.image = [UIImage imageNamed:@"lc张学友"];
     
     return cell;
 }

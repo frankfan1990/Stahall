@@ -86,7 +86,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 230;
+        return 240;
     }else if (indexPath.row == arrOfTitle.count+1){
         return 150;
     }else if (indexPath.row == arrOfTitle.count +2){
@@ -104,28 +104,43 @@
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, Mywidth-20, 30)];
         [self Customlable:label1 text:@"《七夕之恋》选角" fontSzie:19 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell1.contentView addSubview:label1];
-        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(10, 50, Mywidth-20, 170)];
+        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(10, 50, Mywidth-20, 165)];
         imageV.image = [UIImage imageNamed:@"七夕"];
         [cell1.contentView addSubview:imageV];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 230, Mywidth, 0.5)];
+        lineView.backgroundColor = [UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1];
+        [cell1.contentView addSubview:lineView];
+        
         return cell1;
         
-    }else if (indexPath.row == arrOfTitle.count+1){
+    }
+    else if (indexPath.row == arrOfTitle.count+1){
         
         UITableViewCell *cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell2.selectionStyle = UITableViewCellSelectionStyleNone;
         cell2.backgroundColor = [UIColor whiteColor];
         
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, Mywidth-20,20)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 8, Mywidth, 0.5)];
+        lineView.backgroundColor = [UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1];
+        [cell2.contentView addSubview:lineView];
+        
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 18, Mywidth-20,20)];
         [self Customlable:label1 text:@"活动介绍:" fontSzie:17 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell2.contentView addSubview:label1];
         return cell2;
         
-    }else if (indexPath.row == arrOfTitle.count+2){
+    }
+    else if (indexPath.row == arrOfTitle.count+2){
         UITableViewCell *cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell3.selectionStyle = UITableViewCellSelectionStyleNone;
         cell3.backgroundColor = [UIColor whiteColor];
         
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, Mywidth-20, 20)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 8, Mywidth, 0.5)];
+        lineView.backgroundColor = [UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1];
+        [cell3.contentView addSubview:lineView];
+        
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, 18, Mywidth-20, 20)];
         [self Customlable:label1 text:@"活动介绍:" fontSzie:17 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell3.contentView addSubview:label1];
         return cell3;
