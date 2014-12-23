@@ -9,6 +9,8 @@
 
 #import "HallEvalutionIlerItemViewController.h"
 #import "RTLabel.h"
+#import "StahallValuationViewController.h"
+#import "ProgressHUD.h"
 
 @interface HallEvalutionIlerItemViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -24,6 +26,10 @@
     UILabel *allowLabel;
     UILabel *unAllow;
     
+    UIButton *commitButton;
+    
+    NSInteger currentTag;//记录当前的确认框
+    
 }
 @property (nonatomic,strong)UITableView *tableView;
 @end
@@ -37,7 +43,7 @@
      初始化数据
      */
     checkBoxState =[NSMutableArray arrayWithObjects:@0,@0, nil];
-    
+    currentTag = 1001;
     
     
     /*title*/
@@ -71,7 +77,7 @@
     //
     
     rtlabel =[[RTLabel alloc]initWithFrame:CGRectMake(10, 10, self.view.bounds.size.width-20, 0)];
-    NSString *testString = @"堂估款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台<p>大量交易数据分堂估款-堂估价是艺人堂\n根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是</p>艺人堂根据平台大量交易堂估款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台<p>大量交易堂估款</p>-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易堂估款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易析得出的艺人演艺价格";
+    NSString *testString = @"出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台<p>大量交易数据分堂估款-堂估价是艺人堂\n根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易堂估款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易数据分析得出的艺人演艺价格堂估价条款-堂估价是艺人堂根据平台大量交易析得出的艺人演艺价格";
     rtlabel.text = [self handleStringForRTLabel:testString];
     cellHeight = rtlabel.optimumSize.height;
    
@@ -91,14 +97,19 @@
     allowLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2.0+10, 0, 100, 35)];
     allowLabel.font =[UIFont systemFontOfSize:14];
     allowLabel.text = @"同意";
-    allowCheck.backgroundColor =[UIColor whiteColor];
+    allowCheck.backgroundColor =[UIColor colorWithWhite:0.85 alpha:1];
 
     
     unAllow = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/2.0+10, 0, 100, 35)];
     unAllow.font =[UIFont systemFontOfSize:14];
     unAllow.text = @"不同意";
-    unallowCheck.backgroundColor =[UIColor whiteColor];
+    unallowCheck.backgroundColor =[UIColor colorWithWhite:0.85 alpha:1];
     
+    commitButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    commitButton.backgroundColor =[UIColor orangeColor];
+    commitButton.layer.cornerRadius = 3;
+    [commitButton setTitle:@"继续" forState:UIControlStateNormal];
+    [commitButton addTarget:self action:@selector(goToNextPage) forControlEvents:UIControlEventTouchUpInside];
     
     
     // Do any additional setup after loading the view.
@@ -115,7 +126,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 
-    return cellHeight+210;
+    return cellHeight+230;
 }
 
 
@@ -127,7 +138,7 @@
     if(!cell){
     
         cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
-        cell.backgroundColor =[UIColor orangeColor];
+//        cell.backgroundColor =[UIColor orangeColor];
         
         rtlabel.frame = CGRectMake(10, 10, self.view.bounds.size.width-20, cellHeight);
         allowLabel.frame = CGRectMake(self.view.bounds.size.width/2.0-10, cellHeight+45, 100, 35);
@@ -144,7 +155,8 @@
         [cell.contentView addSubview:rtlabel];
         
         //
-       
+        commitButton.frame = CGRectMake(self.view.bounds.size.width/2.0-25, cellHeight+45+35+20+10+40, 50, 30);
+        [cell.contentView addSubview:commitButton];
         
         
     }
@@ -153,6 +165,20 @@
 }
 
 
+#pragma mark - 继续按钮触发
+- (void)goToNextPage{
+
+    if(currentTag==1001){//同意跳转
+    
+        StahallValuationViewController *staHallvaluation =[StahallValuationViewController new];
+        [self.navigationController pushViewController:staHallvaluation animated:YES];
+        
+    }else{
+    
+        [ProgressHUD showError:@"请勾选同意选项"];
+    }
+
+}
 
 
 #pragma mark - 处理富文本格式字符串，使之适配RTLabel的使用
@@ -192,7 +218,7 @@
     
         if(!sender.currentImage){
         
-         
+            currentTag = 1001;
             [unallowCheck setImage:nil forState:UIControlStateNormal];
         }
     
@@ -200,7 +226,7 @@
     
         if(!sender.currentImage){
         
-            
+            currentTag = 1002;
             [allowCheck setImage:nil forState:UIControlStateNormal];
         }
     

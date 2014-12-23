@@ -11,10 +11,10 @@
 #import "StahallEvalueCollectionViewCell.h"
 #import "NSDate+Category.h"
 #import "ProgressHUD.h"
-#import "StarHallViewController.h"
 
 
-bool selected;
+
+bool selected;//是否是出于编辑模式的标志位
 @interface StahallValuationViewController ()<UITextFieldDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,StarNameInput>
 {
     NSMutableArray *starsSelected;//
@@ -133,6 +133,7 @@ bool selected;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.tpscrollerView addSubview:self.collectionView];
+//     [self.view addSubview:self.collectionView];
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.showsVerticalScrollIndicator = NO;
     
@@ -329,14 +330,27 @@ bool selected;
             stahallEvalueCell.addIcon.image = nil;
         }
         
-        if(indexRow==19){
+        if(indexRow==20 || ![[starsSelected lastObject]isKindOfClass:[NSString class]]){
         
             stahallEvalueCell.addIcon.image =nil;
         }
     }
     
-    stahallEvalueCell.starName.text = starsSelected[indexPath.row];;
+//    stahallEvalueCell.starName.text = starsSelected[indexPath.row];
     
+    
+    
+    if([starsSelected count]==9 || [starsSelected count]==13){
+        
+        [self.collectionView setContentOffset:CGPointMake(0, 120) animated:YES];
+        
+    }
+    
+    if([starsSelected count]==17){
+        
+        [self.collectionView setContentOffset:CGPointMake(0, 220) animated:YES];
+    }
+
     
     return stahallEvalueCell;
 }
@@ -357,32 +371,23 @@ bool selected;
         return;
     }
     
-    NSInteger indexRow = [starsSelected count]-1;
-    if(indexPath.row==indexRow && indexRow < 19){
-    
-        [starsSelected insertObject:@"placeHolder" atIndex:0];
-        [self.collectionView reloadData];
-        
-        NSLog(@"被选中：%ld",(long)indexPath.row);
-    }
-    
-    if([starsSelected count]==9 || [starsSelected count]==13){
-    
-        [self.collectionView setContentOffset:CGPointMake(0, 120) animated:YES];
-        
-    }
 
-    if([starsSelected count]==17){
+    if(indexPath.row == [starsSelected count]-1 && [[starsSelected lastObject]isKindOfClass:[NSString class]]){//跳到选艺人界面
+
+        StarHallViewController *staHallViewController =[StarHallViewController new];
+        staHallViewController.delegate = self;
+        staHallViewController.isSearchMode = YES;
+        [self.navigationController pushViewController:staHallViewController animated:YES];
         
-        [self.collectionView setContentOffset:CGPointMake(0, 220) animated:YES];
+        NSLog(@"跳到挑选艺人界面");
+
+    
+    }else{//跳到艺人详情
+    
+    
+        NSLog(@"跳到艺人详情");
     }
     
-    
-    StarHallViewController *staHallViewController =[StarHallViewController new];
-    staHallViewController.isSearchMode = YES;
-    [self.navigationController pushViewController:staHallViewController animated:YES];
-    
-    NSLog(@"跳到挑选艺人界面");
 }
 
 
@@ -409,6 +414,34 @@ bool selected;
     
     NSLog(@"删除的indexPath:%ld",(long)indexPath.row);
 }
+
+
+#pragma mark - 获取来自下页选中的cells代理
+- (void)theSelectedCells:(NSMutableArray *)selectedCells{
+
+    NSLog(@"selected:%@",selectedCells);
+    if([starsSelected count]<=20){
+    
+        [starsSelected removeLastObject];
+        [starsSelected addObjectsFromArray:selectedCells];
+        [starsSelected addObject:@"end"];
+
+        
+        if([starsSelected count]>20){
+ 
+            [starsSelected removeObjectsInRange:NSMakeRange(20, [starsSelected count]-20)];
+        
+        }
+        
+        [self.collectionView reloadData];
+       
+    }
+    
+    
+
+}
+
+
 
 
 
