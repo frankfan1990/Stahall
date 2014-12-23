@@ -42,15 +42,15 @@
     
     [btnLeft setTitle:@"我的项目" forState:UIControlStateNormal];
     [btnLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [btnLeft setTitleColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1] forState:UIControlStateNormal];
+    [btnLeft setTitleColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1] forState:UIControlStateNormal];
     [btnLeft addTarget:self action:@selector(didLeftBtn) forControlEvents:UIControlEventTouchUpInside];
     
     
     [btnRight setTitle:@"我的估价" forState:UIControlStateNormal];
     [btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [btnRight setTitleColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1] forState:UIControlStateNormal];
+    [btnRight setTitleColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1] forState:UIControlStateNormal];
     [btnRight addTarget:self action:@selector(didRightBtn) forControlEvents:UIControlEventTouchUpInside];
-    btnLeft.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1];
+    btnLeft.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     btnRight.backgroundColor = [UIColor whiteColor];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64-45) style:UITableViewStylePlain];
@@ -65,7 +65,7 @@
     
     [addNewShowBtn setTitle:@"新建演出" forState:UIControlStateNormal];
     [addNewShowBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    addNewShowBtn.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1];
+    addNewShowBtn.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     
     [addNewShowBtn addTarget:self action:@selector(didAddNewShow) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addNewShowBtn];
@@ -74,17 +74,18 @@
     
 }
 
-#pragma mark - tabBar的设置
-
--(void)setTabBar{
+#pragma mark - TabBar的设置
+-(void)setTabBar
+{
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.extendedLayoutIncludesOpaqueBars = NO;
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
+    
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
-
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1]];
+    
     
     UIButton *btnLeft1 = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft1.layer.masksToBounds = YES;
@@ -109,11 +110,12 @@
     
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
     title.text = @"我的演出";
+    
     title.font = [UIFont systemFontOfSize:19];
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
+    
 }
-
 #pragma mark - 变量的初始化
 -(void)Variableinitialization
 {
@@ -281,7 +283,7 @@
     btnRight.selected = NO;
       btnRight.backgroundColor = [UIColor whiteColor];
     [UIView animateWithDuration:0.3 animations:^{
-        btnLeft.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1];
+        btnLeft.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
       
     }];
     [_tableView reloadData];
@@ -292,7 +294,7 @@
     btnRight.selected = YES;
     btnLeft.backgroundColor = [UIColor whiteColor];
     [UIView animateWithDuration:0.3 animations:^{
-        btnRight.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1];
+        btnRight.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
         
     }];
     [_tableView reloadData];

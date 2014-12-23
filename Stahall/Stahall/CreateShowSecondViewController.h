@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateShowSecondViewController : UIViewController
-
+@property(nonatomic,strong)UITextField *field1;
 @end

@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RZTimeSelectedViewController : UIViewController
-@property(nonatomic,assign) NSInteger type;
 -(void)getDate:(NSString *)date Time:(NSString *)time;
 @end

@@ -7,11 +7,11 @@
 //
 
 #import "RZTimeSelectedViewController.h"
-//#import "RZLaunchViewController.h"
+#import "CreateShowSecondViewController.h"
 #import "NSDate+Utilities.h"
 @interface RZTimeSelectedViewController ()
 {
-//    RZLaunchViewController *addCtrl;
+    CreateShowSecondViewController *addCtrl;
     NSString *_date;
     NSString *_time;
     CGFloat width,height;
@@ -24,39 +24,26 @@
 @end
 
 @implementation RZTimeSelectedViewController
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        CGRect rect = CGRectMake(0, -15, 200, 44);
-        UILabel *label = [[UILabel alloc] initWithFrame:rect];
-        label.textColor =[UIColor whiteColor];
-        label.backgroundColor = [UIColor clearColor];
-        label.text = @"时间设置";
-        [label setFont:[UIFont systemFontOfSize:20]];
-        //    label.adjustsFontSizeToFitWidth=YES;
-        label.textAlignment =NSTextAlignmentCenter;
-        self.navigationItem.titleView = label;
-        
-        self.title = NSLocalizedString(@" ", @"");
-        
-    }
-    return self;
-}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSDate *date1 = [NSDate date];
+    self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     dateStr=[NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",(long)date1.year,(long)date1.month,(long)date1.day,(long)date1.hour,(long)date1.minute];
     width=self.view.frame.size.width;
     height=self.view.frame.size.height;
-//    addCtrl = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
+    addCtrl = self.navigationController.viewControllers[self.navigationController.viewControllers.count-2];
     [self setTabBar];
     [self createDate];
     [self createView];
 }
 
+
+#pragma mark - TabBar的设置
 -(void)setTabBar
 {
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -65,12 +52,14 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:115/255.0 green:199/255.0 blue:228/255.0 alpha:1]];
+    
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnLeft setFrame:CGRectMake(0, 0, 30, 30)];
+    [btnLeft setFrame:CGRectMake(0, 0, 35, 35)];
     [btnLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btnLeft setBackgroundImage:[UIImage imageNamed:@"返回键.png"] forState:UIControlStateNormal];
-    [btnLeft setBackgroundImage:[UIImage imageNamed:@"返回键.png"] forState:UIControlStateHighlighted];
+    [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateNormal];
+    [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateHighlighted];
     btnLeft.titleLabel.font = [UIFont systemFontOfSize:17];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [btnLeft addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -95,6 +84,17 @@
         self.navigationItem.leftBarButtonItem = btnLeftitem;
         self.navigationItem.rightBarButtonItem = btnright;
     }
+    
+
+    
+    
+    UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
+    title.text = @"商业演出";
+    
+    title.font = [UIFont systemFontOfSize:19];
+    title.textColor = [UIColor whiteColor];
+    self.navigationItem.titleView = title;
+    
 }
 -(void)createView
 {
@@ -113,7 +113,8 @@
     }else {
         lable.text=str;
     }
-    lable.textColor=[UIColor blackColor];
+    lable.textColor=[UIColor whiteColor];
+    lable.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
     lable.font=[UIFont systemFontOfSize:30*height/667.0];
     lable.textAlignment=NSTextAlignmentCenter;
     [self.view addSubview:lable];
@@ -182,38 +183,12 @@
 }
 -(void)didBtn2
 {
-    if ([lable.text compare:str] <= 0 && _type != 5) {
-        if (_type == 3) {
+    if ([lable.text compare:str] <= 0 ) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请设置未来时间" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alertView show];
-        }else if (_type == 4){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请设置开始时间以后的时间" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
-
+        [alertView show];
     }
     else {
-
-        if (_type == 3) {
-//           addCtrl.field3.text = lable.text;
-        }else if(_type == 4){
-//          addCtrl.field4.text = lable.text;
-        }else if(_type == 5){
-            if([lable.text compare:str] >= 0)
-            {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n你的活动已结束" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alertView show];
-                return;
-            }else if([lable.text compare:dateStr] <= 0)
-            {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请设置未来时间" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alertView show];
-                return;
-            }
-            
-//            addCtrl.field5.text = lable.text;
-        }
-        
+           addCtrl.field1.text = lable.text;
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

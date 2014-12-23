@@ -18,6 +18,8 @@
 		5C4519D91A4817A80031685A /* CreateShowSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519D81A4817A80031685A /* CreateShowSecondViewController.m */; };
 		5C4519DC1A4915620031685A /* RZTimeSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519DB1A4915620031685A /* RZTimeSelectedViewController.m */; };
 		5C4519E01A4916100031685A /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519DF1A4916100031685A /* NSDate+Utilities.m */; };
+		5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519E31A4940650031685A /* CreateShowThirdViewController.m */; };
+		5C4519E61A4956840031685A /* lc添加照片.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4519E51A4956840031685A /* lc添加照片.png */; };
 		5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */; };
 		5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1851A3E890F00F6EC11 /* 张杰.png */; };
 		5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */; };
@@ -164,6 +166,9 @@
 		5C4519DB1A4915620031685A /* RZTimeSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZTimeSelectedViewController.m; sourceTree = "<group>"; };
 		5C4519DE1A4916100031685A /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		5C4519DF1A4916100031685A /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		5C4519E21A4940650031685A /* CreateShowThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShowThirdViewController.h; sourceTree = "<group>"; };
+		5C4519E31A4940650031685A /* CreateShowThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateShowThirdViewController.m; sourceTree = "<group>"; };
+		5C4519E51A4956840031685A /* lc添加照片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc添加照片.png"; sourceTree = "<group>"; };
 		5C4CF1821A3E88D100F6EC11 /* CCSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSegmentedControl.h; sourceTree = "<group>"; };
 		5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSegmentedControl.m; sourceTree = "<group>"; };
 		5C4CF1851A3E890F00F6EC11 /* 张杰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "张杰.png"; sourceTree = "<group>"; };
@@ -418,6 +423,7 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5C4519E51A4956840031685A /* lc添加照片.png */,
 				5C4519D41A4803E80031685A /* lc取消.png */,
 				5CD5FD381A43B9C700316965 /* lc张学友.png */,
 				5C1E1F101A401B6E0085BD64 /* lc2.png */,
@@ -511,6 +517,8 @@
 				5C4519D11A47AD790031685A /* CreateShowFirstViewController.m */,
 				5C4519D71A4817A80031685A /* CreateShowSecondViewController.h */,
 				5C4519D81A4817A80031685A /* CreateShowSecondViewController.m */,
+				5C4519E21A4940650031685A /* CreateShowThirdViewController.h */,
+				5C4519E31A4940650031685A /* CreateShowThirdViewController.m */,
 				5C4519DA1A4915620031685A /* RZTimeSelectedViewController.h */,
 				5C4519DB1A4915620031685A /* RZTimeSelectedViewController.m */,
 			);
@@ -1132,6 +1140,7 @@
 				63258B391A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png in Resources */,
 				5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */,
 				5C4CF18A1A3E893A00F6EC11 /* 汪峰.png in Resources */,
+				5C4519E61A4956840031685A /* lc添加照片.png in Resources */,
 				63A9EA841A40649B00C5DAE6 /* fz加@2x.png in Resources */,
 				5C5EF6871A3A91DE00EE8D78 /* page_state_highlight@2x.png in Resources */,
 				63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */,
@@ -1208,6 +1217,7 @@
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
+				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
 				63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */,
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
