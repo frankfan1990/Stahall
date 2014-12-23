@@ -282,6 +282,7 @@
         [_tableView beginUpdates];
         [_tableView insertSections:set withRowAnimation:UITableViewRowAnimationRight];
         [_tableView endUpdates];
+         [_tableView setContentOffset:CGPointMake(0, (arrOfSection.count-1)*270) animated:YES];
     }else if (indexPath.section < arrOfSection.count && indexPath.row<2){
         
         _field1 = (UITextField *)[cell.contentView viewWithTag:113];
@@ -311,6 +312,8 @@
     [_tableView beginUpdates];
     [_tableView deleteSections:set withRowAnimation:UITableViewRowAnimationRight];
     [_tableView endUpdates];
+   
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
        [_tableView reloadData]; 
     });
