@@ -21,6 +21,8 @@
 
 @implementation ListAdvanceViewController
 
+
+#pragma mark -预告  案例 行程 的列表（黑白图片）
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;

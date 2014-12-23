@@ -11,7 +11,7 @@
 #import "ShowDetailsViewController.h"
 #import "Marcos.h"
 
-#pragma mark -  秀MALL 内容列表
+#pragma mark -  堂汇 列表
 @interface TangHuiListViewController()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
