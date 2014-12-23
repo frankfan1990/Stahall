@@ -16,6 +16,7 @@
 #import "FXBlurView.h"
 #import "HallEvalutionIlerItemViewController.h"
 
+
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZSYPopoverListDelegate,ZSYPopoverListDatasource,UITextFieldDelegate,FxBlurViewDidTouchDelegate>
 {
 
@@ -31,11 +32,15 @@
     UITextField *searchView;
     
     FXBlurView *blurView;
+
+    
+    NSMutableArray *selectedCells;//记录选中的cell
     
 }
 @property (nonatomic,strong)ZSYPopoverListView *popView;
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic, retain) NSIndexPath *selectedIndexPath;//选择人数控件的参数
+
 @end
 
 @implementation StarHallViewController
@@ -45,6 +50,8 @@
 
     recodeRotateExpend =[NSMutableArray array];
     arrowButtonStatue =[NSMutableArray arrayWithObjects:@0,@0,@0, nil];
+    selectedCells = [NSMutableArray array];
+
     
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"StaHallBackImage"].CGImage;
 
@@ -118,6 +125,12 @@
     Hallvaluation.frame = CGRectMake(10,self.view.bounds.size.height-115, self.view.bounds.size.width-20, 45);
     Hallvaluation.layer.cornerRadius = 3;
     [Hallvaluation setTitle:@"堂估价" forState:UIControlStateNormal];
+    
+    if(self.isSearchMode){
+    
+        [Hallvaluation setTitle:@"提交估价" forState:UIControlStateNormal];
+    }
+    
     [Hallvaluation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [Hallvaluation setBackgroundColor:[UIColor purpleColor]];
     [self.view addSubview:Hallvaluation];
@@ -407,12 +420,54 @@
 
 
 
+#pragma mark - cell被点击
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    if(self.isSearchMode){//如果是搜索模式
+    
+        StaHallCollectionViewCell *cell = (StaHallCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        if([selectedCells containsObject:indexPath]){//取消选择该cell
+        
+            [selectedCells removeObject:indexPath];
+            cell.checkIt.hidden = YES;
+            
+        }else{//选中该cell
+        
+            [selectedCells addObject:indexPath];
+            cell.checkIt.hidden = NO;
+        }
+        
+    }else{//如果不是搜索模式
+    
+    
+    
+    
+    }
+    
+    
+    
+
+}
+
+
+
+
 #pragma mark - 堂估价按钮触发
 - (void)stahallValueButtonClicked{
 
-    HallEvalutionIlerItemViewController *hallevalutionItem = [HallEvalutionIlerItemViewController new];
-    [self.navigationController pushViewController:hallevalutionItem animated:YES];
+    if(!self.isSearchMode){
+    
+        HallEvalutionIlerItemViewController *hallevalutionItem = [HallEvalutionIlerItemViewController new];
+        [self.navigationController pushViewController:hallevalutionItem animated:YES];
 
+    }else{//如果是搜索模式
+        
+        
+        [self.delegate theSelectedCells:selectedCells];
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+    
 }
 
 bool isExpand;

@@ -8,10 +8,10 @@
 //FIXME: frankfan-堂估价
 
 #import <UIKit/UIKit.h>
+#import "StarHallViewController.h"
 
 
-
-@interface StahallValuationViewController : UIViewController
+@interface StahallValuationViewController : UIViewController<SendTheSelectedCellsDelegate>
 
 
 @end

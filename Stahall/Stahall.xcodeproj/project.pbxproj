@@ -52,6 +52,7 @@
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
 		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; };
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
+		63649A3A1A493FF40024E3F7 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63649A391A493FF40024E3F7 /* Reveal.framework */; };
 		636F44121A44077400FD6783 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */; };
 		636F44131A44077400FD6783 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EE1A44077400FD6783 /* AFHTTPRequestOperationManager.m */; };
 		636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43F01A44077400FD6783 /* AFHTTPSessionManager.m */; };
@@ -88,6 +89,7 @@
 		636F44891A44091300FD6783 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F44781A44091300FD6783 /* UIImageView+WebCache.m */; };
 		636F448A1A44091300FD6783 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F447A1A44091300FD6783 /* UIView+WebCacheOperation.m */; };
 		636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636F44951A44214300FD6783 /* fz对勾@2x.png */; };
+		6378C0311A47BD9D00CDED3E /* fz选中对勾@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */; };
 		6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */; };
 		6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */; };
 		6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */; };
@@ -211,6 +213,7 @@
 		63468EF91A43D07400938E1E /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		63468EFE1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallEvalutionIlerItemViewController.h; sourceTree = "<group>"; };
 		63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallEvalutionIlerItemViewController.m; sourceTree = "<group>"; };
+		63649A391A493FF40024E3F7 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		636F43EB1A44077400FD6783 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		636F43ED1A44077400FD6783 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -283,6 +286,8 @@
 		636F44791A44091300FD6783 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		636F447A1A44091300FD6783 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		636F44951A44214300FD6783 /* fz对勾@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz对勾@2x.png"; sourceTree = "<group>"; };
+		6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz选中对勾@2x.png"; sourceTree = "<group>"; };
+		6378C0331A47E4D600CDED3E /* FrankfanApis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankfanApis.h; sourceTree = "<group>"; };
 		6397FDC11A426C3A0021B9E2 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
@@ -354,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B438E808DE3A84B403680E33 /* libPods.a in Frameworks */,
+				63649A3A1A493FF40024E3F7 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +414,7 @@
 		5C5EF67F1A3A8FE600EE8D78 /* SystemConstant */ = {
 			isa = PBXGroup;
 			children = (
+				6378C0321A47E49200CDED3E /* frankfan-constant */,
 				5C5EF67E1A3A8FD900EE8D78 /* Marcos.h */,
 			);
 			name = SystemConstant;
@@ -481,6 +488,7 @@
 		631DC1DE1A3738EF00F5E9AA = {
 			isa = PBXGroup;
 			children = (
+				63649A391A493FF40024E3F7 /* Reveal.framework */,
 				631DC1E91A3738EF00F5E9AA /* Stahall */,
 				631DC2031A3738EF00F5E9AA /* StahallTests */,
 				631DC1E81A3738EF00F5E9AA /* Products */,
@@ -657,6 +665,7 @@
 		63258BD41A3ECB500089C3F1 /* FrankfanImage */ = {
 			isa = PBXGroup;
 			children = (
+				6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */,
 				636F44951A44214300FD6783 /* fz对勾@2x.png */,
 				63A9EA831A40649B00C5DAE6 /* fz加@2x.png */,
 				63A9EA811A40649700C5DAE6 /* fz删除@2x.png */,
@@ -789,6 +798,14 @@
 				636F447A1A44091300FD6783 /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		6378C0321A47E49200CDED3E /* frankfan-constant */ = {
+			isa = PBXGroup;
+			children = (
+				6378C0331A47E4D600CDED3E /* FrankfanApis.h */,
+			);
+			name = "frankfan-constant";
 			sourceTree = "<group>";
 		};
 		6397FDC41A426C400021B9E2 /* DateUtils */ = {
@@ -1027,7 +1044,7 @@
 				TargetAttributes = {
 					631DC1E61A3738EF00F5E9AA = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 32PPUK7BX7;
+						DevelopmentTeam = MXP6GNCU77;
 					};
 					631DC1FF1A3738EF00F5E9AA = {
 						CreatedOnToolsVersion = 6.1;
@@ -1082,6 +1099,7 @@
 				63A9EA841A40649B00C5DAE6 /* fz加@2x.png in Resources */,
 				5C5EF6871A3A91DE00EE8D78 /* page_state_highlight@2x.png in Resources */,
 				63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */,
+				6378C0311A47BD9D00CDED3E /* fz选中对勾@2x.png in Resources */,
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
@@ -1328,6 +1346,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Stahall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1335,7 +1359,21 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Release-iphoneos",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-Mantle\"",
+					"-l\"Pods-TMCache\"",
+					"-framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1346,6 +1384,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Stahall/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1353,7 +1397,20 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Release-iphoneos",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-Mantle\"",
+					"-l\"Pods-TMCache\"",
+					"-framework",
+					"\"Foundation\"",
+					"-weak_framework",
+					"\"UIKit\"",
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

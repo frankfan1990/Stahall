@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SendTheSelectedCellsDelegate<NSObject>
+
+@optional
+- (void)theSelectedCells:(NSMutableArray *)selectedCells;
+
+@end
+
 @interface StarHallViewController : UIViewController
 
 @property (nonatomic,assign)BOOL isSearchMode;//标志位
+@property (nonatomic,weak)id<SendTheSelectedCellsDelegate>delegate;
 @end

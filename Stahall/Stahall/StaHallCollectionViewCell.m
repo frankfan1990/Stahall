@@ -37,6 +37,14 @@
         self.starName.textColor = [UIColor whiteColor];
         self.starName.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.starName];
+        
+        //选中对勾
+        self.checkIt =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+        self.checkIt.center = self.starImage.center;
+        self.checkIt.image = [UIImage imageNamed:@"fz选中对勾"];
+        [self addSubview:self.checkIt];
+        self.checkIt.hidden = YES;
+        
     }
     
    
