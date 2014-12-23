@@ -39,6 +39,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight - 64) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
+    _tableView.sectionFooterHeight = 0.1;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor clearColor];
@@ -114,9 +115,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 2) {
-        return 80-5;
+        return 90;
     }else if (section == 1){
-        return 20;
+        return 35;
     } else{
         return 25;
     }
@@ -147,7 +148,7 @@
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 80-5)];
         headView.backgroundColor = [UIColor clearColor];
         UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        nextBtn.frame = CGRectMake(60, 10, Mywidth-120, 40);
+        nextBtn.frame = CGRectMake(60, 32-5, Mywidth-120, 40);
         nextBtn.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         nextBtn.layer.masksToBounds = YES;
         nextBtn.layer.cornerRadius = 20;

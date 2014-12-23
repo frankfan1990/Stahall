@@ -46,6 +46,7 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight - 64) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.sectionFooterHeight = 0.1;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor clearColor];
     [_tpscrollerView addSubview:_tableView];
@@ -116,11 +117,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == arrOfSection.count+1) {
-        return 80-5;
-    }else if (section == 0){
-        return 35;
-    } else{
-       return 20;
+        return 90;
+    }else if (section == arrOfSection.count){
+       return 30;
+    }else{
+        return 45;
     }
     
 }
@@ -143,7 +144,7 @@
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 90)];
         headView.backgroundColor = [UIColor clearColor];
         if (section != arrOfSection.count) {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 8, 20, 20)];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 10, 25, 25)];
             label.layer.masksToBounds = YES;
             label.layer.cornerRadius = label.frame.size.width/2;
             label.textColor = [UIColor whiteColor];
@@ -154,9 +155,8 @@
             [headView addSubview:label];
             
             if (section != 0) {
-                label.frame = CGRectMake(12, -8, 20, 20);
                 UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-                btn.frame = CGRectMake(Mywidth-33, -10, 25, 25);
+                btn.frame = CGRectMake(Mywidth-33, 10, 25, 25);
                 [btn setBackgroundImage:[UIImage imageNamed:@"lc取消"] forState:UIControlStateNormal];
                 btn.tag = 100000+section;
                 [btn addTarget:self action:@selector(didCancelBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -169,7 +169,7 @@
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 80)];
         headView.backgroundColor = [UIColor clearColor];
         UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        nextBtn.frame = CGRectMake(60, 10, Mywidth-120, 40);
+        nextBtn.frame = CGRectMake(60, 27, Mywidth-120, 40);
         nextBtn.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         nextBtn.layer.masksToBounds = YES;
         nextBtn.layer.cornerRadius = 20;

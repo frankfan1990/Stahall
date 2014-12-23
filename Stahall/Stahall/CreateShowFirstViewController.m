@@ -44,6 +44,7 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight - 64) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+     _tableView.sectionFooterHeight = 0.1;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor clearColor];
     [_tpscrollerView addSubview:_tableView];
@@ -117,9 +118,9 @@
     if (section == 0) {
         return 70+25;
     }else if (section == 2){
-        return 80-5;
+        return 80;
     }
-    return 10;
+    return 30;
 }
 
 #pragma mark -  cell的高度
@@ -154,7 +155,7 @@
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 80)];
         headView.backgroundColor = [UIColor clearColor];
         UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        nextBtn.frame = CGRectMake(60, 10, Mywidth-120, 40);
+        nextBtn.frame = CGRectMake(60, 27, Mywidth-120, 40);
         nextBtn.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         nextBtn.layer.masksToBounds = YES;
         nextBtn.layer.cornerRadius = 20;
