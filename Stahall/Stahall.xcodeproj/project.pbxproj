@@ -61,6 +61,14 @@
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
 		63649A3D1A494CDE0024E3F7 /* StarDetaiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */; };
 		63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */; };
+		63649A461A496F7F0024E3F7 /* Datetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A411A496F7F0024E3F7 /* Datetime.m */; };
+		63649A471A496F7F0024E3F7 /* JBCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A431A496F7F0024E3F7 /* JBCalendar.m */; };
+		63649A481A496F7F0024E3F7 /* LunarCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A451A496F7F0024E3F7 /* LunarCalendar.m */; };
+		63649A501A496FBD0024E3F7 /* 请假64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A4B1A496FBD0024E3F7 /* 请假64@2x.png */; };
+		63649A511A496FBD0024E3F7 /* 日历切换left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A4C1A496FBD0024E3F7 /* 日历切换left@2x.png */; };
+		63649A521A496FBD0024E3F7 /* 日历切换right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A4D1A496FBD0024E3F7 /* 日历切换right@2x.png */; };
+		63649A531A496FBD0024E3F7 /* 有课64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A4E1A496FBD0024E3F7 /* 有课64@2x.png */; };
+		63649A561A4970100024E3F7 /* DetailDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A551A4970100024E3F7 /* DetailDayCell.m */; };
 		636F44121A44077400FD6783 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */; };
 		636F44131A44077400FD6783 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EE1A44077400FD6783 /* AFHTTPRequestOperationManager.m */; };
 		636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43F01A44077400FD6783 /* AFHTTPSessionManager.m */; };
@@ -110,6 +118,7 @@
 		63A9EA821A40649700C5DAE6 /* fz删除@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA811A40649700C5DAE6 /* fz删除@2x.png */; };
 		63A9EA841A40649B00C5DAE6 /* fz加@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A9EA831A40649B00C5DAE6 /* fz加@2x.png */; };
 		63A9EAF81A41C07600C5DAE6 /* StahallFooterReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */; };
+		63AA9F3C1A49C9D400D97EC3 /* 旷课64@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63AA9F3B1A49C9D400D97EC3 /* 旷课64@2x.png */; };
 		63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63BC6A591A3747F400087DFB /* MJRefresh.bundle */; };
 		63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5C1A3747F400087DFB /* MJRefreshBaseView.m */; };
 		63BC6A6B1A3747F400087DFB /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BC6A5E1A3747F400087DFB /* MJRefreshConst.m */; };
@@ -236,6 +245,18 @@
 		63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetaiInfoViewController.h; sourceTree = "<group>"; };
 		63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetaiInfoViewController.m; sourceTree = "<group>"; };
 		63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz艺人详情背景.png"; sourceTree = "<group>"; };
+		63649A401A496F7F0024E3F7 /* Datetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Datetime.h; sourceTree = "<group>"; };
+		63649A411A496F7F0024E3F7 /* Datetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Datetime.m; sourceTree = "<group>"; };
+		63649A421A496F7F0024E3F7 /* JBCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBCalendar.h; sourceTree = "<group>"; };
+		63649A431A496F7F0024E3F7 /* JBCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBCalendar.m; sourceTree = "<group>"; };
+		63649A441A496F7F0024E3F7 /* LunarCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarCalendar.h; sourceTree = "<group>"; };
+		63649A451A496F7F0024E3F7 /* LunarCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunarCalendar.m; sourceTree = "<group>"; };
+		63649A4B1A496FBD0024E3F7 /* 请假64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "请假64@2x.png"; sourceTree = "<group>"; };
+		63649A4C1A496FBD0024E3F7 /* 日历切换left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "日历切换left@2x.png"; sourceTree = "<group>"; };
+		63649A4D1A496FBD0024E3F7 /* 日历切换right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "日历切换right@2x.png"; sourceTree = "<group>"; };
+		63649A4E1A496FBD0024E3F7 /* 有课64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "有课64@2x.png"; sourceTree = "<group>"; };
+		63649A541A4970100024E3F7 /* DetailDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDayCell.h; sourceTree = "<group>"; };
+		63649A551A4970100024E3F7 /* DetailDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDayCell.m; sourceTree = "<group>"; };
 		636F43EB1A44077400FD6783 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		636F43ED1A44077400FD6783 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -329,6 +350,7 @@
 		63A9EA831A40649B00C5DAE6 /* fz加@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz加@2x.png"; sourceTree = "<group>"; };
 		63A9EAF61A41C07600C5DAE6 /* StahallFooterReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallFooterReusableView.h; sourceTree = "<group>"; };
 		63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallFooterReusableView.m; sourceTree = "<group>"; };
+		63AA9F3B1A49C9D400D97EC3 /* 旷课64@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "旷课64@2x.png"; sourceTree = "<group>"; };
 		63BC6A591A3747F400087DFB /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		63BC6A5A1A3747F400087DFB /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		63BC6A5B1A3747F400087DFB /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -651,6 +673,7 @@
 		631DC2371A37411400F5E9AA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				63649A491A496F890024E3F7 /* Calendar */,
 				5C4519E11A4916180031685A /* NSDate */,
 				636F44591A44091300FD6783 /* SDWebImage */,
 				636F43E91A44077400FD6783 /* AFNetworking */,
@@ -740,6 +763,26 @@
 				63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		63649A491A496F890024E3F7 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				63AA9F3B1A49C9D400D97EC3 /* 旷课64@2x.png */,
+				63649A4B1A496FBD0024E3F7 /* 请假64@2x.png */,
+				63649A4C1A496FBD0024E3F7 /* 日历切换left@2x.png */,
+				63649A4D1A496FBD0024E3F7 /* 日历切换right@2x.png */,
+				63649A4E1A496FBD0024E3F7 /* 有课64@2x.png */,
+				63649A541A4970100024E3F7 /* DetailDayCell.h */,
+				63649A551A4970100024E3F7 /* DetailDayCell.m */,
+				63649A401A496F7F0024E3F7 /* Datetime.h */,
+				63649A411A496F7F0024E3F7 /* Datetime.m */,
+				63649A421A496F7F0024E3F7 /* JBCalendar.h */,
+				63649A431A496F7F0024E3F7 /* JBCalendar.m */,
+				63649A441A496F7F0024E3F7 /* LunarCalendar.h */,
+				63649A451A496F7F0024E3F7 /* LunarCalendar.m */,
+			);
+			name = Calendar;
 			sourceTree = "<group>";
 		};
 		636F43E91A44077400FD6783 /* AFNetworking */ = {
@@ -1119,6 +1162,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63649A511A496FBD0024E3F7 /* 日历切换left@2x.png in Resources */,
+				63649A501A496FBD0024E3F7 /* 请假64@2x.png in Resources */,
 				5C5EF6831A3A91D500EE8D78 /* page_state_normal@2x.png in Resources */,
 				5C5EF67B1A3A844C00EE8D78 /* 拍照.png in Resources */,
 				5C5EF6861A3A91DE00EE8D78 /* page_state_highlight.png in Resources */,
@@ -1134,6 +1179,7 @@
 				63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */,
 				5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */,
 				5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */,
+				63AA9F3C1A49C9D400D97EC3 /* 旷课64@2x.png in Resources */,
 				5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */,
 				5C9E08871A3EEA5E007072E0 /* lc汪峰头像.png in Resources */,
 				63BC6AB41A39F41F00087DFB /* backgroundImage.png in Resources */,
@@ -1144,11 +1190,13 @@
 				63A9EA841A40649B00C5DAE6 /* fz加@2x.png in Resources */,
 				5C5EF6871A3A91DE00EE8D78 /* page_state_highlight@2x.png in Resources */,
 				63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */,
+				63649A521A496FBD0024E3F7 /* 日历切换right@2x.png in Resources */,
 				6378C0311A47BD9D00CDED3E /* fz选中对勾@2x.png in Resources */,
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
 				63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */,
+				63649A531A496FBD0024E3F7 /* 有课64@2x.png in Resources */,
 				636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */,
 				6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */,
 				63BC6A8C1A374B8200087DFB /* ProgressHUD.bundle in Resources */,
@@ -1211,6 +1259,8 @@
 				636F441E1A44077400FD6783 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */,
 				63BC6A6C1A3747F400087DFB /* MJRefreshFooterView.m in Sources */,
+				63649A461A496F7F0024E3F7 /* Datetime.m in Sources */,
+				63649A471A496F7F0024E3F7 /* JBCalendar.m in Sources */,
 				6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */,
 				636F44831A44091300FD6783 /* SDWebImagePrefetcher.m in Sources */,
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
@@ -1242,6 +1292,7 @@
 				636F44861A44091300FD6783 /* UIImage+MultiFormat.m in Sources */,
 				631DC2121A37396900F5E9AA /* MainViewController.m in Sources */,
 				63BC6A6E1A3747F400087DFB /* UIScrollView+MJExtension.m in Sources */,
+				63649A561A4970100024E3F7 /* DetailDayCell.m in Sources */,
 				5C1E1F0F1A3FCAD20085BD64 /* ShowDetailsViewController.m in Sources */,
 				63BC6A7C1A374A1100087DFB /* TPKeyboardAvoidingTableView.m in Sources */,
 				636F44881A44091300FD6783 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1276,6 +1327,7 @@
 				636F44841A44091300FD6783 /* UIButton+WebCache.m in Sources */,
 				636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */,
 				63BC6A941A374C5800087DFB /* FBKVOController.m in Sources */,
+				63649A481A496F7F0024E3F7 /* LunarCalendar.m in Sources */,
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,

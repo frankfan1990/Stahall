@@ -7,9 +7,18 @@
 //
 //艺人详情模块
 
+
+
 #import <UIKit/UIKit.h>
 
 @interface StarDetaiInfoViewController : UIViewController
 
 @property (nonatomic,copy)NSString *starName;
+
+@property (nonatomic,strong)NSMutableArray *today;
+@property (nonatomic,strong)NSMutableArray *travelDay;
+@property (nonatomic,strong)NSMutableArray *showDay;
+
+@property (nonatomic,strong)UIButton *leftButton;
+@property (nonatomic,strong)UIButton *rightButton;
 @end
