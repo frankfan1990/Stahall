@@ -15,6 +15,7 @@
 #import "ZSYPopoverListView.h"
 #import "FXBlurView.h"
 #import "HallEvalutionIlerItemViewController.h"
+#import "StarDetaiInfoViewController.h"
 
 
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZSYPopoverListDelegate,ZSYPopoverListDatasource,UITextFieldDelegate,FxBlurViewDidTouchDelegate>
@@ -437,10 +438,12 @@
             cell.checkIt.hidden = NO;
         }
         
-    }else{//如果不是搜索模式
+    }else{//如果不是搜索模式-常规模式
     
-    
-    
+        
+        StarDetaiInfoViewController *starDetaiInfo =[StarDetaiInfoViewController new];
+        starDetaiInfo.starName = @"陈妍希";
+        [self.navigationController pushViewController:starDetaiInfo animated:YES];
     
     }
     
@@ -457,9 +460,19 @@
 
     if(!self.isSearchMode){
     
-        HallEvalutionIlerItemViewController *hallevalutionItem = [HallEvalutionIlerItemViewController new];
-        [self.navigationController pushViewController:hallevalutionItem animated:YES];
+        if([[NSUserDefaults standardUserDefaults]boolForKey:@"isAgreen"]){//如果之前已经同意则直接跳到估价页面
+        
+            StahallValuationViewController *stahallValution =[StahallValuationViewController new];
+            [self.navigationController pushViewController:stahallValution animated:YES];
+        
+        }else{
+        
+            HallEvalutionIlerItemViewController *hallevalutionItem = [HallEvalutionIlerItemViewController new];
+            [self.navigationController pushViewController:hallevalutionItem animated:YES];
 
+        }
+        
+        
     }else{//如果是搜索模式
         
         

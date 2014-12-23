@@ -57,6 +57,8 @@
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
 		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; };
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
+		63649A3D1A494CDE0024E3F7 /* StarDetaiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */; };
+		63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */; };
 		636F44121A44077400FD6783 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */; };
 		636F44131A44077400FD6783 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EE1A44077400FD6783 /* AFHTTPRequestOperationManager.m */; };
 		636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43F01A44077400FD6783 /* AFHTTPSessionManager.m */; };
@@ -226,6 +228,9 @@
 		63468EF91A43D07400938E1E /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		63468EFE1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallEvalutionIlerItemViewController.h; sourceTree = "<group>"; };
 		63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallEvalutionIlerItemViewController.m; sourceTree = "<group>"; };
+		63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetaiInfoViewController.h; sourceTree = "<group>"; };
+		63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetaiInfoViewController.m; sourceTree = "<group>"; };
+		63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz艺人详情背景.png"; sourceTree = "<group>"; };
 		636F43EB1A44077400FD6783 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		636F43ED1A44077400FD6783 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -692,6 +697,7 @@
 		63258BD41A3ECB500089C3F1 /* FrankfanImage */ = {
 			isa = PBXGroup;
 			children = (
+				63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */,
 				6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */,
 				636F44951A44214300FD6783 /* fz对勾@2x.png */,
 				63A9EA831A40649B00C5DAE6 /* fz加@2x.png */,
@@ -722,6 +728,8 @@
 			children = (
 				63468EFE1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.h */,
 				63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */,
+				63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */,
+				63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1131,6 +1139,7 @@
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
+				63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */,
 				636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */,
 				6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */,
 				63BC6A8C1A374B8200087DFB /* ProgressHUD.bundle in Resources */,
@@ -1269,6 +1278,7 @@
 				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,
 				5C4519DC1A4915620031685A /* RZTimeSelectedViewController.m in Sources */,
 				636F44851A44091300FD6783 /* UIImage+GIF.m in Sources */,
+				63649A3D1A494CDE0024E3F7 /* StarDetaiInfoViewController.m in Sources */,
 				63BC6A7A1A374A1100087DFB /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				5CD5FE651A43F87E00316965 /* GNWheelView.m in Sources */,
 				631DC1ED1A3738EF00F5E9AA /* main.m in Sources */,
