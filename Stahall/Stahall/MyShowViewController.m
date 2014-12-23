@@ -11,7 +11,7 @@
 #import "RESideMenu.h"
 #import "Marcos.h"
 #import "MainViewController.h"
-
+#import "CreateShowFirstViewController.h"
 @interface MyShowViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -26,13 +26,12 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
-    
+    [self setTabBar];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTabBar];
 
     [self Variableinitialization];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -300,7 +299,8 @@
 }
 
 -(void)didAddNewShow{
-    NSLog(@"add add");
+    CreateShowFirstViewController *createCtrl = [[CreateShowFirstViewController alloc] init];
+    [self.navigationController pushViewController:createCtrl animated:YES];
 }
 
 #pragma mark - UIlabel的方法
@@ -319,14 +319,6 @@
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
