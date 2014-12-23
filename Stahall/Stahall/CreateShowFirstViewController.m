@@ -26,6 +26,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
+     [self setTabBar];
 }
 
 - (void)viewDidLoad {
@@ -36,7 +37,7 @@
     arrOfSegmentTitle = @[@"商业演出",@"公益演出"];
     arrOfrule = @[@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出",@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出"];
     
-    [self setTabBar];
+   
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.tpscrollerView];
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
@@ -139,7 +140,7 @@
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 90)];
         headView.backgroundColor = [UIColor clearColor];
        UILabel * segmentCtrl = [[UILabel alloc] initWithFrame:CGRectMake(0,25,Mywidth ,45)];
-        segmentCtrl.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+        segmentCtrl.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
         [self Customlable:segmentCtrl text:@"     商业演出" fontSzie:16 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [headView addSubview:segmentCtrl];
         return headView;
@@ -175,7 +176,7 @@
         if (cell1 == nil) {
             cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
             cell1.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell1.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+            cell1.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10,120, 25)];
             [self Customlable:label text:@"" fontSzie:15 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
@@ -223,7 +224,7 @@
         
         UITableViewCell *cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell2.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell2.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+        cell2.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
         UILabel *label = [[UILabel alloc] init];
         label.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.3].CGColor;
         label.layer.borderWidth = 0.5;
@@ -240,16 +241,18 @@
             cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
             cell3.selectionStyle = UITableViewCellSelectionStyleNone;
             cell3.backgroundColor = [UIColor clearColor];
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(20, 10, 10, 10)];
-            view.backgroundColor = [UIColor whiteColor];
-            view.alpha = 0.9;
-            view.layer.masksToBounds = YES;
-            view.layer.cornerRadius = view.frame.size.width/2;
-            [cell3 addSubview:view];
             
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, Mywidth-65, [self caculateTheTextHeight:arrOfrule[indexPath.row] andFontSize:14 andDistance:Mywidth-65])];
             label.tag = 1114;
             [self Customlable:label text:@"" fontSzie:14 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:100];
+            
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(22, label.frame.origin.y+6, 10, 10)];
+            view.backgroundColor = [UIColor whiteColor];
+            view.alpha = 0.9;
+            view.layer.masksToBounds = YES;
+            view.layer.cornerRadius = view.frame.size.width/2;
+            
+            [cell3 addSubview:view];
             [cell3.contentView addSubview:label];
         }
         UILabel *label = (UILabel *)[cell3.contentView viewWithTag:1114];
