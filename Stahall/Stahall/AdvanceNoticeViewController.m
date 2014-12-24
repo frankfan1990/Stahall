@@ -241,9 +241,10 @@
         
         UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
         layoutView.itemSize = CGSizeMake(80, 80);
+        layoutView.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
         [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        _collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(10, 40+10, Mywidth-20, 80) collectionViewLayout:layoutView];
+        _collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40+10, Mywidth, 80) collectionViewLayout:layoutView];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor clearColor];
