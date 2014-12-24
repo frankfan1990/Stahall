@@ -173,6 +173,8 @@
         StahallValuationViewController *staHallvaluation =[StahallValuationViewController new];
         [self.navigationController pushViewController:staHallvaluation animated:YES];
         
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isAgreen"];
+        
     }else{
     
         [ProgressHUD showError:@"请勾选同意选项"];
