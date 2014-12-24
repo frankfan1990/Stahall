@@ -14,11 +14,12 @@
 #import "Datetime.h"
 #import "DetailDayCell.h"
 #import "RTLabel.h"
+#import "StarDetailCollectionViewCell.h"
 /********/
 
 
 
-@interface StarDetaiInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,UIScrollViewDelegate>
+@interface StarDetaiInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,UIScrollViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
 
    /*****日历相关-垃圾代码****/
@@ -73,7 +74,9 @@
     
     CGFloat sectionSecondCellHeight;//cell的高度
 }
+
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UICollectionView *collectionView;
 @end
 
 @implementation StarDetaiInfoViewController
@@ -203,7 +206,7 @@
     priceBackView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
     priceBackView.backgroundColor =[UIColor clearColor];
     priceBackView.backgroundColor =[UIColor whiteColor];
-    priceBackView.backgroundColor =[UIColor greenColor];
+    priceBackView.backgroundColor =[UIColor clearColor];
     priceButton.tag = 3002;
 
     //要求模块
@@ -290,8 +293,36 @@
     [[UIApplication sharedApplication].keyWindow addSubview:stahallEvalutionButton];
     
 
-
+    //创建价格模块控件-collectionView
+    UICollectionViewFlowLayout *flowLayout =[[UICollectionViewFlowLayout alloc]init];
+    flowLayout.itemSize = CGSizeMake(80, 35);
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
     
+    self.collectionView =[[UICollectionView alloc]initWithFrame:priceBackView.bounds collectionViewLayout:flowLayout];
+    [self.collectionView registerClass:[StarDetailCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [priceBackView addSubview:self.collectionView];
+    self.collectionView.backgroundColor =[UIColor clearColor];
+}
+
+
+#pragma mark - collectionCell个数
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+
+    return 6;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+    StarDetailCollectionViewCell *cell = (StarDetailCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    cell.layer.cornerRadius = 2;
+    cell.layer.masksToBounds = YES;
+    
+    cell.itemTitle.text = @"测试";
+    cell.backgroundColor =[UIColor orangeColor];
+    return cell;
+
 }
 
 
