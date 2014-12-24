@@ -70,9 +70,9 @@
             NSString *before ;
             if (year && month == 1) {      //如果到了1月则取上一年的
                 //这个月一共的天数 减 这个月的前面还缺几位 然后再把所得的数加一为应该显示的数
-                before =  [NSString stringWithFormat:@"%d",[self GetNumberOfDayByYera:(year-1) andByMonth:12]- [self GetTheWeekOfDayByYera:year andByMonth:month]+1+i];
+                before =  [NSString stringWithFormat:@"%ld",[self GetNumberOfDayByYera:(year-1) andByMonth:12]- [self GetTheWeekOfDayByYera:year andByMonth:month]+1+i];
             }else if (month > 1){
-                before = [NSString stringWithFormat:@"%d",[self GetNumberOfDayByYera:year andByMonth:(month - 1)]- [self GetTheWeekOfDayByYera:year andByMonth:month]+1+i];
+                before = [NSString stringWithFormat:@"%ld",[self GetNumberOfDayByYera:year andByMonth:(month - 1)]- [self GetTheWeekOfDayByYera:year andByMonth:month]+1+i];
             }else{
                 before = @" ";
             }
@@ -81,11 +81,11 @@
         }else if ((i>[self GetTheWeekOfDayByYera:year andByMonth:month]-1)&&(i<[self GetTheWeekOfDayByYera:year andByMonth:month]+[self GetNumberOfDayByYera:year andByMonth:month])){
             NSString * days;
             if((i - [self GetTheWeekOfDayByYera:year andByMonth:month] +1)< 10)
-                days = [NSString stringWithFormat:@" %d",i-[self GetTheWeekOfDayByYera:year andByMonth:month]+1];
-            else days = [NSString stringWithFormat:@"%d",i-[self GetTheWeekOfDayByYera:year andByMonth:month]+1];
+                days = [NSString stringWithFormat:@" %ld",i-[self GetTheWeekOfDayByYera:year andByMonth:month]+1];
+            else days = [NSString stringWithFormat:@"%ld",i-[self GetTheWeekOfDayByYera:year andByMonth:month]+1];
             [dayArray addObject:days];
         }else { //超过当月的天数 加下一个月的起始  这里注意要减去上一个月占得位数
-            NSString * next = [NSString stringWithFormat:@"%d",i-[self GetNumberOfDayByYera:year andByMonth:month]- [self GetTheWeekOfDayByYera:year andByMonth:month] + 1];
+            NSString * next = [NSString stringWithFormat:@"%ld",i-[self GetNumberOfDayByYera:year andByMonth:month]- [self GetTheWeekOfDayByYera:year andByMonth:month] + 1];
             [dayArray addObject:next];
         }
     }
