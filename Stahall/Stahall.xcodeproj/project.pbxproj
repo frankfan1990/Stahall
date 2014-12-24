@@ -59,6 +59,7 @@
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
 		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; };
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
+		634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */; };
 		63649A3D1A494CDE0024E3F7 /* StarDetaiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */; };
 		63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */; };
 		63649A461A496F7F0024E3F7 /* Datetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A411A496F7F0024E3F7 /* Datetime.m */; };
@@ -242,6 +243,8 @@
 		63468EF91A43D07400938E1E /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		63468EFE1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallEvalutionIlerItemViewController.h; sourceTree = "<group>"; };
 		63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallEvalutionIlerItemViewController.m; sourceTree = "<group>"; };
+		634BDC9A1A4ABB1A00994401 /* StarDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetailCollectionViewCell.h; sourceTree = "<group>"; };
+		634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetailCollectionViewCell.m; sourceTree = "<group>"; };
 		63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetaiInfoViewController.h; sourceTree = "<group>"; };
 		63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetaiInfoViewController.m; sourceTree = "<group>"; };
 		63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz艺人详情背景.png"; sourceTree = "<group>"; };
@@ -982,6 +985,8 @@
 			children = (
 				63A9EAF61A41C07600C5DAE6 /* StahallFooterReusableView.h */,
 				63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */,
+				634BDC9A1A4ABB1A00994401 /* StarDetailCollectionViewCell.h */,
+				634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */,
 			);
 			name = AboutStarHallModelView;
 			sourceTree = "<group>";
@@ -1329,6 +1334,7 @@
 				63BC6A941A374C5800087DFB /* FBKVOController.m in Sources */,
 				63649A481A496F7F0024E3F7 /* LunarCalendar.m in Sources */,
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
+				634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
 				636F44191A44077400FD6783 /* AFURLResponseSerialization.m in Sources */,

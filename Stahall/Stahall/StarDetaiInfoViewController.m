@@ -13,12 +13,12 @@
 //日历相关
 #import "Datetime.h"
 #import "DetailDayCell.h"
-#import "FXBlurView.h"
+#import "RTLabel.h"
 /********/
 
 
 
-@interface StarDetaiInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface StarDetaiInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,UIScrollViewDelegate>
 {
 
    /*****日历相关-垃圾代码****/
@@ -66,6 +66,12 @@
     
     NSMutableArray *selectedButtonArray;//记录选中的那个button
     NSMutableArray *olderBackViewArray;//记录之前的backView
+    
+//    UIWebView *introductionWebView;//简介webView
+    RTLabel *introductionWebView;//简介webView
+    UILabel *touchView;//让用户可以滑动的触点
+    
+    CGFloat sectionSecondCellHeight;//cell的高度
 }
 @property (nonatomic,strong)UITableView *tableView;
 @end
@@ -81,6 +87,11 @@
      *  日历相关
      */
 
+    //档期模块
+    mainView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
+    mainView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    mainView.backgroundColor =[UIColor clearColor];
+    mainView.tag = 3003;
  
     strYear = [[Datetime GetYear] intValue];
     strMonth = [[Datetime GetMonth] intValue];
@@ -157,20 +168,52 @@
     
     selectedButtonArray =[NSMutableArray array];
     olderBackViewArray =[NSMutableArray array];
+    sectionSecondCellHeight = 330;
 
-    //行程模块
-    mainView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
-    mainView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
-    mainView.backgroundColor =[UIColor clearColor];
     
     //简介模块
     introductionBackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
     introductionBackView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
     introductionBackView.backgroundColor =[UIColor clearColor];
     introductionBackView.backgroundColor =[UIColor whiteColor];
+    [olderBackViewArray addObject:introductionBackView];//默认选中简介模块
+    introductionBackView.backgroundColor =[UIColor clearColor];
+    introductionBackView.tag = 3001;
+    
+    introductionWebView =[[RTLabel alloc]initWithFrame:CGRectMake(10, 5, self.view.bounds.size.width-20, 0)];
+    introductionWebView.opaque = NO;
+    introductionWebView.backgroundColor =[UIColor clearColor];
+    [introductionBackView addSubview:introductionWebView];
+
+    NSString *originString = @"小龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包子小龙女是包龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是<p>包子小龙女是</p>包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包子小龙女是包龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包龙女是包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包子小龙女是包龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子";
+    introductionWebView.text = [self handleStringForRTLabel:originString];
+    if(introductionWebView.optimumSize.height<330){
+        
+        sectionSecondCellHeight = 330;
+    }else{
+    
+        sectionSecondCellHeight = introductionWebView.optimumSize.height;
+    }
+
+    introductionWebView.frame = CGRectMake(0, 0, self.view.bounds.size.width, introductionWebView.optimumSize.height);
     
     
-    [olderBackViewArray addObject:introductionBackView];
+    //价格模块
+    priceBackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
+    priceBackView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    priceBackView.backgroundColor =[UIColor clearColor];
+    priceBackView.backgroundColor =[UIColor whiteColor];
+    priceBackView.backgroundColor =[UIColor greenColor];
+    priceButton.tag = 3002;
+
+    //要求模块
+    requireBackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
+    requireBackView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    requireBackView.backgroundColor =[UIColor clearColor];
+    requireBackView.backgroundColor =[UIColor whiteColor];
+    requireBackView.backgroundColor =[UIColor blueColor];
+    requireBackView.tag = 3004;
+    
     
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
@@ -204,8 +247,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = NO;
+    self.tableView.allowsSelection = NO;
     self.tableView.backgroundColor =[UIColor clearColor];
     [self.view addSubview:self.tableView];
+    self.tableView.userInteractionEnabled = YES;
     
     CGRect rect = CGRectZero;
     UIView *footerView =[[UIView alloc]initWithFrame:rect];
@@ -218,6 +263,7 @@
     webView =[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 150)];
     webView.opaque = NO;
     webView.backgroundColor =[UIColor orangeColor];
+    webView.scrollView.scrollEnabled = NO;
     
     //创建button
     
@@ -241,7 +287,9 @@
     stahallEvalutionButton.backgroundColor =[UIColor greenColor];
     stahallEvalutionButton.frame = CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50);
     [stahallEvalutionButton setTitle:@"堂估价" forState:UIControlStateNormal];
-    [[[[UIApplication sharedApplication].keyWindow subviews]lastObject]addSubview:stahallEvalutionButton];
+    [[UIApplication sharedApplication].keyWindow addSubview:stahallEvalutionButton];
+    
+
 
     
 }
@@ -263,13 +311,21 @@
 #pragma mark - 创建cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellName =@"cell";
-    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellName];
-    if(!cell){
+
+
+    UITableViewCell *cell =nil;
+    UITableViewCell *cell2 = nil;
+    UITableViewCell *cell3 = nil;
+    if(!cell || !cell2 || !cell3){
     
-        cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
+        cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.selectionStyle = NO;
+        
+        cell2 =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.selectionStyle = NO;
        
+        cell3 =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.selectionStyle = NO;
     }
     
     
@@ -281,32 +337,57 @@
         [cell.contentView addSubview:priceButton];
         [cell.contentView addSubview:dateButton];
         [cell.contentView addSubview:requireButton];
+        cell.selected  =NO;
+        return cell;
     }
     
     if(indexPath.section==1){
         
-        cell.backgroundColor =[UIColor clearColor];
-//        [cell.contentView addSubview:introductionBackView];//档期模块
-         [cell.contentView addSubview:mainView];//档期模块
+        cell2.backgroundColor =[UIColor clearColor];
+        cell2.selected = NO;
         
         //
-//        UIButton *selectedButton =[selectedButtonArray firstObject];
-//        if(selectedButton.tag==1001){
-//            
-//        
-//            UIView *olderView =[olderBackViewArray firstObject];
-//            [olderView removeFromSuperview];
-//            [cell.contentView addSubview:introductionBackView];
-//            
-//        }else if (selectedButton.tag==1003){
-//            
-//            UIView *olderView =[olderBackViewArray firstObject];
-//            [olderView removeFromSuperview];
-//            [cell.contentView addSubview:mainView];
-//
-//        
-//        }
+        UIButton *selectedButton =[selectedButtonArray firstObject];
         
+        UIView *olderView =[olderBackViewArray firstObject];
+        [olderView removeFromSuperview];
+        if(olderView.tag==3001){
+        
+            [introductionBackView removeFromSuperview];
+        }else if (olderView.tag==3002){
+        
+            [priceBackView removeFromSuperview];
+        }else if (olderView.tag==3003){
+        
+            [mainView removeFromSuperview];
+        }else{
+        
+            [requireBackView removeFromSuperview];
+        }
+        
+        
+   
+
+        if(selectedButton.tag==1001){//简介
+            
+        
+            [cell2.contentView addSubview:introductionBackView];
+            
+        }else if (selectedButton.tag==1003){//档期
+            
+     
+            [cell2.contentView addSubview:mainView];
+
+        }else if (selectedButton.tag==1002){//价格
+        
+            [cell2.contentView addSubview:priceBackView];
+        
+        }else{//要求
+        
+            [cell2.contentView addSubview:requireBackView];
+        }
+        
+        return cell2;
         
     }
     
@@ -318,13 +399,16 @@
         addShows.backgroundColor =[UIColor blueColor];
         addShows.text =@"增加场次";
         addShows.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:addShows];
+        [cell3.contentView addSubview:addShows];
+        cell3.selected = NO;
+        
+        return cell3;
     }
 
     
     
     
-    return cell;
+    return nil;
 }
 
 #pragma mark - 控制头部的高度
@@ -356,7 +440,7 @@
         
     }else if (indexPath.section==1){
     
-        return 330;
+        return sectionSecondCellHeight;
     }else{
         
         return 60;
@@ -391,16 +475,26 @@
     }else{
     
         [selectedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [olderBackViewArray removeAllObjects];
         
-        if(selectedButton.tag==1001){
+        if(selectedButton.tag==1001){//简介
         
-            [olderBackViewArray removeAllObjects];
+            
             [olderBackViewArray addObject:introductionBackView];
             
-        }else if (selectedButton.tag==1003){
+        }else if (selectedButton.tag==1003){//档期
         
-            [olderBackViewArray removeAllObjects];
+            
             [olderBackViewArray addObject:mainView];
+            
+        }else if (selectedButton.tag==1002){//价格
+        
+            [olderBackViewArray addObject:priceBackView];
+            
+        }else{//要求
+        
+            [olderBackViewArray addObject:requireBackView];
+        
         }
         
         
@@ -408,6 +502,22 @@
         [selectedButtonArray removeAllObjects];
         [selectedButtonArray addObject:sender];
         [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        if(sender.tag==1001){
+        
+            if(introductionWebView.optimumSize.height<=330){
+            
+                sectionSecondCellHeight = 330;
+            }else{
+            
+                sectionSecondCellHeight = introductionWebView.optimumSize.height;
+            }
+            
+        }else{
+        
+            sectionSecondCellHeight = 330;
+        }
+        
         [self.tableView reloadData];
         
     }
@@ -415,6 +525,20 @@
     
 
 }
+
+
+#pragma mark - 处理富文本格式字符串，使之适配RTLabel的使用
+- (NSString *)handleStringForRTLabel:(NSString *)htmlString{
+    
+    NSString *tempString = [htmlString stringByReplacingOccurrencesOfString:@"<br>" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [htmlString length])];
+    
+    NSString *resultString =[tempString stringByReplacingOccurrencesOfString:@"div" withString:@"br" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [tempString length])];
+    
+    return resultString;
+}
+
+
+
 
 
 
