@@ -10,4 +10,6 @@
 
 @interface CreateShowSecondViewController : UIViewController
 @property(nonatomic,strong)UITextField *field1;
+
+-(void)addData;
 @end

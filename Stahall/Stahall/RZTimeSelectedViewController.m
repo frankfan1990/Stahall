@@ -102,17 +102,17 @@
     lable.layer.cornerRadius=10;
     lable.layer.masksToBounds = YES;
     
-    str=[NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",(long)_datePicker.date.year,(long)_datePicker.date.month,(long)_datePicker.date.day,(long)_timePicker.date.hour,(long)_timePicker.date.minute];
+
  
     if (![_date length]) {
         //获取当前时间
         NSDate *date1 = [NSDate date];
         str=[NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",(long)date1.year,(long)date1.month,(long)date1.day,(long)date1.hour,(long)date1.minute];
-        lable.text = [NSString stringWithFormat:@"%@",str];
         
     }else {
-        lable.text=str;
+            str=[NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",(long)_datePicker.date.year,(long)_datePicker.date.month,(long)_datePicker.date.day,(long)_timePicker.date.hour,(long)_timePicker.date.minute];
     }
+    lable.text=str;
     lable.textColor=[UIColor whiteColor];
     lable.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
     lable.font=[UIFont systemFontOfSize:30*height/667.0];
@@ -172,10 +172,7 @@
 
 -(void)didDate
 {
-    
-    NSString *str1;
-    str1=[NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",(long)_datePicker.date.year,(long)_datePicker.date.month,(long)_datePicker.date.day,(long)_timePicker.date.hour,(long)_timePicker.date.minute];
-    lable.text=str1;
+    lable.text= [NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",(long)_datePicker.date.year,(long)_datePicker.date.month,(long)_datePicker.date.day,(long)_timePicker.date.hour,(long)_timePicker.date.minute];
     
 }
 -(void)back{
@@ -183,12 +180,15 @@
 }
 -(void)didBtn2
 {
-    if ([lable.text compare:str] <= 0 ) {
+     NSDate *date1 = [NSDate date];
+    NSString *nowDateStr = [NSString stringWithFormat:@"%ld-%02ld-%02ld %02ld:%02ld",(long)date1.year,(long)date1.month,(long)date1.day,(long)date1.hour,(long)date1.minute];
+    if ([lable.text compare:nowDateStr] <= 0 ) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请设置未来时间" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
     }
     else {
-           addCtrl.field1.text = lable.text;
+        addCtrl.field1.text = lable.text;
+        [addCtrl addData];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

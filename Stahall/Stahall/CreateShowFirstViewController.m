@@ -17,6 +17,7 @@
     NSMutableArray *arrOfContent;
     NSArray *arrOfrule;
     NSArray *arrOfSegmentTitle;
+    NSMutableArray *arrOfdata;
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @end
@@ -36,8 +37,8 @@
     arrOfContent = [NSMutableArray arrayWithObjects:@"申请输入演出名称",@"请输入主办/承办单位",nil];
     arrOfSegmentTitle = @[@"商业演出",@"公益演出"];
     arrOfrule = @[@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出",@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出"];
-    
-   
+    arrOfdata = [NSMutableArray array];
+
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.tpscrollerView];
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
@@ -86,7 +87,6 @@
     
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
     title.text = @"新建演出";
-
     title.font = [UIFont systemFontOfSize:19];
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
@@ -297,8 +297,36 @@
 #pragma mark - 下一步
 -(void)didNextBtn
 {
-    CreateShowSecondViewController *secondCtrl = [[CreateShowSecondViewController alloc] init]
-    ;
+    [arrOfdata removeAllObjects];
+    for (int i=0; i<arrOfname.count; i++) {
+        NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+        UITableViewCell *cell = (UITableViewCell *)[_tableView cellForRowAtIndexPath:index];
+        UITextField *field = (UITextField *)[cell.contentView viewWithTag:113];
+        if (![field.text length]) {
+            NSString *msg = @"";
+            if (index.row == 0) {
+                msg = @"\n演出名称不能为空";
+            }else{
+                msg = @"\n主办/承办单位不能为空";
+            }
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            return;
+        }
+        else{
+            NSDictionary *dic = [NSDictionary dictionary];
+            if (index.row == 0) {
+                dic = @{@"name":field.text};
+            }else{
+                NSString *key = [NSString stringWithFormat:@"company_%ld",index.row];
+                dic = @{key:field.text};
+            }
+            [arrOfdata addObject:dic];
+        }
+        
+        
+    }
+    CreateShowSecondViewController *secondCtrl = [[CreateShowSecondViewController alloc] init];
     [self.navigationController pushViewController:secondCtrl animated:YES];
 }
 

@@ -9,13 +9,17 @@
 #import "CreateShowThirdViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "Marcos.h"
-@interface CreateShowThirdViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
+@interface CreateShowThirdViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     UITableView *_tableView;
     UIActionSheet *sheetView;
     NSArray *arrOfrule;
     NSMutableArray *arrOfname;
     NSMutableArray *arrOfContent;
+    UICollectionView *_colloectionView;
+    UIImagePickerController *imagePicker;
+    NSMutableArray *arrOfImages;
+    NSInteger cell_indexPath_row;
     
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
@@ -46,7 +50,17 @@
     [_tpscrollerView addSubview:_tableView];
     
     sheetView = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"相册", nil];
-    
+    imagePicker = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        //系统照片
+        imagePicker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        
+    }else{
+        //手机相册
+        imagePicker.sourceType=UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    }
+    arrOfImages = [NSMutableArray array];
+    imagePicker.delegate = self;
 
 }
 #pragma mark - TabBar的设置
@@ -91,6 +105,7 @@
     self.navigationItem.titleView = title;
     
 }
+
 
 
 #pragma mark - _tableView的代理
@@ -176,6 +191,17 @@
         [self Customlable:label text:@"授权书/委托函" fontSzie:16 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell2.contentView addSubview:label];
         
+        UICollectionViewFlowLayout *laytoutView = [[UICollectionViewFlowLayout alloc] init];
+        laytoutView.itemSize = CGSizeMake(90, 80);
+        laytoutView.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        [laytoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        _colloectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, Mywidth, 110) collectionViewLayout:laytoutView];
+        _colloectionView.delegate = self;
+        _colloectionView.dataSource = self;
+        _colloectionView.backgroundColor = [UIColor clearColor];
+        [_colloectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"My_cell"];
+        [cell2.contentView addSubview:_colloectionView];
+        
         return cell2;
     }
     else if(indexPath.section == 2){
@@ -239,15 +265,75 @@
     
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+#pragma mark -  UICollectionView的代理
+-(NSInteger )collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    return arrOfImages.count + 1;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell_my = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_cell" forIndexPath:indexPath];
+    UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didlong:)];
+    [cell_my addGestureRecognizer:longPress];
+    UIImageView *image1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 90, 80)];
+        if (indexPath.row == arrOfImages.count)
+        {
+            cell_my.tag = 555;
+            image1.image = [UIImage imageNamed:@"lc添加照片"];
+        }
+        else
+        {
+            if ([arrOfImages[indexPath.row] isKindOfClass:[UIImage class]]) {
+                image1.image = arrOfImages[indexPath.row];
+            }
+            else{
+                image1.image = [UIImage imageNamed:arrOfImages[indexPath.row]];
+            }
+        }
+    
+   
+    cell_my.backgroundView = image1;
+    
+    return cell_my;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell_indexPath_row = indexPath.row;
     [sheetView showInView:self.view];
+}
+
+#pragma mark - UIImagePickerController代理
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //    imagev.image=[info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    if (cell_indexPath_row == arrOfImages.count) {
+        [arrOfImages addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
+        [_colloectionView reloadData];
+    }else
+    {
+        [arrOfImages removeObjectAtIndex:cell_indexPath_row];
+        [arrOfImages insertObject:[info objectForKey:UIImagePickerControllerOriginalImage] atIndex:cell_indexPath_row];
+        [_colloectionView reloadData];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 #pragma mark - sheetView的代理
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (buttonIndex == 0) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.showsCameraControls = YES;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }else if (buttonIndex == 1){
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
     
 }
 #pragma mark - 返回
@@ -256,9 +342,31 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 创建
+#pragma mark - 创建演出按钮
 -(void)didNextBtn
 {
+    if (arrOfImages.count<3) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请至少上传三张照片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+        return;
+    }
+    [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-4] animated:YES];
+}
+
+#pragma mark - 长按删除
+-(void)didlong:(UILongPressGestureRecognizer *)longpress
+{
+    if(longpress.state == UIGestureRecognizerStateBegan)
+    {
+        UICollectionViewCell *cell = (UICollectionViewCell *)longpress.view
+        ;
+        NSIndexPath * indexpath = [_colloectionView indexPathForCell:cell];
+        if (indexpath.row < arrOfImages.count) {
+            [arrOfImages removeObjectAtIndex:indexpath.row];
+            [_colloectionView reloadData];
+        }
+    }
     
 }
 
@@ -266,6 +374,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 #pragma mark - 根据字长算 高度或宽度

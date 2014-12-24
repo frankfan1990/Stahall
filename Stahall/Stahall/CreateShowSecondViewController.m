@@ -11,14 +11,16 @@
 #import "RZTimeSelectedViewController.h"
 #import "CreateShowThirdViewController.h"
 #import "Marcos.h"
-@interface CreateShowSecondViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface CreateShowSecondViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *_tableView;
     NSMutableArray *arrOfSection;
     NSArray *arrOfrule;
     NSMutableArray *arrOfname;
     NSMutableArray *arrOfContent;
-    
+    NSMutableArray *arrOfdata;
+    NSArray *keys;
+    UITextField *_textField;
 }
 
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
@@ -38,6 +40,16 @@
     arrOfrule = @[@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出",@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出"];
     arrOfname = [NSMutableArray arrayWithObjects:@"演出开始时间",@"演出结束时间",@"演出地点",@"演出场地",@"场馆名称", nil];
     arrOfContent = [NSMutableArray arrayWithObjects:@"点击设置开始时间",@"点击设置结束时间",@"请输入演出地点",@"请输入演出场地",@"请输入场馆名称",nil];
+    keys = @[@"beginTime",@"endTime",@"showAddress",@"showVenues",@"venuesName"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:@"" forKey:keys[0]];
+    [dic setObject:@"" forKey:keys[1]];
+    [dic setObject:@"" forKey:keys[2]];
+    [dic setObject:@"" forKey:keys[3]];
+    [dic setObject:@"" forKey:keys[4]];
+    
+    arrOfdata = [NSMutableArray array];
+    [arrOfdata addObject:dic];
     
     [self setTabBar];
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
@@ -198,7 +210,6 @@
         label.frame = CGRectMake(-1, 0, Mywidth+2, 45);
         [self Customlable:label text:@"增加场次" fontSzie:16 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell2.contentView addSubview:label];
-        
         return cell2;
     }
     else if(indexPath.section == arrOfSection.count+1){
@@ -240,7 +251,7 @@
             
             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
             field.userInteractionEnabled = YES;
-            
+            field.delegate = self;
             field.textAlignment = NSTextAlignmentRight;
             field.font = [UIFont systemFontOfSize:15];
             field.tag = 113;
@@ -258,6 +269,7 @@
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
         label.text = arrOfname[indexPath.row];
+        feild.text = [arrOfdata[indexPath.section] objectForKey:keys[indexPath.row]];
         feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:arrOfContent[indexPath.row] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
         if (indexPath.row == 0 || indexPath.row == 1) {
             feild.userInteractionEnabled = NO;
@@ -273,62 +285,129 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [_textField resignFirstResponder];
     UITableViewCell *cell = (UITableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
     if (indexPath.section == arrOfSection.count) {
+
+        for (NSMutableDictionary *dict in arrOfdata) {
+            for (NSString *key in keys) {
+                if (![[dict objectForKey:key] length]) {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n完善其他场次信息 才能增加另外的场次" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                    [alertView show];
+                    return;
+                };
+            }
+        }
+        
         [arrOfSection addObject:@""];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setObject:@"" forKey:keys[0]];
+        [dic setObject:@"" forKey:keys[1]];
+        [dic setObject:@"" forKey:keys[2]];
+        [dic setObject:@"" forKey:keys[3]];
+        [dic setObject:@"" forKey:keys[4]];
+        [arrOfdata addObject:dic];
         NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(arrOfSection.count-1,1)];//第一个参数是插入到第几section  第二十家几个section
         [_tableView beginUpdates];
         [_tableView insertSections:set withRowAnimation:UITableViewRowAnimationRight];
         [_tableView endUpdates];
-         [_tableView setContentOffset:CGPointMake(0, (arrOfSection.count-1)*270) animated:YES];
-    }else if (indexPath.section < arrOfSection.count && indexPath.row<2){
+        [_tableView setContentOffset:CGPointMake(0, (arrOfSection.count-1)*270) animated:YES];
+        
+    }
+    else if (indexPath.section < arrOfSection.count && indexPath.row<2){
         
         _field1 = (UITextField *)[cell.contentView viewWithTag:113];
-     
         RZTimeSelectedViewController *timeCtrl = [[RZTimeSelectedViewController alloc] init];
         if ([_field1.text length]) {
             NSString *date = [_field1.text substringToIndex: 10];
             NSString *time = [_field1.text substringFromIndex:11];
             [timeCtrl getDate:date Time:time];
         }
-
         [self.navigationController pushViewController:timeCtrl animated:YES];
     }
 }
 
-
-#pragma mark - 下一页
--(void)didNextBtn
+#pragma mark - textfield的代理
+-(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    CreateShowThirdViewController *thirdCtrl = [[CreateShowThirdViewController alloc] init];
-    [self.navigationController pushViewController:thirdCtrl animated:YES];
+    _textField = textField;
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSIndexPath *index = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
+    [arrOfdata[index.section] setObject:textField.text forKey:keys[index.row]];
 }
 
 -(void)didCancelBtn:(UIButton *) sender{
     [arrOfSection removeLastObject];
+    [arrOfdata removeObjectAtIndex:sender.tag-100000];
     NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(sender.tag-100000, 1)];
     [_tableView beginUpdates];
     [_tableView deleteSections:set withRowAnimation:UITableViewRowAnimationRight];
     [_tableView endUpdates];
-   
+    
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-       [_tableView reloadData]; 
+        [_tableView reloadData];
     });
-//
 }
+
+#pragma mark - 下一页
+-(void)didNextBtn
+{
+    [_textField resignFirstResponder];
+    
+    for (int i = 0; i<arrOfdata.count; i++)
+    {
+        NSMutableDictionary *dic = arrOfdata[i];
+        for (int j = 0; j<5; j++)
+        {
+            if (![[dic objectForKey:keys[j]] length])
+            {
+                NSString *msg;
+                if (j == 0) {
+                    msg = [NSString stringWithFormat:@"\n请输入第%d场的开始时间",i+1];
+                }else if (j == 1){
+                    msg = [NSString stringWithFormat:@"\n请输入第%d场的结束时间",i+1];
+                }else if (j == 2){
+                    msg = [NSString stringWithFormat:@"\n请输入第%d场的演出地点",i+1];
+                }else if (j == 3){
+                    msg = [NSString stringWithFormat:@"\n请输入第%d场的演出场地",i+1];
+                }else if (j == 4){
+                    msg = [NSString stringWithFormat:@"\n请输入第%d场的场馆名称",i+1];
+                }
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                [alertView show];
+                return;
+            }
+        }
+    }
+    
+    CreateShowThirdViewController *thirdCtrl = [[CreateShowThirdViewController alloc] init];
+    [self.navigationController pushViewController:thirdCtrl animated:YES];
+}
+
+
 
 -(void)didGoBack
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)addData
+{
+    UITableViewCell *cell1 = (UITableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:arrOfSection.count-1]];
+    UITableViewCell *cell2 = (UITableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:arrOfSection.count-1]];
+    UITextField *field1 = (UITextField *)[cell1 viewWithTag:113];
+    UITextField *field2 = (UITextField *)[cell2 viewWithTag:113];
+    [arrOfdata[arrOfSection.count-1] setObject:field1.text forKey:keys[0]];
+    [arrOfdata[arrOfSection.count-1] setObject:field2.text forKey:keys[1]];
 }
 
 #pragma mark - UIlabel的方法
