@@ -45,7 +45,6 @@
     UITableView *_detailDayTableView;
     NSArray *_detailDayArr;
 
-    UIView *mainView;//用于承载没有复用的那部分view
 
     /***********************/
     
@@ -56,6 +55,17 @@
     UIButton *priceButton;
     UIButton *dateButton;
     UIButton *requireButton;
+    
+    UIButton *stahallEvalutionButton;//堂估价Button
+    
+    
+    UIView *mainView;//档期模块
+    UIView *introductionBackView;//简介模块
+    UIView *priceBackView;//价格模块
+    UIView *requireBackView;//要求模块
+    
+    NSMutableArray *selectedButtonArray;//记录选中的那个button
+    NSMutableArray *olderBackViewArray;//记录之前的backView
 }
 @property (nonatomic,strong)UITableView *tableView;
 @end
@@ -70,12 +80,8 @@
      *
      *  日历相关
      */
-    
-    mainView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
-    mainView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
-    mainView.backgroundColor =[UIColor clearColor];
-    
-    
+
+ 
     strYear = [[Datetime GetYear] intValue];
     strMonth = [[Datetime GetMonth] intValue];
     _dayArray = [Datetime GetDayArrayByYear:strYear andMonth:strMonth];
@@ -85,8 +91,8 @@
     NSString *todayString =[NSString stringWithFormat:@"%@",[NSDate date]];
     self.today = [@[todayString]mutableCopy];
     
-    self.travelDay = [@[@"2014-11-11",@"2014-12-1",@"2014-12-3",@"2014-11-20"]mutableCopy];//旷课
-    self.showDay = [@[@"2014-11-7",@"2014-11-26",@"2014-12-2"]mutableCopy];
+    self.travelDay = [@[@"2014-11-11",@"2014-12-1",@"2014-12-3",@"2014-11-20"]mutableCopy];//行程
+    self.showDay = [@[@"2014-11-7",@"2014-11-26",@"2014-12-2"]mutableCopy];//演出
     
     _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 330-44, self.view.frame.size.width, 44)];
     _bottomView.backgroundColor = [UIColor colorWithRed:204 / 255.0 green:204 / 255.0 blue:204 / 255.0 alpha:1.0];
@@ -143,6 +149,28 @@
     
     /*********************************/
     
+    /**
+     *  @author frankfan, 14-12-24 09:12:30
+     *
+     *  数据初始化
+     */
+    
+    selectedButtonArray =[NSMutableArray array];
+    olderBackViewArray =[NSMutableArray array];
+
+    //行程模块
+    mainView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
+    mainView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    mainView.backgroundColor =[UIColor clearColor];
+    
+    //简介模块
+    introductionBackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
+    introductionBackView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    introductionBackView.backgroundColor =[UIColor clearColor];
+    introductionBackView.backgroundColor =[UIColor whiteColor];
+    
+    
+    [olderBackViewArray addObject:introductionBackView];
     
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
@@ -172,7 +200,7 @@
      *  创建主界面
      */
     
-    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44) style:UITableViewStyleGrouped];
+    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-90) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = NO;
@@ -194,16 +222,30 @@
     //创建button
     
     introductionButton =[self createButtonWithTag:1001 andTitle:@"简介" andBackGroundImage:nil andFrame:CGRectMake(0, 150,320.0/4 , 50)];
+    [introductionButton addTarget:self action:@selector(fourItemButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [introductionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
     priceButton =[self createButtonWithTag:1002 andTitle:@"价格" andBackGroundImage:nil andFrame:CGRectMake(320.0/4, 150, 320.0/4, 50)];
+    [priceButton addTarget:self action:@selector(fourItemButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     dateButton =[self createButtonWithTag:1003 andTitle:@"档期" andBackGroundImage:nil andFrame:CGRectMake(320.0/4*2, 150, 320.0/4, 50)];
+    [dateButton addTarget:self action:@selector(fourItemButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     requireButton =[self createButtonWithTag:1004 andTitle:@"要求" andBackGroundImage:nil andFrame:CGRectMake(320.0/4*3, 150, 320.0/4, 50)];
- 
+    [requireButton addTarget:self action:@selector(fourItemButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    [selectedButtonArray addObject:introductionButton];
     
+    //堂估价按钮
+    stahallEvalutionButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    stahallEvalutionButton.backgroundColor =[UIColor greenColor];
+    stahallEvalutionButton.frame = CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50);
+    [stahallEvalutionButton setTitle:@"堂估价" forState:UIControlStateNormal];
+    [[[[UIApplication sharedApplication].keyWindow subviews]lastObject]addSubview:stahallEvalutionButton];
+
     
 }
+
 
 
 #pragma mark - section的个数
@@ -227,24 +269,58 @@
     
         cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
         cell.selectionStyle = NO;
+       
+    }
+    
+    
+    if(indexPath.section==0){
         
-        if(indexPath.section==0){
+        [cell.contentView addSubview:webView];
         
-            [cell.contentView addSubview:webView];
-            
-            [cell.contentView addSubview:introductionButton];
-            [cell.contentView addSubview:priceButton];
-            [cell.contentView addSubview:dateButton];
-            [cell.contentView addSubview:requireButton];
-        }
+        [cell.contentView addSubview:introductionButton];
+        [cell.contentView addSubview:priceButton];
+        [cell.contentView addSubview:dateButton];
+        [cell.contentView addSubview:requireButton];
+    }
+    
+    if(indexPath.section==1){
         
-        if(indexPath.section==1){
+        cell.backgroundColor =[UIColor clearColor];
+//        [cell.contentView addSubview:introductionBackView];//档期模块
+         [cell.contentView addSubview:mainView];//档期模块
         
-            cell.backgroundColor =[UIColor clearColor];
-            [cell.contentView addSubview:mainView];
-        }
+        //
+//        UIButton *selectedButton =[selectedButtonArray firstObject];
+//        if(selectedButton.tag==1001){
+//            
+//        
+//            UIView *olderView =[olderBackViewArray firstObject];
+//            [olderView removeFromSuperview];
+//            [cell.contentView addSubview:introductionBackView];
+//            
+//        }else if (selectedButton.tag==1003){
+//            
+//            UIView *olderView =[olderBackViewArray firstObject];
+//            [olderView removeFromSuperview];
+//            [cell.contentView addSubview:mainView];
+//
+//        
+//        }
+        
         
     }
+    
+    if(indexPath.section==2){
+        
+        UILabel *addShows =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
+        addShows.font =[UIFont systemFontOfSize:14];
+        addShows.textColor =[UIColor whiteColor];
+        addShows.backgroundColor =[UIColor blueColor];
+        addShows.text =@"增加场次";
+        addShows.textAlignment = NSTextAlignmentCenter;
+        [cell.contentView addSubview:addShows];
+    }
+
     
     
     
@@ -304,6 +380,50 @@
 }
 
 
+#pragma mark - 四个主button被点击
+- (void)fourItemButtonClicked:(UIButton *)sender{
+
+    UIButton *selectedButton = [selectedButtonArray firstObject];//之前选中的按钮
+    if(sender.tag == selectedButton.tag){
+    
+        return;
+        
+    }else{
+    
+        [selectedButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        if(selectedButton.tag==1001){
+        
+            [olderBackViewArray removeAllObjects];
+            [olderBackViewArray addObject:introductionBackView];
+            
+        }else if (selectedButton.tag==1003){
+        
+            [olderBackViewArray removeAllObjects];
+            [olderBackViewArray addObject:mainView];
+        }
+        
+        
+        
+        [selectedButtonArray removeAllObjects];
+        [selectedButtonArray addObject:sender];
+        [sender setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.tableView reloadData];
+        
+    }
+    
+    
+
+}
+
+
+
+#pragma mark - viewWillDisappear
+- (void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+    [stahallEvalutionButton removeFromSuperview];
+}
 
 
 #pragma mark - 回退
@@ -318,6 +438,10 @@
 
 
 }
+
+
+
+
 
 
 
@@ -356,7 +480,7 @@
     _calendarHead.backgroundColor =[UIColor clearColor];
     [mainView addSubview:_calendarHead];
     
-    //
+    //星期的背景view
     UIView *someDayBackView =[[UIView alloc]initWithFrame:CGRectMake(0, 38, self.view.bounds.size.width, 35)];
     someDayBackView.backgroundColor =[UIColor blueColor];
     [_calendarHead addSubview:someDayBackView];
@@ -461,13 +585,13 @@
                 myYear = strYear;
             }
             if ([self overTimeYear:myYear Month:myMonth Day:(int)[_dayArray[i] integerValue] With:1]) {
-                [button setImage:[UIImage imageNamed:@"请假64.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"演出.png"] forState:UIControlStateNormal];
             }
             if ([self overTimeYear:myYear Month:myMonth Day:(int)[_dayArray[i] integerValue] With:2]) {
-                [button setImage:[UIImage imageNamed:@"旷课64.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"今天.png"] forState:UIControlStateNormal];
             }
             if ([self overTimeYear:myYear Month:myMonth Day:(int)[_dayArray[i] integerValue] With:3]) {
-                [button setImage:[UIImage imageNamed:@"有课64.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"行程.png"] forState:UIControlStateNormal];
             }
             if ([_dayArray[i + 1] integerValue] == 1) {
                 before = NO;
@@ -477,13 +601,13 @@
         }
         else if (normal){
             if ([self overTimeYear:strYear Month:strMonth Day:(int)[_dayArray[i] integerValue] With:1]) {
-                [button setImage:[UIImage imageNamed:@"请假64.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"演出.png"] forState:UIControlStateNormal];
             }
             if ([self overTimeYear:strYear Month:strMonth Day:(int)[_dayArray[i] integerValue] With:2]) {
-                [button setImage:[UIImage imageNamed:@"旷课64.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"今天.png"] forState:UIControlStateNormal];
             }
             if ([self overTimeYear:strYear Month:strMonth Day:(int)[_dayArray[i] integerValue] With:3]) {
-                [button setImage:[UIImage imageNamed:@"有课64.png"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"行程.png"] forState:UIControlStateNormal];
             }
             if (next && [_dayArray[i + 1] integerValue] == 1) {
                 normal = NO;
