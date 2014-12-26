@@ -60,6 +60,8 @@
 		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
 		634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */; };
+		634BDC9F1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDC9E1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m */; };
+		634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDCA11A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m */; };
 		63649A3D1A494CDE0024E3F7 /* StarDetaiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */; };
 		63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */; };
 		63649A461A496F7F0024E3F7 /* Datetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A411A496F7F0024E3F7 /* Datetime.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -245,6 +247,10 @@
 		63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallEvalutionIlerItemViewController.m; sourceTree = "<group>"; };
 		634BDC9A1A4ABB1A00994401 /* StarDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetailCollectionViewCell.h; sourceTree = "<group>"; };
 		634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetailCollectionViewCell.m; sourceTree = "<group>"; };
+		634BDC9D1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallEvalutionDetailInfoViewController.h; sourceTree = "<group>"; };
+		634BDC9E1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallEvalutionDetailInfoViewController.m; sourceTree = "<group>"; };
+		634BDCA01A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallEvalutionDetailInfoCollectionViewCell.h; sourceTree = "<group>"; };
+		634BDCA11A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallEvalutionDetailInfoCollectionViewCell.m; sourceTree = "<group>"; };
 		63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetaiInfoViewController.h; sourceTree = "<group>"; };
 		63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetaiInfoViewController.m; sourceTree = "<group>"; };
 		63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz艺人详情背景.png"; sourceTree = "<group>"; };
@@ -764,6 +770,8 @@
 				63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */,
 				63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */,
 				63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */,
+				634BDC9D1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.h */,
+				634BDC9E1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -987,6 +995,8 @@
 				63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */,
 				634BDC9A1A4ABB1A00994401 /* StarDetailCollectionViewCell.h */,
 				634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */,
+				634BDCA01A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.h */,
+				634BDCA11A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m */,
 			);
 			name = AboutStarHallModelView;
 			sourceTree = "<group>";
@@ -1271,6 +1281,7 @@
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
+				634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */,
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
 				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
@@ -1323,6 +1334,7 @@
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
 				636F447E1A44091300FD6783 /* SDWebImageCompat.m in Sources */,
 				636F44821A44091300FD6783 /* SDWebImageManager.m in Sources */,
+				634BDC9F1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m in Sources */,
 				6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */,
 				636F44221A44077400FD6783 /* UIProgressView+AFNetworking.m in Sources */,
 				5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */,

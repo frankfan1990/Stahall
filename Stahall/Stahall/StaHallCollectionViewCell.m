@@ -45,6 +45,7 @@
         [self addSubview:self.checkIt];
         self.checkIt.hidden = YES;
         
+        
     }
     
    
