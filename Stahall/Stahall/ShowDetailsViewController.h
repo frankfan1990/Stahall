@@ -10,5 +10,5 @@
 
 @interface ShowDetailsViewController : UIViewController
 @property(nonatomic,strong)NSString *titleViewStr;
-@property(nonatomic,assign)NSInteger type;//1:轮播详情    2:堂汇详情    3:秀MALL详情
+@property(nonatomic,assign)NSInteger type;//2:堂汇详情    3:秀MALL详情
 @end

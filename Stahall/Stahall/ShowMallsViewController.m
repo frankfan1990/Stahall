@@ -107,7 +107,7 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:115/255.0 green:199/255.0 blue:228/255.0 alpha:1]];
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;

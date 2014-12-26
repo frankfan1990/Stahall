@@ -8,6 +8,7 @@
 
 #import "AdvanceNoticeViewController.h"
 #import "MarkupParser.h"
+#import "UIImageView+WebCache.h"
 #import "CycleScrollView.h"
 #import "CustomLabel.h"
 #import "Marcos.h"
@@ -47,7 +48,7 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:115/255.0 green:199/255.0 blue:228/255.0 alpha:1]];
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
@@ -111,10 +112,19 @@
         [cell1.contentView addSubview:backView];
         
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 7, 130-16, 175-14)];
-        imageV.image = [UIImage imageNamed:@"汪峰"];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"cover"]]];
+        
+        
+        
         [backView addSubview:imageV];
         
         NSString *title = @"汪峰2014-2015 “峰暴来临” 超级巡回演唱会 湖南 长沙站 贺龙体育馆";
+      
+        if (_type == 1 && _dictData != nil) {
+            title = _dictData[@"trailerTitle"];
+        }
+        
+        
         CGFloat height = [self caculateTheTextHeight:title andFontSize:16 andDistance:Mywidth-(backView.frame.origin.x+backView.frame.size.width+25)];
         if (height>80) {
             height = 80;
@@ -125,6 +135,12 @@
         [cell1.contentView addSubview:labelOfTitle];
         
         NSString *timeStr = [NSString stringWithFormat:@"<font color=\"gray\">时间:  <font color=\"black\">2014-11-15 08:30"];
+        if (_type == 1 && _dictData != nil) {
+            
+        timeStr = [NSString stringWithFormat:@"<font color=\"gray\">时间:  <font color=\"black\">%@",_dictData[@"timer"]];
+           
+        }
+
         CustomLabel *labelOfTime = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, 118, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         MarkupParser *p1 = [[MarkupParser alloc] init];
         p1.fontSize = 13;
@@ -132,18 +148,34 @@
         [cell1.contentView addSubview:labelOfTime];
         
         NSString *addressStr = [NSString stringWithFormat:@"<font color=\"gray\">地点:  <font color=\"black\">湖南 长沙"];
+        if (_type == 1 && _dictData != nil) {
+            addressStr = [NSString stringWithFormat:@"<font color=\"gray\">地点:  <font color=\"black\">%@",_dictData[@"address"]];
+        }
+        
         CustomLabel *labelOfaddress = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, labelOfTime.frame.origin.y+labelOfTime.frame.size.height, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         [labelOfaddress setAttString:[p1 attrStringFromMarkup:addressStr]];
         [cell1.contentView addSubview:labelOfaddress];
         
         NSString *venuesStr = [NSString stringWithFormat:@"<font color=\"gray\">场馆:  <font color=\"black\">贺龙体育馆"];
+        if (_type == 1 && _dictData != nil) {
+
+            venuesStr = [NSString stringWithFormat:@"<font color=\"gray\">场馆:  <font color=\"black\">%@",_dictData[@"venues"]];
+        }
+        
         CustomLabel *labelOfVenues = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, labelOfaddress.frame.origin.y+labelOfaddress.frame.size.height, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         [labelOfVenues setAttString:[p1 attrStringFromMarkup:venuesStr]];
         [cell1.contentView addSubview:labelOfVenues];
         
         NSString *hostStr = [NSString stringWithFormat:@"<font color=\"gray\">主办:  <font color=\"black\">艺人堂文化传媒"];
+        if (_type == 1 && _dictData != nil) {
+            hostStr = [NSString stringWithFormat:@"<font color=\"gray\">主办:  <font color=\"black\">%@",_dictData[@"organizer"]];
+        }
+        
         int a = 20;
         NSString *str = @"主办:  艺人堂文化传媒";
+        if (_dictData[@"organizer"]) {
+            str = _dictData[@"organizer"];
+        }
         if ([str length] >=15) {
             p1.fontSize = 12;
             a = 30;
@@ -152,6 +184,9 @@
         labelOfHost.numberOfLines = 2;
         [labelOfHost setAttString:[p1 attrStringFromMarkup:hostStr]];
         [cell1.contentView addSubview:labelOfHost];
+        
+       
+        
         
         return cell1;
         
@@ -170,7 +205,6 @@
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 40-0.5, Mywidth-20, 0.5)];
         lineView.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
         [backView addSubview:lineView];
-        
         
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(15, 12, 20, 20)];
         imageV.backgroundColor = [UIColor orangeColor];

@@ -455,7 +455,7 @@ bool selected;//是否是出于编辑模式的标志位
 - (void)viewWillAppear:(BOOL)animated{
 
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:115/255.0 green:199/255.0 blue:228/255.0 alpha:1]];
 
 }
 
