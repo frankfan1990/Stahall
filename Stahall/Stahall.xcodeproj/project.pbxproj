@@ -670,10 +670,10 @@
 		631DC2191A37404900F5E9AA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				634BDD2D1A512A4D00994401 /* NetworkHeper */,
 				6397FDC41A426C400021B9E2 /* DateUtils */,
 				631DC21D1A37408600F5E9AA /* IsValiadOfPhoneNumber */,
 				631DC2181A37403C00F5E9AA /* Reachability */,
+				634BDD2D1A512A4D00994401 /* NetworkHeper */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
