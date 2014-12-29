@@ -43,9 +43,9 @@
 {
     [super layoutSubviews];
     _backView.frame = CGRectMake(10, 10,self.frame.size.width-20, self.frame.size.height-20);
-    _imageV.frame = CGRectMake(10, 10, _backView.frame.size.width-20, _backView.frame.size.height-45);
-    _labelOfTitle.frame = CGRectMake(15, _backView.frame.size.height-25, _backView.frame.size.width-90, 20);
-    _labelOfDate.frame = CGRectMake(_backView.frame.size.width-90, _backView.frame.size.height-25,80, 20);
+    _imageV.frame = CGRectMake(10, 10, _backView.frame.size.width-20, _backView.frame.size.height-37);
+    _labelOfTitle.frame = CGRectMake(15, _backView.frame.size.height-25, _backView.frame.size.width-90, 25);
+    _labelOfDate.frame = CGRectMake(_backView.frame.size.width-90, _backView.frame.size.height-25,80, 25);
    
 }
 - (void)awakeFromNib {

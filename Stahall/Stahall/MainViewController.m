@@ -11,6 +11,8 @@
 #import "LeftMenuViewController.h"
 #import "LeftMenuViewController.h"
 #import "StarHallViewController.h"
+#import "HomeHeadDetailsViewController.h"
+#import "UIImageView+WebCache.h"
 #import "AdvanceNoticeViewController.h"
 #import "ShowDetailsViewController.h"
 #import "SearchStarViewController.h"
@@ -18,6 +20,7 @@
 #import "TangHuiListViewController.h"
 #import "ListAdvanceViewController.h"
 #import "CCSegmentedControl.h"
+#import "AFNetworking.h"
 #import "CycleScrollView.h"
 #import "RESideMenu.h"
 #import "Marcos.h"
@@ -31,6 +34,8 @@
     CCSegmentedControl *segmentCtrl;
     UICollectionView *collectionViewOther;
     NSInteger _type;
+    
+    NSArray *advanceData;//预告数据
     
 }
 
@@ -49,6 +54,7 @@
     [super viewDidLoad];
     [self setTabBar];
     [self Variableinitialization];
+    [self getData];
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"MainViewBackImage"].CGImage;
     
     /**
@@ -57,36 +63,17 @@
      *  开始创建tableView,构建骨架，5个section
      */
     
-    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 220) animationDuration:3 andShowControlDot:YES];
-    headScrollView.backgroundColor = [UIColor clearColor];
-    __weak typeof (self)Myself = self;
-    headScrollView.totalPagesCount = ^NSInteger(void){
-        return Myself.arrOfimages_one.count;
-    };
-    headScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Myself.view.frame.size.width-40, 180)];
-        imageV.image = [UIImage imageNamed:Myself.arrOfimages_one[pageIndex]];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 140, Myself.view.frame.size.width-40, 40)];
-        label.text = Myself.arrOfLabelContent_one[pageIndex];
-        
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:16];
-        label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
-        label.textColor = [UIColor whiteColor];
-        label.adjustsFontSizeToFitWidth = YES;
-        [imageV addSubview:label];
-        return imageV;
-    };
+    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 210) animationDuration:3 andShowControlDot:YES];
+    headScrollView.userInteractionEnabled = YES;
+    headScrollView.scrollView.scrollEnabled = NO;
     
-#pragma mark - 点击轮播图
-    headScrollView.TapActionBlock = ^(NSInteger pageIndex){
-        
-        ShowDetailsViewController *details = [[ShowDetailsViewController alloc] init];
-        details.titleViewStr  = @"海报详情";
-        details.type = 1;
-        [Myself.navigationController pushViewController:details animated:YES];
-        NSLog(@"%ld",(long)pageIndex);
-    };
+    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,Mywidth-40, 170)];
+    imageV.image = [UIImage imageNamed:@"七夕"];
+    [headScrollView.scrollView addSubview:imageV];
+    
+    headScrollView.backgroundColor = [UIColor clearColor];
+  
+
     
     self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height-65) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
@@ -103,11 +90,76 @@
 -(void)Variableinitialization
 {
     _type = 0;
-    _arrOfimages_one = [NSMutableArray arrayWithObjects:@"七夕",@"七夕",@"七夕",@"七夕",nil];
-    _arrOfLabelContent_one = [NSMutableArray arrayWithObjects:@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场", nil];
+    _arrOfimages_one = [NSMutableArray array]; //WithObjects:@"七夕",@"七夕",@"七夕",@"七夕",nil];
+    _arrOfLabelContent_one = [NSMutableArray array];//WithObjects:@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场", nil];
     arrOfSegmentTitle = @[@"演唱会",@"舞台剧",@"企业活动"];
     arrOfTitle = @[@"预告",@"案例",@"行程"];
     arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
+    
+}
+
+#pragma mark - 数据获取
+-(void)getData
+{
+    __weak typeof (self)Myself = self;
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain"]];
+    
+    
+    //头部轮播的数据
+    [manger GET:home_HeadIP parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *datadic = (NSDictionary *)responseObject;
+        NSArray *arrData = datadic[@"results"];
+        headScrollView.scrollView.scrollEnabled = YES;
+        
+        headScrollView.totalPagesCount = ^NSInteger(void){
+            return arrData.count;
+        };
+        
+        headScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+            UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Myself.view.frame.size.width-40, 170)];
+            
+            [imageV sd_setImageWithURL:[NSURL URLWithString:arrData[pageIndex][@"posterCover"]] placeholderImage:[UIImage imageNamed:@"七夕"]];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 130, Myself.view.frame.size.width-40, 40)];
+            label.text = arrData[pageIndex][@"posterTitle"];
+            
+            label.textAlignment = NSTextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:16];
+            label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
+            label.textColor = [UIColor whiteColor];
+            label.adjustsFontSizeToFitWidth = YES;
+            [imageV addSubview:label];
+            return imageV;
+        };
+        
+#pragma mark - 点击轮播图
+        headScrollView.TapActionBlock = ^(NSInteger pageIndex){
+            
+            HomeHeadDetailsViewController *homedetails = [[HomeHeadDetailsViewController alloc] init];
+            homedetails.dataStr = arrData[pageIndex][@"posterContent"];
+            [Myself.navigationController pushViewController:homedetails animated:YES];
+            NSLog(@"%ld",(long)pageIndex);
+        };
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+    //获取 预告数据 ！！！！！
+    [manger GET:advanceIp  parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dictiondata = (NSDictionary *)responseObject;
+        advanceData = dictiondata[@"results"];
+        UICollectionView *collec = (UICollectionView *)[_tableView viewWithTag:10002];
+        [collec reloadData];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
     
 }
 
@@ -159,7 +211,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        return 220;
+        return 210;
     }else if(indexPath.section == 1){
         return 90;
     }else{
@@ -342,6 +394,9 @@
 #pragma mark - UICollectionView的代理
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (collectionView.tag == 10002) {
+        return advanceData.count;
+    }
     return 4;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -351,14 +406,14 @@
         UICollectionViewCell *cell_one = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_One" forIndexPath:indexPath];
         
         UIImageView *imageV = [[UIImageView alloc] init];
-        if (indexPath.row == 3) {
+        if (indexPath.row == advanceData.count-1) {
             [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             imageV.frame = CGRectMake(0, 0,Mywidth-20, 165);
         }else{
             [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             imageV.frame = CGRectMake(10, 0,Mywidth-20, 165);
         }
-        imageV.image = [UIImage imageNamed:@"陈奕迅"];
+        
         UIView *labelView = [[UIView alloc] initWithFrame:CGRectMake(0,165-73, Mywidth-20, 73)];
         labelView.backgroundColor = [UIColor blackColor];
         labelView.alpha = 0.8;
@@ -367,9 +422,15 @@
         UILabel *labelOfAddress = [[UILabel alloc] initWithFrame:CGRectMake(15, 30+3, Mywidth-20-15, 15)];
         UILabel *labelOfDate = [[UILabel alloc] initWithFrame:CGRectMake(15, 45+3, Mywidth-20-15, 20)];
         
-        [self Customlable:labelOfName text:@"陈奕迅 EASON'S LIFE" fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-        [self Customlable:labelOfAddress text:@"湖南 长沙  贺龙体育馆" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-        [self Customlable:labelOfDate text:@"12月25日 8:30" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+        [self Customlable:labelOfName text:@"" fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+        [self Customlable:labelOfAddress text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+        [self Customlable:labelOfDate text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+        
+        labelOfName.text = advanceData[indexPath.row][@"trailerTitle"];
+        labelOfAddress.text = [NSString stringWithFormat:@"%@  %@",advanceData[indexPath.row][@"address"],advanceData[indexPath.row][@"venues"]];
+        labelOfDate.text = advanceData[indexPath.row][@"timer"];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:advanceData[indexPath.row][@"poster"]] placeholderImage:[UIImage imageNamed:@""]];
+        
         
         [labelView addSubview:labelOfName];
         [labelView addSubview:labelOfAddress];
@@ -457,6 +518,7 @@
     
     if (collectionView.tag == 10002) {
         advanceCtrl.titleViewStr = @"预告详情";
+        advanceCtrl.dictData = advanceData[indexPath.row];
         advanceCtrl.type = 1;
         
     }else if (collectionView.tag == 10003){
@@ -511,7 +573,11 @@
 {
     NSLog(@"%ld",(long)sender.tag);
     ListAdvanceViewController *listCtrl = [[ListAdvanceViewController alloc] init];
+    
     listCtrl.type = sender.tag - 66667;
+    if (listCtrl.type == 1) {
+        listCtrl.arrOfdata = advanceData;
+    }
     [self.navigationController pushViewController:listCtrl animated:YES];
 }
 

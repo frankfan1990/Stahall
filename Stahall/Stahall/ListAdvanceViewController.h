@@ -10,4 +10,5 @@
 
 @interface ListAdvanceViewController : UIViewController
 @property(nonatomic,assign)NSInteger type;//1预告  2案例  3行程
+@property(nonatomic,assign) NSArray *arrOfdata;
 @end

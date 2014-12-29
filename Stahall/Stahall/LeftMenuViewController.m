@@ -10,9 +10,15 @@
 #import "StarHallViewController.h"//测试
 #import "LeftMenuViewController.h"
 #import "MyShowViewController.h"
-
 #import "RESideMenu.h"
 
+#import "Left_MyStarViewController.h"
+#import "Left_MyAccountViewController.h"
+#import "Left_MyCollectionViewController.h"
+#import "Lef_MyMessageViewController.h"
+#import "Left_CustomerServiceViewController.h"
+#import "Left_HelpCenterViewController.h"
+#import "Left_ CancellationViewController.h"
 @interface LeftMenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
 
@@ -208,12 +214,41 @@
         MyShowViewController *myshowController = [MyShowViewController new];
         myshowController.customTitle = @"我的演出";
         [self showTheContentViewControll:myshowController];
-    }
-    
-    if(indexPath.row==2){//测试
-    
-//        StarHallViewController *starHallViewController =[StarHallViewController new];
-//        [self showTheContentViewControll:starHallViewController];
+    }else if(indexPath.row==2){//我的账户
+        
+        Left_MyAccountViewController *accountCtrl = [[Left_MyAccountViewController alloc] init];
+        [self showTheContentViewControll:accountCtrl];
+        
+    }else if(indexPath.row==3){//我的艺人
+        
+        Left_MyStarViewController *starCtrl = [[Left_MyStarViewController alloc] init];
+        [self showTheContentViewControll:starCtrl];
+        
+    }else if(indexPath.row==4){//我的收藏
+        
+        Left_MyCollectionViewController *accountCtrl = [[Left_MyCollectionViewController alloc] init];
+        [self showTheContentViewControll:accountCtrl];
+        
+    }else if(indexPath.row==5){//我的消息
+        
+        Lef_MyMessageViewController *messageCtrl = [[Lef_MyMessageViewController alloc] init];
+        [self showTheContentViewControll:messageCtrl];
+        
+    }else if(indexPath.row==6){//专属客服
+        
+        Left_CustomerServiceViewController *ServiceCtrl = [[Left_CustomerServiceViewController alloc] init];
+        [self showTheContentViewControll:ServiceCtrl];
+        
+    }else if(indexPath.row==7){//帮助中心
+        
+        Left_HelpCenterViewController *helpCtrl = [[Left_HelpCenterViewController alloc] init];
+        [self showTheContentViewControll:helpCtrl];
+        
+    }else if(indexPath.row==8){//注销
+        
+        Left__CancellationViewController *cancellationCtrl = [[Left__CancellationViewController alloc] init];
+        
+        [self showTheContentViewControll:cancellationCtrl];
     }
 
 }

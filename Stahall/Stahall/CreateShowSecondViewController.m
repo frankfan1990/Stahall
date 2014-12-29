@@ -14,11 +14,14 @@
 @interface CreateShowSecondViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *_tableView;
+    NSIndexPath *myIndexPath;// 标志indexPath
     NSMutableArray *arrOfSection;
     NSArray *arrOfrule;
+    
     NSMutableArray *arrOfname;
     NSMutableArray *arrOfContent;
     NSMutableArray *arrOfdata;
+
     NSArray *keys;
     UITextField *_textField;
 }
@@ -32,6 +35,10 @@
 {
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [_textField resignFirstResponder];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -320,10 +327,16 @@
         _field1 = (UITextField *)[cell.contentView viewWithTag:113];
         RZTimeSelectedViewController *timeCtrl = [[RZTimeSelectedViewController alloc] init];
         if ([_field1.text length]) {
-            NSString *date = [_field1.text substringToIndex: 10];
-            NSString *time = [_field1.text substringFromIndex:11];
+            
+            NSString *date;
+            NSString *time;
+            if ([_field1.text length] == 16) {
+                date = [_field1.text substringToIndex: 10];
+                time = [_field1.text substringFromIndex:11];
+            }
             [timeCtrl getDate:date Time:time];
         }
+        myIndexPath = indexPath;
         [self.navigationController pushViewController:timeCtrl animated:YES];
     }
 }
@@ -332,11 +345,12 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     _textField = textField;
+   myIndexPath = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
+    //这里可能不兼容其他系统
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    NSIndexPath *index = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
-    [arrOfdata[index.section] setObject:textField.text forKey:keys[index.row]];
+    [arrOfdata[myIndexPath.section] setObject:textField.text forKey:keys[myIndexPath.row]];
 }
 
 -(void)didCancelBtn:(UIButton *) sender{
@@ -400,14 +414,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)addData
+-(void)addData:(NSString *)text
 {
-    UITableViewCell *cell1 = (UITableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:arrOfSection.count-1]];
-    UITableViewCell *cell2 = (UITableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:arrOfSection.count-1]];
-    UITextField *field1 = (UITextField *)[cell1 viewWithTag:113];
-    UITextField *field2 = (UITextField *)[cell2 viewWithTag:113];
-    [arrOfdata[arrOfSection.count-1] setObject:field1.text forKey:keys[0]];
-    [arrOfdata[arrOfSection.count-1] setObject:field2.text forKey:keys[1]];
+
+    [arrOfdata[myIndexPath.section] setObject:text forKey:keys[myIndexPath.row]];
+    
 }
 
 #pragma mark - UIlabel的方法

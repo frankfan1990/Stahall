@@ -8,6 +8,7 @@
 
 #import "AdvanceNoticeViewController.h"
 #import "MarkupParser.h"
+#import "UIImageView+WebCache.h"
 #import "CycleScrollView.h"
 #import "CustomLabel.h"
 #import "Marcos.h"
@@ -47,7 +48,7 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:115/255.0 green:199/255.0 blue:228/255.0 alpha:1]];
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
@@ -111,10 +112,19 @@
         [cell1.contentView addSubview:backView];
         
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 7, 130-16, 175-14)];
-        imageV.image = [UIImage imageNamed:@"汪峰"];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"cover"]]];
+        
+        
+        
         [backView addSubview:imageV];
         
         NSString *title = @"汪峰2014-2015 “峰暴来临” 超级巡回演唱会 湖南 长沙站 贺龙体育馆";
+      
+        if (_type == 1 && _dictData != nil) {
+            title = _dictData[@"trailerTitle"];
+        }
+        
+        
         CGFloat height = [self caculateTheTextHeight:title andFontSize:16 andDistance:Mywidth-(backView.frame.origin.x+backView.frame.size.width+25)];
         if (height>80) {
             height = 80;
@@ -125,6 +135,12 @@
         [cell1.contentView addSubview:labelOfTitle];
         
         NSString *timeStr = [NSString stringWithFormat:@"<font color=\"gray\">时间:  <font color=\"black\">2014-11-15 08:30"];
+        if (_type == 1 && _dictData != nil) {
+            
+        timeStr = [NSString stringWithFormat:@"<font color=\"gray\">时间:  <font color=\"black\">%@",_dictData[@"timer"]];
+           
+        }
+
         CustomLabel *labelOfTime = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, 118, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         MarkupParser *p1 = [[MarkupParser alloc] init];
         p1.fontSize = 13;
@@ -132,18 +148,34 @@
         [cell1.contentView addSubview:labelOfTime];
         
         NSString *addressStr = [NSString stringWithFormat:@"<font color=\"gray\">地点:  <font color=\"black\">湖南 长沙"];
+        if (_type == 1 && _dictData != nil) {
+            addressStr = [NSString stringWithFormat:@"<font color=\"gray\">地点:  <font color=\"black\">%@",_dictData[@"address"]];
+        }
+        
         CustomLabel *labelOfaddress = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, labelOfTime.frame.origin.y+labelOfTime.frame.size.height, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         [labelOfaddress setAttString:[p1 attrStringFromMarkup:addressStr]];
         [cell1.contentView addSubview:labelOfaddress];
         
         NSString *venuesStr = [NSString stringWithFormat:@"<font color=\"gray\">场馆:  <font color=\"black\">贺龙体育馆"];
+        if (_type == 1 && _dictData != nil) {
+
+            venuesStr = [NSString stringWithFormat:@"<font color=\"gray\">场馆:  <font color=\"black\">%@",_dictData[@"venues"]];
+        }
+        
         CustomLabel *labelOfVenues = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, labelOfaddress.frame.origin.y+labelOfaddress.frame.size.height, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         [labelOfVenues setAttString:[p1 attrStringFromMarkup:venuesStr]];
         [cell1.contentView addSubview:labelOfVenues];
         
         NSString *hostStr = [NSString stringWithFormat:@"<font color=\"gray\">主办:  <font color=\"black\">艺人堂文化传媒"];
+        if (_type == 1 && _dictData != nil) {
+            hostStr = [NSString stringWithFormat:@"<font color=\"gray\">主办:  <font color=\"black\">%@",_dictData[@"organizer"]];
+        }
+        
         int a = 20;
         NSString *str = @"主办:  艺人堂文化传媒";
+        if (_dictData[@"organizer"]) {
+            str = _dictData[@"organizer"];
+        }
         if ([str length] >=15) {
             p1.fontSize = 12;
             a = 30;
@@ -171,7 +203,6 @@
         lineView.backgroundColor = [UIColor colorWithRed:200/255.0 green:200/255.0 blue:200/255.0 alpha:1];
         [backView addSubview:lineView];
         
-        
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(15, 12, 20, 20)];
         imageV.backgroundColor = [UIColor orangeColor];
         imageV.layer.masksToBounds = YES;
@@ -187,6 +218,11 @@
         cycSroView.backgroundColor = [UIColor whiteColor];
          __weak typeof (self)Myself = self;
         cycSroView.totalPagesCount = ^NSInteger(void){
+            if (Myself.dictData) {
+                if (Myself.type == 1) {
+                    return [Myself.dictData[@"stars"] count];
+                }
+            }
             return 5;
         };
         cycSroView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex){
@@ -195,15 +231,23 @@
             viewBackOther.backgroundColor = [UIColor whiteColor];
             
             UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake(13, 15, 65, 65)];
-            imageV2.image = [UIImage imageNamed:@"lc汪峰头像"];
+//            imageV2.image = [UIImage imageNamed:@"lc汪峰头像"];
             imageV2.layer.masksToBounds = YES;
             imageV2.layer.cornerRadius = imageV2.frame.size.width/2;
             [viewBackOther addSubview:imageV2];
             
+          
             
             UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(imageV2.frame.size.width+imageV2.frame.origin.x+22, 10, Myself.view.frame.size.width-(imageV2.frame.size.width+imageV2.frame.origin.x+22+40), 80)];
             [Myself Customlable:labelContent text:@"汪峰,祖籍江苏常熟,1971年6月29日出生于北京。中国大陆摇滚歌手、音乐创作人、作词人、作曲家,鲍家街43号乐队队长 很厉害很厉害很厉害" fontSzie:15 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:10];
             [viewBackOther addSubview:labelContent];
+            
+            if (Myself.dictData) {
+                if (Myself.type == 1) {
+                   labelContent.text = Myself.dictData[@"stars"][pageIndex][@"content"];
+                    [imageV2 sd_setImageWithURL:[NSURL URLWithString:Myself.dictData[@"stars"][pageIndex][@"avatar"]] placeholderImage:[UIImage imageNamed:@""]];
+                }
+            }
             return viewBackOther;
 
         };
@@ -251,9 +295,17 @@
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"My_collectionViewCell"];
         [backView addSubview:_collectionView];
         
-        UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(10, _collectionView.frame.origin.y+_collectionView.frame.size.height+10, Mywidth-40, 280-(_collectionView.frame.origin.y+_collectionView.frame.size.height+25))];
-        [self Customlable:labelContent text:@"汪峰自幼在中央音乐学院附小、附中学习小提琴，大学考入中央音乐学院小提琴中提琴专业，大学期间在专业音乐学习和训练之余就开始进行摇滚乐创作并组建乐队。完成本科学业后，进入中央芭蕾舞团任副首席小提琴师，后辞职后转型为职业歌手。" fontSzie:15 textColor:[UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:100000];
-        [backView addSubview:labelContent];
+
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, _collectionView.frame.origin.y+_collectionView.frame.size.height+7, Mywidth-40, 280-(_collectionView.frame.origin.y+_collectionView.frame.size.height+25+3))];
+        webView.backgroundColor = [UIColor clearColor];
+        [backView addSubview:webView];
+        
+        if (_dictData) {
+            if (_type == 1) {
+                [webView loadHTMLString:_dictData[@"introduction"] baseURL:nil];
+            }
+        }
+        
         
         [cell3.contentView addSubview:backView];
         
@@ -264,6 +316,11 @@
 #pragma mark - collectionview的代理
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (_dictData) {
+        if (_type == 1) {
+            return [_dictData[@"posters"] count];
+        }
+    }
     return 5;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -273,6 +330,11 @@
     UIImageView *imageV = [[UIImageView alloc] init];    
     imageV.frame = CGRectMake(0, 0,80, 80);
     imageV.image = [UIImage imageNamed:@"lc汪峰2"];
+    if (_dictData) {
+        if (_type == 1) {
+             [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] placeholderImage:[UIImage imageNamed:@""]];
+        }
+    }
     [cell.contentView addSubview:imageV];
     
     return cell;

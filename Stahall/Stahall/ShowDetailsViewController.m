@@ -22,7 +22,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
-    
+    [self setTabBar];
 }
 
 - (void)viewDidLoad {
@@ -32,7 +32,6 @@
     arrOfcontent = [NSMutableArray arrayWithObjects:@"2014许巍长沙演唱会",@"2014-12-30 08:00",@"湖南长沙",@"湖南大剧院",@"许巍、张三、李四",@"艺人堂文化传媒", nil];
     
     
-    [self setTabBar];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,Mywidth, Myheight-64) style:UITableViewStylePlain];
     _tableView.delegate = self;
@@ -49,7 +48,7 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:115/255.0 green:199/255.0 blue:228/255.0 alpha:1]];
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;

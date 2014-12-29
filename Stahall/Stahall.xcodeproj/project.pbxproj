@@ -20,6 +20,7 @@
 		5C4519E01A4916100031685A /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519DF1A4916100031685A /* NSDate+Utilities.m */; };
 		5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519E31A4940650031685A /* CreateShowThirdViewController.m */; };
 		5C4519E61A4956840031685A /* lc添加照片.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4519E51A4956840031685A /* lc添加照片.png */; };
+		5C4519EC1A4BDC870031685A /* HomeHeadDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */; };
 		5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */; };
 		5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1851A3E890F00F6EC11 /* 张杰.png */; };
 		5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */; };
@@ -34,6 +35,15 @@
 		5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65ED9A1A3A9C7C00027A63 /* CycleScrollView.m */; };
 		5C65EDA01A3A9C7C00027A63 /* MyPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65ED9C1A3A9C7C00027A63 /* MyPageControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C65ED9E1A3A9C7C00027A63 /* NSTimer+Addition.m */; };
+		5C7D5CDF1A50F5CF00163B07 /* ShowMallDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CDE1A50F5CF00163B07 /* ShowMallDetailsViewController.m */; };
+		5C7D5CE11A513CA100163B07 /* lc向左灰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7D5CE01A513CA100163B07 /* lc向左灰.png */; };
+		5C7D5CE41A5147F700163B07 /* Left_MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CE31A5147F700163B07 /* Left_MyAccountViewController.m */; };
+		5C7D5CE71A51485A00163B07 /* Left_MyStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CE61A51485A00163B07 /* Left_MyStarViewController.m */; };
+		5C7D5CEA1A5148ED00163B07 /* Left_MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CE91A5148ED00163B07 /* Left_MyCollectionViewController.m */; };
+		5C7D5CED1A51496900163B07 /* Lef_MyMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CEC1A51496900163B07 /* Lef_MyMessageViewController.m */; };
+		5C7D5CF01A5149F300163B07 /* Left_CustomerServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CEF1A5149F300163B07 /* Left_CustomerServiceViewController.m */; };
+		5C7D5CF31A514A8400163B07 /* Left_HelpCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CF21A514A8400163B07 /* Left_HelpCenterViewController.m */; };
+		5C7D5CF71A514AE100163B07 /* Left_ CancellationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7D5CF61A514AE100163B07 /* Left_ CancellationViewController.m */; };
 		5C9E087F1A3ED027007072E0 /* MarkupParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E087E1A3ED027007072E0 /* MarkupParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5C9E08831A3ED02E007072E0 /* CustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08821A3ED02E007072E0 /* CustomLabel.m */; };
 		5C9E08871A3EEA5E007072E0 /* lc汪峰头像.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E08861A3EEA5E007072E0 /* lc汪峰头像.png */; };
@@ -183,6 +193,8 @@
 		5C4519E21A4940650031685A /* CreateShowThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShowThirdViewController.h; sourceTree = "<group>"; };
 		5C4519E31A4940650031685A /* CreateShowThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateShowThirdViewController.m; sourceTree = "<group>"; };
 		5C4519E51A4956840031685A /* lc添加照片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc添加照片.png"; sourceTree = "<group>"; };
+		5C4519EA1A4BDC870031685A /* HomeHeadDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadDetailsViewController.h; sourceTree = "<group>"; };
+		5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadDetailsViewController.m; sourceTree = "<group>"; };
 		5C4CF1821A3E88D100F6EC11 /* CCSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSegmentedControl.h; sourceTree = "<group>"; };
 		5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSegmentedControl.m; sourceTree = "<group>"; };
 		5C4CF1851A3E890F00F6EC11 /* 张杰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "张杰.png"; sourceTree = "<group>"; };
@@ -202,6 +214,23 @@
 		5C65ED9C1A3A9C7C00027A63 /* MyPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageControl.m; sourceTree = "<group>"; };
 		5C65ED9D1A3A9C7C00027A63 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
 		5C65ED9E1A3A9C7C00027A63 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
+		5C7D5CDD1A50F5CF00163B07 /* ShowMallDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowMallDetailsViewController.h; sourceTree = "<group>"; };
+		5C7D5CDE1A50F5CF00163B07 /* ShowMallDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallDetailsViewController.m; sourceTree = "<group>"; };
+		5C7D5CE01A513CA100163B07 /* lc向左灰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc向左灰.png"; sourceTree = "<group>"; };
+		5C7D5CE21A5147F700163B07 /* Left_MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Left_MyAccountViewController.h; sourceTree = "<group>"; };
+		5C7D5CE31A5147F700163B07 /* Left_MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Left_MyAccountViewController.m; sourceTree = "<group>"; };
+		5C7D5CE51A51485A00163B07 /* Left_MyStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Left_MyStarViewController.h; sourceTree = "<group>"; };
+		5C7D5CE61A51485A00163B07 /* Left_MyStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Left_MyStarViewController.m; sourceTree = "<group>"; };
+		5C7D5CE81A5148ED00163B07 /* Left_MyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Left_MyCollectionViewController.h; sourceTree = "<group>"; };
+		5C7D5CE91A5148ED00163B07 /* Left_MyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Left_MyCollectionViewController.m; sourceTree = "<group>"; };
+		5C7D5CEB1A51496900163B07 /* Lef_MyMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lef_MyMessageViewController.h; sourceTree = "<group>"; };
+		5C7D5CEC1A51496900163B07 /* Lef_MyMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lef_MyMessageViewController.m; sourceTree = "<group>"; };
+		5C7D5CEE1A5149F300163B07 /* Left_CustomerServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Left_CustomerServiceViewController.h; sourceTree = "<group>"; };
+		5C7D5CEF1A5149F300163B07 /* Left_CustomerServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Left_CustomerServiceViewController.m; sourceTree = "<group>"; };
+		5C7D5CF11A514A8400163B07 /* Left_HelpCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Left_HelpCenterViewController.h; sourceTree = "<group>"; };
+		5C7D5CF21A514A8400163B07 /* Left_HelpCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Left_HelpCenterViewController.m; sourceTree = "<group>"; };
+		5C7D5CF51A514AE100163B07 /* Left_ CancellationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Left_ CancellationViewController.h"; sourceTree = "<group>"; };
+		5C7D5CF61A514AE100163B07 /* Left_ CancellationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Left_ CancellationViewController.m"; sourceTree = "<group>"; };
 		5C9E087D1A3ED027007072E0 /* MarkupParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupParser.h; sourceTree = "<group>"; };
 		5C9E087E1A3ED027007072E0 /* MarkupParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkupParser.m; sourceTree = "<group>"; };
 		5C9E08811A3ED02E007072E0 /* CustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLabel.h; sourceTree = "<group>"; };
@@ -467,6 +496,7 @@
 				5C1E1F101A401B6E0085BD64 /* lc2.png */,
 				5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */,
 				5C9E08861A3EEA5E007072E0 /* lc汪峰头像.png */,
+				5C7D5CE01A513CA100163B07 /* lc向左灰.png */,
 				5C9E08881A3EF0C2007072E0 /* lc向右灰.png */,
 				63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */,
 				63258B381A3D8CEC0089C3F1 /* 朝左箭头icon@2x.png */,
@@ -559,6 +589,24 @@
 				5C4519E31A4940650031685A /* CreateShowThirdViewController.m */,
 				5C4519DA1A4915620031685A /* RZTimeSelectedViewController.h */,
 				5C4519DB1A4915620031685A /* RZTimeSelectedViewController.m */,
+				5C4519EA1A4BDC870031685A /* HomeHeadDetailsViewController.h */,
+				5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */,
+				5C7D5CDD1A50F5CF00163B07 /* ShowMallDetailsViewController.h */,
+				5C7D5CDE1A50F5CF00163B07 /* ShowMallDetailsViewController.m */,
+				5C7D5CE21A5147F700163B07 /* Left_MyAccountViewController.h */,
+				5C7D5CE31A5147F700163B07 /* Left_MyAccountViewController.m */,
+				5C7D5CE51A51485A00163B07 /* Left_MyStarViewController.h */,
+				5C7D5CE61A51485A00163B07 /* Left_MyStarViewController.m */,
+				5C7D5CE81A5148ED00163B07 /* Left_MyCollectionViewController.h */,
+				5C7D5CE91A5148ED00163B07 /* Left_MyCollectionViewController.m */,
+				5C7D5CEB1A51496900163B07 /* Lef_MyMessageViewController.h */,
+				5C7D5CEC1A51496900163B07 /* Lef_MyMessageViewController.m */,
+				5C7D5CEE1A5149F300163B07 /* Left_CustomerServiceViewController.h */,
+				5C7D5CEF1A5149F300163B07 /* Left_CustomerServiceViewController.m */,
+				5C7D5CF11A514A8400163B07 /* Left_HelpCenterViewController.h */,
+				5C7D5CF21A514A8400163B07 /* Left_HelpCenterViewController.m */,
+				5C7D5CF51A514AE100163B07 /* Left_ CancellationViewController.h */,
+				5C7D5CF61A514AE100163B07 /* Left_ CancellationViewController.m */,
 			);
 			name = LuCanViewCtrl;
 			sourceTree = "<group>";
@@ -1215,6 +1263,7 @@
 				5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */,
 				5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */,
 				63AA9F3C1A49C9D400D97EC3 /* 今天@2x.png in Resources */,
+				5C7D5CE11A513CA100163B07 /* lc向左灰.png in Resources */,
 				5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */,
 				5C9E08871A3EEA5E007072E0 /* lc汪峰头像.png in Resources */,
 				63BC6AB41A39F41F00087DFB /* backgroundImage.png in Resources */,
@@ -1295,27 +1344,35 @@
 				63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */,
 				63BC6A6C1A3747F400087DFB /* MJRefreshFooterView.m in Sources */,
 				63649A461A496F7F0024E3F7 /* Datetime.m in Sources */,
+				5C7D5CE41A5147F700163B07 /* Left_MyAccountViewController.m in Sources */,
 				63649A471A496F7F0024E3F7 /* JBCalendar.m in Sources */,
 				6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */,
 				636F44831A44091300FD6783 /* SDWebImagePrefetcher.m in Sources */,
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
+
 				634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */,
+
+				5C7D5CE71A51485A00163B07 /* Left_MyStarViewController.m in Sources */,
+
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
 				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
 				63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */,
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
+				5C7D5CF71A514AE100163B07 /* Left_ CancellationViewController.m in Sources */,
 				63A9EAF81A41C07600C5DAE6 /* StahallFooterReusableView.m in Sources */,
 				636F44891A44091300FD6783 /* UIImageView+WebCache.m in Sources */,
 				636F44231A44077400FD6783 /* UIRefreshControl+AFNetworking.m in Sources */,
 				636F44181A44077400FD6783 /* AFURLRequestSerialization.m in Sources */,
 				636F447B1A44091300FD6783 /* MKAnnotationView+WebCache.m in Sources */,
+				5C4519EC1A4BDC870031685A /* HomeHeadDetailsViewController.m in Sources */,
 				636F441A1A44077400FD6783 /* AFURLSessionManager.m in Sources */,
 				5C4519D91A4817A80031685A /* CreateShowSecondViewController.m in Sources */,
 				636F44811A44091300FD6783 /* SDWebImageDownloaderOperation.m in Sources */,
+				5C7D5CDF1A50F5CF00163B07 /* ShowMallDetailsViewController.m in Sources */,
 				6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */,
 				6397FDD21A430A910021B9E2 /* FXBlurView.m in Sources */,
 				63BC6AB81A39F47F00087DFB /* LeftMenuViewController.m in Sources */,
@@ -1363,6 +1420,7 @@
 				636F441C1A44077400FD6783 /* README.md in Sources */,
 				63BC6A6D1A3747F400087DFB /* MJRefreshHeaderView.m in Sources */,
 				63BC6A951A374C5800087DFB /* NSObject+FBKVOController.m in Sources */,
+				5C7D5CEA1A5148ED00163B07 /* Left_MyCollectionViewController.m in Sources */,
 				636F44841A44091300FD6783 /* UIButton+WebCache.m in Sources */,
 				636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */,
 				63BC6A941A374C5800087DFB /* FBKVOController.m in Sources */,
@@ -1370,6 +1428,9 @@
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
 				634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				5C7D5CF01A5149F300163B07 /* Left_CustomerServiceViewController.m in Sources */,
+				5C7D5CED1A51496900163B07 /* Lef_MyMessageViewController.m in Sources */,
+				5C7D5CF31A514A8400163B07 /* Left_HelpCenterViewController.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
 				636F44191A44077400FD6783 /* AFURLResponseSerialization.m in Sources */,
 				636F447C1A44091300FD6783 /* NSData+ImageContentType.m in Sources */,

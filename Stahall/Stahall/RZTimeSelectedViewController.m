@@ -188,7 +188,7 @@
     }
     else {
         addCtrl.field1.text = lable.text;
-        [addCtrl addData];
+        [addCtrl addData: lable.text];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
