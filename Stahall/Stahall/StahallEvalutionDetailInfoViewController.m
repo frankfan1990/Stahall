@@ -43,6 +43,7 @@ static NSInteger stepHour = 1;
     title.text = @"堂估价详情";
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
+  
     
     /*回退*/
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -53,7 +54,8 @@ static NSInteger stepHour = 1;
     
     UIBarButtonItem *leftitem =[[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftitem;
- 
+    //左滑手势返回上级
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     //
     self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-150) style:UITableViewStylePlain];
     

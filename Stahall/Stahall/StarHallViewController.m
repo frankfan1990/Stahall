@@ -16,7 +16,19 @@
 #import "FXBlurView.h"
 #import "HallEvalutionIlerItemViewController.h"
 #import "StarDetaiInfoViewController.h"
+#import "NetworkHelper.h"
+#import "StarModel.h"
+#import "ProgressHUD.h"
+#import "FrankfanApis.h"
+#import "FrankfanMarcos.h"
+#import "Reachability.h"
+#import "UIImageView+WebCache.h"
+#import <TMCache.h>
 
+static NSInteger _start = 9;
+static NSString *cacheKey = @"cacheKey";
+static NSString *cacheKey2 = @"cacheKey2";
+static NSString *cacheKey3 = @"cacheKey3";
 
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZSYPopoverListDelegate,ZSYPopoverListDatasource,UITextFieldDelegate,FxBlurViewDidTouchDelegate>
 {
@@ -37,6 +49,13 @@
     
     NSMutableArray *selectedCells;//记录选中的cell
     
+    Reachability *_reachability;
+    
+    //
+    NSMutableArray *hotStars;//热门艺人
+    NSMutableArray *localStars;//本地艺人
+    NSMutableArray *recommendStars;//推荐艺人
+    
 }
 @property (nonatomic,strong)ZSYPopoverListView *popView;
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -53,6 +72,11 @@
     arrowButtonStatue =[NSMutableArray arrayWithObjects:@0,@0,@0, nil];
     selectedCells = [NSMutableArray array];
 
+    hotStars =[NSMutableArray array];
+    localStars =[NSMutableArray array];
+    recommendStars =[NSMutableArray array];
+    
+    _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"StaHallBackImage"].CGImage;
 
@@ -137,6 +161,77 @@
     [self.view addSubview:Hallvaluation];
     [Hallvaluation setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
     [Hallvaluation addTarget:self action:@selector(stahallValueButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    /**
+     *  @author frankfan, 15-12-29 16:12:59
+     *
+     *  开始进入网络层
+     */
+    
+    if([[TMCache sharedCache]objectForKey:cacheKey]){
+    
+        hotStars = [[TMCache sharedCache]objectForKey:cacheKey];
+        
+    }
+    
+    if([[TMCache sharedCache]objectForKey:cacheKey2]){
+    
+        localStars =[[TMCache sharedCache] objectForKey:cacheKey2];
+    }
+    
+    
+    if(![_reachability isReachable]){
+    
+        [ProgressHUD showError:@"网络异常"];
+    }else{
+    
+        //请求热门艺人
+        AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+        AFHTTPRequestOperationManager *manager2 =[NetworkHelper createRequestManagerWithContentType:application_json];
+        NSDictionary *parameters = @{Query:@"热门艺人",Start:@0,Limit:@8};
+        [ProgressHUD show:nil];
+        [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSArray *tempArray = responseObject[Result];
+            hotStars = [tempArray mutableCopy];
+            [self.collectionView reloadData];
+            [ProgressHUD dismiss];
+            [[TMCache sharedCache]setObject:hotStars forKey:cacheKey];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"error:%@",[error localizedDescription]);
+            [ProgressHUD showError:@"网络异常"];
+            
+        }];
+        
+        
+        //请求本地艺人
+        NSDictionary *parameters2 = @{Query:@"本地艺人",Start:@0,Limit:@8};
+        [manager2 GET:API_StarInfo parameters:parameters2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+        
+            NSArray *tempArray = responseObject[Result];
+            localStars = [tempArray mutableCopy];
+            [self.collectionView reloadData];
+            [ProgressHUD dismiss];
+            [[TMCache sharedCache]setObject:hotStars forKey:cacheKey2];
+
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"error:%@",[error localizedDescription]);
+            [ProgressHUD showError:@"网络异常"];
+
+        }];
+    
+    }
+    
+    
+    
+    
+    
 }
 
 
@@ -180,6 +275,18 @@
 #pragma mark - 创建cell个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
+    if(section==0){//热门艺人
+    
+        return [hotStars count];
+    
+    }else if (section==1){//本地艺人
+    
+        return [localStars count];
+        
+    }else{//推荐艺人
+    
+    
+    }
     return 18;
 }
 
@@ -415,6 +522,32 @@
         cell.starName.text = @"刘德华";
     }
 
+    if(indexPath.section==0){//热门艺人
+    
+        NSDictionary *modelDict = hotStars[indexPath.row];
+        StarModel *starModel =[StarModel modelWithDictionary:modelDict error:nil];
+    
+        [cell.starImage sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
+        cell.starName.text = starModel.artistName;
+        
+    }else if (indexPath.section==1){//本地艺人
+
+        NSDictionary *modelDict = localStars[indexPath.row];
+        StarModel *starModel =[StarModel modelWithDictionary:modelDict error:nil];
+        
+        [cell.starImage sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
+        cell.starName.text = starModel.artistName;
+
+    
+    
+    }else{//推荐艺人
+    
+    
+    }
+    
+    
+    
+    
     
     return cell;
 }
@@ -524,9 +657,6 @@ bool isExpand;
                 
             NSLog(@"热门艺人收起");
             }
-            
-            
-            
             
             break;
             

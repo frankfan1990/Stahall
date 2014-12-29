@@ -63,6 +63,7 @@ bool selected;//是否是出于编辑模式的标志位
     
     UIBarButtonItem *leftitem =[[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftitem;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     
     
     /**

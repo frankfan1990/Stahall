@@ -102,7 +102,10 @@
     
     
     
-    NSString *todayString =[NSString stringWithFormat:@"%@",[NSDate date]];
+    NSDateFormatter *dateForrmat =[[NSDateFormatter alloc]init];
+    [dateForrmat setDateFormat:@"yyyy-MM-dd"];
+    NSString *todayString =[NSString stringWithFormat:@"%@",[dateForrmat stringFromDate:[NSDate date]]];
+
     self.today = [@[todayString]mutableCopy];
     
     self.travelDay = [@[@"2014-11-11",@"2014-12-1",@"2014-12-3",@"2014-11-20"]mutableCopy];//行程
@@ -236,6 +239,7 @@
     
     UIBarButtonItem *leftitem =[[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftitem;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     
     //背景
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"fz艺人详情背景"].CGImage;
