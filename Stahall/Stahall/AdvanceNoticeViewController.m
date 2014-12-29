@@ -185,9 +185,6 @@
         [labelOfHost setAttString:[p1 attrStringFromMarkup:hostStr]];
         [cell1.contentView addSubview:labelOfHost];
         
-       
-        
-        
         return cell1;
         
     }
@@ -221,6 +218,11 @@
         cycSroView.backgroundColor = [UIColor whiteColor];
          __weak typeof (self)Myself = self;
         cycSroView.totalPagesCount = ^NSInteger(void){
+            if (Myself.dictData) {
+                if (Myself.type == 1) {
+                    return [Myself.dictData[@"stars"] count];
+                }
+            }
             return 5;
         };
         cycSroView.fetchContentViewAtIndex = ^UIView*(NSInteger pageIndex){
@@ -229,15 +231,23 @@
             viewBackOther.backgroundColor = [UIColor whiteColor];
             
             UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake(13, 15, 65, 65)];
-            imageV2.image = [UIImage imageNamed:@"lc汪峰头像"];
+//            imageV2.image = [UIImage imageNamed:@"lc汪峰头像"];
             imageV2.layer.masksToBounds = YES;
             imageV2.layer.cornerRadius = imageV2.frame.size.width/2;
             [viewBackOther addSubview:imageV2];
             
+          
             
             UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(imageV2.frame.size.width+imageV2.frame.origin.x+22, 10, Myself.view.frame.size.width-(imageV2.frame.size.width+imageV2.frame.origin.x+22+40), 80)];
             [Myself Customlable:labelContent text:@"汪峰,祖籍江苏常熟,1971年6月29日出生于北京。中国大陆摇滚歌手、音乐创作人、作词人、作曲家,鲍家街43号乐队队长 很厉害很厉害很厉害" fontSzie:15 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:10];
             [viewBackOther addSubview:labelContent];
+            
+            if (Myself.dictData) {
+                if (Myself.type == 1) {
+                   labelContent.text = Myself.dictData[@"stars"][pageIndex][@"content"];
+                    [imageV2 sd_setImageWithURL:[NSURL URLWithString:Myself.dictData[@"stars"][pageIndex][@"avatar"]] placeholderImage:[UIImage imageNamed:@""]];
+                }
+            }
             return viewBackOther;
 
         };
@@ -285,9 +295,17 @@
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"My_collectionViewCell"];
         [backView addSubview:_collectionView];
         
-        UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(10, _collectionView.frame.origin.y+_collectionView.frame.size.height+10, Mywidth-40, 280-(_collectionView.frame.origin.y+_collectionView.frame.size.height+25))];
-        [self Customlable:labelContent text:@"汪峰自幼在中央音乐学院附小、附中学习小提琴，大学考入中央音乐学院小提琴中提琴专业，大学期间在专业音乐学习和训练之余就开始进行摇滚乐创作并组建乐队。完成本科学业后，进入中央芭蕾舞团任副首席小提琴师，后辞职后转型为职业歌手。" fontSzie:15 textColor:[UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:100000];
-        [backView addSubview:labelContent];
+
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, _collectionView.frame.origin.y+_collectionView.frame.size.height+7, Mywidth-40, 280-(_collectionView.frame.origin.y+_collectionView.frame.size.height+25+3))];
+        webView.backgroundColor = [UIColor clearColor];
+        [backView addSubview:webView];
+        
+        if (_dictData) {
+            if (_type == 1) {
+                [webView loadHTMLString:_dictData[@"introduction"] baseURL:nil];
+            }
+        }
+        
         
         [cell3.contentView addSubview:backView];
         
@@ -298,6 +316,11 @@
 #pragma mark - collectionview的代理
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (_dictData) {
+        if (_type == 1) {
+            return [_dictData[@"posters"] count];
+        }
+    }
     return 5;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -307,6 +330,11 @@
     UIImageView *imageV = [[UIImageView alloc] init];    
     imageV.frame = CGRectMake(0, 0,80, 80);
     imageV.image = [UIImage imageNamed:@"lc汪峰2"];
+    if (_dictData) {
+        if (_type == 1) {
+             [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] placeholderImage:[UIImage imageNamed:@""]];
+        }
+    }
     [cell.contentView addSubview:imageV];
     
     return cell;

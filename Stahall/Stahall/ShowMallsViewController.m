@@ -10,6 +10,7 @@
 #import "ShowMallsTableViewCell.h"
 #import "ShowDetailsViewController.h"
 #import "CycleScrollView.h"
+#import "ShowMallDetailsViewController.h"
 #import "Marcos.h"
 
 #pragma mark -  秀MALL 内容列表
@@ -24,12 +25,14 @@
     
     //定义一个全局的btn 这个指针 指向 点击 那个按钮
     UIButton *MyBtn;
-    
     UIButton *btn1;
     UIButton *btn2;
     UIButton *btn3;
     NSMutableArray *arrOfTableData;
     UIView *backView;
+    
+    
+    UIView *myView;
     
 }
 @property (nonatomic,strong)NSMutableArray *arrOfimages_one; // 第一个cell里的图片
@@ -38,26 +41,26 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
+    [self setTabBar];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     MyBtn.selected = YES;
     _tableViewOther.alpha = 0;
+    
 }
 -(void)viewDidLoad
 {
-    [self setTabBar];
     
     _arrOfimages_one = [NSMutableArray arrayWithObjects:@"七夕",@"七夕",@"七夕",@"七夕",nil];
     isFollow = YES;
-    
+    self.view.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
     [self createHeadSrcoView];
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,Mywidth, Myheight -64) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
     _tableView.delegate = self;
     _tableView.tag = 1200;
     _tableView.dataSource = self;
@@ -71,6 +74,33 @@
     _tableViewOther.tag = 2000;
     [[UIApplication sharedApplication].keyWindow addSubview:_tableViewOther];
     
+    myView = [[UIView alloc] initWithFrame:CGRectMake(Mywidth-30, Myheight-180, 200+20, 45)];
+    myView.backgroundColor = [UIColor greenColor];
+    myView.layer.masksToBounds = YES;
+    myView.layer.cornerRadius = 22.5;
+    UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button1 setImage:[UIImage imageNamed:@"lc向左灰"] forState:UIControlStateNormal];
+    [button1 setImage:[UIImage imageNamed:@"lc向右灰"] forState:UIControlStateSelected];
+    
+    [self CustomButton:button1 frame:CGRectMake( 0 ,7.5, 30, 30) title:@"" buttonTag:98 fontSize:14 titleColor:nil backgroundColor:[UIColor clearColor]];
+
+    [button1 addTarget:self action:@selector(didmyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [myView addSubview:button1];
+    
+    UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self CustomButton:button2 frame:CGRectMake(35, 0, 85, 45) title:@"我推荐" buttonTag:99 fontSize:15 titleColor:nil backgroundColor:[UIColor clearColor]];
+    [button2  addTarget:self action:@selector(didmyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [myView addSubview:button2];
+    
+    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self CustomButton:button3 frame:CGRectMake(button2.frame.size.width+button2.frame.origin.x, 0, 85, 45) title:@"我需要" buttonTag:100 fontSize:15 titleColor:nil backgroundColor:[UIColor clearColor]];
+    [button3 addTarget:self action:@selector(didmyButton:) forControlEvents:UIControlEventTouchUpInside];
+    [myView addSubview:button3];
+    
+    button1.layer.borderWidth=0;
+    button2.layer.borderWidth=0;
+    button3.layer.borderWidth=0;
+    [self.view addSubview:myView];
 }
 
 -(void)createHeadSrcoView
@@ -107,7 +137,7 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:115/255.0 green:199/255.0 blue:228/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1]];
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
@@ -157,7 +187,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 1200) {
-        return 180;
+        if (indexPath.section == 0) {
+            return 180;
+        }else{
+            return 205;
+        }
     }else{
         return 25;
     }
@@ -186,15 +220,15 @@
     if (tableView.tag == 1200 && section == 1) {
 
         backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 45)];
-        backView.backgroundColor = [UIColor whiteColor];
+//        backView.backgroundColor = [UIColor whiteColor];
         btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn1 frame:CGRectMake(15, 10, (Mywidth-80)/3, 25) title:@"不限" buttonTag:10001 fontSize:13 titleColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor]];
+        [self CustomButton:btn1 frame:CGRectMake(15, 10, (Mywidth-80)/3, 25) title:@"不限" buttonTag:10001 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
         
         btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn2 frame:CGRectMake(15+(Mywidth-80)/3+25, 10, (Mywidth-80)/3, 25) title:@"类别" buttonTag:10002 fontSize:13 titleColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor]];
+        [self CustomButton:btn2 frame:CGRectMake(15+(Mywidth-80)/3+25, 10, (Mywidth-80)/3, 25) title:@"类别" buttonTag:10002 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
         
         btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn3 frame:CGRectMake(15+(Mywidth-80)/3*2+50, 10, (Mywidth-80)/3, 25) title:@"价格区间" buttonTag:10003 fontSize:13 titleColor:[UIColor blackColor] backgroundColor:[UIColor whiteColor]];
+        [self CustomButton:btn3 frame:CGRectMake(15+(Mywidth-80)/3*2+50, 10, (Mywidth-80)/3, 25) title:@"价格区间" buttonTag:10003 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
         
         [btn1 addTarget:self action:@selector(didBtn:) forControlEvents:UIControlEventTouchUpInside];
         [btn2 addTarget:self action:@selector(didBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -207,7 +241,7 @@
         [backView addSubview:btn2];
         [backView addSubview:btn3];
        
-        
+        backView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
         return backView;
 
     }else{
@@ -223,7 +257,7 @@
         if (indexPath.section == 0) {
             UITableViewCell *cell0 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell0.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell0.backgroundColor = [UIColor whiteColor];
+            cell0.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
             [cell0.contentView addSubview:headScrollView];
             return cell0;
         }
@@ -232,11 +266,12 @@
         ShowMallsTableViewCell *cell = (ShowMallsTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellStr];
         if (cell == nil) {
             cell = [[ShowMallsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
-            cell.backgroundColor = [UIColor whiteColor];
+            cell.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
         }
-        cell.backView.layer.borderColor = [UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1].CGColor;
-        cell.backView.layer.borderWidth = 0.5;
+//        cell.backView.layer.borderColor = [UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1].CGColor;
+//        cell.backView.layer.borderWidth = 0.5;
         cell.labelOfTitle.text = @"陈奕迅 2015年全国巡演演唱会";
         cell.labelOfDate.text = @"2015-01-01";
         cell.imageV.image = [UIImage imageNamed:@"陈奕迅"];
@@ -266,9 +301,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView.tag == 1200) {
-        ShowDetailsViewController *details = [[ShowDetailsViewController alloc] init];
-        details.titleViewStr  = @"秀MALL详情";
-        details.type = _type+1;
+        ShowMallDetailsViewController *details = [[ShowMallDetailsViewController alloc] init];
         [self.navigationController pushViewController:details animated:YES];
     }else if (tableView.tag == 2000){
         [MyBtn setTitle:arrOfTableData[indexPath.row] forState:UIControlStateNormal];
@@ -282,6 +315,67 @@
 
 }
 
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //第一个cell 将要出现 则 要小tableView 跟着大 tableView动
+    if (indexPath.section == 0 && indexPath.row == 0 && tableView.tag == 1200) {
+        isFollow = YES;
+    }
+}
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+     //第一个cell 消失 则 要小tableView 不需要 跟着tableView动
+    if (indexPath.section == 0 && indexPath.row == 0 && tableView.tag == 1200) {
+        isFollow = NO;
+    }
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+ 
+    if (!isFollow) {
+        return;
+    }
+    CGPoint point = [MyBtn.superview convertPoint:CGPointMake(MyBtn.frame.origin.x, MyBtn.frame.origin.y+25) toView:_tableView.superview];
+    // 猛力 上滑 就会导致piont.y很大 在这里限制一下
+    if (point.y <36) {
+        point.y = 36;
+    }
+    CGFloat height = arrOfTableData.count*25;
+    if (arrOfTableData.count>5) {
+        height = 5*25;
+    }
+    
+    _tableViewOther.frame = CGRectMake(point.x, point.y+64,MyBtn.frame.size.width, height);
+}
+
+#pragma mark - 点击 我需要 我推荐
+-(void)didmyButton:(UIButton *)sender{
+    if (sender.tag == 98) {
+        [UIView animateWithDuration:0.5 animations:^{
+            sender.selected = !sender.selected;
+            if (sender.selected) {
+                myView.frame = CGRectMake(Mywidth-200, Myheight-180+64, 200+20, 45);
+                sender.frame = CGRectMake( 5 ,7.5, 30, 30);
+            }else{
+                myView.frame = CGRectMake(Mywidth-30, Myheight-180+64, 200+20, 45);
+                sender.frame = CGRectMake( 0 ,7.5, 30, 30);
+            }
+            
+        }];
+    }else if (sender.tag == 99){
+        NSLog(@"我推荐");
+    }else if (sender.tag == 100){
+        NSLog(@"我需要");
+    }
+}
+
+#pragma mark - 点击返回上一页
+-(void)didGoBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - 点击选择分类
 -(void)didBtn:(UIButton *)sender
 {
     //再没有选择内容时 就点击其他按钮 则把前面那个按钮的选中状态 变成YES
@@ -323,44 +417,6 @@
     }];
     [_tableViewOther reloadData];
 }
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //第一个cell 将要出现 则 要小tableView 跟着大 tableView动
-    if (indexPath.section == 0 && indexPath.row == 0 && tableView.tag == 1200) {
-        isFollow = YES;
-    }
-}
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath
-{
-     //第一个cell 消失 则 要小tableView 不需要 跟着tableView动
-    if (indexPath.section == 0 && indexPath.row == 0 && tableView.tag == 1200) {
-        isFollow = NO;
-    }
-}
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
- 
-    if (!isFollow) {
-        return;
-    }
-    CGPoint point = [MyBtn.superview convertPoint:CGPointMake(MyBtn.frame.origin.x, MyBtn.frame.origin.y+25) toView:_tableView.superview];
-    // 猛力 上滑 就会导致piont.y很大 在这里限制一下
-    if (point.y <36) {
-        point.y = 36;
-    }
-    CGFloat height = arrOfTableData.count*25;
-    if (arrOfTableData.count>5) {
-        height = 5*25;
-    }
-    
-    _tableViewOther.frame = CGRectMake(point.x, point.y+64,MyBtn.frame.size.width, height);
-}
-
--(void)didGoBack
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma mark - UIlabel的方法
 -(void)Customlable:(UILabel *)label text:(NSString *)textStr fontSzie:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment adjustsFontSizeToFitWidth:(BOOL)state numberOfLines:(NSInteger)numberOfLines
 {
