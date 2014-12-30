@@ -70,6 +70,10 @@
 		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
 		634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */; };
+		634BDC9F1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDC9E1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m */; };
+		634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDCA11A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m */; };
+		634BDD2C1A512A4600994401 /* NetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDD2B1A512A4600994401 /* NetworkHelper.m */; };
+		634BDD301A51423B00994401 /* StarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDD2F1A51423B00994401 /* StarModel.m */; };
 		63649A3D1A494CDE0024E3F7 /* StarDetaiInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */; };
 		63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */; };
 		63649A461A496F7F0024E3F7 /* Datetime.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A411A496F7F0024E3F7 /* Datetime.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -274,6 +278,14 @@
 		63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallEvalutionIlerItemViewController.m; sourceTree = "<group>"; };
 		634BDC9A1A4ABB1A00994401 /* StarDetailCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetailCollectionViewCell.h; sourceTree = "<group>"; };
 		634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetailCollectionViewCell.m; sourceTree = "<group>"; };
+		634BDC9D1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallEvalutionDetailInfoViewController.h; sourceTree = "<group>"; };
+		634BDC9E1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallEvalutionDetailInfoViewController.m; sourceTree = "<group>"; };
+		634BDCA01A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StahallEvalutionDetailInfoCollectionViewCell.h; sourceTree = "<group>"; };
+		634BDCA11A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StahallEvalutionDetailInfoCollectionViewCell.m; sourceTree = "<group>"; };
+		634BDD2A1A512A4600994401 /* NetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkHelper.h; sourceTree = "<group>"; };
+		634BDD2B1A512A4600994401 /* NetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkHelper.m; sourceTree = "<group>"; };
+		634BDD2E1A51423B00994401 /* StarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarModel.h; sourceTree = "<group>"; };
+		634BDD2F1A51423B00994401 /* StarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarModel.m; sourceTree = "<group>"; };
 		63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetaiInfoViewController.h; sourceTree = "<group>"; };
 		63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetaiInfoViewController.m; sourceTree = "<group>"; };
 		63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz艺人详情背景.png"; sourceTree = "<group>"; };
@@ -363,6 +375,7 @@
 		636F44951A44214300FD6783 /* fz对勾@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz对勾@2x.png"; sourceTree = "<group>"; };
 		6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz选中对勾@2x.png"; sourceTree = "<group>"; };
 		6378C0331A47E4D600CDED3E /* FrankfanApis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankfanApis.h; sourceTree = "<group>"; };
+		637F9B1A1A514B550066D4CE /* FrankfanMarcos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrankfanMarcos.h; sourceTree = "<group>"; };
 		6397FDC11A426C3A0021B9E2 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
@@ -708,6 +721,7 @@
 				6397FDC41A426C400021B9E2 /* DateUtils */,
 				631DC21D1A37408600F5E9AA /* IsValiadOfPhoneNumber */,
 				631DC2181A37403C00F5E9AA /* Reachability */,
+				634BDD2D1A512A4D00994401 /* NetworkHeper */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -801,6 +815,8 @@
 		63468EFC1A43D2CF00938E1E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				634BDD2E1A51423B00994401 /* StarModel.h */,
+				634BDD2F1A51423B00994401 /* StarModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -812,8 +828,19 @@
 				63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */,
 				63649A3B1A494CDE0024E3F7 /* StarDetaiInfoViewController.h */,
 				63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */,
+				634BDC9D1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.h */,
+				634BDC9E1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		634BDD2D1A512A4D00994401 /* NetworkHeper */ = {
+			isa = PBXGroup;
+			children = (
+				634BDD2A1A512A4600994401 /* NetworkHelper.h */,
+				634BDD2B1A512A4600994401 /* NetworkHelper.m */,
+			);
+			name = NetworkHeper;
 			sourceTree = "<group>";
 		};
 		63649A491A496F890024E3F7 /* Calendar */ = {
@@ -941,6 +968,7 @@
 			isa = PBXGroup;
 			children = (
 				6378C0331A47E4D600CDED3E /* FrankfanApis.h */,
+				637F9B1A1A514B550066D4CE /* FrankfanMarcos.h */,
 			);
 			name = "frankfan-constant";
 			sourceTree = "<group>";
@@ -1035,6 +1063,8 @@
 				63A9EAF71A41C07600C5DAE6 /* StahallFooterReusableView.m */,
 				634BDC9A1A4ABB1A00994401 /* StarDetailCollectionViewCell.h */,
 				634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */,
+				634BDCA01A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.h */,
+				634BDCA11A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m */,
 			);
 			name = AboutStarHallModelView;
 			sourceTree = "<group>";
@@ -1296,7 +1326,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+            showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1321,7 +1351,11 @@
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
+
+				634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */,
+
 				5C7D5CE71A51485A00163B07 /* Left_MyStarViewController.m in Sources */,
+
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
 				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
@@ -1351,6 +1385,7 @@
 				636F44861A44091300FD6783 /* UIImage+MultiFormat.m in Sources */,
 				631DC2121A37396900F5E9AA /* MainViewController.m in Sources */,
 				63BC6A6E1A3747F400087DFB /* UIScrollView+MJExtension.m in Sources */,
+				634BDD301A51423B00994401 /* StarModel.m in Sources */,
 				63649A561A4970100024E3F7 /* DetailDayCell.m in Sources */,
 				5C1E1F0F1A3FCAD20085BD64 /* ShowDetailsViewController.m in Sources */,
 				63BC6A7C1A374A1100087DFB /* TPKeyboardAvoidingTableView.m in Sources */,
@@ -1369,6 +1404,7 @@
 				5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */,
 				5C4519D21A47AD790031685A /* CreateShowFirstViewController.m in Sources */,
 				636F448A1A44091300FD6783 /* UIView+WebCacheOperation.m in Sources */,
+				634BDD2C1A512A4600994401 /* NetworkHelper.m in Sources */,
 				63A9EA7B1A3FDE2F00C5DAE6 /* StahallValuationViewController.m in Sources */,
 				631DC2171A37403100F5E9AA /* Reachability.m in Sources */,
 				636F44241A44077400FD6783 /* UIWebView+AFNetworking.m in Sources */,
@@ -1377,6 +1413,7 @@
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
 				636F447E1A44091300FD6783 /* SDWebImageCompat.m in Sources */,
 				636F44821A44091300FD6783 /* SDWebImageManager.m in Sources */,
+				634BDC9F1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m in Sources */,
 				6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */,
 				636F44221A44077400FD6783 /* UIProgressView+AFNetworking.m in Sources */,
 				5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */,

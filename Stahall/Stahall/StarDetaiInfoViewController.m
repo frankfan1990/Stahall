@@ -102,7 +102,10 @@
     
     
     
-    NSString *todayString =[NSString stringWithFormat:@"%@",[NSDate date]];
+    NSDateFormatter *dateForrmat =[[NSDateFormatter alloc]init];
+    [dateForrmat setDateFormat:@"yyyy-MM-dd"];
+    NSString *todayString =[NSString stringWithFormat:@"%@",[dateForrmat stringFromDate:[NSDate date]]];
+
     self.today = [@[todayString]mutableCopy];
     
     self.travelDay = [@[@"2014-11-11",@"2014-12-1",@"2014-12-3",@"2014-11-20"]mutableCopy];//行程
@@ -236,6 +239,7 @@
     
     UIBarButtonItem *leftitem =[[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftitem;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     
     //背景
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"fz艺人详情背景"].CGImage;
@@ -304,6 +308,28 @@
     self.collectionView.dataSource = self;
     [priceBackView addSubview:self.collectionView];
     self.collectionView.backgroundColor =[UIColor clearColor];
+    
+    
+    //创建要求模块控件
+    CGFloat width = self.view.bounds.size.width;
+    UIButton *ticketButton =[self createButtonWithTag:9000 andTitle:@"机票" andBackGroundImage:nil andFrame:CGRectMake(10, 15,width/2.0-15, 330/2.0-20)];
+    ticketButton.layer.cornerRadius = 2;
+    [requireBackView addSubview:ticketButton];
+    
+    UIButton *aboutCarButton =[self createButtonWithTag:9001 andTitle:@"用车" andBackGroundImage:nil andFrame:CGRectMake(width/2.0-15+20, 15, width/2.0-15, 330/2.0-20)];
+    aboutCarButton.layer.cornerRadius = 2;
+    [requireBackView addSubview:aboutCarButton];
+    
+    UIButton *hotelButton =[self createButtonWithTag:9002 andTitle:@"酒店" andBackGroundImage:nil andFrame:CGRectMake(10, 15+330/2.0-20+10, width/2.0-15, 330/2.0-20)];
+    
+    hotelButton.layer.cornerRadius = 2;
+    [requireBackView addSubview:hotelButton];
+    
+    
+    UIButton *aboutFoodButton =[self createButtonWithTag:9003 andTitle:@"用餐" andBackGroundImage:nil andFrame:CGRectMake(width/2.0-15+20, 15+330/2.0-20+10, width/2.0-15, 330/2.0-20)];
+    aboutCarButton.layer.cornerRadius = 2;
+    [requireBackView addSubview:aboutFoodButton];
+    
 }
 
 

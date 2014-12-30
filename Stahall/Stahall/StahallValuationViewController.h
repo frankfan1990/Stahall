@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StarHallViewController.h"
-
+#import "StarDetaiInfoViewController.h"
 
 @interface StahallValuationViewController : UIViewController<SendTheSelectedCellsDelegate>
 

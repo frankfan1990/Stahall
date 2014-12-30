@@ -11,7 +11,7 @@
 #import "StahallEvalueCollectionViewCell.h"
 #import "NSDate+Category.h"
 #import "ProgressHUD.h"
-
+#import "StahallEvalutionDetailInfoViewController.h"
 
 
 bool selected;//是否是出于编辑模式的标志位
@@ -63,6 +63,7 @@ bool selected;//是否是出于编辑模式的标志位
     
     UIBarButtonItem *leftitem =[[UIBarButtonItem alloc]initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = leftitem;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     
     
     /**
@@ -218,8 +219,28 @@ bool selected;//是否是出于编辑模式的标志位
 #pragma mark - 提交堂估价
 - (void)commitTheHallEvalution{
 
+    if([[starsSelected firstObject]isKindOfClass:[NSString class]]){
+    
+        [ProgressHUD showError:@"提交前请至少估价一位艺人"];
+        return;
+        
+    }else{
+    
+        UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:nil message:@"fuck the pay" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+        [alertView show];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            
+            StahallEvalutionDetailInfoViewController *stahallEvalutionDetail =[StahallEvalutionDetailInfoViewController new];
+            stahallEvalutionDetail.isCouldSpeedModle = YES;
+            [self.navigationController pushViewController:stahallEvalutionDetail animated:YES];
+            
+        });
+    
+    }
 
-    NSLog(@"堂估价提交");
 }
 
 
@@ -384,7 +405,9 @@ bool selected;//是否是出于编辑模式的标志位
     
     }else{//跳到艺人详情
     
-    
+        
+        StarDetaiInfoViewController *starDetailInfo =[StarDetaiInfoViewController new];
+        [self.navigationController pushViewController:starDetailInfo animated:YES];
         NSLog(@"跳到艺人详情");
     }
     
@@ -436,9 +459,7 @@ bool selected;//是否是出于编辑模式的标志位
         [self.collectionView reloadData];
        
     }
-    
-    
-
+  
 }
 
 

@@ -18,8 +18,8 @@
         //艺人头像
         self.starImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, -5, 60, 60)];
         self.starImage.layer.masksToBounds = YES;
-        self.starImage.layer.borderColor = [UIColor purpleColor].CGColor;
-        self.starImage.layer.borderWidth = 2;
+        self.starImage.layer.borderColor = [UIColor colorWithWhite:0.35 alpha:0.4].CGColor;
+        self.starImage.layer.borderWidth = 3;
         self.starImage.layer.cornerRadius = 30;
         [self.contentView addSubview:self.starImage];
         
@@ -44,6 +44,7 @@
         self.checkIt.image = [UIImage imageNamed:@"fz选中对勾"];
         [self addSubview:self.checkIt];
         self.checkIt.hidden = YES;
+        
         
     }
     
