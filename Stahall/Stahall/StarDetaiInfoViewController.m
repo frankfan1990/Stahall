@@ -17,6 +17,7 @@
 #import "StarDetailCollectionViewCell.h"
 /********/
 
+#import "StarModel.h"
 
 
 @interface StarDetaiInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,UIScrollViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
@@ -77,12 +78,16 @@
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)UICollectionView *collectionView;
+@property (nonatomic,strong)StarModel *statModel;
 @end
 
 @implementation StarDetaiInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.statModel = [StarModel modelWithDictionary:self.starDict error:nil];
+    
     
     /**
      *  @author frankfan, 14-12-23 17:12:36
@@ -186,12 +191,12 @@
     introductionBackView.backgroundColor =[UIColor clearColor];
     introductionBackView.tag = 3001;
     
-    introductionWebView =[[RTLabel alloc]initWithFrame:CGRectMake(10, 5, self.view.bounds.size.width-20, 0)];
+    introductionWebView =[[RTLabel alloc]initWithFrame:CGRectMake(20, 5, self.view.bounds.size.width-40, 0)];
     introductionWebView.opaque = NO;
     introductionWebView.backgroundColor =[UIColor clearColor];
     [introductionBackView addSubview:introductionWebView];
 
-    NSString *originString = @"小龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包子小龙女是包龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是<p>包子小龙女是</p>包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包子小龙女是包龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包龙女是包子小龙女是包子小龙女是包子小龙女是包子是包子小龙女是包子小龙女是包子小龙女是包龙女是包子龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子小龙女是包子";
+    NSString *originString = self.statModel.introduction;
     introductionWebView.text = [self handleStringForRTLabel:originString];
     if(introductionWebView.optimumSize.height<330){
         

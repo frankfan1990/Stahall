@@ -164,7 +164,9 @@
 - (BOOL)wheelView:(GNWheelView *)wheelView shouldEnterIdleStateForRowAtIndex:(NSInteger)index animated:(BOOL *)animated{
     
     for (UIImageView *vv in arrays) {
+    
         vv.image = [self grayImage:vv.image];
+        
     }
     
     UIImageView *imageV = (UIImageView *)[wheelView viewWithTag:1001+index];

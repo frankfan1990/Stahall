@@ -133,7 +133,10 @@ static CGFloat widthCallback(void *ref)
         }
     }
     
-    return (NSAttributedString*)aString;
+    NSAttributedString *string_0 = [(NSAttributedString *)aString autorelease];
+    return string_0;
+//    
+//    return (NSAttributedString*)aString;
 }
 
 -(void)dealloc

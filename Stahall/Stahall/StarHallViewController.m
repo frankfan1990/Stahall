@@ -26,6 +26,9 @@
 #import <TMCache.h>
 
 static NSInteger _start = 9;
+static NSInteger _start2 = 9;
+static NSInteger _start3 = 9;
+
 static NSString *cacheKey = @"cacheKey";
 static NSString *cacheKey2 = @"cacheKey2";
 static NSString *cacheKey3 = @"cacheKey3";
@@ -181,6 +184,12 @@ static NSString *cacheKey3 = @"cacheKey3";
     }
     
     
+    if([[TMCache sharedCache]objectForKey:cacheKey3]){
+    
+        recommendStars = [[TMCache sharedCache]objectForKey:cacheKey3];
+    }
+    
+    
     if(![_reachability isReachable]){
     
         [ProgressHUD showError:@"网络异常"];
@@ -189,46 +198,63 @@ static NSString *cacheKey3 = @"cacheKey3";
         //请求热门艺人
         AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
         AFHTTPRequestOperationManager *manager2 =[NetworkHelper createRequestManagerWithContentType:application_json];
+        AFHTTPRequestOperationManager *manager3 =[NetworkHelper createRequestManagerWithContentType:application_json];
+        
         NSDictionary *parameters = @{Query:@"热门艺人",Start:@0,Limit:@8};
-        [ProgressHUD show:nil];
+
         [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             NSArray *tempArray = responseObject[Result];
             hotStars = [tempArray mutableCopy];
             [self.collectionView reloadData];
-            [ProgressHUD dismiss];
             [[TMCache sharedCache]setObject:hotStars forKey:cacheKey];
             
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            NSLog(@"error:%@",[error localizedDescription]);
-            [ProgressHUD showError:@"网络异常"];
-            
-        }];
-        
-        
-        //请求本地艺人
-        NSDictionary *parameters2 = @{Query:@"本地艺人",Start:@0,Limit:@8};
-        [manager2 GET:API_StarInfo parameters:parameters2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-        
-            NSArray *tempArray = responseObject[Result];
-            localStars = [tempArray mutableCopy];
-            [self.collectionView reloadData];
-            [ProgressHUD dismiss];
-            [[TMCache sharedCache]setObject:hotStars forKey:cacheKey2];
+            //请求本地艺人
+            NSDictionary *parameters2 = @{Query:@"本地艺人",Start:@0,Limit:@8};
+            [manager2 GET:API_StarInfo parameters:parameters2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                
+                NSArray *tempArray = responseObject[Result];
+                localStars = [tempArray mutableCopy];
+                [self.collectionView reloadData];
+                [[TMCache sharedCache]setObject:localStars forKey:cacheKey2];
+                
+                
+                //请求推荐艺人
+                NSDictionary *paramers3 =@{Query:@"推荐艺人",Start:@0,Limit:@8};
+                [manager3 GET:API_StarInfo parameters:paramers3 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                    NSArray *tempArray = responseObject[Result];
+                    recommendStars = [tempArray mutableCopy];
+                    [self.collectionView reloadData];
+                    [[TMCache sharedCache]setObject:recommendStars forKey:cacheKey3];
+                    
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                    NSLog(@"error:%@",[error localizedDescription]);
+                    [ProgressHUD showError:@"网络异常"];
+
+                    
+                }];
+                
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+                NSLog(@"error:%@",[error localizedDescription]);
+                [ProgressHUD showError:@"网络异常"];
+                
+            }];
 
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
             NSLog(@"error:%@",[error localizedDescription]);
             [ProgressHUD showError:@"网络异常"];
-
+            
         }];
-    
+   
     }
-    
-    
     
     
     
@@ -285,9 +311,9 @@ static NSString *cacheKey3 = @"cacheKey3";
         
     }else{//推荐艺人
     
-    
+        return [recommendStars count];
     }
-    return 18;
+    
 }
 
 
@@ -542,14 +568,16 @@ static NSString *cacheKey3 = @"cacheKey3";
     
     }else{//推荐艺人
     
+        NSDictionary *modelDict = recommendStars[indexPath.row];
+        StarModel *starModel =[StarModel modelWithDictionary:modelDict error:nil];
+        
+        [cell.starImage sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
+        cell.starName.text = starModel.artistName;
+
     
     }
     
-    
-    
-    
-    
-    return cell;
+      return cell;
 }
 
 
@@ -575,7 +603,24 @@ static NSString *cacheKey3 = @"cacheKey3";
     
         
         StarDetaiInfoViewController *starDetaiInfo =[StarDetaiInfoViewController new];
-        starDetaiInfo.starName = @"陈妍希";
+        
+        NSMutableArray *tempArray = nil;
+        if(indexPath.section==0){
+            
+            tempArray = hotStars;
+        }else if (indexPath.section==1){
+        
+            tempArray = localStars;
+        }else{
+        
+            tempArray = recommendStars;
+        }
+        
+        NSDictionary *tempDict = tempArray[indexPath.row];
+        StarModel *starModel = [StarModel modelWithDictionary:tempDict error:nil];
+        starDetaiInfo.starName = starModel.artistName;
+        starDetaiInfo.starDict = tempDict;
+        
         [self.navigationController pushViewController:starDetaiInfo animated:YES];
     
     }
@@ -697,20 +742,151 @@ bool isExpand;
     NSInteger indexTag = sender.tag;
     switch (indexTag) {
         case 2000://热门艺人加载
+        {
+        
+            
+            if(![_reachability isReachable]){
+            
+                [ProgressHUD showError:@"网络异常"];
+            }else{
+            
+                sender.enabled = NO;
+                
+                NSNumber *startPata = [NSNumber numberWithInteger:_start];
+                
+                NSDictionary *parameters = @{Query:@"热门艺人",Start:startPata,Limit:@8};
+                AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+                [ProgressHUD show:nil];
+                [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                    NSArray *tempArray = responseObject[Result];
+                    [hotStars addObjectsFromArray:tempArray];
+                    [ProgressHUD dismiss];
+                    [self.collectionView reloadData];
+                    if([tempArray count]){
+                    
+                        _start+=9;
+                    }else{
+                    
+                        
+                        [sender setTitle:@"没有更多数据" forState:UIControlStateNormal];
+                    }
+                   
+                    sender.enabled = YES;
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                    NSLog(@"error:%@",[error localizedDescription]);
+                    [ProgressHUD showError:@"网络错误"];
+                    sender.enabled = YES;
+                }];
+                
+            }
+            
+            
             
             NSLog(@"热门艺人加载更多");
+        }
+            
             break;
             
         case 2001://本地艺人加载更多
+        {
+        
+            if(![_reachability isReachable]){
+                
+                [ProgressHUD showError:@"网络异常"];
+            }else{
+                
+                sender.enabled = NO;
+                
+                NSNumber *startPata = [NSNumber numberWithInteger:_start2];
+                
+                NSDictionary *parameters = @{Query:@"本地艺人",Start:startPata,Limit:@8};
+                AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+                [ProgressHUD show:nil];
+                [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                    NSArray *tempArray = responseObject[Result];
+                    [localStars addObjectsFromArray:tempArray];
+                    [ProgressHUD dismiss];
+                    [self.collectionView reloadData];
+                    if([tempArray count]){
+                        
+                        _start2+=9;
+                    }else{
+                        
+                        
+                        [sender setTitle:@"没有更多数据" forState:UIControlStateNormal];
+                    }
+                    
+                    sender.enabled = YES;
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                    NSLog(@"error:%@",[error localizedDescription]);
+                    [ProgressHUD showError:@"网络错误"];
+                    sender.enabled = YES;
+                }];
+            
+            }
+        
+        
+        }
             NSLog(@"本地艺人加载更多");
             break;
         case 2002://推荐艺人加载更多
+        {
+        
+            if(![_reachability isReachable]){
+                
+                [ProgressHUD showError:@"网络异常"];
+            }else{
+                
+                sender.enabled = NO;
+                
+                NSNumber *startPata = [NSNumber numberWithInteger:_start3];
+                
+                NSDictionary *parameters = @{Query:@"推荐艺人",Start:startPata,Limit:@8};
+                AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+                [ProgressHUD show:nil];
+                [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    
+                    NSArray *tempArray = responseObject[Result];
+                    [recommendStars addObjectsFromArray:tempArray];
+                    [ProgressHUD dismiss];
+                    [self.collectionView reloadData];
+                    if([tempArray count]){
+                        
+                        _start3+=9;
+                    }else{
+                        
+                        
+                        [sender setTitle:@"没有更多数据" forState:UIControlStateNormal];
+                    }
+                    
+                    sender.enabled = YES;
+                    
+                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    
+                    NSLog(@"error:%@",[error localizedDescription]);
+                    [ProgressHUD showError:@"网络错误"];
+                    sender.enabled = YES;
+                }];
+                
+            }
+        
+        }
             NSLog(@"推荐艺人加载更多");
             break;
     }
 
 
 }
+
+
+
+
 
 #pragma mark 弹出视图的相关代理
 - (void)popoverListView:(ZSYPopoverListView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -767,11 +943,12 @@ bool isExpand;
 #pragma mark - viewWillDisappear
 - (void)viewWillDisappear:(BOOL)animated{
 
+    [super viewWillDisappear:animated];
     if([[[UIApplication sharedApplication].keyWindow subviews]containsObject:blurView]){
     
         [blurView removeFromSuperview];
     }
-
+    
 }
 
 
@@ -780,6 +957,7 @@ bool isExpand;
 #pragma mark - viewWillAppear
 - (void)viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
@@ -791,6 +969,14 @@ bool isExpand;
 - (void)buttonClicked:(UIButton *)sender{
 
     [self.navigationController popViewControllerAnimated:YES];
+    
+    _start = 9;
+    _start2 = 9;
+    _start3 = 9;
+    
+    hotStars = nil;
+    localStars = nil;
+    recommendStars = nil;
 }
 
 - (void)didReceiveMemoryWarning {
