@@ -20,10 +20,12 @@
 @implementation SearchStarViewController
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [UIView animateWithDuration:0.2 animations:^{
         _tableView.alpha = 0;
     }];

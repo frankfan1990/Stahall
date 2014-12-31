@@ -8,12 +8,14 @@
 
 #import "ShowMallDetailsViewController.h"
 #import "UIImageView+WebCache.h"
+#import "AFNetworking.h"
 #import "Marcos.h"
 @interface ShowMallDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
     NSArray *arrOfTitle;
     NSMutableArray *arrOfcontent;
+    NSDictionary *dictData;
 }
 
 @end
@@ -21,14 +23,17 @@
 @implementation ShowMallDetailsViewController
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getData];
     [self.view setBackgroundColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1]];
     arrOfTitle = @[@"活动名称:",@"时       间:",@"地       点:",@"场       馆:",@"出场艺人:",@"主办单位:",@"活动介绍",@"艺人简介"];
+    arrOfcontent = [NSMutableArray array];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -36,6 +41,31 @@
     _tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
 }
+
+-(void)getData
+{
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain"]];
+    //秀mall数据
+    NSDictionary *parameterdic = [NSDictionary dictionaryWithObjectsAndKeys:_mallId,@"mallId",nil];
+    [manger GET:MALLDetailIP parameters:parameterdic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        dictData = (NSDictionary *)responseObject[@"data"];
+        
+        [arrOfcontent addObject:dictData[@"mallName"]];
+        [arrOfcontent addObject:dictData[@"mallTime"]];
+        [arrOfcontent addObject:dictData[@"mallAddress"]];
+        [arrOfcontent addObject:dictData[@"mallVenues"]];
+        [arrOfcontent addObject:dictData[@"mallArtist"]];
+        [arrOfcontent addObject:dictData[@"organizer"]];
+        
+        [self setTabBar];
+        [_tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error:%@",error);
+    }];
+}
+
+
 #pragma mark tabBar的设置
 -(void)setTabBar{
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -68,7 +98,7 @@
     
     
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
-    title.text = @"XXX演唱会";
+    title.text = dictData[@"mallName"];
     title.font = [UIFont systemFontOfSize:19];
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
@@ -82,8 +112,20 @@
 {
     if (indexPath.row == 0) {
         return 160;
-    }else if (indexPath.row > arrOfTitle.count-2){
-        return 170;
+    }else if (indexPath.row == arrOfTitle.count-1){
+        
+        if (dictData[@"mallIntroduction"]) {
+            return [self caculateTheTextHeight:dictData[@"mallIntroduction"] andFontSize:13 andDistance:Mywidth-20]+40;
+        }else{
+            return 40;
+        }
+    }else if (indexPath.row == arrOfTitle.count){
+        
+        if (dictData[@"artistIntroduction"]) {
+            return [self caculateTheTextHeight:dictData[@"artistIntroduction"] andFontSize:13 andDistance:Mywidth-20]+40;
+        }else{
+            return 40;
+        }
     }else{
         return 50;
     }
@@ -94,7 +136,7 @@
         UITableViewCell *cell0 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell0.selectionStyle = UITableViewCellSelectionStyleNone;
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 160)];
-        [imageV  sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"七夕"]];
+        [imageV  sd_setImageWithURL:[NSURL URLWithString:_imageUrl] placeholderImage:[UIImage imageNamed:@""]];
         [cell0.contentView addSubview:imageV];
         return cell0;
     }else if (indexPath.row > arrOfTitle.count-2){
@@ -113,8 +155,9 @@
             labelTitle.backgroundColor = [UIColor clearColor];
             labelTitle.tag = 10001;
             
-            UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(8, 28, Mywidth-16, 170-35)];
+            UILabel *webView = [[UILabel alloc] init];
             webView.backgroundColor = [UIColor clearColor];
+            [self Customlable:webView text:@"" fontSzie:13 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:100];
             webView.opaque = NO;
             webView.tag = 10002;
             
@@ -134,6 +177,15 @@
         }
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:10001];
         label.text = arrOfTitle[indexPath.row-1];
+       
+        UILabel *weblabel = (UILabel *)[cell1.contentView viewWithTag:10002];
+        if (indexPath.row == arrOfTitle.count-1 && dictData[@"mallIntroduction"]) {
+             weblabel.frame = CGRectMake(10, 28, Mywidth-20, [self caculateTheTextHeight:dictData[@"mallIntroduction"] andFontSize:13 andDistance:Mywidth-20]);
+            weblabel.text = dictData[@"mallIntroduction"];
+        }else if(indexPath.row == arrOfTitle.count && dictData[@"artistIntroduction"]){
+            weblabel.frame = CGRectMake(10, 28, Mywidth-20, [self caculateTheTextHeight:dictData[@"artistIntroduction"] andFontSize:13 andDistance:Mywidth-20]);
+            weblabel.text = dictData[@"artistIntroduction"];
+        }
        
         
         return cell1;
@@ -176,7 +228,9 @@
         UILabel *label = (UILabel *)[cell2.contentView viewWithTag:10003];
         label.text = arrOfTitle[indexPath.row-1];
         UILabel *label2 = (UILabel *)[cell2.contentView viewWithTag:10004];
-        label2.text = @"长沙贺龙体育馆";
+        if (arrOfcontent.count != 0) {
+            label2.text = arrOfcontent[indexPath.row-1];
+        }
         return cell2;
         
     }
@@ -201,4 +255,24 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - 根据字长算 高度或宽度
+- (CGFloat)caculateTheTextHeight:(NSString *)string andFontSize:(int)fontSize andDistance:(CGFloat)distance{
+    
+    /*非彻底性封装*/
+    CGSize constraint = CGSizeMake(distance, CGFLOAT_MAX);
+    
+    NSDictionary * attributes = [NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:fontSize] forKey:NSFontAttributeName];
+    NSAttributedString *attributedText =
+    [[NSAttributedString alloc]
+     initWithString:string
+     attributes:attributes];
+    CGRect rect = [attributedText boundingRectWithSize:constraint
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
+    CGSize size = rect.size;
+    
+    return size.height;
+}
+
 @end

@@ -24,9 +24,16 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    gnView.delegate = self;
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    gnView.delegate = nil;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -162,7 +169,6 @@
 
 #pragma mark - 在这里取到当前滚动索引
 - (BOOL)wheelView:(GNWheelView *)wheelView shouldEnterIdleStateForRowAtIndex:(NSInteger)index animated:(BOOL *)animated{
-    
     for (UIImageView *vv in arrays) {
         vv.image = [self grayImage:vv.image];
     }
@@ -176,7 +182,7 @@
         imageV.image = [UIImage imageNamed:@"七夕"];
     }
     
-    return YES;
+    return NO;
 }
 
 -(void)wheelView:(GNWheelView *)wheelView didSelectedRowAtIndex:(NSInteger)index

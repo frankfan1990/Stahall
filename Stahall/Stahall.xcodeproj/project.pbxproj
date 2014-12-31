@@ -1326,7 +1326,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-            showEnvVarsInLog = 0;
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1351,11 +1351,8 @@
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
-
 				634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */,
-
 				5C7D5CE71A51485A00163B07 /* Left_MyStarViewController.m in Sources */,
-
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
 				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
