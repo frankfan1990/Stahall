@@ -57,7 +57,6 @@
 		631DC1ED1A3738EF00F5E9AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EC1A3738EF00F5E9AA /* main.m */; };
 		631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EF1A3738EF00F5E9AA /* AppDelegate.m */; };
 		631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631DC1F71A3738EF00F5E9AA /* Images.xcassets */; };
-		631DC2071A3738EF00F5E9AA /* StahallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC2061A3738EF00F5E9AA /* StahallTests.m */; };
 		631DC2121A37396900F5E9AA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC2111A37396900F5E9AA /* MainViewController.m */; };
 		631DC2171A37403100F5E9AA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC2161A37403100F5E9AA /* Reachability.m */; };
 		631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC21B1A37408000F5E9AA /* Email_Phone.m */; };
@@ -255,7 +254,6 @@
 		631DC1F71A3738EF00F5E9AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		631DC2001A3738EF00F5E9AA /* StahallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StahallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		631DC2051A3738EF00F5E9AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		631DC2061A3738EF00F5E9AA /* StahallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StahallTests.m; sourceTree = "<group>"; };
 		631DC2101A37396900F5E9AA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		631DC2111A37396900F5E9AA /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		631DC2151A37403100F5E9AA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -659,7 +657,6 @@
 		631DC2031A3738EF00F5E9AA /* StahallTests */ = {
 			isa = PBXGroup;
 			children = (
-				631DC2061A3738EF00F5E9AA /* StahallTests.m */,
 				631DC2041A3738EF00F5E9AA /* Supporting Files */,
 			);
 			path = StahallTests;
@@ -1450,7 +1447,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				631DC2071A3738EF00F5E9AA /* StahallTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

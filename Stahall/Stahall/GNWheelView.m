@@ -269,7 +269,7 @@ void(^setShadowForLayer)(CALayer *) = ^(CALayer *____layer) {
             
             __view.userInteractionEnabled = NO;
             
-            __view.layer.opacity = 0.85;
+            __view.layer.opacity = 0.95;
             
              NSLog(@"停止转动");
         }

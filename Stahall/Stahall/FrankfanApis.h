@@ -11,6 +11,7 @@
 
 //请求艺人数据
 #define API_StarInfo @"http://218.244.158.59/stahall/artist/getArtist"
+//#define API_StarInfo @"http://192.168.1.116:8080/stahall/artist/getArtist"
 
 
 #endif
