@@ -54,13 +54,9 @@
 
 -(void)getData{
 
-    __weak typeof (self)myself = self;
     for (int i = 0; i<_arrOfdata.count; i++) {
         UIImageView *imageView =[[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 300-16, 160-20)];
-            
-        [imageView sd_setImageWithURL:[NSURL URLWithString:_arrOfdata[i][@"poster"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                    imageView.image = [myself grayImage:image];
-            }];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:_arrOfdata[i][@"poster"]] placeholderImage:[UIImage imageNamed:@"七夕"]];
         imageView.tag = 1001+i;
         [arrays addObject:imageView];
     }
@@ -169,12 +165,12 @@
 
 #pragma mark - 在这里取到当前滚动索引
 - (BOOL)wheelView:(GNWheelView *)wheelView shouldEnterIdleStateForRowAtIndex:(NSInteger)index animated:(BOOL *)animated{
-    for (UIImageView *vv in arrays) {
-    
-        vv.image = [self grayImage:vv.image];
-        
-    }
-    
+//    for (UIImageView *vv in arrays) {
+//    
+//        vv.image = [self grayImage:vv.image];
+//        
+//    }
+//    
     UIImageView *imageV = (UIImageView *)[wheelView viewWithTag:1001+index];
    
     
