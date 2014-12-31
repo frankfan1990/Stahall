@@ -33,11 +33,13 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [_textField resignFirstResponder];
 }
 - (void)viewDidLoad {
@@ -259,6 +261,7 @@
             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
             field.userInteractionEnabled = YES;
             field.delegate = self;
+            field.returnKeyType = UIReturnKeyDone;
             field.textAlignment = NSTextAlignmentRight;
             field.font = [UIFont systemFontOfSize:15];
             field.tag = 113;
@@ -366,7 +369,11 @@
         [_tableView reloadData];
     });
 }
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
 #pragma mark - 下一页
 -(void)didNextBtn
 {

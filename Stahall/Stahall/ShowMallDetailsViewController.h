@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ShowMallDetailsViewController : UIViewController
-
+@property(nonatomic,strong)NSString *mallId;
+@property(nonatomic,strong)NSString *imageUrl;
 @end

@@ -11,6 +11,8 @@
 #import "ShowDetailsViewController.h"
 #import "CycleScrollView.h"
 #import "ShowMallDetailsViewController.h"
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
 #import "Marcos.h"
 
 #pragma mark -  秀MALL 内容列表
@@ -31,6 +33,7 @@
     NSMutableArray *arrOfTableData;
     UIView *backView;
     
+    NSArray *arrData;
     
     UIView *myView;
     
@@ -40,19 +43,22 @@
 @implementation ShowMallsViewController
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     MyBtn.selected = YES;
     _tableViewOther.alpha = 0;
     
 }
 -(void)viewDidLoad
 {
-    
+    [self getData];
     _arrOfimages_one = [NSMutableArray arrayWithObjects:@"七夕",@"七夕",@"七夕",@"七夕",nil];
     isFollow = YES;
     self.view.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
@@ -103,6 +109,21 @@
     [self.view addSubview:myView];
 }
 
+
+-(void)getData
+{
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain"]];
+    //秀mall数据
+    NSDictionary *parameterdic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"start",@"20",@"limit",@"秀Mall",@"query",nil];
+    [manger GET:MALLListIP parameters:parameterdic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        arrData = (NSArray *)responseObject[@"results"];
+        [_tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error:%@",error);
+    }];
+    
+}
 -(void)createHeadSrcoView
 {
     headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(10, 10, Mywidth-20, 170) animationDuration:3 andShowControlDot:YES];
@@ -174,7 +195,7 @@
     if (tableView.tag == 1200) {
         
         if (section == 1) {
-            return 5;
+            return arrData.count;
         }
         return 1;
         
@@ -270,11 +291,9 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
         }
-//        cell.backView.layer.borderColor = [UIColor colorWithRed:190/255.0 green:190/255.0 blue:190/255.0 alpha:1].CGColor;
-//        cell.backView.layer.borderWidth = 0.5;
-        cell.labelOfTitle.text = @"陈奕迅 2015年全国巡演演唱会";
-        cell.labelOfDate.text = @"2015-01-01";
-        cell.imageV.image = [UIImage imageNamed:@"陈奕迅"];
+        cell.labelOfTitle.text = arrData[indexPath.row][@"title"];
+        cell.labelOfDate.text = arrData[indexPath.row][@"timer"];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:arrData[indexPath.row][@"titlePage"]] placeholderImage:[UIImage imageNamed:@""]];
         return cell;
     }
     else{
@@ -300,8 +319,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.tag == 1200) {
+    if (tableView.tag == 1200){
+        
         ShowMallDetailsViewController *details = [[ShowMallDetailsViewController alloc] init];
+        details.mallId = arrData[indexPath.row][@"mallId"];
+        details.imageUrl = arrData[indexPath.row][@"titlePage"];
         [self.navigationController pushViewController:details animated:YES];
     }else if (tableView.tag == 2000){
         [MyBtn setTitle:arrOfTableData[indexPath.row] forState:UIControlStateNormal];
