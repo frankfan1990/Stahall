@@ -8,18 +8,22 @@
 
 #import "CreateShowThirdViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "AFNetworking.h"
+#import "ProgressHUD.h"
 #import "Marcos.h"
-@interface CreateShowThirdViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface CreateShowThirdViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 {
     UITableView *_tableView;
     UIActionSheet *sheetView;
     NSArray *arrOfrule;
     NSMutableArray *arrOfname;
-    NSMutableArray *arrOfContent;
     UICollectionView *_colloectionView;
     UIImagePickerController *imagePicker;
     NSMutableArray *arrOfImages;
     NSInteger cell_indexPath_row;
+    
+    UITextField *field1;
+    UITextField *field2;
     
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
@@ -33,11 +37,14 @@
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
 }
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [ProgressHUD dismiss];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     arrOfrule = @[@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出",@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出"];
     arrOfname = [NSMutableArray arrayWithObjects:@"申请人",@"所在公司", nil];
-    arrOfContent = [NSMutableArray arrayWithObjects:@"小龙包",@"神雕侠包剧组",nil];
     
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.tpscrollerView];
@@ -242,10 +249,16 @@
             label.tag = 112;
             
             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
-            field.userInteractionEnabled = NO;
+            
+            
+            field.text = @"3333";
+            
+            field.userInteractionEnabled = YES;
+            field.delegate = self;
             field.textColor = [UIColor whiteColor];
             field.textAlignment = NSTextAlignmentRight;
             field.font = [UIFont systemFontOfSize:15];
+            
             field.tag = 113;
             [cell1.contentView addSubview:label];
             [cell1.contentView addSubview:field];
@@ -260,7 +273,14 @@
         
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
-        feild.text = arrOfContent[indexPath.row];
+        
+        if (indexPath.row == 0) {
+            feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入申请人名字" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+            field1 = feild;
+        }else if (indexPath.row == 1){
+            feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入所在公司名称" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+            field2 = feild;
+        }
         label.text = arrOfname[indexPath.row];
         return cell1;
     }
@@ -314,7 +334,6 @@
     NSIndexPath *index = [NSIndexPath indexPathForRow:cell_indexPath_row inSection:0];
     if (cell_indexPath_row == arrOfImages.count) {
         [arrOfImages addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
-        
         [_colloectionView insertItemsAtIndexPaths:@[index]];
     }else
     {
@@ -345,6 +364,15 @@
     }
     
 }
+
+#pragma mark - textField代理
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
 #pragma mark - 返回
 -(void)didGoBack
 {
@@ -354,13 +382,86 @@
 #pragma mark - 创建演出按钮
 -(void)didNextBtn
 {
-    if (arrOfImages.count<3) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请至少上传三张照片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    
+    if (![field1.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请填写申请人" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
-        
+        return;
+    }else if (![field2.text length]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请填写所在公司" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        return;
+    }else if (arrOfImages.count<2) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"\n请至少上传两张照片" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
         return;
     }
-    [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-4] animated:YES];
+    
+    [_dictData setObject:@"0" forKey:@"status"];//状态
+    [_dictData setObject:@"47e92fdc-d546-46c9-af66-436568094d5c" forKey:@"businessId"];// 演出商编号 登陆信息给出
+    [_dictData setObject:field1.text forKey:@"applicant"];
+    [_dictData setObject:field2.text forKey:@"company"];
+    
+    
+//    [ProgressHUD show:@"正在提交" Interaction:NO];
+    
+    
+//    AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json", nil];
+//    
+//    [manager POST:ImageUpLoadIP parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        
+//        NSData *data = UIImageJPEGRepresentation(arrOfImages[0], 0.8);
+//        [formData appendPartWithFileData:data name:@"file" fileName:[NSString stringWithFormat:@"image_d.jpg"] mimeType:@"image/jpeg"];
+//        
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSDictionary *dict = responseObject;        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"上传失败" message:@"\n请检查网络设置" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+//        [aler show];
+//    }];
+
+    
+    
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:ImageUpLoadIP parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        for (int i=0; i<arrOfImages.count; i++) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(arrOfImages[i],0.8) name:[NSString stringWithFormat:@"file"] fileName:[NSString stringWithFormat:@"image_%d.jpg",i] mimeType:@"image/jpg"];
+        }
+    } error:nil];
+    
+    AFHTTPRequestOperation *opration = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    opration.responseSerializer = [AFJSONResponseSerializer serializer];
+    opration.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json", nil];
+    [opration start];
+    [opration setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    //申明返回的结果是json类型
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//    //申明请求的数据是json类型
+//    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+//    //如果报接受类型不一致请替换一致text/html或别的
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+//    [manager POST:@"http://192.168.1.116:8080/stahall/show/submit" parameters:_dictData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@",responseObject);
+//  
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
+//    
+    
+    
+    
+    
+//    [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-4] animated:YES];
 }
 
 #pragma mark - 长按删除

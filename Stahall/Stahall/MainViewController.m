@@ -87,6 +87,7 @@
     
 }
 
+
 #pragma mark - 变量的初始化
 -(void)Variableinitialization
 {

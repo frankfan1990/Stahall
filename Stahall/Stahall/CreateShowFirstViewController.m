@@ -17,7 +17,11 @@
     NSMutableArray *arrOfContent;
     NSArray *arrOfrule;
     NSArray *arrOfSegmentTitle;
-    NSMutableArray *arrOfdata;
+    
+    
+    NSMutableDictionary *dictOfdata;
+    
+    
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @end
@@ -35,10 +39,11 @@
     [super viewDidLoad];
     
     arrOfname = [NSMutableArray arrayWithObjects:@"演出名称",@"主办/承办单位", nil];
-    arrOfContent = [NSMutableArray arrayWithObjects:@"申请输入演出名称",@"请输入主办/承办单位",nil];
+    arrOfContent = [NSMutableArray arrayWithObjects:@"请输入演出名称",@"请输入主办/承办单位",nil];
     arrOfSegmentTitle = @[@"商业演出",@"公益演出"];
+    
     arrOfrule = @[@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出",@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出"];
-    arrOfdata = [NSMutableArray array];
+    dictOfdata = [NSMutableDictionary dictionary];
 
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.tpscrollerView];
@@ -185,6 +190,9 @@
             label.tag = 112;
             
             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-155, 25)];
+            
+            field.text = @"1111";
+            
             field.textAlignment = NSTextAlignmentRight;
             field.font = [UIFont systemFontOfSize:15];
             field.tag = 113;
@@ -298,7 +306,8 @@
 #pragma mark - 下一步
 -(void)didNextBtn
 {
-    [arrOfdata removeAllObjects];
+    NSString * dataStr = [NSString string];
+    [dictOfdata removeAllObjects];
     for (int i=0; i<arrOfname.count; i++) {
         NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell *cell = (UITableViewCell *)[_tableView cellForRowAtIndexPath:index];
@@ -315,19 +324,26 @@
             return;
         }
         else{
-            NSDictionary *dic = [NSDictionary dictionary];
             if (index.row == 0) {
-                dic = @{@"name":field.text};
+                [dictOfdata setObject:field.text forKey:@"showName"];
             }else{
-                NSString *key = [NSString stringWithFormat:@"company_%ld",index.row];
-                dic = @{key:field.text};
+//                NSString *key = [NSString stringWithFormat:@"company_%ld",index.row];
+                if ([dataStr length]) {
+                    dataStr = [NSString stringWithFormat:@"%@,%@",dataStr,field.text];
+                }else{
+                    dataStr = field.text;
+                }
+        
             }
-            [arrOfdata addObject:dic];
+            
         }
         
-        
     }
+    
+    [dictOfdata setObject:dataStr forKey:@"organizer"];     //演出商
+    [dictOfdata setObject:@"商业演出" forKey:@"showType"];   //演出类型
     CreateShowSecondViewController *secondCtrl = [[CreateShowSecondViewController alloc] init];
+    secondCtrl.dictOfData = dictOfdata;
     [self.navigationController pushViewController:secondCtrl animated:YES];
 }
 

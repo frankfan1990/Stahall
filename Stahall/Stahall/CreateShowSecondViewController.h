@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateShowSecondViewController : UIViewController
-@property(nonatomic,strong)UITextField *field1;
-
+@property(nonatomic,strong)UITextField *field1;//用来传递设置时间的
+@property(nonatomic,strong)NSMutableDictionary *dictOfData;
 -(void)addData:(NSString *)text;
 @end
