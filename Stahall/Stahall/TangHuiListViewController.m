@@ -9,12 +9,15 @@
 #import "TangHuiListViewController.h"
 #import "ShowMallsTableViewCell.h"
 #import "ShowDetailsViewController.h"
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
 #import "Marcos.h"
 
 #pragma mark -  堂汇 列表
 @interface TangHuiListViewController()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
+    NSArray *arrData;
 }
 
 @end
@@ -29,6 +32,8 @@
     [self setTabBar];
     [self.view setBackgroundColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]];
     
+    //取数据
+    [self getData];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,Mywidth, Myheight -64) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
@@ -76,6 +81,21 @@
     
 }
 
+-(void)getData
+{
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain"]];
+    //秀mall数据
+    NSDictionary *parameterdic = [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"start",@"20",@"limit",@"堂汇",@"query",nil];
+    [manger GET:MALLListIP parameters:parameterdic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        arrData = (NSArray *)responseObject[@"results"];
+        [_tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error:%@",error);
+    }];
+    
+}
+
 #pragma mark - tableView的代理
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -96,9 +116,13 @@
         cell.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    cell.labelOfTitle.text = @"张学友 2015年全国巡演演唱会";
-    cell.labelOfDate.text = @"2015-01-01";
-    cell.imageV.image = [UIImage imageNamed:@"lc张学友"];
+    cell.imageV.image = [UIImage imageNamed:@"七夕"];
+    if (arrData.count != 0) {
+        cell.labelOfTitle.text = arrData[indexPath.row][@"title"];
+        cell.labelOfDate.text = arrData[indexPath.row][@"timer"];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:arrData[indexPath.row][@"titlePage"]] placeholderImage:[UIImage imageNamed:@""]];
+    }
+   
     
     return cell;
 }

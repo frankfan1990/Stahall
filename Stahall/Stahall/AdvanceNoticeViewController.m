@@ -12,13 +12,16 @@
 #import "CycleScrollView.h"
 #import "CustomLabel.h"
 #import "Marcos.h"
-
 #pragma mark - 预告 案例 行程 详情
 @interface AdvanceNoticeViewController()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     UITableView *_tableView;
     UICollectionView *_collectionView;
     CycleScrollView *cycSroView;
+    
+    NSArray *_photos;
+    NSMutableArray *images;
+    NSInteger cell_indexPath_row;
 }
 @end
 @implementation AdvanceNoticeViewController
@@ -32,6 +35,7 @@
     [super viewDidLoad];
     [self setTabBar];
     [self.view setBackgroundColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]];
+    images = [NSMutableArray array];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,Mywidth, Myheight -64) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
@@ -333,13 +337,29 @@
     imageV.image = [UIImage imageNamed:@"lc汪峰2"];
     if (_dictData) {
         if (_type == 1) {
-             [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] placeholderImage:[UIImage imageNamed:@""]];
+            
+//             [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] placeholderImage:[UIImage imageNamed:@""]];
+            
+            [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (image != nil) {
+                      [images addObject:image];
+                }
+              
+            }];
         }
     }
     [cell.contentView addSubview:imageV];
     
     return cell;
 }
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell_indexPath_row = indexPath.row;
+}
+
+
+
+
 #pragma mark - 返回键
 -(void)didGoBack
 {

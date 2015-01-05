@@ -29,7 +29,7 @@
 
 
 /*
-  首页秀MALL
+  首页秀MALL列表
  */
 #define MALLListIP @"http://218.244.158.59/stahall/mall/getMall"
 
