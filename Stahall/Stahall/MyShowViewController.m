@@ -156,7 +156,7 @@
         UIView *myView = [[UIView alloc] init];
         UIView *bakcView = [[UIView alloc] initWithFrame:CGRectMake(20, 15, Mywidth-40, 35)];
         bakcView.layer.masksToBounds = YES;
-        bakcView.layer.cornerRadius = 8;
+        bakcView.layer.cornerRadius = 5;
         bakcView.layer.borderWidth = 0.5;
         bakcView.layer.borderColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1].CGColor;
        

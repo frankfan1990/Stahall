@@ -47,7 +47,7 @@
     _textField.borderStyle = UITextBorderStyleRoundedRect;
     _textField.font = [UIFont systemFontOfSize:14];
     _textField.delegate = self;
-    _textField.placeholder = @"  请输入关键字查找";
+    _textField.placeholder = @" 请输入关键字查找";
     [self.view addSubview:_textField];
     
     UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(20, 15+35+20, 200, 20)];
@@ -265,6 +265,12 @@
         }
     }];
     [_tableView reloadData];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - UIlabel的方法

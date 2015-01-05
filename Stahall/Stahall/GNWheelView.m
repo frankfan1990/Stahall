@@ -271,7 +271,7 @@ void(^setShadowForLayer)(CALayer *) = ^(CALayer *____layer) {
             
             __view.layer.opacity = 0.95;
             
-             NSLog(@"停止转动");
+//             NSLog(@"停止转动");
         }
         
     };

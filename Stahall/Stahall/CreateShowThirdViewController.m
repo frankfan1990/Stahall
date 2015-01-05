@@ -64,6 +64,7 @@
     imagePicker.delegate = self;
 
 }
+
 #pragma mark - TabBar的设置
 -(void)setTabBar
 {
@@ -294,14 +295,15 @@
             }
         }
     
-   
     cell_my.backgroundView = image1;
     
     return cell_my;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //用一个数记住点的是哪一个cell
     cell_indexPath_row = indexPath.row;
+    
     [sheetView showInView:self.view];
 }
 
@@ -309,15 +311,18 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     //    imagev.image=[info objectForKey:UIImagePickerControllerOriginalImage];
-    
+    NSIndexPath *index = [NSIndexPath indexPathForRow:cell_indexPath_row inSection:0];
     if (cell_indexPath_row == arrOfImages.count) {
         [arrOfImages addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
-        [_colloectionView reloadData];
+        
+        [_colloectionView insertItemsAtIndexPaths:@[index]];
     }else
     {
         [arrOfImages removeObjectAtIndex:cell_indexPath_row];
         [arrOfImages insertObject:[info objectForKey:UIImagePickerControllerOriginalImage] atIndex:cell_indexPath_row];
-        [_colloectionView reloadData];
+        [_colloectionView reloadItemsAtIndexPaths:@[index]];
+        
+        
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -328,10 +333,13 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.showsCameraControls = YES;
         [self presentViewController:imagePicker animated:YES completion:nil];
+        
     }else if (buttonIndex == 1){
+        
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -365,7 +373,7 @@
         NSIndexPath * indexpath = [_colloectionView indexPathForCell:cell];
         if (indexpath.row < arrOfImages.count) {
             [arrOfImages removeObjectAtIndex:indexpath.row];
-            [_colloectionView reloadData];
+            [_colloectionView deleteItemsAtIndexPaths:@[indexpath]];
         }
     }
     

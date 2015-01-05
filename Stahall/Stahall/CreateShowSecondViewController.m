@@ -318,7 +318,7 @@
         [dic setObject:@"" forKey:keys[3]];
         [dic setObject:@"" forKey:keys[4]];
         [arrOfdata addObject:dic];
-        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(arrOfSection.count-1,1)];//第一个参数是插入到第几section  第二十家几个section
+        NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(arrOfSection.count-1,1)];//第一个参数是插入到第几section  第二参数 加几个section
         [_tableView beginUpdates];
         [_tableView insertSections:set withRowAnimation:UITableViewRowAnimationRight];
         [_tableView endUpdates];
@@ -347,8 +347,9 @@
 #pragma mark - textfield的代理
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    
     _textField = textField;
-   myIndexPath = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
+    myIndexPath = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
     //这里可能不兼容其他系统
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField

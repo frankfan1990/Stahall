@@ -13,6 +13,9 @@
 		5C1E1F0F1A3FCAD20085BD64 /* ShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E1F0E1A3FCAD20085BD64 /* ShowDetailsViewController.m */; };
 		5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1E1F101A401B6E0085BD64 /* lc2.png */; };
 		5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E1F131A4026C10085BD64 /* SearchStarViewController.m */; };
+		5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */; };
+		5C2ECE461A58D8E5003A9711 /* lc111.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE441A58D8E5003A9711 /* lc111.png */; };
+		5C2ECE471A58D8E5003A9711 /* lc222.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE451A58D8E5003A9711 /* lc222.png */; };
 		5C4519D21A47AD790031685A /* CreateShowFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519D11A47AD790031685A /* CreateShowFirstViewController.m */; };
 		5C4519D51A4803E80031685A /* lc取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4519D41A4803E80031685A /* lc取消.png */; };
 		5C4519D91A4817A80031685A /* CreateShowSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519D81A4817A80031685A /* CreateShowSecondViewController.m */; };
@@ -180,6 +183,10 @@
 		5C1E1F101A401B6E0085BD64 /* lc2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc2.png; sourceTree = "<group>"; };
 		5C1E1F121A4026C10085BD64 /* SearchStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStarViewController.h; sourceTree = "<group>"; };
 		5C1E1F131A4026C10085BD64 /* SearchStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStarViewController.m; sourceTree = "<group>"; };
+		5C2ECE411A58D54B003A9711 /* MySegmentCtrol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySegmentCtrol.h; sourceTree = "<group>"; };
+		5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentCtrol.m; sourceTree = "<group>"; };
+		5C2ECE441A58D8E5003A9711 /* lc111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc111.png; sourceTree = "<group>"; };
+		5C2ECE451A58D8E5003A9711 /* lc222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc222.png; sourceTree = "<group>"; };
 		5C4519D01A47AD790031685A /* CreateShowFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShowFirstViewController.h; sourceTree = "<group>"; };
 		5C4519D11A47AD790031685A /* CreateShowFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateShowFirstViewController.m; sourceTree = "<group>"; };
 		5C4519D41A4803E80031685A /* lc取消.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc取消.png"; sourceTree = "<group>"; };
@@ -467,6 +474,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5C2ECE401A58D54B003A9711 /* MySegment */ = {
+			isa = PBXGroup;
+			children = (
+				5C2ECE411A58D54B003A9711 /* MySegmentCtrol.h */,
+				5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */,
+			);
+			path = MySegment;
+			sourceTree = "<group>";
+		};
 		5C4519E11A4916180031685A /* NSDate */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +504,8 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5C2ECE441A58D8E5003A9711 /* lc111.png */,
+				5C2ECE451A58D8E5003A9711 /* lc222.png */,
 				5C4519E51A4956840031685A /* lc添加照片.png */,
 				5C4519D41A4803E80031685A /* lc取消.png */,
 				5CD5FD381A43B9C700316965 /* lc张学友.png */,
@@ -735,6 +753,7 @@
 		631DC2371A37411400F5E9AA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				5C2ECE401A58D54B003A9711 /* MySegment */,
 				63649A491A496F890024E3F7 /* Calendar */,
 				5C4519E11A4916180031685A /* NSDate */,
 				636F44591A44091300FD6783 /* SDWebImage */,
@@ -1272,12 +1291,14 @@
 				5C5EF6871A3A91DE00EE8D78 /* page_state_highlight@2x.png in Resources */,
 				63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */,
 				63649A521A496FBD0024E3F7 /* 日历切换right@2x.png in Resources */,
+				5C2ECE471A58D8E5003A9711 /* lc222.png in Resources */,
 				6378C0311A47BD9D00CDED3E /* fz选中对勾@2x.png in Resources */,
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
 				63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */,
 				63649A531A496FBD0024E3F7 /* 行程@2x.png in Resources */,
+				5C2ECE461A58D8E5003A9711 /* lc111.png in Resources */,
 				636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */,
 				6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */,
 				63BC6A8C1A374B8200087DFB /* ProgressHUD.bundle in Resources */,
@@ -1352,6 +1373,7 @@
 				5C7D5CE71A51485A00163B07 /* Left_MyStarViewController.m in Sources */,
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
 				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
+				5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
 				63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */,
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
