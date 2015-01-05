@@ -12,6 +12,8 @@
 #import "NSDate+Category.h"
 #import "ProgressHUD.h"
 #import "StahallEvalutionDetailInfoViewController.h"
+#import "StarModel.h"
+#import "UIImageView+WebCache.h"
 
 
 bool selected;//是否是出于编辑模式的标志位
@@ -338,6 +340,11 @@ bool selected;//是否是出于编辑模式的标志位
     if([starsSelected count]==1){//如果数据源只有一个数据
         
         stahallEvalueCell.addIcon.image =[UIImage imageNamed:@"fz加"];
+        if(stahallEvalueCell.starHeaderImage.image){
+        
+            stahallEvalueCell.starHeaderImage.image = nil;
+            stahallEvalueCell.starName.text = nil;
+        }
         
     }else{//如果数据源超过一个数据
     
@@ -345,6 +352,11 @@ bool selected;//是否是出于编辑模式的标志位
         if(indexPath.row==indexRow){
         
             stahallEvalueCell.addIcon.image =[UIImage imageNamed:@"fz加"];
+            if(stahallEvalueCell.starHeaderImage.image){
+                
+                stahallEvalueCell.starHeaderImage.image = nil;
+                stahallEvalueCell.starName.text = nil;
+            }
             
         }else{
         
@@ -373,6 +385,23 @@ bool selected;//是否是出于编辑模式的标志位
     }
 
     
+    //
+   
+    if([starsSelected count]>1){
+        
+        if(![starsSelected[indexPath.row] isKindOfClass:[NSString class]]){
+        
+            NSDictionary *starDict = starsSelected[indexPath.row];
+            StarModel *starModel =[StarModel modelWithDictionary:starDict error:nil];
+            [stahallEvalueCell.starHeaderImage sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
+            stahallEvalueCell.starName.text = starModel.artistName;
+
+        
+        }
+        
+    }
+    
+  
     return stahallEvalueCell;
 }
 

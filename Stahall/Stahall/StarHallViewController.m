@@ -33,6 +33,8 @@ static NSString *cacheKey = @"cacheKey";
 static NSString *cacheKey2 = @"cacheKey2";
 static NSString *cacheKey3 = @"cacheKey3";
 
+
+
 @interface StarHallViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,ZSYPopoverListDelegate,ZSYPopoverListDatasource,UITextFieldDelegate,FxBlurViewDidTouchDelegate>
 {
 
@@ -58,6 +60,8 @@ static NSString *cacheKey3 = @"cacheKey3";
     NSMutableArray *hotStars;//热门艺人
     NSMutableArray *localStars;//本地艺人
     NSMutableArray *recommendStars;//推荐艺人
+    
+    BOOL isPushModel;
     
 }
 @property (nonatomic,strong)ZSYPopoverListView *popView;
@@ -595,13 +599,29 @@ static NSString *cacheKey3 = @"cacheKey3";
             
         }else{//选中该cell
         
-            [selectedCells addObject:indexPath];
+            if(indexPath.section==0){//热门艺人模块
+            
+                NSDictionary *starDict = hotStars[indexPath.row];
+                [selectedCells addObject:starDict];
+                
+            }else if (indexPath.section==1){//本地艺人
+            
+                NSDictionary *starDict = localStars[indexPath.row];
+                [selectedCells addObject:starDict];
+            
+            }else{//推荐艺人
+            
+                NSDictionary *starDict = recommendStars[indexPath.row];
+                [selectedCells addObject:starDict];
+            
+            }
+
             cell.checkIt.hidden = NO;
         }
         
     }else{//如果不是搜索模式-常规模式
     
-        
+        isPushModel = YES;
         StarDetaiInfoViewController *starDetaiInfo =[StarDetaiInfoViewController new];
         
         NSMutableArray *tempArray = nil;
@@ -619,6 +639,7 @@ static NSString *cacheKey3 = @"cacheKey3";
         NSDictionary *tempDict = tempArray[indexPath.row];
         StarModel *starModel = [StarModel modelWithDictionary:tempDict error:nil];
         starDetaiInfo.starName = starModel.artistName;
+        starDetaiInfo.starId = starModel.artistId;
         starDetaiInfo.starDict = tempDict;
         
         [self.navigationController pushViewController:starDetaiInfo animated:YES];
@@ -962,6 +983,22 @@ bool isExpand;
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
   
+    if(!isPushModel){
+    
+        
+        if([hotStars count]>8){
+        
+            [hotStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
+        }else if ([localStars count]>8){
+        
+            [localStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
+        }else if ([recommendStars count]>8){
+        
+            [recommendStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
+        }
+
+    }
+    
 }
 
 
@@ -974,10 +1011,8 @@ bool isExpand;
     _start2 = 9;
     _start3 = 9;
     
-    hotStars = nil;
-    localStars = nil;
-    recommendStars = nil;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

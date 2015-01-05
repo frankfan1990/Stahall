@@ -16,6 +16,7 @@
 @property (nonatomic,strong)NSDictionary *starDict;//艺人数据层dict
 
 @property (nonatomic,copy)NSString *starName;
+@property (nonatomic,copy)NSString *starId;
 
 @property (nonatomic,strong)NSMutableArray *today;
 @property (nonatomic,strong)NSMutableArray *travelDay;
