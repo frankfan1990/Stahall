@@ -599,7 +599,23 @@ static NSString *cacheKey3 = @"cacheKey3";
             
         }else{//选中该cell
         
-            [selectedCells addObject:indexPath];
+            if(indexPath.section==0){//热门艺人模块
+            
+                NSDictionary *starDict = hotStars[indexPath.row];
+                [selectedCells addObject:starDict];
+                
+            }else if (indexPath.section==1){//本地艺人
+            
+                NSDictionary *starDict = localStars[indexPath.row];
+                [selectedCells addObject:starDict];
+            
+            }else{//推荐艺人
+            
+                NSDictionary *starDict = recommendStars[indexPath.row];
+                [selectedCells addObject:starDict];
+            
+            }
+
             cell.checkIt.hidden = NO;
         }
         
@@ -623,6 +639,7 @@ static NSString *cacheKey3 = @"cacheKey3";
         NSDictionary *tempDict = tempArray[indexPath.row];
         StarModel *starModel = [StarModel modelWithDictionary:tempDict error:nil];
         starDetaiInfo.starName = starModel.artistName;
+        starDetaiInfo.starId = starModel.artistId;
         starDetaiInfo.starDict = tempDict;
         
         [self.navigationController pushViewController:starDetaiInfo animated:YES];

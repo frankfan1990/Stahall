@@ -18,6 +18,13 @@
 /********/
 
 #import "StarModel.h"
+//
+#import "ProgressHUD.h"
+#import "Reachability.h"
+#import "Data.h"
+#import "NetworkHelper.h"
+#import "FrankfanApis.h"
+#import "ArtistPrice.h"
 
 
 @interface StarDetaiInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,UIScrollViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
@@ -74,6 +81,12 @@
     UILabel *touchView;//让用户可以滑动的触点
     
     CGFloat sectionSecondCellHeight;//cell的高度
+    
+    Reachability *_reachability;
+    
+    //
+    Data *starData;//艺人详情数据
+    NSArray *starPriceList;
 }
 
 @property (nonatomic,strong)UITableView *tableView;
@@ -143,21 +156,21 @@
     
     
     _truantButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_truantButton setTitle:@"今天" forState:UIControlStateNormal];
+    [_truantButton setTitle:@"待定" forState:UIControlStateNormal];
     [_truantButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _truantButton.titleLabel.font = [UIFont systemFontOfSize:15];
     _truantButton.frame = CGRectMake(40, 5, 40, 34);
     [_bottomView addSubview:_truantButton];
     
     _classButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_classButton setTitle:@"行程" forState:UIControlStateNormal];
+    [_classButton setTitle:@"已定" forState:UIControlStateNormal];
     [_classButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _classButton.titleLabel.font = [UIFont systemFontOfSize:15];
     _classButton.frame = CGRectMake(140, 5, 40, 34);
     [_bottomView addSubview:_classButton];
     
     _leaveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_leaveButton setTitle:@"演出" forState:UIControlStateNormal];
+    [_leaveButton setTitle:@"未定" forState:UIControlStateNormal];
     [_leaveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _leaveButton.titleLabel.font = [UIFont systemFontOfSize:15];
     _leaveButton.frame = CGRectMake(240, 5, 40, 34);
@@ -180,7 +193,7 @@
     selectedButtonArray =[NSMutableArray array];
     olderBackViewArray =[NSMutableArray array];
     sectionSecondCellHeight = 330;
-
+    _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     //简介模块
     introductionBackView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 330)];
@@ -304,7 +317,7 @@
 
     //创建价格模块控件-collectionView
     UICollectionViewFlowLayout *flowLayout =[[UICollectionViewFlowLayout alloc]init];
-    flowLayout.itemSize = CGSizeMake(80, 35);
+    flowLayout.itemSize = CGSizeMake(135, 35);
     flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
     
     self.collectionView =[[UICollectionView alloc]initWithFrame:priceBackView.bounds collectionViewLayout:flowLayout];
@@ -335,13 +348,63 @@
     aboutCarButton.layer.cornerRadius = 2;
     [requireBackView addSubview:aboutFoodButton];
     
+    
+#pragma mark - 网络请求
+    
+    if(![_reachability isReachable]){
+    
+        [ProgressHUD showError:@"网络错误"];
+    }else{
+    
+        
+        AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+        NSDictionary *parameters = nil;
+        if(self.starId){
+            
+            parameters = @{@"artistId":self.starId};
+        }
+       
+        [manager GET:API_GetStarDetailById parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+           
+            NSDictionary *dict = responseObject[@"data"];
+            starData =[Data modelObjectWithDictionary:dict];
+            
+            //艺人价格
+            ArtistPrice *artistPrice = starData.artistPrice;
+            NSString *qxpp = [NSString stringWithFormat:@"群星拼盘:%@万元",artistPrice.platter];
+            NSString *mthd = [NSString stringWithFormat:@"媒体活动:%@万元",artistPrice.media];
+            NSString *gryc = [NSString stringWithFormat:@"个人演唱:%@万元",artistPrice.concert];
+            NSString *hlhd = [NSString stringWithFormat:@"婚礼活动:%@万元",artistPrice.wedding];
+            NSString *qyyc = [NSString stringWithFormat:@"企业演出:%@万元",artistPrice.companyShow];
+            NSString *ppdy = [NSString stringWithFormat:@"品牌代言:%@万元",artistPrice.represent];
+            NSString *ydyc = [NSString stringWithFormat:@"夜店演出:%@万元",artistPrice.nightclubShow];
+            NSString *qthd = [NSString stringWithFormat:@"其他活动:%@万元",artistPrice.other];
+            
+            starPriceList = @[qxpp,mthd,gryc,hlhd,qyyc,ppdy,ydyc,qthd];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"error:%@",[error localizedDescription]);
+            [ProgressHUD showError:@"网络错误"];
+            
+        }];
+        
+    }
+    
+    
+    
+    
+    
+    
+    
 }
 
 
 #pragma mark - collectionCell个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
-    return 6;
+    return [starPriceList count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -349,8 +412,8 @@
     StarDetailCollectionViewCell *cell = (StarDetailCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.layer.cornerRadius = 2;
     cell.layer.masksToBounds = YES;
-    
-    cell.itemTitle.text = @"测试";
+    cell.itemTitle.text = starPriceList[indexPath.row];
+    cell.itemTitle.font =[UIFont systemFontOfSize:14];
     cell.backgroundColor =[UIColor orangeColor];
     return cell;
 

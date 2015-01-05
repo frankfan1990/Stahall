@@ -14,4 +14,8 @@
 //#define API_StarInfo @"http://192.168.1.116:8080/stahall/artist/getArtist"
 
 
+//根据艺人Id请求艺人详情
+//#define API_GetStarDetailById @"http://192.168.1.116:8080/stahall/artist/getArtistDetail"
+#define API_GetStarDetailById @"http://218.244.158.59/stahall/artist/getArtistDetail"
+
 #endif
