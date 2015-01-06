@@ -107,8 +107,12 @@
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain"]];
     
+    /*
+     
+     头部轮播的数据
+     
+     */
     
-    //头部轮播的数据
     [manger GET:home_HeadIP parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *datadic = (NSDictionary *)responseObject;
@@ -143,6 +147,7 @@
             homedetails.dataStr = arrData[pageIndex][@"posterContent"];
             [Myself.navigationController pushViewController:homedetails animated:YES];
             NSLog(@"%ld",(long)pageIndex);
+            
         };
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -150,8 +155,14 @@
     }];
     
     
-    //获取 预告数据 ！！！！！
-    [manger GET:advanceIp  parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    /*
+     
+     获取预告数据
+     
+     */
+    
+    NSDictionary *dic = @{@"start":@"0",@"limit":@"20"};
+    [manger GET:advanceIp  parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *dictiondata = (NSDictionary *)responseObject;
         advanceData = dictiondata[@"results"];
@@ -245,6 +256,7 @@
         imageV.backgroundColor = [UIColor whiteColor];
         imageV.alpha = 0.6;
         [headView addSubview:imageV];
+        
         if (section == 4) {
             segmentCtrl = [[CCSegmentedControl alloc] initWithItems:arrOfSegmentTitle];
             segmentCtrl.frame = CGRectMake(imageV.frame.origin.x+imageV.frame.size.width +40, 10, Mywidth-(imageV.frame.origin.x+imageV.frame.size.width +50), 30);
@@ -590,7 +602,6 @@
     collectionViewOther = (UICollectionView *)[_tableView viewWithTag:10004];
     [collectionViewOther reloadData];
     [collectionViewOther scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-    
     NSLog(@"%ld",(long)segmentCtrl.selectedSegmentIndex);
 }
 
@@ -625,7 +636,6 @@
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                                context:nil];
     CGSize size = rect.size;
-    
     return size.height;
 }
 - (CGFloat)caculateTheTextWidth:(NSString *)string andFontSize:(int)fontSize andDistance:(int)distance{
@@ -642,7 +652,6 @@
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                                context:nil];
     CGSize size = rect.size;
-    
     return size.width;
 }
 

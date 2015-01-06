@@ -8,6 +8,7 @@
 
 #import "CreateShowThirdViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "MyShowViewController.h"
 #import "AFNetworking.h"
 #import "ProgressHUD.h"
 #import "Marcos.h"
@@ -258,7 +259,7 @@
             field.textColor = [UIColor whiteColor];
             field.textAlignment = NSTextAlignmentRight;
             field.font = [UIFont systemFontOfSize:15];
-            
+            field.returnKeyType = UIReturnKeyDone;
             field.tag = 113;
             [cell1.contentView addSubview:label];
             [cell1.contentView addSubview:field];
@@ -403,65 +404,93 @@
     [_dictData setObject:field2.text forKey:@"company"];
     
     
-//    [ProgressHUD show:@"正在提交" Interaction:NO];
+    [ProgressHUD show:@"正在提交" Interaction:NO];
     
     
-//    AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json", nil];
-//    
-//    [manager POST:ImageUpLoadIP parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        
-//        NSData *data = UIImageJPEGRepresentation(arrOfImages[0], 0.8);
-//        [formData appendPartWithFileData:data name:@"file" fileName:[NSString stringWithFormat:@"image_d.jpg"] mimeType:@"image/jpeg"];
-//        
-//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSDictionary *dict = responseObject;        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"上传失败" message:@"\n请检查网络设置" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
-//        [aler show];
-//    }];
-
-    
-    
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:ImageUpLoadIP parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        for (int i=0; i<arrOfImages.count; i++) {
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(arrOfImages[i],0.8) name:[NSString stringWithFormat:@"file"] fileName:[NSString stringWithFormat:@"image_%d.jpg",i] mimeType:@"image/jpg"];
-        }
-    } error:nil];
-    
-    AFHTTPRequestOperation *opration = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    opration.responseSerializer = [AFJSONResponseSerializer serializer];
-    opration.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json", nil];
-    [opration start];
-    [opration setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+    /*
+     
+    图片上传
+     
+    */
+     __block NSString *dataStr=[NSString string];
+    __block NSInteger count = 0;
+    __weak typeof (self)mySelf = self;
+    for (int i =0; i<arrOfImages.count; i++) {
         
+        AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain",@"application/json", nil];
+        
+        [manager POST:ImageUpLoadIP parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            
+            NSData *data = UIImageJPEGRepresentation(arrOfImages[i], 0.8);
+            [formData appendPartWithFileData:data name:@"file" fileName:[NSString stringWithFormat:@"image_d.jpg"] mimeType:@"image/jpeg"];
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *dict = responseObject;
+            if ([dict[@"success"] intValue] == 1) {
+                count++;
+                if ([dataStr length]) {
+                    dataStr = [NSString stringWithFormat:@"%@,%@",dataStr,dict[@"data"]];
+                }else{
+                    dataStr = dict[@"data"];
+                }
+                
+                if (count == arrOfImages.count) {
+                    [mySelf postPlist:dataStr];
+                }
+                
+            }
+           
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            [ProgressHUD dismiss];
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"图片上传失败" message:@"\n请检查网络设置" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+            [aler show];
+        }];
+    }
+
+}
+
+-(void)postPlist:(NSString *)dataStr
+{
+    
+    [_dictData setObject:dataStr forKey:@"businessLicense"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //申明返回的结果是json类型
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //申明请求的数据是json类型
+    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    //如果报接受类型不一致请替换一致text/html或别的
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+    
+    __weak typeof (self)Myself = self;
+    [manager POST:@"http://192.168.1.116:8080/stahall/show/submit" parameters:_dictData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dict = responseObject;
+        if ([dict[@"success"] intValue] == 1) {
+            [ProgressHUD showSuccess:@"提交成功"];
+            
+            MyShowViewController *myShowCtrl = Myself.navigationController.viewControllers[Myself.navigationController.viewControllers.count-4];
+            
+        
+            [self.navigationController popToViewController:myShowCtrl animated:YES];
+                
+        }else{
+            [ProgressHUD dismiss];
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"提交失败" message:@"\n网络异常" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+            [aler show];
+        }
+    
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [ProgressHUD dismiss];
+        UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"提交失败" message:@"\n请检查网络设置" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
+        [aler show];
         NSLog(@"%@",error);
     }];
     
-    
-    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    //申明返回的结果是json类型
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    //申明请求的数据是json类型
-//    manager.requestSerializer=[AFJSONRequestSerializer serializer];
-//    //如果报接受类型不一致请替换一致text/html或别的
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
-//    [manager POST:@"http://192.168.1.116:8080/stahall/show/submit" parameters:_dictData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"%@",responseObject);
-//  
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
-//    
-    
-    
-    
-    
-//    [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-4] animated:YES];
+    //    [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-4] animated:YES];
+
 }
 
 #pragma mark - 长按删除

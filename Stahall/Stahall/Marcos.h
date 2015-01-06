@@ -25,7 +25,7 @@
 /*
     首页预告
  */
-#define advanceIp @"http://218.244.158.59/stahall/trailer/getTrailer?start=0&limit=20"
+#define advanceIp @"http://218.244.158.59/stahall/trailer/getTrailer"
 
 
 /*

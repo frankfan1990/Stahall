@@ -47,7 +47,7 @@
     [btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnRight addTarget:self action:@selector(didRightBtn) forControlEvents:UIControlEventTouchUpInside];
     btnLeft.backgroundColor = [UIColor whiteColor];
-    btnRight.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
+    btnRight.backgroundColor = [UIColor clearColor];
     
     UIView *myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 45)];
      myView.backgroundColor = [UIColor clearColor];
@@ -178,7 +178,7 @@
 -(void)didLeftBtn{
     btnLeft.selected  = YES;
     btnRight.selected = NO;
-    btnRight.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
+    btnRight.backgroundColor = [UIColor clearColor];
     [UIView animateWithDuration:0.3 animations:^{
         btnLeft.backgroundColor = [UIColor whiteColor];
         
@@ -189,7 +189,7 @@
 -(void)didRightBtn{
     btnLeft.selected  = NO;
     btnRight.selected = YES;
-    btnLeft.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
+    btnLeft.backgroundColor = [UIColor clearColor];
     [UIView animateWithDuration:0.3 animations:^{
         btnRight.backgroundColor = [UIColor whiteColor];
         
