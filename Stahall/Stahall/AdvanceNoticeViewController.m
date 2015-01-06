@@ -20,7 +20,6 @@
     CycleScrollView *cycSroView;
     
     NSArray *_photos;
-    NSMutableArray *images;
     NSInteger cell_indexPath_row;
 }
 @end
@@ -35,7 +34,6 @@
     [super viewDidLoad];
     [self setTabBar];
     [self.view setBackgroundColor:[UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1]];
-    images = [NSMutableArray array];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,Mywidth, Myheight -64) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
@@ -124,10 +122,12 @@
         [backView addSubview:imageV];
         
         NSString *title = @"汪峰2014-2015 “峰暴来临” 超级巡回演唱会 湖南 长沙站 贺龙体育馆";
-      
-        if (_type == 1 && _dictData != nil) {
-            title = _dictData[@"trailerTitle"];
+        if (_dictData != nil) {
+            if (_type == 1) {
+                title = _dictData[@"trailerTitle"];
+            }
         }
+      
         
         
         CGFloat height = [self caculateTheTextHeight:title andFontSize:16 andDistance:Mywidth-(backView.frame.origin.x+backView.frame.size.width+25)];
@@ -140,12 +140,13 @@
         [cell1.contentView addSubview:labelOfTitle];
         
         NSString *timeStr = [NSString stringWithFormat:@"<font color=\"gray\">时间:  <font color=\"black\">2014-11-15 08:30"];
-        if (_type == 1 && _dictData != nil) {
-            
-        timeStr = [NSString stringWithFormat:@"<font color=\"gray\">时间:  <font color=\"black\">%@",_dictData[@"timer"]];
-           
+        
+        if (_dictData != nil) {
+            if (_type == 1) {
+                timeStr = [NSString stringWithFormat:@"<font color=\"gray\">时间:  <font color=\"black\">%@",_dictData[@"timer"]];
+            }
         }
-
+       
         CustomLabel *labelOfTime = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, 118, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         MarkupParser *p1 = [[MarkupParser alloc] init];
         p1.fontSize = 13;
@@ -153,18 +154,24 @@
         [cell1.contentView addSubview:labelOfTime];
         
         NSString *addressStr = [NSString stringWithFormat:@"<font color=\"gray\">地点:  <font color=\"black\">湖南 长沙"];
-        if (_type == 1 && _dictData != nil) {
-            addressStr = [NSString stringWithFormat:@"<font color=\"gray\">地点:  <font color=\"black\">%@",_dictData[@"address"]];
+        if (_dictData != nil) {
+            if (_type == 1) {
+                addressStr = [NSString stringWithFormat:@"<font color=\"gray\">地点:  <font color=\"black\">%@",_dictData[@"address"]];
+            }
         }
+        
         
         CustomLabel *labelOfaddress = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, labelOfTime.frame.origin.y+labelOfTime.frame.size.height, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
         [labelOfaddress setAttString:[p1 attrStringFromMarkup:addressStr]];
         [cell1.contentView addSubview:labelOfaddress];
         
         NSString *venuesStr = [NSString stringWithFormat:@"<font color=\"gray\">场馆:  <font color=\"black\">贺龙体育馆"];
-        if (_type == 1 && _dictData != nil) {
-
-            venuesStr = [NSString stringWithFormat:@"<font color=\"gray\">场馆:  <font color=\"black\">%@",_dictData[@"venues"]];
+        if (_dictData != nil) {
+            if (_type == 1) {
+                
+                venuesStr = [NSString stringWithFormat:@"<font color=\"gray\">场馆:  <font color=\"black\">%@",_dictData[@"venues"]];
+            }
+            
         }
         
         CustomLabel *labelOfVenues = [[CustomLabel alloc] initWithFrame:CGRectMake(backView.frame.origin.x+backView.frame.size.width+15, labelOfaddress.frame.origin.y+labelOfaddress.frame.size.height, Mywidth-(backView.frame.origin.x+backView.frame.size.width+25), 20)];
@@ -172,9 +179,12 @@
         [cell1.contentView addSubview:labelOfVenues];
         
         NSString *hostStr = [NSString stringWithFormat:@"<font color=\"gray\">主办:  <font color=\"black\">艺人堂文化传媒"];
-        if (_type == 1 && _dictData != nil) {
-            hostStr = [NSString stringWithFormat:@"<font color=\"gray\">主办:  <font color=\"black\">%@",_dictData[@"organizer"]];
+        if (_dictData != nil) {
+            if (_type == 1 ) {
+                hostStr = [NSString stringWithFormat:@"<font color=\"gray\">主办:  <font color=\"black\">%@",_dictData[@"organizer"]];
+            }
         }
+        
         
         int a = 20;
         NSString *str = @"主办:  艺人堂文化传媒";
@@ -236,7 +246,6 @@
             viewBackOther.backgroundColor = [UIColor whiteColor];
             
             UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake(13, 15, 65, 65)];
-//            imageV2.image = [UIImage imageNamed:@"lc汪峰头像"];
             imageV2.layer.masksToBounds = YES;
             imageV2.layer.cornerRadius = imageV2.frame.size.width/2;
             [viewBackOther addSubview:imageV2];
@@ -244,7 +253,7 @@
           
             
             UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(imageV2.frame.size.width+imageV2.frame.origin.x+22, 10, Myself.view.frame.size.width-(imageV2.frame.size.width+imageV2.frame.origin.x+22+40), 80)];
-            [Myself Customlable:labelContent text:@"汪峰,祖籍江苏常熟,1971年6月29日出生于北京。中国大陆摇滚歌手、音乐创作人、作词人、作曲家,鲍家街43号乐队队长 很厉害很厉害很厉害" fontSzie:15 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:10];
+            [Myself Customlable:labelContent text:@"" fontSzie:15 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:10];
             [viewBackOther addSubview:labelContent];
             
             if (Myself.dictData) {
@@ -338,14 +347,7 @@
     if (_dictData) {
         if (_type == 1) {
             
-//             [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] placeholderImage:[UIImage imageNamed:@""]];
-            
-            [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (image != nil) {
-                      [images addObject:image];
-                }
-              
-            }];
+             [imageV sd_setImageWithURL:[NSURL URLWithString:_dictData[@"posters"][indexPath.row][@"filePath"]] placeholderImage:[UIImage imageNamed:@""]];
         }
     }
     [cell.contentView addSubview:imageV];

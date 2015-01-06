@@ -190,9 +190,6 @@
             label.tag = 112;
             
             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-155, 25)];
-            
-            field.text = @"1111";
-            
             field.textAlignment = NSTextAlignmentRight;
             field.font = [UIFont systemFontOfSize:15];
             field.tag = 113;
@@ -214,8 +211,6 @@
             }
             
         }
-        
-        
         
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
