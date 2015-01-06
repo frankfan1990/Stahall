@@ -9,6 +9,8 @@
 #import "Left_CustomerServiceViewController.h"
 #import "MainViewController.h"
 #import "RESideMenu.h"
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
 #import "Marcos.h"
 #pragma mark - 我的客服
 @interface Left_CustomerServiceViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -113,6 +115,7 @@
         
         UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake( Mywidth/2-105/2,45/2,95, 95)];
         imageV2.backgroundColor = [UIColor whiteColor];
+        imageV2.image = [UIImage imageNamed:@"lc专属克服"];
         imageV2.layer.masksToBounds = YES;
         imageV2.layer.cornerRadius = imageV2.frame.size.width/2;
         

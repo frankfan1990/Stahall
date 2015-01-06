@@ -24,6 +24,7 @@
 		5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519E31A4940650031685A /* CreateShowThirdViewController.m */; };
 		5C4519E61A4956840031685A /* lc添加照片.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4519E51A4956840031685A /* lc添加照片.png */; };
 		5C4519EC1A4BDC870031685A /* HomeHeadDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */; };
+		5C46B6D41A5BC71E00DFE733 /* lc专属克服.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C46B6D31A5BC71E00DFE733 /* lc专属克服.png */; };
 		5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */; };
 		5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1851A3E890F00F6EC11 /* 张杰.png */; };
 		5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */; };
@@ -206,6 +207,7 @@
 		5C4519E51A4956840031685A /* lc添加照片.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc添加照片.png"; sourceTree = "<group>"; };
 		5C4519EA1A4BDC870031685A /* HomeHeadDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadDetailsViewController.h; sourceTree = "<group>"; };
 		5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadDetailsViewController.m; sourceTree = "<group>"; };
+		5C46B6D31A5BC71E00DFE733 /* lc专属克服.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服.png"; sourceTree = "<group>"; };
 		5C4CF1821A3E88D100F6EC11 /* CCSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSegmentedControl.h; sourceTree = "<group>"; };
 		5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSegmentedControl.m; sourceTree = "<group>"; };
 		5C4CF1851A3E890F00F6EC11 /* 张杰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "张杰.png"; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5C46B6D31A5BC71E00DFE733 /* lc专属克服.png */,
 				5C2ECE441A58D8E5003A9711 /* lc111.png */,
 				5C2ECE451A58D8E5003A9711 /* lc222.png */,
 				5C4519E51A4956840031685A /* lc添加照片.png */,
@@ -1331,6 +1334,7 @@
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
 				63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */,
 				63649A531A496FBD0024E3F7 /* 行程@2x.png in Resources */,
+				5C46B6D41A5BC71E00DFE733 /* lc专属克服.png in Resources */,
 				5C2ECE461A58D8E5003A9711 /* lc111.png in Resources */,
 				636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */,
 				6397FDCF1A429E9B0021B9E2 /* fs_main_login_selected@2x.png in Resources */,

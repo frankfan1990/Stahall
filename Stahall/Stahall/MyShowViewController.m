@@ -12,13 +12,24 @@
 #import "Marcos.h"
 #import "MainViewController.h"
 #import "CreateShowFirstViewController.h"
-@interface MyShowViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "ProgressHUD.h"
+#import "AFNetworking.h"
+@interface MyShowViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     UITableView *_tableView;
     UIButton *btnLeft;
     UIButton *btnRight;
     NSArray *arrOfHeadTitleOne;
     NSArray *arrOfHeadTitleTwo;
+    
+    //三个数组对应 三个我的演出状态的数据
+    NSMutableArray *data1;
+    NSMutableArray *data2;
+    NSMutableArray *data3;
+    
+    //两个数组 对应 我的估价两个状态
+    NSMutableArray *dataOther1;
+    NSMutableArray *dataOther2;
 }
 @end
 
@@ -29,12 +40,16 @@
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [ProgressHUD dismiss];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 
     [self Variableinitialization];
+    [self getData];
     [self.view setBackgroundColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1]];
     btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
     btnRight = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -118,9 +133,102 @@
 #pragma mark - 变量的初始化
 -(void)Variableinitialization
 {
+    data1 = [NSMutableArray array];
+    data2 = [NSMutableArray array];
+    data3 = [NSMutableArray array];
+    dataOther1 = [NSMutableArray array];
+    dataOther2 = [NSMutableArray array];
     arrOfHeadTitleOne = @[@"待审核",@"进行中",@"已完成"];
     arrOfHeadTitleTwo = @[@"估价中",@"已完成"];
     
+}
+
+-(void)getData{
+
+        [ProgressHUD show:@"正在加载" Interaction:NO];
+    
+        AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+        manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
+        __block int count = 0;
+        __block int isfailure = 0;
+        /*
+         
+         我的演出的数据
+          
+         */
+    __weak typeof (self)mySelf = self;
+        NSDictionary *dic1 = @{@"businessId":@"47e92fdc-d546-46c9-af66-436568094d5c"};
+        [manger GET:MyShowsIP parameters:dic1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            count++;
+            if (count == 2) {
+                [ProgressHUD showSuccess:@"加载完成"];
+            }
+            
+            NSDictionary *datadic = (NSDictionary *)responseObject;
+            for (NSDictionary *dd in datadic[@"results"]) {
+                
+                if ([dd[@"status"] intValue] == 0) {
+                    [data1 addObject:dd];
+                }else if ([dd[@"status"] intValue] == 3) {
+                    [data2 addObject:dd];
+                }else if ([dd[@"status"] intValue] == 4) {
+                    [data3 addObject:dd];
+                }
+            }
+            [_tableView reloadData];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            isfailure++;
+            NSLog(@"%@",error);
+            if (isfailure == 1) {
+                [ProgressHUD dismiss];
+                UIAlertView *aler=[[UIAlertView alloc] initWithTitle:nil message:@"\n加载失败\n网络异常" delegate:mySelf cancelButtonTitle:@"取消" otherButtonTitles:@"重新加载",nil];
+                [aler show];
+            }
+        }];
+    
+    
+    /*
+     
+     我的估价的数据
+     
+     */
+    
+    [manger GET:MyValuationIP parameters:dic1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        count++;
+        if (count == 2) {
+            [ProgressHUD showSuccess:@"加载完成"];
+        }
+        
+        NSDictionary *datadic = (NSDictionary *)responseObject;
+        for (NSDictionary *dd in datadic[@"results"]) {
+            if ([dd[@"status"] intValue] == 0) {
+                [dataOther1 addObject:dd];
+            }else if ([dd[@"status"] intValue] == 1) {
+                [dataOther2 addObject:dd];
+            }
+        }
+        [_tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+        isfailure++;
+        if (isfailure == 1) {
+            [ProgressHUD dismiss];
+            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:nil message:@"\n加载失败\n网络异常" delegate:mySelf cancelButtonTitle:@"取消" otherButtonTitles:@"重新加载",nil];
+            [aler show];
+        }
+        
+    }];
+
+}
+
+
+#pragma mark - UIAlertView代理
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [self getData];
+    }
 }
 
 #pragma mark - tableView 好多分组
@@ -136,15 +244,21 @@
 #pragma mark - tableView的 每一组有几个cell
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 0;
-    }
-    else if (section == 1) {
-        return 2;
-    }else if (section == 2){
-        return 2;
-    }else if (section == 3){
-        return 2;
+
+    if (btnLeft.selected) {
+        if (section == 1) {
+            return data1.count;
+        }else if (section == 2){
+            return data2.count;
+        }else if (section == 3){
+            return data3.count;
+        }
+    }else{
+        if (section == 1) {
+            return dataOther1.count;
+        }else if (section == 2){
+            return dataOther2.count;
+        }
     }
     return  0;
 }
@@ -267,8 +381,28 @@
         view.hidden = NO;
     }
     
-    labelOfDate.text = @"2015-01-01 08:30";
-    labelContent.text = @"陈奕迅演唱会";
+    
+    if (btnLeft.selected) {
+        if (indexPath.section == 1) {
+            labelContent.text = data1[indexPath.row][@"showName"];
+            labelOfDate.text = [data1[indexPath.row][@"createTime"] substringToIndex:16];
+        }else if (indexPath.section == 2){
+            labelContent.text = data2[indexPath.row][@"showName"];
+            labelOfDate.text = [data2[indexPath.row][@"createTime"] substringToIndex:16];
+        }else if (indexPath.section == 3){
+            labelContent.text = data3[indexPath.row][@"showName"];
+            labelOfDate.text = [data3[indexPath.row][@"createTime"] substringToIndex:16];
+        }
+    }else{
+        if (indexPath.section == 1) {
+            labelContent.text = dataOther1[indexPath.row][@"showName"];
+            labelOfDate.text = [dataOther1[indexPath.row][@"createTime"] substringToIndex:16];
+        }else if (indexPath.section == 2){
+            labelContent.text = dataOther2[indexPath.row][@"showName"];
+            labelOfDate.text = [dataOther2[indexPath.row][@"createTime"] substringToIndex:16];
+        }
+    }
+   
     
     return cell;
 }

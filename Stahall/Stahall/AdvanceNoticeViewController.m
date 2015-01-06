@@ -94,7 +94,7 @@
     }else if (indexPath.row == 1){
         return 150;
     }else{
-        return 300;
+        return 320;
     }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -278,7 +278,7 @@
          cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
          cell3.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
          cell3.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, Mywidth-20, 280)];
+        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, Mywidth-20, 300)];
         backView.backgroundColor = [UIColor whiteColor];
         backView.layer.masksToBounds = YES;
         backView.layer.cornerRadius = 6;
@@ -298,11 +298,11 @@
         
         
         UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
-        layoutView.itemSize = CGSizeMake(80, 80);
-        layoutView.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        layoutView.itemSize = CGSizeMake(80, 70);
+        layoutView.sectionInset = UIEdgeInsetsMake(0, 10, 0, 20);
         [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        _collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40+10, Mywidth, 80) collectionViewLayout:layoutView];
+        _collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40+10, Mywidth, 70) collectionViewLayout:layoutView];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = [UIColor clearColor];
@@ -310,7 +310,7 @@
         [backView addSubview:_collectionView];
         
 
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, _collectionView.frame.origin.y+_collectionView.frame.size.height+7, Mywidth-40, 280-(_collectionView.frame.origin.y+_collectionView.frame.size.height+25+3))];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(10, _collectionView.frame.origin.y+_collectionView.frame.size.height+7, Mywidth-40, 300-(_collectionView.frame.origin.y+_collectionView.frame.size.height))];
         webView.backgroundColor = [UIColor clearColor];
         [backView addSubview:webView];
         
@@ -342,7 +342,7 @@
     
     UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell" forIndexPath:indexPath];
     UIImageView *imageV = [[UIImageView alloc] init];    
-    imageV.frame = CGRectMake(0, 0,80, 80);
+    imageV.frame = CGRectMake(0, 0,80, 70);
     imageV.image = [UIImage imageNamed:@"lc汪峰2"];
     if (_dictData) {
         if (_type == 1) {

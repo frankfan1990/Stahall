@@ -43,7 +43,25 @@
 /*
  图片上传
  */
-#define ImageUpLoadIP @"http://192.168.1.116:8080/stahall/upload"
+#define ImageUpLoadIP @"http://218.244.158.59/stahall/upload"
+
+
+/*
+ 我的演出
+ */
+#define MyShowsIP @"http://218.244.158.59/stahall/show/getShow"
+
+/*
+ 我的估价
+ */
+#define MyValuationIP @"http://218.244.158.59/stahall/valuation/getValuation"
+
+/*
+  新建演出
+*/
+#define AddNewShowIP @"http://218.244.158.59/stahall/show/submit"
+
+
 
 // rgb颜色转换（16进制->10进制）
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]

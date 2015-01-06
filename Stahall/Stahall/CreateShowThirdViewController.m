@@ -26,6 +26,8 @@
     UITextField *field1;
     UITextField *field2;
     
+    UIButton *btnLeft;
+    
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @end
@@ -86,7 +88,7 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1]];
     
     
-    UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
+    btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
     btnLeft.layer.cornerRadius = 20;
     [btnLeft setFrame:CGRectMake(0, 0, 35, 35)];
@@ -398,21 +400,15 @@
         return;
     }
     
-    [_dictData setObject:@"0" forKey:@"status"];//状态
-    [_dictData setObject:@"47e92fdc-d546-46c9-af66-436568094d5c" forKey:@"businessId"];// 演出商编号 登陆信息给出
-    [_dictData setObject:field1.text forKey:@"applicant"];
-    [_dictData setObject:field2.text forKey:@"company"];
-    
-    
     [ProgressHUD show:@"正在提交" Interaction:NO];
-    
+    btnLeft.userInteractionEnabled = NO;
     
     /*
      
     图片上传
      
     */
-     __block NSString *dataStr=[NSString string];
+    __block NSString *dataStr=[NSString string];
     __block NSInteger count = 0;
     __weak typeof (self)mySelf = self;
     for (int i =0; i<arrOfImages.count; i++) {
@@ -444,6 +440,7 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
             [ProgressHUD dismiss];
+            btnLeft.userInteractionEnabled = YES;
             UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"图片上传失败" message:@"\n请检查网络设置" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
             [aler show];
         }];
@@ -455,6 +452,10 @@
 {
     
     [_dictData setObject:dataStr forKey:@"businessLicense"];
+    [_dictData setObject:@"0" forKey:@"status"];//状态
+    [_dictData setObject:@"47e92fdc-d546-46c9-af66-436568094d5c" forKey:@"businessId"];// 演出商编号 登陆信息给出
+    [_dictData setObject:field1.text forKey:@"applicant"];
+    [_dictData setObject:field2.text forKey:@"company"];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //申明返回的结果是json类型
@@ -465,8 +466,8 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
     
     __weak typeof (self)Myself = self;
-    [manager POST:@"http://192.168.1.116:8080/stahall/show/submit" parameters:_dictData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    [manager POST:AddNewShowIP parameters:_dictData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        btnLeft.userInteractionEnabled = YES;
         NSDictionary *dict = responseObject;
         if ([dict[@"success"] intValue] == 1) {
             [ProgressHUD showSuccess:@"提交成功"];
@@ -484,6 +485,7 @@
     
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [ProgressHUD dismiss];
+         btnLeft.userInteractionEnabled = YES;
         UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"提交失败" message:@"\n请检查网络设置" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
         [aler show];
         NSLog(@"%@",error);
