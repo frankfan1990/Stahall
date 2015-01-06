@@ -15,6 +15,11 @@
 #import "StarModel.h"
 #import "UIImageView+WebCache.h"
 
+#import "NetworkHelper.h"
+#import "ProgressHUD.h"
+#import "Reachability.h"
+#import "FrankfanApis.h"
+#import "StarModel.h"
 
 bool selected;//是否是出于编辑模式的标志位
 @interface StahallValuationViewController ()<UITextFieldDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,StarNameInput>
@@ -30,6 +35,16 @@ bool selected;//是否是出于编辑模式的标志位
     UIView *datePickerBackView;//时间选择器的承载
     
     NSDateFormatter *dateFormatter;
+    
+    Reachability *_reachability;
+    
+    //
+    UITextField *showNameTextField;
+    UITextField *showAddressTextField;
+    UITextField *showTimeTextField;
+    UITextField *anotherTimeTextField;
+    UITextField *airPlane;
+    UITextField *showPlcae;
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -46,6 +61,7 @@ bool selected;//是否是出于编辑模式的标志位
     deleteMode = NO;
     dateFormatter =[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
@@ -79,32 +95,32 @@ bool selected;//是否是出于编辑模式的标志位
     [self.view addSubview:self.tpscrollerView];
     
     //演出名
-    UITextField *showNameTextField =[self createTextFieldWithTag:1001 andPlceholder:@"演出名称" andFrame:CGRectMake(10, 10, self.view.bounds.size.width/2.0-25, 35)];
+    showNameTextField =[self createTextFieldWithTag:1001 andPlceholder:@"演出名称" andFrame:CGRectMake(10, 10, self.view.bounds.size.width/2.0-25, 35)];
     [self.tpscrollerView addSubview:showNameTextField];
     
     //演出地点
-    UITextField *showAddressTextField =[self createTextFieldWithTag:1002 andPlceholder:@"演出地点" andFrame:CGRectMake(self.view.bounds.size.width/2.0-25+40, 10, self.view.bounds.size.width/2.0-25, 35)];
+    showAddressTextField =[self createTextFieldWithTag:1002 andPlceholder:@"演出地点" andFrame:CGRectMake(self.view.bounds.size.width/2.0-25+40, 10, self.view.bounds.size.width/2.0-25, 35)];
     [self.tpscrollerView addSubview:showAddressTextField];
     
     //演出时间
-    UITextField *showTimeTextField =[self createTextFieldWithTag:1003 andPlceholder:@"演出时间" andFrame:CGRectMake(10,35+10+10, self.view.bounds.size.width/2.0-25, 35)];
+    showTimeTextField =[self createTextFieldWithTag:1003 andPlceholder:@"演出时间" andFrame:CGRectMake(10,35+10+10, self.view.bounds.size.width/2.0-25, 35)];
     showTimeTextField.delegate = self;
     showTimeTextField.tag = 3000;
     [self.tpscrollerView addSubview:showTimeTextField];
     [showTimeTextField resignFirstResponder];
     
     //备选时间
-    UITextField *anotherTimeTextField =[self createTextFieldWithTag:1004 andPlceholder:@"备选时间" andFrame:CGRectMake(self.view.bounds.size.width/2.0-25+40, 35+10+10, self.view.bounds.size.width/2.0-25, 35)];
+    anotherTimeTextField =[self createTextFieldWithTag:1004 andPlceholder:@"备选时间" andFrame:CGRectMake(self.view.bounds.size.width/2.0-25+40, 35+10+10, self.view.bounds.size.width/2.0-25, 35)];
     anotherTimeTextField.delegate = self;
     anotherTimeTextField.tag = 3001;
     [self.tpscrollerView addSubview:anotherTimeTextField];
     
     //直飞机场
-    UITextField *airPlane =[self createTextFieldWithTag:1005 andPlceholder:@"直飞机场" andFrame:CGRectMake(10, 35+10+10+35+10, self.view.bounds.size.width/2.0-25, 35)];
+    airPlane =[self createTextFieldWithTag:1005 andPlceholder:@"直飞机场" andFrame:CGRectMake(10, 35+10+10+35+10, self.view.bounds.size.width/2.0-25, 35)];
     [self.tpscrollerView addSubview:airPlane];
     
     //演出场馆
-    UITextField *showPlcae =[self createTextFieldWithTag:1006 andPlceholder:@"演出场馆" andFrame:CGRectMake(self.view.bounds.size.width/2.0-25+40, 35+10+10+35+10, self.view.bounds.size.width/2.0-25, 35)];
+    showPlcae =[self createTextFieldWithTag:1006 andPlceholder:@"演出场馆" andFrame:CGRectMake(self.view.bounds.size.width/2.0-25+40, 35+10+10+35+10, self.view.bounds.size.width/2.0-25, 35)];
     [self.tpscrollerView addSubview:showPlcae];
     
     UITextField *plcaeTextField =[self createTextFieldWithTag:1007 andPlceholder:@"" andFrame:CGRectMake(10, 35+10+10+35+10+10+35, self.view.bounds.size.width/2.0-25, 35)];
@@ -228,19 +244,72 @@ bool selected;//是否是出于编辑模式的标志位
         
     }else{
     
-        UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:nil message:@"fuck the pay" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-        [alertView show];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if(!(showNameTextField.text.length && showAddressTextField.text.length && showTimeTextField.text.length && anotherTimeTextField.text.length && airPlane.text.length && showPlcae.text.length)){
+        
+            [ProgressHUD showError:@"请完善信息"];
+            return;
+        }
+        
+        AFHTTPRequestOperationManager *manager = [NetworkHelper createRequestManagerWithContentType:application_json];
+        manager.responseSerializer =[AFJSONResponseSerializer serializer];
+        manager.requestSerializer =[AFJSONRequestSerializer serializer];
+        
+        NSMutableArray *starIDs = [NSMutableArray array];
+        if([[starsSelected lastObject]isKindOfClass:[NSString class]]){
+        
+            NSMutableArray *tempMutablArray = [starsSelected mutableCopy];
+            [tempMutablArray removeLastObject];
             
-            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            for (NSDictionary *dict in tempMutablArray) {
+                
+                StarModel *starModel =[StarModel modelWithDictionary:dict error:nil];
+                [starIDs addObject:starModel.artistId];
+            }
             
-            StahallEvalutionDetailInfoViewController *stahallEvalutionDetail =[StahallEvalutionDetailInfoViewController new];
-            stahallEvalutionDetail.isCouldSpeedModle = YES;
-            [self.navigationController pushViewController:stahallEvalutionDetail animated:YES];
+        }
+
+        NSDictionary *parameters = @{@"showName":showNameTextField.text,
+                                     @"showAddress":showAddressTextField.text,
+                                 @"showTime":showTimeTextField.text,
+                                 @"alternativeTime":anotherTimeTextField.text,
+                                 @"directArport":airPlane.text,
+                                 @"showVenues":showPlcae.text,
+                                 @"artistIds":starIDs};
+        
+        
+        
+        if(![_reachability isReachable]){
+        
+            [ProgressHUD showError:@"网络异常"];
+            return;
+        }
+        
+        [ProgressHUD show:nil];
+        [manager POST:API_PostStaHallValutionInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-        });
-    
+            NSLog(@"response:%@",responseObject);
+            [ProgressHUD dismiss];
+            
+            UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:nil message:@"提交成功!24小时后..." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+            [alertView show];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [alertView dismissWithClickedButtonIndex:0 animated:YES];
+                
+                StahallEvalutionDetailInfoViewController *stahallEvalutionDetail =[StahallEvalutionDetailInfoViewController new];
+                stahallEvalutionDetail.isCouldSpeedModle = YES;
+                [self.navigationController pushViewController:stahallEvalutionDetail animated:YES];
+                
+            });
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"error:%@",[error localizedDescription]);
+            [ProgressHUD showError:@"网络错误"];
+        }];
+           
     }
 
 }
@@ -436,6 +505,10 @@ bool selected;//是否是出于编辑模式的标志位
     
         
         StarDetaiInfoViewController *starDetailInfo =[StarDetaiInfoViewController new];
+        starDetailInfo.starDict = starsSelected[indexPath.row];
+        StarModel *starModel =[StarModel modelWithDictionary:starDetailInfo.starDict error:nil];
+        starDetailInfo.starId = starModel.artistId;
+        
         [self.navigationController pushViewController:starDetailInfo animated:YES];
         NSLog(@"跳到艺人详情");
     }

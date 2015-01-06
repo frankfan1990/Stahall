@@ -61,6 +61,8 @@ static NSString *cacheKey3 = @"cacheKey3";
     NSMutableArray *localStars;//本地艺人
     NSMutableArray *recommendStars;//推荐艺人
     
+    NSMutableArray *selectIndexPaths;//记录选中的indexPath
+    
     BOOL isPushModel;
     
 }
@@ -82,6 +84,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     hotStars =[NSMutableArray array];
     localStars =[NSMutableArray array];
     recommendStars =[NSMutableArray array];
+    selectIndexPaths =[NSMutableArray array];
     
     _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
     
@@ -592,10 +595,26 @@ static NSString *cacheKey3 = @"cacheKey3";
     if(self.isSearchMode){//如果是搜索模式
     
         StaHallCollectionViewCell *cell = (StaHallCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        if([selectedCells containsObject:indexPath]){//取消选择该cell
+ 
+        if([selectIndexPaths containsObject:indexPath]){//取消选择该cell
         
-            [selectedCells removeObject:indexPath];
+            [selectIndexPaths removeObject:indexPath];
+            
+            NSDictionary *dict = nil;
+            if(indexPath.section==0){
+            
+                dict = hotStars[indexPath.row];
+            }else if (indexPath.section==1){
+            
+                dict = localStars[indexPath.row];
+            }else{
+            
+                dict = recommendStars[indexPath.row];
+            }
+            
+            [selectedCells removeObject:dict];
             cell.checkIt.hidden = YES;
+          
             
         }else{//选中该cell
         
@@ -604,11 +623,13 @@ static NSString *cacheKey3 = @"cacheKey3";
                 NSDictionary *starDict = hotStars[indexPath.row];
                 [selectedCells addObject:starDict];
                 
+                
             }else if (indexPath.section==1){//本地艺人
             
                 NSDictionary *starDict = localStars[indexPath.row];
                 [selectedCells addObject:starDict];
             
+             
             }else{//推荐艺人
             
                 NSDictionary *starDict = recommendStars[indexPath.row];
@@ -616,6 +637,7 @@ static NSString *cacheKey3 = @"cacheKey3";
             
             }
 
+            [selectIndexPaths addObject:indexPath];
             cell.checkIt.hidden = NO;
         }
         

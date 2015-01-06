@@ -18,4 +18,9 @@
 //#define API_GetStarDetailById @"http://192.168.1.116:8080/stahall/artist/getArtistDetail"
 #define API_GetStarDetailById @"http://218.244.158.59/stahall/artist/getArtistDetail"
 
+
+//提交堂估价 http://192.168.1.116:8080
+//#define API_PostStaHallValutionInfo @"http://218.244.158.59/stahall/valuation/submit"
+#define API_PostStaHallValutionInfo @"http://192.168.1.116:8080/stahall/valuation/submit"
+
 #endif
