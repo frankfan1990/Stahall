@@ -10,6 +10,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "RZTimeSelectedViewController.h"
 #import "CreateShowThirdViewController.h"
+#import "AFNetworking.h"
 #import "Marcos.h"
 @interface CreateShowSecondViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -49,13 +50,13 @@
     arrOfrule = @[@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出",@"艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出艺人到达演出会场如发现演出名称与实际不符，有权拒绝演出"];
     arrOfname = [NSMutableArray arrayWithObjects:@"演出开始时间",@"演出结束时间",@"演出地点",@"演出场地",@"场馆名称", nil];
     arrOfContent = [NSMutableArray arrayWithObjects:@"点击设置开始时间",@"点击设置结束时间",@"请输入演出地点",@"请输入演出场地",@"请输入场馆名称",nil];
-    keys = @[@"beginTime",@"endTime",@"showAddress",@"showVenues",@"venuesName"];
+    keys = @[@"startTime",@"endTime",@"address",@"space",@"venues"];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@"" forKey:keys[0]];
-    [dic setObject:@"" forKey:keys[1]];
-    [dic setObject:@"" forKey:keys[2]];
-    [dic setObject:@"" forKey:keys[3]];
-    [dic setObject:@"" forKey:keys[4]];
+    [dic setObject:@"1" forKey:keys[0]];
+    [dic setObject:@"1" forKey:keys[1]];
+    [dic setObject:@"1" forKey:keys[2]];
+    [dic setObject:@"1" forKey:keys[3]];
+    [dic setObject:@"1" forKey:keys[4]];
     
     arrOfdata = [NSMutableArray array];
     [arrOfdata addObject:dic];
@@ -259,6 +260,7 @@
             label.tag = 112;
             
             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
+            
             field.userInteractionEnabled = YES;
             field.delegate = self;
             field.returnKeyType = UIReturnKeyDone;
@@ -277,6 +279,7 @@
     
         
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
+        
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
         label.text = arrOfname[indexPath.row];
         feild.text = [arrOfdata[indexPath.section] objectForKey:keys[indexPath.row]];
@@ -406,7 +409,11 @@
         }
     }
     
+    
+    [_dictOfData setObject:arrOfdata forKey:@"matches"];
+    
     CreateShowThirdViewController *thirdCtrl = [[CreateShowThirdViewController alloc] init];
+    thirdCtrl.dictData = _dictOfData;
     [self.navigationController pushViewController:thirdCtrl animated:YES];
 }
 
