@@ -8,8 +8,13 @@
 
 #import "StahallEvalutionDetailInfoViewController.h"
 #import "StahallEvalutionDetailInfoCollectionViewCell.h"
+#import "UIImageView+WebCache.h"
+#import "Reachability.h"
+#import "NetworkHelper.h"
+#import "StarModel.h"
+#import <ReactiveCocoa.h>
 
-int justTestDataSource = 13;
+NSInteger justTestDataSource = 13;
 static NSInteger stepHour = 1;
 @interface StahallEvalutionDetailInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
@@ -44,6 +49,10 @@ static NSInteger stepHour = 1;
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
   
+    //初始化数据
+    justTestDataSource = [self.starsList count];
+    
+    
     
     /*回退*/
     UIButton *backButton =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -73,30 +82,30 @@ static NSInteger stepHour = 1;
     
     //演唱会
     concertLabel =[self createLabelWithFrame:CGRectMake(10, 20, self.view.bounds.size.width/2.0-10-15, 35)];
-    concertLabel.text = @"许巍演唱会";
+  
     
     //地点
     concertAddressLabel =[self createLabelWithFrame:CGRectMake(self.view.bounds.size.width/2.0+30, 20, self.view.bounds.size.width/2.0-10-15, 35)];
-    concertAddressLabel.text = @"湖南长沙";
+   
     
     //第一时间
     firstTimeLabel =[self createLabelWithFrame:CGRectMake(10, 20+35+20, self.view.bounds.size.width/2.0-10-15, 35)];
-    firstTimeLabel.text = @"2015-3-4";
+ 
     
     //第二时间
     secondeTimeLabel =[self createLabelWithFrame:CGRectMake(self.view.bounds.size.width/2.0+30, 20+35+20,self.view.bounds.size.width/2.0-10-15, 35)];
-    secondeTimeLabel.text = @"2015-6-14";
+ 
 
     
     //机场
     airplaneLabel =[self createLabelWithFrame:CGRectMake(10, 20+35+20+35+20, self.view.bounds.size.width/2.0-10-15, 35)];
-    airplaneLabel.text = @"黄花机场";
+
     
     
     //场馆
     plcaeLabel =[self createLabelWithFrame:CGRectMake(self.view.bounds.size.width/2.0+30, 20+35+20+35+20, self.view.bounds.size.width/2.0-10-15, 35)];
     
-    plcaeLabel.text = @"湖南大剧院";
+   
     
     
     //创建collectionView
@@ -152,7 +161,8 @@ static NSInteger stepHour = 1;
     speedButton.backgroundColor =[UIColor orangeColor];
     [speedButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [self.view addSubview:speedButton];
-    
+    [speedButton addTarget:self action:@selector(addSpeedButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+  
     if(self.isCouldSpeedModle){
         
         [self.view addSubview:subButton];
@@ -179,8 +189,26 @@ static NSInteger stepHour = 1;
         [self.view addSubview:builtShowButton];
     }
     
+#pragma mark - 网络请求
+    //开始网络请求
+    if(!self.isFirstPort){//如果不是第一个入口进来的，则进行网络请求
+    
+        
+    
+    }
+    
+    
     
 }
+
+
+#pragma mark - 加急按钮触发
+- (void)addSpeedButtonClicked{
+
+    NSLog(@"加急按钮触发");
+}
+
+
 
 #pragma mark - 创建label
 - (UILabel *)createLabelWithFrame:(CGRect)frame{
@@ -218,7 +246,8 @@ static NSInteger stepHour = 1;
 #pragma mark - collectionViewCell的个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
-    return justTestDataSource;
+    return [self.starsList count];
+ 
 }
 
 #pragma mark - 创建collectionViewCell
@@ -226,11 +255,13 @@ static NSInteger stepHour = 1;
 
     StahallEvalutionDetailInfoCollectionViewCell *cell =(StahallEvalutionDetailInfoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
 
-    cell.starName.text = @"刘德华";
-    cell.topPrice.text = @"30万";
-    cell.topTime.text = @"2015-3-22";
-    cell.bottomPrice.text = @"88万";
-    cell.bottomTime.text = @"2015-5-21";
+    StarModel *starModel =[StarModel modelWithDictionary:self.starsList[indexPath.row] error:nil];
+    [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
+    cell.starName.text = starModel.artistName;
+    cell.topPrice.text = @"?万";
+    cell.topTime.text = self.showTime;
+    cell.bottomPrice.text = @"?万";
+    cell.bottomTime.text = self.showAnotherTime;
     return cell;
 }
 

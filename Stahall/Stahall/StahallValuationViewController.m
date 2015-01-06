@@ -20,6 +20,7 @@
 #import "Reachability.h"
 #import "FrankfanApis.h"
 #import "StarModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 bool selected;//是否是出于编辑模式的标志位
 @interface StahallValuationViewController ()<UITextFieldDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,StarNameInput>
@@ -192,6 +193,7 @@ bool selected;//是否是出于编辑模式的标志位
     [datePickerBackView addSubview:datePicker];
     [self.view addSubview:datePickerBackView];
     
+    
 }
 
 
@@ -256,9 +258,10 @@ bool selected;//是否是出于编辑模式的标志位
         manager.requestSerializer =[AFJSONRequestSerializer serializer];
         
         NSMutableArray *starIDs = [NSMutableArray array];
+        NSMutableArray *tempMutablArray;
         if([[starsSelected lastObject]isKindOfClass:[NSString class]]){
         
-            NSMutableArray *tempMutablArray = [starsSelected mutableCopy];
+            tempMutablArray = [starsSelected mutableCopy];
             [tempMutablArray removeLastObject];
             
             for (NSDictionary *dict in tempMutablArray) {
@@ -268,14 +271,18 @@ bool selected;//是否是出于编辑模式的标志位
             }
             
         }
+        
+ 
 
+#warning 这里的字段:"businessId"为演出商ID，暂时使用fake data
         NSDictionary *parameters = @{@"showName":showNameTextField.text,
                                      @"showAddress":showAddressTextField.text,
                                  @"showTime":showTimeTextField.text,
                                  @"alternativeTime":anotherTimeTextField.text,
                                  @"directArport":airPlane.text,
                                  @"showVenues":showPlcae.text,
-                                 @"artistIds":starIDs};
+                                 @"artistIds":starIDs,
+                                 @"businessId":@"47e92fdc-d546-46c9-af66-436568094d5c"};
         
         
         
@@ -289,6 +296,7 @@ bool selected;//是否是出于编辑模式的标志位
         [manager POST:API_PostStaHallValutionInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             NSLog(@"response:%@",responseObject);
+            NSDictionary *dict_data = responseObject[@"data"];
             [ProgressHUD dismiss];
             
             UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:nil message:@"提交成功!24小时后..." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
@@ -300,6 +308,17 @@ bool selected;//是否是出于编辑模式的标志位
                 
                 StahallEvalutionDetailInfoViewController *stahallEvalutionDetail =[StahallEvalutionDetailInfoViewController new];
                 stahallEvalutionDetail.isCouldSpeedModle = YES;
+                
+                stahallEvalutionDetail.showName = showNameTextField.text;
+                stahallEvalutionDetail.showAddress = showAddressTextField.text;
+                stahallEvalutionDetail.showTime = showTimeTextField.text;
+                stahallEvalutionDetail.showAnotherTime = anotherTimeTextField.text;
+                stahallEvalutionDetail.airPlane = airPlane.text;
+                stahallEvalutionDetail.showPlace = showPlcae.text;
+                stahallEvalutionDetail.starsList = tempMutablArray;
+                stahallEvalutionDetail.isFirstPort = YES;
+                stahallEvalutionDetail.valuationId = dict_data[@"valuationId"];
+                
                 [self.navigationController pushViewController:stahallEvalutionDetail animated:YES];
                 
             });
@@ -309,7 +328,7 @@ bool selected;//是否是出于编辑模式的标志位
             NSLog(@"error:%@",[error localizedDescription]);
             [ProgressHUD showError:@"网络错误"];
         }];
-           
+        
     }
 
 }
@@ -572,6 +591,7 @@ bool selected;//是否是出于编辑模式的标志位
 - (void)buttonClicked:(UIButton *)sender{
 
     [self.navigationController popViewControllerAnimated:YES];
+    [ProgressHUD dismiss];
 }
 
 #pragma mark - view将要出现

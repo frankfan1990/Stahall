@@ -20,7 +20,11 @@
 
 
 //提交堂估价 http://192.168.1.116:8080
-//#define API_PostStaHallValutionInfo @"http://218.244.158.59/stahall/valuation/submit"
-#define API_PostStaHallValutionInfo @"http://192.168.1.116:8080/stahall/valuation/submit"
+#define API_PostStaHallValutionInfo @"http://218.244.158.59/stahall/valuation/submit"
+//#define API_PostStaHallValutionInfo @"http://192.168.1.116:8080/stahall/valuation/submit"
 
+
+//估价加急
+//#define API_AddSpeedEvalution @"http://192.168.1.116:8080/stahall/valuation/add"
+#define API_AddSpeedEvalution @"http://218.244.158.59/stahall/valuation/add"
 #endif
