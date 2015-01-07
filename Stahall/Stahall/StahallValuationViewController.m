@@ -20,7 +20,8 @@
 #import "Reachability.h"
 #import "FrankfanApis.h"
 #import "StarModel.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+//#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveCocoa.h>
 
 bool selected;//是否是出于编辑模式的标志位
 @interface StahallValuationViewController ()<UITextFieldDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,StarNameInput>
@@ -193,6 +194,31 @@ bool selected;//是否是出于编辑模式的标志位
     [datePickerBackView addSubview:datePicker];
     [self.view addSubview:datePickerBackView];
     
+    //
+//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:@"clearAllData" object:nil]subscribeNext:^(NSNotification *notification) {
+//        
+//        //清空数据
+//        showNameTextField.text = nil;
+//        showAddressTextField.text = nil;
+//        showTimeTextField.text = nil;
+//        anotherTimeTextField.text = nil;
+//        airPlane.text = nil;
+//        showPlcae.text = nil;
+//        
+//        if([[starsSelected lastObject]isKindOfClass:[NSString class]]){
+//        
+//            [starsSelected removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [starsSelected count]-1)]];
+//        }else{
+//        
+//            [starsSelected removeAllObjects];
+//            [starsSelected addObject:@"end"];
+//            
+//        }
+//        
+//    }];
+    
+    
+    RACSignal *sign =[RACSignal empty];
     
 }
 
