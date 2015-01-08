@@ -7,12 +7,15 @@
 //
 
 #import "MyShowDetailsViewController.h"
+#import "AFNetworking.h"
 #import "Marcos.h"
-@interface MyShowDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MyShowDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     
     UITableView *_tableView;
     NSMutableArray *arrOfTitle;
+    
+    NSMutableArray *arrOfcontent;
     
 }
 @end
@@ -29,17 +32,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
+    arrOfTitle = [NSMutableArray array];
+    arrOfcontent = [NSMutableArray array];
     
-    [arrOfTitle addObject:@"演出名称"];
-    [arrOfTitle addObject:@"主办/承办单位"];
-    [arrOfTitle addObjectsFromArray:@[@"演出开始时间",@"演出结束时间",@"演出地点",@"演出场地",@"场馆名称"]];
+    [self getData];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource =self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
     
+    
+}
+
+-(void)getData
+{
+    [arrOfcontent removeAllObjects];
+    [arrOfTitle removeAllObjects];
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
+    [manger GET:MyShowsDetailsIP parameters:@{@"showId":_dicData[@"showId"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *data = (NSDictionary *)responseObject[@"data"];
+        [arrOfcontent addObject:data[@"showName"]];
+        [arrOfTitle addObject:@"演出名称"];
+        NSArray *arr = [data[@"organizer"] componentsSeparatedByString:@","];
+        for (NSString *str in arr) {
+            [arrOfcontent addObject:str];
+            [arrOfTitle addObject:@"主办/承办单位"];
+        }
+        
+        for (NSDictionary *dd in data[@"matches"]) {
+            [arrOfTitle addObjectsFromArray:@[@"演出开始时间",@"演出结束时间",@"演出地点",@"演出场地",@"场馆名称"]];
+            [arrOfcontent addObject:dd[@"startTime"]];
+            [arrOfcontent addObject:dd[@"endTime"]];
+            [arrOfcontent addObject:dd[@"address"]];
+            [arrOfcontent addObject:dd[@"space"]];
+            [arrOfcontent addObject:dd[@"venues"]];
+        }
+        [_tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
     
 }
 
@@ -76,7 +112,7 @@
     
     
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
-    title.text = @"我的演出";
+    title.text = _dicData[@"showType"];
     title.font = [UIFont systemFontOfSize:19];
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
@@ -100,8 +136,10 @@
 {
     if (indexPath.section == 0) {
         return 45;
-    }else{
+    }else if(indexPath.row == 0){
         return 120;
+    }else{
+        return 70;
     }
     
 }
@@ -129,11 +167,12 @@
         if (cell1 == nil) {
             cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
             cell1.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
+            cell1.selectionStyle = UITableViewCellSelectionStyleNone;
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10,120, 25)];
             [self Customlable:label text:@"" fontSzie:15 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
             label.tag = 112;
             
-            UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-155, 25)];
+            UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-130, 25)];
             field.textAlignment = NSTextAlignmentRight;
             field.font = [UIFont systemFontOfSize:15];
             field.tag = 113;
@@ -141,26 +180,45 @@
             field.textColor = [UIColor whiteColor];
             [cell1.contentView addSubview:label];
             [cell1.contentView addSubview:field];
+            
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 0.5)];
+            line.tag = 114;
+            line.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+            [cell1.contentView addSubview:line];
+            
         }
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
         label.text = arrOfTitle[indexPath.row];
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
-        feild.text = @"111111";
+        feild.text = arrOfcontent[indexPath.row];
+        
+        UIView *line = (UIView *)[cell1.contentView viewWithTag:114];
+        if (indexPath.row == 0) {
+            line.hidden = YES;
+        }else{
+            line.hidden = NO;
+        }
+        
         return cell1;
     }else{
         if (indexPath.row == 0) {
             UITableViewCell *cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             cell2.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 70, 20)];
+            [self Customlable:label text:@"增加艺人" fontSzie:15 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
+            
             return cell2;
         }else{
             UITableViewCell *cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell3.backgroundColor = [UIColor clearColor];
+            cell3.selectionStyle = UITableViewCellSelectionStyleNone;
             UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
             btn1.frame = CGRectMake(60, 15, Mywidth-120, 35);
             btn1.backgroundColor = [UIColor greenColor];
             btn1.layer.masksToBounds = YES;
             btn1.layer.cornerRadius = btn1.frame.size.height/2;
-            btn1.titleLabel.text = @"发送邀约函";
+            [btn1 setTitle:@"发送邀约函" forState:UIControlStateNormal];
             btn1.titleLabel.font = [UIFont systemFontOfSize:16];
             btn1.titleLabel.textColor = [UIColor whiteColor];
             [cell3.contentView addSubview:btn1];
@@ -169,6 +227,19 @@
     }
     
 }
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 1;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    return nil;
+}
+
+
 -(void)didGoBack
 {
     [self.navigationController popViewControllerAnimated:YES];

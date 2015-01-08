@@ -62,6 +62,14 @@
 #define MyShowsIP @"http://192.168.1.116:8080/stahall/show/getShow"
 
 /*
+ 我的演出详情
+ */
+#define MyShowsDetailsIP @"http://192.168.1.116:8080/stahall/show/detail"
+
+
+
+
+/*
  我的估价
  */
 //#define MyValuationIP @"http://218.244.158.59/stahall/valuation/getValuation"

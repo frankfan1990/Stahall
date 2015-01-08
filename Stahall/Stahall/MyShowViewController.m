@@ -15,6 +15,7 @@
 #import "ProgressHUD.h"
 #import "AFNetworking.h"
 #import "StahallEvalutionDetailInfoViewController.h"
+#import "MyShowDetailsViewController.h"
 @interface MyShowViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     UITableView *_tableView;
@@ -373,7 +374,6 @@
     }
     UILabel *labelContent = (UILabel *)[cell.contentView viewWithTag:10000];
     UILabel *labelOfDate = (UILabel *)[cell.contentView viewWithTag:100000];
-//    [@"" comby]
     UIView *view = (UIView *)[cell.contentView viewWithTag:10003];
     if (indexPath.row == 0 ) {
         view.hidden = YES;
@@ -490,6 +490,17 @@
             
         }
 
+    }else{
+        MyShowDetailsViewController *detailCtrl = [[MyShowDetailsViewController alloc] init];
+        if (indexPath.section == 1) {
+            detailCtrl.dicData = data1[indexPath.row];
+        }else if (indexPath.section == 2) {
+            detailCtrl.dicData = data2[indexPath.row];
+        }else if (indexPath.section == 3) {
+            detailCtrl.dicData = data3[indexPath.row];
+        }
+        [self.navigationController pushViewController:detailCtrl animated:YES];
+        
     }
     
 }
