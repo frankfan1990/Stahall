@@ -9,15 +9,18 @@
 #import "MyShowDetailsViewController.h"
 #import "AFNetworking.h"
 #import "Marcos.h"
-@interface MyShowDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
+#import "ProgressHUD.h"
+#import <ReactiveCocoa.h>
+@interface MyShowDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
     
     UITableView *_tableView;
     NSMutableArray *arrOfTitle;
     
     NSMutableArray *arrOfcontent;
-    
+    NSDictionary *data;
 }
+@property (nonatomic,strong)UICollectionView *collectionView;
 @end
 
 @implementation MyShowDetailsViewController
@@ -44,6 +47,11 @@
     _tableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
     
+    //创建collectionView
+    
+    
+//    self.collectionView =[UICollectionView a];
+    
     
 }
 
@@ -52,12 +60,14 @@
     [arrOfcontent removeAllObjects];
     [arrOfTitle removeAllObjects];
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.requestSerializer.timeoutInterval = 15;
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
     [manger GET:MyShowsDetailsIP parameters:@{@"showId":_dicData[@"showId"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *data = (NSDictionary *)responseObject[@"data"];
+        data = (NSDictionary *)responseObject[@"data"];
         [arrOfcontent addObject:data[@"showName"]];
         [arrOfTitle addObject:@"演出名称"];
         NSArray *arr = [data[@"organizer"] componentsSeparatedByString:@","];
+        
         for (NSString *str in arr) {
             [arrOfcontent addObject:str];
             [arrOfTitle addObject:@"主办/承办单位"];
@@ -75,6 +85,8 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+        NSLog(@"error:%@",[error localizedDescription]);
+        [ProgressHUD showError:@"网络错误"];
     }];
     
 }
@@ -121,10 +133,18 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    if ([arrOfcontent count] == 0) {
+        return 0;
+    }else if ([data[@"status"] intValue] == 3){
+        return 2;
+    }
+    return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([arrOfcontent count] == 0) {
+        return 0;
+    }
     if (section == 0) {
         return arrOfTitle.count;
     }else{
@@ -132,11 +152,17 @@
     }
     
 }
+
+#pragma mark - tableViewCell高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([arrOfcontent count] == 0) {
+        return 0;
+    }
     if (indexPath.section == 0) {
         return 45;
     }else if(indexPath.row == 0){
+#pragma mark - 处理高度
         return 120;
     }else{
         return 70;
@@ -201,12 +227,16 @@
         
         return cell1;
     }else{
+        
+#pragma mark - 添加collectionView
         if (indexPath.row == 0) {
             UITableViewCell *cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell2.selectionStyle = UITableViewCellSelectionStyleNone;
             cell2.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 70, 20)];
             [self Customlable:label text:@"增加艺人" fontSzie:15 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
+            [cell2.contentView addSubview:label];
+            
             
             return cell2;
         }else{
@@ -228,6 +258,9 @@
     
 }
 
+
+
+#pragma mark - collectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return 1;
@@ -238,6 +271,7 @@
     
     return nil;
 }
+
 
 
 -(void)didGoBack
