@@ -14,6 +14,7 @@
 #import "CreateShowFirstViewController.h"
 #import "ProgressHUD.h"
 #import "AFNetworking.h"
+#import "StahallEvalutionDetailInfoViewController.h"
 @interface MyShowViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     UITableView *_tableView;
@@ -461,6 +462,38 @@
     [super didReceiveMemoryWarning];
 }
 
+
+#pragma mark - cell被点击
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if(btnRight.selected){//我的估价
+    
+        if(indexPath.section==1){//估价中
+            
+            NSDictionary *dict = dataOther1[indexPath.row];
+            StahallEvalutionDetailInfoViewController *starhallEvalutionCV =[StahallEvalutionDetailInfoViewController new];
+            
+            starhallEvalutionCV.showName = dict[@"showName"];
+            starhallEvalutionCV.showAddress = dict[@"showAddress"];
+            starhallEvalutionCV.showTime = dict[@"showTime"];
+            starhallEvalutionCV.showAnotherTime = dict[@"alternativeTime"];
+            starhallEvalutionCV.airPlane = dict[@"directArport"];
+            starhallEvalutionCV.showPlace = dict[@"showVenues"];
+            
+            starhallEvalutionCV.valuationId = dict[@"valuationId"];
+            starhallEvalutionCV.isFirstPort = NO;
+            starhallEvalutionCV.isCouldSpeedModle = YES;
+            
+            [self.navigationController pushViewController:starhallEvalutionCV animated:YES];
+            
+        }else{
+            
+            
+        }
+
+    }
+    
+}
 
 
 @end

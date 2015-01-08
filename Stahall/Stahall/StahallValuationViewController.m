@@ -195,30 +195,31 @@ bool selected;//是否是出于编辑模式的标志位
     [self.view addSubview:datePickerBackView];
     
     //
-//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:@"clearAllData" object:nil]subscribeNext:^(NSNotification *notification) {
-//        
-//        //清空数据
-//        showNameTextField.text = nil;
-//        showAddressTextField.text = nil;
-//        showTimeTextField.text = nil;
-//        anotherTimeTextField.text = nil;
-//        airPlane.text = nil;
-//        showPlcae.text = nil;
-//        
-//        if([[starsSelected lastObject]isKindOfClass:[NSString class]]){
-//        
-//            [starsSelected removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [starsSelected count]-1)]];
-//        }else{
-//        
-//            [starsSelected removeAllObjects];
-//            [starsSelected addObject:@"end"];
-//            
-//        }
-//        
-//    }];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:@"clearAllData" object:nil]subscribeNext:^(NSNotification *notification) {
+        
+        //清空数据
+        showNameTextField.text = nil;
+        showAddressTextField.text = nil;
+        showTimeTextField.text = nil;
+        anotherTimeTextField.text = nil;
+        airPlane.text = nil;
+        showPlcae.text = nil;
+        
+        if([[starsSelected lastObject]isKindOfClass:[NSString class]]){
+        
+            [starsSelected removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [starsSelected count]-1)]];
+        }else{
+        
+            [starsSelected removeAllObjects];
+            [starsSelected addObject:@"end"];
+            
+        }
+        
+        [self.collectionView reloadData];
+        
+    }];
     
-    
-    RACSignal *sign =[RACSignal empty];
+
     
 }
 

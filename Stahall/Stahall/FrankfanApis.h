@@ -27,4 +27,9 @@
 //估价加急
 #define API_AddSpeedEvalution @"http://192.168.1.116:8080/stahall/valuation/add"
 //#define API_AddSpeedEvalution @"http://218.244.158.59/stahall/valuation/add"
+
+
+//根据估价Id获取估价信息
+#define API_GetValutionInfoByValutionId @"http://192.168.1.116:8080/stahall/valuation/getArtistValuation"
+//#define API_GetValutionInfoByValutionId @"http://218.244.158.59/stahall/valuation/getArtistValuation"
 #endif

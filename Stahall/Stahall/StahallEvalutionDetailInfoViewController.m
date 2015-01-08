@@ -169,7 +169,6 @@ static NSInteger stepHour = 1;
     speedButton.titleLabel.font = [UIFont systemFontOfSize:14];
     speedButton.backgroundColor =[UIColor orangeColor];
     [speedButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    [self.view addSubview:speedButton];
     [speedButton addTarget:self action:@selector(addSpeedButtonClicked) forControlEvents:UIControlEventTouchUpInside];
  
     
@@ -178,6 +177,7 @@ static NSInteger stepHour = 1;
         [self.view addSubview:subButton];
         [self.view addSubview:addButton];
         [self.view addSubview:hourLable];
+        [self.view addSubview:speedButton];
         [self.view addSubview:speedButton];
     }
     
@@ -205,8 +205,36 @@ static NSInteger stepHour = 1;
     //开始网络请求
     if(!self.isFirstPort){//如果不是第一个入口进来的，则进行网络请求
     
+        if(![_reachability isReachable]){
         
-    
+            [ProgressHUD showError:@"网络错误"];
+            return;
+        }
+        
+        AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+        NSDictionary *parameter = @{@"valuationId":self.valuationId};
+        
+        [ProgressHUD show:nil];
+        [manager GET:API_GetValutionInfoByValutionId parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            
+            NSDictionary *dataDict = responseObject[@"data"];
+            self.starsList = dataDict[@"valuationRelevances"];
+            justTestDataSource = [self.starsList count];
+            [self.collectionView reloadData];
+            [self.tableView reloadData];
+            
+            NSLog(@"responseObjc:%@",responseObject);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"error:%@",[error localizedDescription]);
+            [ProgressHUD showError:@"网络错误"];
+            
+            [ProgressHUD dismiss];
+            
+        }];
+        
     }
     
     
@@ -229,6 +257,14 @@ static NSInteger stepHour = 1;
         [ProgressHUD showError:@"网络错误"];
         return;
     }
+    
+    
+    if(![self.starsList count]){
+        
+        [ProgressHUD show:@"数据错误"];
+        return;
+    }
+    
     
     AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
     NSDictionary *parameters = @{@"valuationId":self.valuationId,
@@ -300,13 +336,44 @@ static NSInteger stepHour = 1;
 
     StahallEvalutionDetailInfoCollectionViewCell *cell =(StahallEvalutionDetailInfoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
 
-    StarModel *starModel =[StarModel modelWithDictionary:self.starsList[indexPath.row] error:nil];
-    [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
-    cell.starName.text = starModel.artistName;
-    cell.topPrice.text = @"?万";
+    if(self.isFirstPort){
+    
+        StarModel *starModel =[StarModel modelWithDictionary:self.starsList[indexPath.row] error:nil];
+        [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
+        cell.starName.text = starModel.artistName;
+        cell.topPrice.text = @"?万";
+        cell.bottomPrice.text = @"?万";
+
+    }else{
+    
+        NSDictionary *tempDict = self.starsList[indexPath.row];
+        [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:tempDict[@"header"]] placeholderImage:nil];
+        
+        //演出时间
+        if([tempDict[@"rate"]integerValue]==0){//估价价格未出
+        
+            cell.topPrice.text = @"?万";
+        }else{//已出
+        
+            cell.topPrice.text = [NSString stringWithFormat:@"%@万",tempDict[@"showRate"]];
+        }
+        
+        //备选时间
+        if([tempDict[@"alternativeRate"]integerValue]==0){
+        
+            cell.bottomPrice.text = @"?万";
+        }else{
+        
+            cell.bottomPrice.text = [NSString stringWithFormat:@"%@万",tempDict[@"alternativeRate"]];
+        }
+        
+        
+        
+    }
+    
     cell.topTime.text = self.showTime;
-    cell.bottomPrice.text = @"?万";
     cell.bottomTime.text = self.showAnotherTime;
+
     return cell;
 }
 
@@ -404,7 +471,8 @@ static NSInteger stepHour = 1;
 
 }
 
-- (void)dealloc{
+
+- (void)viewWillDisappear:(BOOL)animated{
 
     [ProgressHUD dismiss];
 }

@@ -207,6 +207,14 @@ static NSString *cacheKey3 = @"cacheKey3";
         AFHTTPRequestOperationManager *manager2 =[NetworkHelper createRequestManagerWithContentType:application_json];
         AFHTTPRequestOperationManager *manager3 =[NetworkHelper createRequestManagerWithContentType:application_json];
         
+        manager.requestSerializer.timeoutInterval = 15;
+        manager2.requestSerializer.timeoutInterval = 15;
+        manager3.requestSerializer.timeoutInterval = 15;
+        
+        manager.requestSerializer.HTTPShouldUsePipelining = YES;
+        manager2.requestSerializer.HTTPShouldUsePipelining = YES;
+        manager3.requestSerializer.HTTPShouldUsePipelining = YES;
+        
         NSDictionary *parameters = @{Query:@"热门艺人",Start:@0,Limit:@8};
 
         [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {

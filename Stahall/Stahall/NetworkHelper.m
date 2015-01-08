@@ -12,9 +12,10 @@
 @implementation NetworkHelper
 
 + (AFHTTPRequestOperationManager *)createRequestManagerWithContentType:(const NSString *)contentType{
-
     
     AFHTTPRequestOperationManager *manager =[AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.HTTPShouldUsePipelining = YES;
+    manager.requestSerializer.timeoutInterval = 10;
     manager.responseSerializer.acceptableContentTypes =[NSSet setWithObject:contentType];
     return manager;
 }
