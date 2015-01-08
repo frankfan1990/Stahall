@@ -372,7 +372,7 @@
     }
     UILabel *labelContent = (UILabel *)[cell.contentView viewWithTag:10000];
     UILabel *labelOfDate = (UILabel *)[cell.contentView viewWithTag:100000];
-    
+//    [@"" comby]
     UIView *view = (UIView *)[cell.contentView viewWithTag:10003];
     if (indexPath.row == 0 ) {
         view.hidden = YES;
