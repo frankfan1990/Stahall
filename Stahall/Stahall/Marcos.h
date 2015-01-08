@@ -64,8 +64,8 @@
 /*
  我的估价
  */
-#define MyValuationIP @"http://218.244.158.59/stahall/valuation/getValuation"
-
+//#define MyValuationIP @"http://218.244.158.59/stahall/valuation/getValuation"
+#define MyValuationIP @"http://192.168.1.116:8080/stahall/valuation/getValuation"
 /*
   新建演出(提交)
 */

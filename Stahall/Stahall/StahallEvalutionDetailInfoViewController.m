@@ -12,7 +12,10 @@
 #import "Reachability.h"
 #import "NetworkHelper.h"
 #import "StarModel.h"
-#import <ReactiveCocoa.h>
+#import "FrankfanApis.h"
+#import "ProgressHUD.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 
 NSInteger justTestDataSource = 13;
 static NSInteger stepHour = 1;
@@ -29,6 +32,10 @@ static NSInteger stepHour = 1;
     //
     UILabel *hourLable;//加急时间Label
     CGFloat collectionViewHeight;//控制collectionView的高度
+    
+    //
+    Reachability *_reachability;
+    BOOL isAddSpeeded;
     
 }
 @property (nonatomic,strong)UITableView *tableView;
@@ -51,7 +58,7 @@ static NSInteger stepHour = 1;
   
     //初始化数据
     justTestDataSource = [self.starsList count];
-    
+    _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     
     /*回退*/
@@ -82,29 +89,31 @@ static NSInteger stepHour = 1;
     
     //演唱会
     concertLabel =[self createLabelWithFrame:CGRectMake(10, 20, self.view.bounds.size.width/2.0-10-15, 35)];
-  
+    concertLabel.text = self.showName;
     
     //地点
     concertAddressLabel =[self createLabelWithFrame:CGRectMake(self.view.bounds.size.width/2.0+30, 20, self.view.bounds.size.width/2.0-10-15, 35)];
-   
+    concertAddressLabel.text = self.showAddress;
     
     //第一时间
     firstTimeLabel =[self createLabelWithFrame:CGRectMake(10, 20+35+20, self.view.bounds.size.width/2.0-10-15, 35)];
- 
+    firstTimeLabel.text = self.showTime;
     
     //第二时间
     secondeTimeLabel =[self createLabelWithFrame:CGRectMake(self.view.bounds.size.width/2.0+30, 20+35+20,self.view.bounds.size.width/2.0-10-15, 35)];
- 
+    
+    secondeTimeLabel.text = self.showAnotherTime;
 
     
     //机场
     airplaneLabel =[self createLabelWithFrame:CGRectMake(10, 20+35+20+35+20, self.view.bounds.size.width/2.0-10-15, 35)];
-
+    airplaneLabel.text = self.airPlane;
     
     
     //场馆
     plcaeLabel =[self createLabelWithFrame:CGRectMake(self.view.bounds.size.width/2.0+30, 20+35+20+35+20, self.view.bounds.size.width/2.0-10-15, 35)];
     
+    plcaeLabel.text = self.showPlace;
    
     
     
@@ -160,14 +169,15 @@ static NSInteger stepHour = 1;
     speedButton.titleLabel.font = [UIFont systemFontOfSize:14];
     speedButton.backgroundColor =[UIColor orangeColor];
     [speedButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    [self.view addSubview:speedButton];
     [speedButton addTarget:self action:@selector(addSpeedButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-  
+ 
+    
     if(self.isCouldSpeedModle){
         
         [self.view addSubview:subButton];
         [self.view addSubview:addButton];
         [self.view addSubview:hourLable];
+        [self.view addSubview:speedButton];
         [self.view addSubview:speedButton];
     }
     
@@ -184,6 +194,8 @@ static NSInteger stepHour = 1;
     [builtShowButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [builtShowButton setTitle:@"新建演出邀约" forState:UIControlStateNormal];
     
+
+    
     if(!self.isCouldSpeedModle){
     
         [self.view addSubview:builtShowButton];
@@ -193,8 +205,36 @@ static NSInteger stepHour = 1;
     //开始网络请求
     if(!self.isFirstPort){//如果不是第一个入口进来的，则进行网络请求
     
+        if(![_reachability isReachable]){
         
-    
+            [ProgressHUD showError:@"网络错误"];
+            return;
+        }
+        
+        AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+        NSDictionary *parameter = @{@"valuationId":self.valuationId};
+        
+        [ProgressHUD show:nil];
+        [manager GET:API_GetValutionInfoByValutionId parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            
+            NSDictionary *dataDict = responseObject[@"data"];
+            self.starsList = dataDict[@"valuationRelevances"];
+            justTestDataSource = [self.starsList count];
+            [self.collectionView reloadData];
+            [self.tableView reloadData];
+            
+            NSLog(@"responseObjc:%@",responseObject);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"error:%@",[error localizedDescription]);
+            [ProgressHUD showError:@"网络错误"];
+            
+            [ProgressHUD dismiss];
+            
+        }];
+        
     }
     
     
@@ -205,6 +245,47 @@ static NSInteger stepHour = 1;
 #pragma mark - 加急按钮触发
 - (void)addSpeedButtonClicked{
 
+    if(isAddSpeeded){
+    
+        [ProgressHUD showError:@"请勿重复提交"];
+        return;
+    }
+    
+    
+    if(![_reachability isReachable]){
+    
+        [ProgressHUD showError:@"网络错误"];
+        return;
+    }
+    
+    
+    if(![self.starsList count]){
+        
+        [ProgressHUD show:@"数据错误"];
+        return;
+    }
+    
+    
+    AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
+    NSDictionary *parameters = @{@"valuationId":self.valuationId,
+                                 @"urgent":[NSNumber numberWithInteger:[hourLable.text integerValue]]};
+    
+    [ProgressHUD show:nil];
+    [manager POST:API_AddSpeedEvalution parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"response:%@",responseObject);
+        isAddSpeeded = YES;
+        [ProgressHUD showSuccess:@"加急成功"];
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"clearAllData" object:nil];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"error:%@",[error localizedDescription]);
+        [ProgressHUD showError:@"网络错误"];
+    }];
+    
+    
+    
     NSLog(@"加急按钮触发");
 }
 
@@ -255,13 +336,44 @@ static NSInteger stepHour = 1;
 
     StahallEvalutionDetailInfoCollectionViewCell *cell =(StahallEvalutionDetailInfoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
 
-    StarModel *starModel =[StarModel modelWithDictionary:self.starsList[indexPath.row] error:nil];
-    [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
-    cell.starName.text = starModel.artistName;
-    cell.topPrice.text = @"?万";
+    if(self.isFirstPort){
+    
+        StarModel *starModel =[StarModel modelWithDictionary:self.starsList[indexPath.row] error:nil];
+        [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
+        cell.starName.text = starModel.artistName;
+        cell.topPrice.text = @"?万";
+        cell.bottomPrice.text = @"?万";
+
+    }else{
+    
+        NSDictionary *tempDict = self.starsList[indexPath.row];
+        [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:tempDict[@"header"]] placeholderImage:nil];
+        
+        //演出时间
+        if([tempDict[@"rate"]integerValue]==0){//估价价格未出
+        
+            cell.topPrice.text = @"?万";
+        }else{//已出
+        
+            cell.topPrice.text = [NSString stringWithFormat:@"%@万",tempDict[@"showRate"]];
+        }
+        
+        //备选时间
+        if([tempDict[@"alternativeRate"]integerValue]==0){
+        
+            cell.bottomPrice.text = @"?万";
+        }else{
+        
+            cell.bottomPrice.text = [NSString stringWithFormat:@"%@万",tempDict[@"alternativeRate"]];
+        }
+        
+        
+        
+    }
+    
     cell.topTime.text = self.showTime;
-    cell.bottomPrice.text = @"?万";
     cell.bottomTime.text = self.showAnotherTime;
+
     return cell;
 }
 
@@ -358,6 +470,14 @@ static NSInteger stepHour = 1;
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
 
 }
+
+
+- (void)viewWillDisappear:(BOOL)animated{
+
+    [ProgressHUD dismiss];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

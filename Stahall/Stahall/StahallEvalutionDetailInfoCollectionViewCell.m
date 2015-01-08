@@ -5,7 +5,6 @@
 //  Created by frankfan on 14/12/25.
 //  Copyright (c) 2014年 Rching. All rights reserved.
 //
-//FIXME: 堂估价详情Cell
 
 #import "StahallEvalutionDetailInfoCollectionViewCell.h"
 

@@ -354,6 +354,10 @@
     _textField = textField;
     myIndexPath = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
     //这里可能不兼容其他系统
+    
+    CGPoint position = [textField convertPoint:CGPointZero toView:_tableView];
+    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:position];
+    myIndexPath = indexPath;
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
