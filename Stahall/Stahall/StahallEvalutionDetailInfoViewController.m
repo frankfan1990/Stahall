@@ -178,7 +178,7 @@ static NSInteger stepHour = 1;
         [self.view addSubview:addButton];
         [self.view addSubview:hourLable];
         [self.view addSubview:speedButton];
-        [self.view addSubview:speedButton];
+        
     }
     
     //新建演出邀约
@@ -221,6 +221,14 @@ static NSInteger stepHour = 1;
             NSDictionary *dataDict = responseObject[@"data"];
             self.starsList = dataDict[@"valuationRelevances"];
             justTestDataSource = [self.starsList count];
+            
+            if(dataDict[@"urgent"]){//已加急
+            
+                [speedButton setTitle:@"已加急" forState:UIControlStateNormal];
+                speedButton.enabled = NO;
+            }
+            
+            
             [self.collectionView reloadData];
             [self.tableView reloadData];
             
@@ -276,7 +284,7 @@ static NSInteger stepHour = 1;
         NSLog(@"response:%@",responseObject);
         isAddSpeeded = YES;
         [ProgressHUD showSuccess:@"加急成功"];
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"clearAllData" object:nil];
+       
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -350,7 +358,7 @@ static NSInteger stepHour = 1;
         [cell.staHeaderImageView sd_setImageWithURL:[NSURL URLWithString:tempDict[@"header"]] placeholderImage:nil];
         
         //演出时间
-        if([tempDict[@"rate"]integerValue]==0){//估价价格未出
+        if([tempDict[@"showRate"]integerValue]==0){//估价价格未出
         
             cell.topPrice.text = @"?万";
         }else{//已出
@@ -474,6 +482,9 @@ static NSInteger stepHour = 1;
 
 - (void)viewWillDisappear:(BOOL)animated{
 
+#warning 这个逻辑有待商榷
+    //!!!: 这个逻辑有待商榷
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"clearAllData" object:nil];
     [ProgressHUD dismiss];
 }
 
