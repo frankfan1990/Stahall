@@ -19,6 +19,7 @@
 #import "ShowMallsViewController.h"
 #import "TangHuiListViewController.h"
 #import "ListAdvanceViewController.h"
+#import "CaseDetailsViewController.h"
 #import "CCSegmentedControl.h"
 #import "AFNetworking.h"
 #import "CycleScrollView.h"
@@ -36,7 +37,7 @@
     NSInteger _type;
     
     NSArray *advanceData;//预告数据
-    
+    NSArray *caseData;//案例数据
 }
 
 @property (nonatomic,strong)UITableView *tableView;//主页骨架
@@ -74,8 +75,6 @@
     
     headScrollView.backgroundColor = [UIColor clearColor];
   
-
-    
     self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height-65) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -105,7 +104,7 @@
 {
     __weak typeof (self)Myself = self;
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
-    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain"]];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
     
     /*
      
@@ -173,6 +172,20 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+    
+    /*
+     
+     获取案例数据
+     
+     */
+    NSDictionary *dic2 = @{@"start":@"0",@"limit":@"20"};
+    [manger GET:CaseIP parameters:dic2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dictiondata = (NSDictionary *)responseObject;
+        caseData = dictiondata[@"results"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
     
 }
 
@@ -330,6 +343,9 @@
         [btn2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn3 setTitle:@"秀MALL" forState:UIControlStateNormal];
         [btn3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [btn1 setImage:[UIImage imageNamed:@"lc_there"] forState:UIControlStateNormal];
+//        [btn2 setImage:[UIImage imageNamed:@"lc_one"] forState:UIControlStateNormal];
+//        [btn3 setImage:[UIImage imageNamed:@"lc_two"] forState:UIControlStateNormal];
         
         [btn1.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [btn2.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -410,6 +426,8 @@
 {
     if (collectionView.tag == 10002) {
         return advanceData.count;
+    }else if (collectionView.tag == 10003){
+        return caseData.count;
     }
     return 4;
 }
@@ -460,7 +478,7 @@
         
         UIImageView *imageV = [[UIImageView alloc] init];
         imageV.frame = CGRectMake(0, 0,120, 170);
-        imageV.image = [UIImage imageNamed:@"张杰"];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:caseData[indexPath.row][@"cover"]] placeholderImage:[UIImage imageNamed:@""]];
         [cell_two addSubview:imageV];
         
         return cell_two;
@@ -528,21 +546,23 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
+   
     
     if (collectionView.tag == 10002) {
+        AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
         advanceCtrl.titleViewStr = @"预告详情";
         advanceCtrl.dictData = advanceData[indexPath.row];
         advanceCtrl.type = 1;
-        
+        [self.navigationController pushViewController:advanceCtrl animated:YES];
     }else if (collectionView.tag == 10003){
-        advanceCtrl.titleViewStr = @"案例详情";
-        advanceCtrl.type = 2;
+        CaseDetailsViewController *caseCtrl = [[CaseDetailsViewController alloc] init];
+        caseCtrl.caseId = caseData[indexPath.row][@"caseId"];
+        caseCtrl.caseName = caseData[indexPath.row][@"caseName"];
+        [self.navigationController pushViewController:caseCtrl animated:YES];
     }else if (collectionView.tag == 10004){
-        advanceCtrl.titleViewStr = @"行程详情";
-        advanceCtrl.type = 3;
+
     }
-   [self.navigationController pushViewController:advanceCtrl animated:YES];
+  
     NSLog(@"%@",indexPath);
 }
 

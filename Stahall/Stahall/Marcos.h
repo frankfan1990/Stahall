@@ -27,6 +27,16 @@
  */
 #define advanceIp @"http://218.244.158.59/stahall/trailer/getTrailer"
 
+/*
+    首页案例
+ */
+#define CaseIP @"http://192.168.1.116:8080/stahall/case"
+
+/*
+ 首页案例
+ */
+#define CaseDetailIP @"http://192.168.1.116:8080/stahall/case/getCase"
+
 
 /*
   首页秀MALL列表
@@ -49,7 +59,7 @@
 /*
  我的演出
  */
-#define MyShowsIP @"http://218.244.158.59/stahall/show/getShow"
+#define MyShowsIP @"http://192.168.1.116:8080/stahall/show/getShow"
 
 /*
  我的估价
@@ -57,9 +67,9 @@
 #define MyValuationIP @"http://218.244.158.59/stahall/valuation/getValuation"
 
 /*
-  新建演出
+  新建演出(提交)
 */
-#define AddNewShowIP @"http://218.244.158.59/stahall/show/submit"
+#define AddNewShowIP @"http://192.168.1.116:8080/stahall/show/submit"
 
 
 

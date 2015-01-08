@@ -111,7 +111,7 @@
         cell0.selectionStyle = UITableViewCellSelectionStyleNone;
         cell0.backgroundColor = [UIColor clearColor];
         UIImageView  *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 140)];
-        imageV.backgroundColor = [UIColor redColor];
+        imageV.backgroundColor = [UIColor orangeColor];
         
         UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake( Mywidth/2-105/2,45/2,95, 95)];
         imageV2.backgroundColor = [UIColor whiteColor];
@@ -121,6 +121,7 @@
         
         UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
         btn1.backgroundColor = [UIColor greenColor];
+        [btn1 setImage:[UIImage imageNamed:@"lc专属克服2"] forState:UIControlStateNormal];
         btn1.frame = CGRectMake(25, 140/2-25, 50, 50);
         btn1.layer.masksToBounds = YES;
         btn1.layer.cornerRadius = btn1.frame.size.width/2;
@@ -128,6 +129,7 @@
         
         UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
         btn2.backgroundColor = [UIColor greenColor];
+        [btn2 setImage:[UIImage imageNamed:@"lc专属克服1"] forState:UIControlStateNormal];
         btn2.frame = CGRectMake(Mywidth-25-50, 140/2-25, 50, 50);
         btn2.layer.masksToBounds = YES;
         btn2.layer.cornerRadius = btn2.frame.size.width/2;
