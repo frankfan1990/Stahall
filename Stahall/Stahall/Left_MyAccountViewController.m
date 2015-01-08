@@ -11,8 +11,10 @@
 #import "RESideMenu.h"
 #import "Marcos.h"
 #pragma mark - 我的账户
-@interface Left_MyAccountViewController ()
-
+@interface Left_MyAccountViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView *_tableView;
+}
 @end
 
 @implementation Left_MyAccountViewController
@@ -27,6 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
+    _tableView.sectionFooterHeight = 0.01;
+    _tableView.delegate = self;
+    _tableView.dataSource =self;
+    [self.view addSubview:_tableView];
 }
 
 - (void)didReceiveMemoryWarning {
