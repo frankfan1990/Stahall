@@ -146,48 +146,49 @@
 
 -(void)getData{
 
-        [ProgressHUD show:@"正在加载" Interaction:NO];
+    [dataOther1 removeAllObjects];
+    [dataOther2 removeAllObjects];
+    [data1 removeAllObjects];
+    [data2 removeAllObjects];
+    [data3 removeAllObjects];
+    [ProgressHUD show:@"正在加载" Interaction:NO];
     
-        AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
-        manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
-        __block int count = 0;
-        __block int isfailure = 0;
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
+    __block int count = 0;
+    __block int isfailure = 0;
         /*
          
          我的演出的数据
           
          */
-    __weak typeof (self)mySelf = self;
-        NSDictionary *dic1 = @{@"businessId":@"47e92fdc-d546-46c9-af66-436568094d5c"};
-        [manger GET:MyShowsIP parameters:dic1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            count++;
-            if (count == 2) {
-                [ProgressHUD showSuccess:@"加载完成"];
-            }
+//    __weak typeof (self)mySelf = self;
+    NSDictionary *dic1 = @{@"businessId":@"47e92fdc-d546-46c9-af66-436568094d5c"};
+    [manger GET:MyShowsIP parameters:dic1 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        count++;
+        if (count == 2) {
+            [ProgressHUD showSuccess:@"加载完成"];
+        }
             
-            NSDictionary *datadic = (NSDictionary *)responseObject;
-            for (NSDictionary *dd in datadic[@"results"]) {
+        NSDictionary *datadic = (NSDictionary *)responseObject;
+        for (NSDictionary *dd in datadic[@"results"]) {
                 
-                if ([dd[@"status"] intValue] == 0) {
-                    [data1 addObject:dd];
-                }else if ([dd[@"status"] intValue] == 3) {
-                    [data2 addObject:dd];
-                }else if ([dd[@"status"] intValue] == 4) {
-                    [data3 addObject:dd];
-                }
+            if ([dd[@"status"] intValue] == 0) {
+                [data1 addObject:dd];
+            }else if ([dd[@"status"] intValue] == 3) {
+                [data2 addObject:dd];
+            }else if ([dd[@"status"] intValue] == 4) {
+                [data3 addObject:dd];
             }
+        }
             [_tableView reloadData];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            isfailure++;
-            NSLog(@"%@",error);
-            if (isfailure == 1) {
-                [ProgressHUD dismiss];
-                UIAlertView *aler=[[UIAlertView alloc] initWithTitle:nil message:@"\n加载失败\n网络异常" delegate:mySelf cancelButtonTitle:@"取消" otherButtonTitles:@"重新加载",nil];
-                [aler show];
-            }
-        }];
-    
-    
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        isfailure++;
+        NSLog(@"%@",error);
+        if (isfailure == 1) {
+            [ProgressHUD showError:@"加载失败"];
+        }
+    }];
     /*
      
      我的估价的数据
@@ -214,15 +215,13 @@
         NSLog(@"%@",error);
         isfailure++;
         if (isfailure == 1) {
-            [ProgressHUD dismiss];
-            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:nil message:@"\n加载失败\n网络异常" delegate:mySelf cancelButtonTitle:@"取消" otherButtonTitles:@"重新加载",nil];
-            [aler show];
+            [ProgressHUD showError:@"加载失败"];
+           
         }
         
     }];
 
 }
-
 
 #pragma mark - UIAlertView代理
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -287,10 +286,10 @@
     }
     else{
         
-        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 40)];
+        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 45)];
         backView.backgroundColor = [UIColor clearColor];
         
-        UIView *myview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 40)];
+        UIView *myview = [[UIView alloc] initWithFrame:CGRectMake(0, 5, Mywidth, 40)];
         myview.backgroundColor = [UIColor blackColor];
         myview.alpha = 0.2;
         [backView addSubview:myview];
@@ -335,7 +334,7 @@
     if (section == 0) {
         return 55;
     }else{
-        return 40;
+        return 45;
     }
 }
 
@@ -361,8 +360,8 @@
 
         labelOfConten.tag = 10000;
         labelOfDate.tag = 100000;
-        [self Customlable:labelOfConten text:nil fontSzie:14 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
-         [self Customlable:labelOfDate text:nil fontSzie:12 textColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1] textAlignment:NSTextAlignmentRight adjustsFontSizeToFitWidth:NO numberOfLines:1];
+        [self Customlable:labelOfConten text:nil fontSzie:14 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
+         [self Customlable:labelOfDate text:nil fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentRight adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell.contentView addSubview:labelOfConten];
         [cell.contentView addSubview:labelOfDate];
         

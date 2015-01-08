@@ -11,4 +11,5 @@
 @interface MyShowViewController : UIViewController
 
 @property (nonatomic,copy)NSString *customTitle;
+-(void)getData;
 @end

@@ -365,13 +365,13 @@
 }
 
 -(void)didCancelBtn:(UIButton *) sender{
+    
     [arrOfSection removeLastObject];
     [arrOfdata removeObjectAtIndex:sender.tag-100000];
     NSIndexSet *set = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(sender.tag-100000, 1)];
     [_tableView beginUpdates];
     [_tableView deleteSections:set withRowAnimation:UITableViewRowAnimationRight];
     [_tableView endUpdates];
-    
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [_tableView reloadData];

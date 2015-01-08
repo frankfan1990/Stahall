@@ -252,10 +252,6 @@
             label.tag = 112;
             
             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
-            
-            
-            field.text = @"3333";
-            
             field.userInteractionEnabled = YES;
             field.delegate = self;
             field.textColor = [UIColor whiteColor];
@@ -471,12 +467,15 @@
         NSDictionary *dict = responseObject;
         if ([dict[@"success"] intValue] == 1) {
             [ProgressHUD showSuccess:@"提交成功"];
-            
-            MyShowViewController *myShowCtrl = Myself.navigationController.viewControllers[Myself.navigationController.viewControllers.count-4];
-            
-        
-            [self.navigationController popToViewController:myShowCtrl animated:YES];
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
+                MyShowViewController *myShowCtrl = Myself.navigationController.viewControllers[Myself.navigationController.viewControllers.count-4];
+                [myShowCtrl getData];
+                [Myself.navigationController popToViewController:myShowCtrl animated:YES];
+                
+            });
+            
         }else{
             [ProgressHUD dismiss];
             UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"提交失败" message:@"\n网络异常" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];

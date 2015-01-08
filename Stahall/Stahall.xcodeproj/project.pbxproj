@@ -16,6 +16,13 @@
 		5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */; };
 		5C2ECE461A58D8E5003A9711 /* lc111.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE441A58D8E5003A9711 /* lc111.png */; };
 		5C2ECE471A58D8E5003A9711 /* lc222.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE451A58D8E5003A9711 /* lc222.png */; };
+		5C40BFB21A5CBFA000AAAEE7 /* lc专属克服1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */; };
+		5C40BFB31A5CBFA000AAAEE7 /* lc专属克服2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB11A5CBFA000AAAEE7 /* lc专属克服2.png */; };
+		5C40BFB61A5CCB2800AAAEE7 /* CaseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40BFB51A5CCB2800AAAEE7 /* CaseDetailsViewController.m */; };
+		5C40BFB81A5D0E9F00AAAEE7 /* lc刘德华.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB71A5D0E9F00AAAEE7 /* lc刘德华.png */; };
+		5C40BFBA1A5D11AC00AAAEE7 /* lc范冰冰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB91A5D11AC00AAAEE7 /* lc范冰冰.png */; };
+		5C40BFC91A5E22AA00AAAEE7 /* CasePlayVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40BFC81A5E22AA00AAAEE7 /* CasePlayVideoViewController.m */; };
+		5C40BFCC1A5E28B900AAAEE7 /* MyShowDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40BFCB1A5E28B900AAAEE7 /* MyShowDetailsViewController.m */; };
 		5C4519D21A47AD790031685A /* CreateShowFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519D11A47AD790031685A /* CreateShowFirstViewController.m */; };
 		5C4519D51A4803E80031685A /* lc取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4519D41A4803E80031685A /* lc取消.png */; };
 		5C4519D91A4817A80031685A /* CreateShowSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519D81A4817A80031685A /* CreateShowSecondViewController.m */; };
@@ -194,6 +201,16 @@
 		5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentCtrol.m; sourceTree = "<group>"; };
 		5C2ECE441A58D8E5003A9711 /* lc111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc111.png; sourceTree = "<group>"; };
 		5C2ECE451A58D8E5003A9711 /* lc222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc222.png; sourceTree = "<group>"; };
+		5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服1.png"; sourceTree = "<group>"; };
+		5C40BFB11A5CBFA000AAAEE7 /* lc专属克服2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服2.png"; sourceTree = "<group>"; };
+		5C40BFB41A5CCB2800AAAEE7 /* CaseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaseDetailsViewController.h; sourceTree = "<group>"; };
+		5C40BFB51A5CCB2800AAAEE7 /* CaseDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaseDetailsViewController.m; sourceTree = "<group>"; };
+		5C40BFB71A5D0E9F00AAAEE7 /* lc刘德华.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc刘德华.png"; sourceTree = "<group>"; };
+		5C40BFB91A5D11AC00AAAEE7 /* lc范冰冰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc范冰冰.png"; sourceTree = "<group>"; };
+		5C40BFC71A5E22AA00AAAEE7 /* CasePlayVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CasePlayVideoViewController.h; sourceTree = "<group>"; };
+		5C40BFC81A5E22AA00AAAEE7 /* CasePlayVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CasePlayVideoViewController.m; sourceTree = "<group>"; };
+		5C40BFCA1A5E28B900AAAEE7 /* MyShowDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyShowDetailsViewController.h; sourceTree = "<group>"; };
+		5C40BFCB1A5E28B900AAAEE7 /* MyShowDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyShowDetailsViewController.m; sourceTree = "<group>"; };
 		5C4519D01A47AD790031685A /* CreateShowFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateShowFirstViewController.h; sourceTree = "<group>"; };
 		5C4519D11A47AD790031685A /* CreateShowFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateShowFirstViewController.m; sourceTree = "<group>"; };
 		5C4519D41A4803E80031685A /* lc取消.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc取消.png"; sourceTree = "<group>"; };
@@ -525,6 +542,10 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5C40BFB91A5D11AC00AAAEE7 /* lc范冰冰.png */,
+				5C40BFB71A5D0E9F00AAAEE7 /* lc刘德华.png */,
+				5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */,
+				5C40BFB11A5CBFA000AAAEE7 /* lc专属克服2.png */,
 				5C46B6D31A5BC71E00DFE733 /* lc专属克服.png */,
 				5C2ECE441A58D8E5003A9711 /* lc111.png */,
 				5C2ECE451A58D8E5003A9711 /* lc222.png */,
@@ -627,8 +648,8 @@
 				5C4519E31A4940650031685A /* CreateShowThirdViewController.m */,
 				5C4519DA1A4915620031685A /* RZTimeSelectedViewController.h */,
 				5C4519DB1A4915620031685A /* RZTimeSelectedViewController.m */,
-				5C4519EA1A4BDC870031685A /* HomeHeadDetailsViewController.h */,
 				5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */,
+				5C4519EA1A4BDC870031685A /* HomeHeadDetailsViewController.h */,
 				5C7D5CDD1A50F5CF00163B07 /* ShowMallDetailsViewController.h */,
 				5C7D5CDE1A50F5CF00163B07 /* ShowMallDetailsViewController.m */,
 				5C7D5CE21A5147F700163B07 /* Left_MyAccountViewController.h */,
@@ -645,6 +666,10 @@
 				5C7D5CF21A514A8400163B07 /* Left_HelpCenterViewController.m */,
 				5C7D5CF51A514AE100163B07 /* Left_ CancellationViewController.h */,
 				5C7D5CF61A514AE100163B07 /* Left_ CancellationViewController.m */,
+				5C40BFB41A5CCB2800AAAEE7 /* CaseDetailsViewController.h */,
+				5C40BFB51A5CCB2800AAAEE7 /* CaseDetailsViewController.m */,
+				5C40BFC71A5E22AA00AAAEE7 /* CasePlayVideoViewController.h */,
+				5C40BFC81A5E22AA00AAAEE7 /* CasePlayVideoViewController.m */,
 			);
 			name = LuCanViewCtrl;
 			sourceTree = "<group>";
@@ -802,6 +827,8 @@
 			children = (
 				63258B341A3D8A490089C3F1 /* MyShowViewController.h */,
 				63258B351A3D8A490089C3F1 /* MyShowViewController.m */,
+				5C40BFCA1A5E28B900AAAEE7 /* MyShowDetailsViewController.h */,
+				5C40BFCB1A5E28B900AAAEE7 /* MyShowDetailsViewController.m */,
 			);
 			name = InSideMenuControllers;
 			sourceTree = "<group>";
@@ -1312,13 +1339,16 @@
 				5CD5FD391A43B9C700316965 /* lc张学友.png in Resources */,
 				5C5EF67D1A3A8DB800EE8D78 /* 七夕.png in Resources */,
 				6397FDCE1A429E9B0021B9E2 /* fs_main_login_normal@2x.png in Resources */,
+				5C40BFB31A5CBFA000AAAEE7 /* lc专属克服2.png in Resources */,
 				5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */,
 				5C5EF67A1A3A844C00EE8D78 /* 面包@2x.png in Resources */,
 				63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */,
 				63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */,
 				5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */,
 				5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */,
+				5C40BFBA1A5D11AC00AAAEE7 /* lc范冰冰.png in Resources */,
 				63AA9F3C1A49C9D400D97EC3 /* 今天@2x.png in Resources */,
+				5C40BFB21A5CBFA000AAAEE7 /* lc专属克服1.png in Resources */,
 				5C7D5CE11A513CA100163B07 /* lc向左灰.png in Resources */,
 				5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */,
 				5C9E08871A3EEA5E007072E0 /* lc汪峰头像.png in Resources */,
@@ -1337,6 +1367,7 @@
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,
 				63BC6ABA1A39FEE300087DFB /* MainViewBackImage.png in Resources */,
 				63649A3F1A4950E30024E3F7 /* fz艺人详情背景.png in Resources */,
+				5C40BFB81A5D0E9F00AAAEE7 /* lc刘德华.png in Resources */,
 				63649A531A496FBD0024E3F7 /* 行程@2x.png in Resources */,
 				5C46B6D41A5BC71E00DFE733 /* lc专属克服.png in Resources */,
 				5C2ECE461A58D8E5003A9711 /* lc111.png in Resources */,
@@ -1486,6 +1517,7 @@
 				636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */,
 				63BC6A941A374C5800087DFB /* FBKVOController.m in Sources */,
 				63649A481A496F7F0024E3F7 /* LunarCalendar.m in Sources */,
+				5C40BFC91A5E22AA00AAAEE7 /* CasePlayVideoViewController.m in Sources */,
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
 				634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
@@ -1496,8 +1528,10 @@
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
 				636F44191A44077400FD6783 /* AFURLResponseSerialization.m in Sources */,
 				636F447C1A44091300FD6783 /* NSData+ImageContentType.m in Sources */,
+				5C40BFCC1A5E28B900AAAEE7 /* MyShowDetailsViewController.m in Sources */,
 				63A9EA7E1A40173700C5DAE6 /* StahallEvalueCollectionViewCell.m in Sources */,
 				636F44151A44077400FD6783 /* AFNetworkReachabilityManager.m in Sources */,
+				5C40BFB61A5CCB2800AAAEE7 /* CaseDetailsViewController.m in Sources */,
 				5C1C8C411A42675900A94E7A /* TangHuiListViewController.m in Sources */,
 				636F44131A44077400FD6783 /* AFHTTPRequestOperationManager.m in Sources */,
 				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,

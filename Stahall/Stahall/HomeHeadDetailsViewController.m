@@ -7,7 +7,7 @@
 //
 
 #import "HomeHeadDetailsViewController.h"
-
+#import "Marcos.h"
 @interface HomeHeadDetailsViewController ()
 {
     UIWebView *_webView;
@@ -26,7 +26,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64)];
+    _webView.backgroundColor = [UIColor whiteColor];
     [_webView loadHTMLString:_dataStr baseURL:nil];
     [self.view addSubview:_webView];
     

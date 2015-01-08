@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Pods-ReactiveCocoa.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Pods-TMCache.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -32,7 +37,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>547A21C6293ABF7253E41F18</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>547A2CDB256C5E332D2DB684</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>553974566C54664C275E99D9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6653561382F6F30C38D376C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AA57E641E1D7F473ADE203AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
