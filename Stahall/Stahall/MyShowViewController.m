@@ -31,6 +31,7 @@
     //两个数组 对应 我的估价两个状态
     NSMutableArray *dataOther1;
     NSMutableArray *dataOther2;
+ 
 }
 @end
 
@@ -467,29 +468,33 @@
 
     if(btnRight.selected){//我的估价
     
+        StahallEvalutionDetailInfoViewController *starhallEvalutionCV =[StahallEvalutionDetailInfoViewController new];
+        NSDictionary *dict = nil;
+        
         if(indexPath.section==1){//估价中
             
-            NSDictionary *dict = dataOther1[indexPath.row];
-            StahallEvalutionDetailInfoViewController *starhallEvalutionCV =[StahallEvalutionDetailInfoViewController new];
-            
-            starhallEvalutionCV.showName = dict[@"showName"];
-            starhallEvalutionCV.showAddress = dict[@"showAddress"];
-            starhallEvalutionCV.showTime = dict[@"showTime"];
-            starhallEvalutionCV.showAnotherTime = dict[@"alternativeTime"];
-            starhallEvalutionCV.airPlane = dict[@"directArport"];
-            starhallEvalutionCV.showPlace = dict[@"showVenues"];
-            
-            starhallEvalutionCV.valuationId = dict[@"valuationId"];
-            starhallEvalutionCV.isFirstPort = NO;
+            dict = dataOther1[indexPath.row];
             starhallEvalutionCV.isCouldSpeedModle = YES;
             
-            [self.navigationController pushViewController:starhallEvalutionCV animated:YES];
-            
-        }else{
             
             
+        }else{//估价完
+            
+            dict = dataOther2[indexPath.row];
+            starhallEvalutionCV.isCouldSpeedModle = NO;
         }
+        
+        starhallEvalutionCV.showName = dict[@"showName"];
+        starhallEvalutionCV.showAddress = dict[@"showAddress"];
+        starhallEvalutionCV.showTime = dict[@"showTime"];
+        starhallEvalutionCV.showAnotherTime = dict[@"alternativeTime"];
+        starhallEvalutionCV.airPlane = dict[@"directArport"];
+        starhallEvalutionCV.showPlace = dict[@"showVenues"];
+        
+        starhallEvalutionCV.valuationId = dict[@"valuationId"];
+        starhallEvalutionCV.isFirstPort = NO;
 
+        [self.navigationController pushViewController:starhallEvalutionCV animated:YES];
     }
     
 }
