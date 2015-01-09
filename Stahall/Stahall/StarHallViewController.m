@@ -24,6 +24,7 @@
 #import "Reachability.h"
 #import "UIImageView+WebCache.h"
 #import <TMCache.h>
+#import <ReactiveCocoa.h>
 
 static NSInteger _start = 9;
 static NSInteger _start2 = 9;
@@ -552,15 +553,12 @@ static NSString *cacheKey3 = @"cacheKey3";
     if(indexPath.row%2==0){
         
         cell.zoneDot.backgroundColor =[UIColor magentaColor];
-        cell.starImage.image =[UIImage imageNamed:@"七夕"];
-        cell.starName.text = @"汪峰";
         
         
     }else{
     
         cell.zoneDot.backgroundColor =[UIColor greenColor];
-        cell.starImage.image =[UIImage imageNamed:@"张杰"];
-        cell.starName.text = @"刘德华";
+        
     }
 
     if(indexPath.section==0){//热门艺人
@@ -590,6 +588,15 @@ static NSString *cacheKey3 = @"cacheKey3";
         cell.starName.text = starModel.artistName;
 
     
+    }
+    
+    
+    if([selectIndexPaths containsObject:indexPath]){
+    
+        cell.checkIt.hidden = NO;
+    }else{
+    
+        cell.checkIt.hidden = YES;
     }
     
       return cell;
@@ -675,10 +682,7 @@ static NSString *cacheKey3 = @"cacheKey3";
         [self.navigationController pushViewController:starDetaiInfo animated:YES];
     
     }
-    
-    
-    
-
+  
 }
 
 
@@ -704,6 +708,36 @@ static NSString *cacheKey3 = @"cacheKey3";
         
     }else{//如果是搜索模式
         
+        
+        if([self.reciveTheHasSelecedStars count]>1){
+            
+            if([[self.reciveTheHasSelecedStars lastObject]isKindOfClass:[NSString class]]){
+                
+                [self.reciveTheHasSelecedStars removeLastObject];
+                
+                [self.reciveTheHasSelecedStars enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
+                    
+                    for (NSDictionary *dict2 in selectedCells) {
+                        
+                        if([dict[@"artistId"]isEqualToString:dict2[@"artistId"]]){
+                          
+                            [selectedCells removeObject:dict2];
+                            
+                        }
+                    }
+                    
+                }];
+            
+            }
+        
+        
+        
+        }
+        
+        if(![[self.reciveTheHasSelecedStars lastObject]isKindOfClass:[NSString class]] && [self.reciveTheHasSelecedStars count]<20){
+        
+            [self.reciveTheHasSelecedStars addObject:@"end"];
+        }
         
         [self.delegate theSelectedCells:selectedCells];
         [self.navigationController popViewControllerAnimated:YES];
@@ -1000,6 +1034,7 @@ bool isExpand;
         [blurView removeFromSuperview];
     }
     
+    [ProgressHUD dismiss];
 }
 
 
@@ -1042,6 +1077,9 @@ bool isExpand;
     _start3 = 9;
     
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning {

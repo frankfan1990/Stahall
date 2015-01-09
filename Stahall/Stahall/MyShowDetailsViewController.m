@@ -12,6 +12,9 @@
 #import "ProgressHUD.h"
 #import <ReactiveCocoa.h>
 #import "SendInvitationCollectionViewCell.h"
+#import "StahallValuationViewController.h"
+#import "MyEvalutionedListViewController.h"
+
 @interface MyShowDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
     
@@ -340,19 +343,22 @@
 #pragma mark - collectionViewCell被选择
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
-
+    
+    MyEvalutionedListViewController *myEvalutionCV =[MyEvalutionedListViewController new];
+    myEvalutionCV.evalutionedStars = self.hasEvationStars;
+    [self.navigationController pushViewController:myEvalutionCV animated:YES];
+    
+    
+    if([self.hasEvationStars count]){//现在已有估价完的艺人
+    
+        
+        
+    }else{//现在没有估价完的艺人
+    
+    
+    }
 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 @end

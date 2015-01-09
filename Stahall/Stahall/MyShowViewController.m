@@ -507,9 +507,10 @@
         }else if (indexPath.section == 3) {
             detailCtrl.dicData = data3[indexPath.row];
         }
-        [self.navigationController pushViewController:detailCtrl animated:YES];
         
-
+        detailCtrl.hasEvationStars = dataOther2;
+        [self.navigationController pushViewController:detailCtrl animated:YES];
+       
     }
     
 }

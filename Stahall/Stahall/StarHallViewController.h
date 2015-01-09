@@ -19,4 +19,6 @@
 
 @property (nonatomic,assign)BOOL isSearchMode;//标志位
 @property (nonatomic,weak)id<SendTheSelectedCellsDelegate>delegate;
+
+@property (nonatomic,strong)NSMutableArray *reciveTheHasSelecedStars;//接受上个页面传下来的已选艺人
 @end

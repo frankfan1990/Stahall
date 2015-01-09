@@ -131,6 +131,7 @@
 		636F448A1A44091300FD6783 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F447A1A44091300FD6783 /* UIView+WebCacheOperation.m */; };
 		636F44961A44214300FD6783 /* fz对勾@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 636F44951A44214300FD6783 /* fz对勾@2x.png */; };
 		6378C0311A47BD9D00CDED3E /* fz选中对勾@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */; };
+		637FCECF1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637FCECE1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.m */; };
 		6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */; };
 		6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */; };
 		6397FDCA1A429E430021B9E2 /* ZSYPopoverListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6397FDC91A429E430021B9E2 /* ZSYPopoverListView.m */; };
@@ -174,6 +175,7 @@
 		63D62AC51A5CDFAC00E107FA /* libPods-ReactiveCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D62AC41A5CDFAC00E107FA /* libPods-ReactiveCocoa.a */; };
 		63D62B0D1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D62B0C1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m */; };
 		63D62B0F1A5E834800E107FA /* fz-Plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D62B0E1A5E834800E107FA /* fz-Plus.png */; };
+		63D62B251A5F851400E107FA /* MyEvalutionedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D62B241A5F851400E107FA /* MyEvalutionedListViewController.m */; };
 		B438E808DE3A84B403680E33 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC95364EC00B62B1D96A429A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -408,6 +410,8 @@
 		6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz选中对勾@2x.png"; sourceTree = "<group>"; };
 		6378C0331A47E4D600CDED3E /* FrankfanApis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrankfanApis.h; sourceTree = "<group>"; };
 		637F9B1A1A514B550066D4CE /* FrankfanMarcos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrankfanMarcos.h; sourceTree = "<group>"; };
+		637FCECD1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEvalutionsCollectionViewController.h; sourceTree = "<group>"; };
+		637FCECE1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEvalutionsCollectionViewController.m; sourceTree = "<group>"; };
 		6397FDC11A426C3A0021B9E2 /* NSDate+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Category.h"; sourceTree = "<group>"; };
 		6397FDC21A426C3A0021B9E2 /* NSDate+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Category.m"; sourceTree = "<group>"; };
 		6397FDC51A426EE10021B9E2 /* NSDateFormatter+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Category.m"; sourceTree = "<group>"; };
@@ -484,6 +488,8 @@
 		63D62B0B1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendInvitationCollectionViewCell.h; sourceTree = "<group>"; };
 		63D62B0C1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendInvitationCollectionViewCell.m; sourceTree = "<group>"; };
 		63D62B0E1A5E834800E107FA /* fz-Plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz-Plus.png"; sourceTree = "<group>"; };
+		63D62B231A5F851400E107FA /* MyEvalutionedListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEvalutionedListViewController.h; sourceTree = "<group>"; };
+		63D62B241A5F851400E107FA /* MyEvalutionedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEvalutionedListViewController.m; sourceTree = "<group>"; };
 		6B717A7BFD37B8872F664F09 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC95364EC00B62B1D96A429A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -902,6 +908,10 @@
 				63649A3C1A494CDE0024E3F7 /* StarDetaiInfoViewController.m */,
 				634BDC9D1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.h */,
 				634BDC9E1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m */,
+				63D62B231A5F851400E107FA /* MyEvalutionedListViewController.h */,
+				63D62B241A5F851400E107FA /* MyEvalutionedListViewController.m */,
+				637FCECD1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.h */,
+				637FCECE1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1454,6 +1464,8 @@
 				634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */,
 				5C7D5CE71A51485A00163B07 /* Left_MyStarViewController.m in Sources */,
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
+				637FCECF1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.m in Sources */,
+				63D62B251A5F851400E107FA /* MyEvalutionedListViewController.m in Sources */,
 				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
 				5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
@@ -1664,7 +1676,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Stahall/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1682,8 +1694,8 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 armv7s arm64 i386";
+				PROVISIONING_PROFILE = "f7f3d681-d2af-455b-8b88-63a58264fb72";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1702,7 +1714,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Stahall/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1720,8 +1732,8 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 armv7s arm64 i386";
+				PROVISIONING_PROFILE = "f7f3d681-d2af-455b-8b88-63a58264fb72";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
