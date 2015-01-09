@@ -157,6 +157,7 @@
     
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
+    manger.requestSerializer.timeoutInterval = 10;
     __block int count = 0;
     __block int isfailure = 0;
         /*
