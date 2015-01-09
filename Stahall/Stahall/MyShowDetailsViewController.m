@@ -11,6 +11,7 @@
 #import "Marcos.h"
 #import "ProgressHUD.h"
 #import <ReactiveCocoa.h>
+#import "SendInvitationCollectionViewCell.h"
 @interface MyShowDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
     
@@ -19,6 +20,10 @@
     
     NSMutableArray *arrOfcontent;
     NSDictionary *data;
+    
+    //
+    NSMutableArray *selectedStars;//选择邀请的艺人
+    
 }
 @property (nonatomic,strong)UICollectionView *collectionView;
 @end
@@ -38,6 +43,10 @@
     arrOfTitle = [NSMutableArray array];
     arrOfcontent = [NSMutableArray array];
     
+    //初始化数据
+    selectedStars =[NSMutableArray arrayWithObject:@"end"];
+    
+    
     [self getData];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
@@ -50,7 +59,15 @@
     //创建collectionView
     
     
-//    self.collectionView =[UICollectionView a];
+    UICollectionViewFlowLayout *flowlayout =[[UICollectionViewFlowLayout alloc]init];
+    flowlayout.itemSize = CGSizeMake(65, 65);
+    flowlayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    self.collectionView =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0) collectionViewLayout:flowlayout];
+    [self.collectionView registerClass:[SendInvitationCollectionViewCell class] forCellWithReuseIdentifier:@"collcetion-cell"];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor =[UIColor clearColor];
     
     
 }
@@ -163,7 +180,22 @@
         return 45;
     }else if(indexPath.row == 0){
 #pragma mark - 处理高度
-        return 120;
+        
+        if([selectedStars count]%4==0){
+        
+            CGFloat height = ([selectedStars count]/4)*70;
+            self.collectionView.frame = CGRectMake(0, 35, self.view.bounds.size.width, height-35);
+            return height;
+        
+        }else{
+        
+            CGFloat height = ([selectedStars count]+1)*70;
+            self.collectionView.frame = CGRectMake(0, 35, self.view.bounds.size.width, height-35);
+            return height;
+            
+        }
+    
+        return 0;
     }else{
         return 70;
     }
@@ -237,7 +269,7 @@
             [self Customlable:label text:@"增加艺人" fontSzie:15 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
             [cell2.contentView addSubview:label];
             
-            
+            [cell2.contentView addSubview:self.collectionView];
             return cell2;
         }else{
             UITableViewCell *cell3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -263,13 +295,21 @@
 #pragma mark - collectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    
+    return [selectedStars count];
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    SendInvitationCollectionViewCell *cell =(SendInvitationCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"collcetion-cell" forIndexPath:indexPath];
     
     
-    return nil;
+    if([selectedStars[indexPath.row] isKindOfClass:[NSString class]]){
+    
+        cell.headerImageView.image =[UIImage imageNamed:@"fz-Plus"];
+    }
+    
+    
+    return cell;
 }
 
 
@@ -294,4 +334,25 @@
     label.adjustsFontSizeToFitWidth = state;
     label.numberOfLines = numberOfLines;
 }
+
+
+
+#pragma mark - collectionViewCell被选择
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 @end

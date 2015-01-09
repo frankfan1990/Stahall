@@ -172,6 +172,8 @@
 		63D62A451A5A37A800E107FA /* ArtistPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D62A411A5A37A800E107FA /* ArtistPrice.m */; };
 		63D62A461A5A37A800E107FA /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D62A431A5A37A800E107FA /* Data.m */; };
 		63D62AC51A5CDFAC00E107FA /* libPods-ReactiveCocoa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D62AC41A5CDFAC00E107FA /* libPods-ReactiveCocoa.a */; };
+		63D62B0D1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D62B0C1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m */; };
+		63D62B0F1A5E834800E107FA /* fz-Plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D62B0E1A5E834800E107FA /* fz-Plus.png */; };
 		B438E808DE3A84B403680E33 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC95364EC00B62B1D96A429A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -479,6 +481,9 @@
 		63D62A421A5A37A800E107FA /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		63D62A431A5A37A800E107FA /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		63D62AC41A5CDFAC00E107FA /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
+		63D62B0B1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendInvitationCollectionViewCell.h; sourceTree = "<group>"; };
+		63D62B0C1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendInvitationCollectionViewCell.m; sourceTree = "<group>"; };
+		63D62B0E1A5E834800E107FA /* fz-Plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fz-Plus.png"; sourceTree = "<group>"; };
 		6B717A7BFD37B8872F664F09 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC95364EC00B62B1D96A429A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -858,6 +863,7 @@
 		63258BD41A3ECB500089C3F1 /* FrankfanImage */ = {
 			isa = PBXGroup;
 			children = (
+				63D62B0E1A5E834800E107FA /* fz-Plus.png */,
 				63649A3E1A4950E30024E3F7 /* fz艺人详情背景.png */,
 				6378C0301A47BD9D00CDED3E /* fz选中对勾@2x.png */,
 				636F44951A44214300FD6783 /* fz对勾@2x.png */,
@@ -1131,6 +1137,8 @@
 				634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */,
 				634BDCA01A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.h */,
 				634BDCA11A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m */,
+				63D62B0B1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.h */,
+				63D62B0C1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m */,
 			);
 			name = AboutStarHallModelView;
 			sourceTree = "<group>";
@@ -1343,6 +1351,7 @@
 				5C5EF6821A3A91D500EE8D78 /* page_state_normal.png in Resources */,
 				5C5EF67A1A3A844C00EE8D78 /* 面包@2x.png in Resources */,
 				63BC6A691A3747F400087DFB /* MJRefresh.bundle in Resources */,
+				63D62B0F1A5E834800E107FA /* fz-Plus.png in Resources */,
 				63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */,
 				5C047A831A3ADBAC00C33B02 /* 陈奕迅.png in Resources */,
 				5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */,
@@ -1466,6 +1475,7 @@
 				63D62A441A5A37A800E107FA /* ArtistClaim.m in Sources */,
 				6397FDD21A430A910021B9E2 /* FXBlurView.m in Sources */,
 				63BC6AB81A39F47F00087DFB /* LeftMenuViewController.m in Sources */,
+				63D62B0D1A5E7F2B00E107FA /* SendInvitationCollectionViewCell.m in Sources */,
 				5C1E1F141A4026C10085BD64 /* SearchStarViewController.m in Sources */,
 				636F44121A44077400FD6783 /* AFHTTPRequestOperation.m in Sources */,
 				5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */,

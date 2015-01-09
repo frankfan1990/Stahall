@@ -10,4 +10,6 @@
 
 @interface MyShowDetailsViewController : UIViewController
 @property(nonatomic,strong)NSDictionary *dicData;
+
+@property (nonatomic,strong)NSMutableArray *hasEvationStars;//这个数组用来存放已估价完的艺人
 @end
