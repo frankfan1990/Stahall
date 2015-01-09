@@ -269,14 +269,19 @@
             field.tag = 113;
             [cell1.contentView addSubview:label];
             [cell1.contentView addSubview:field];
-            
-            if (indexPath.row != 0) {
-                UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 0.5)];
-                line.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
-                [cell1.contentView addSubview:line];
-            }
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 0.5)];
+            line.tag = 11111;
+            line.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+            [cell1.contentView addSubview:line];
+           
         }
-    
+        
+        UIView *line = (UIView *)[cell1.contentView viewWithTag:11111];
+        if (indexPath.row == 0) {
+            line.hidden = YES;
+        }else{
+            line.hidden = NO;
+        }
         
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
         

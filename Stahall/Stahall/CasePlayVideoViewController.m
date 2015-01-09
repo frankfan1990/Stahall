@@ -20,7 +20,7 @@
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight)];
     webView.backgroundColor = [UIColor whiteColor];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_dataDict[@"link"]]]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_dataDict[@"link"]]]]];
     webView.delegate = self;
     [self.view addSubview:webView];
     

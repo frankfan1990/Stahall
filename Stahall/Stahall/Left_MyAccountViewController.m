@@ -9,12 +9,20 @@
 #import "Left_MyAccountViewController.h"
 #import "MainViewController.h"
 #import "RESideMenu.h"
+#import "UIImageView+WebCache.h"
+#import "TPKeyboardAvoidingScrollView.h"
 #import "Marcos.h"
 #pragma mark - 我的账户
-@interface Left_MyAccountViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface Left_MyAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *_tableView;
+    NSArray *arrOfTitle;
+    UIButton *btn1;
+    UIButton *btn2;
+    UIButton *btn3;
+    UIButton *btn4;
 }
+@property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @end
 
 @implementation Left_MyAccountViewController
@@ -29,11 +37,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.tpscrollerView];
+    [self CreateHeadView];
     
+    arrOfTitle = @[@"手机号码",@"所在地址",@"QQ号码",@"邮箱地址"];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 450/2, Mywidth, Myheight-64-450/2) style:UITableViewStylePlain];
+    _tableView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
+    _tableView.sectionFooterHeight = 0.01;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [_tpscrollerView addSubview:_tableView];
+}
+
+-(void)CreateHeadView
+{
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 450/2)];
     headView.backgroundColor = [UIColor colorWithRed:136/255.0 green:185/255.0 blue:163/255.0 alpha:1];
+    [_tpscrollerView addSubview:headView];
+    
     UIImageView *imageV = [[UIImageView alloc] init];
-    imageV.frame = CGRectMake(Mywidth/2-40, 8, 80, 80);
+    imageV.frame = CGRectMake(Mywidth/2-40, 5, 80, 80);
     imageV.backgroundColor = [UIColor clearColor];
     imageV.layer.cornerRadius = imageV.frame.size.width/2;
     imageV.layer.masksToBounds = YES;
@@ -52,16 +77,64 @@
     nameLabel.layer.shadowOffset = CGSizeMake(2,7);
     nameLabel.layer.shadowOpacity = 0.5;
     [headView addSubview:nameLabel];
-    [self.view addSubview:headView];
+
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(Mywidth/2-42, nameLabel.frame.size.height+nameLabel.frame.origin.y+20, 84, 19)];
+    view.layer.masksToBounds = YES;
+    view.layer.cornerRadius = view.frame.size.height/2;
+    view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    [headView addSubview:view];
+    
+    UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 3, 13, 13)];
+    imageV2.backgroundColor = [UIColor yellowColor];
+    [view addSubview:imageV2];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 84-25, 19)];
+    [self Customlable:label2 text:@"认证用户" fontSzie:12 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
+    [view addSubview:label2];
     
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 450/2, Mywidth, Myheight-64-450/2) style:UITableViewStylePlain];
-    _tableView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
-    _tableView.sectionFooterHeight = 0.01;
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    [self.view addSubview:_tableView];
+    btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn1.frame = CGRectMake(0, headView.frame.size.height-55, Mywidth/4, 55);
+    btn1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+    btn1.selected = YES;
+    btn1.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btn1 setTitle:@"二级账户" forState:UIControlStateNormal];
+    [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [headView addSubview:btn1];
+    
+    btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn2.frame = CGRectMake(Mywidth/4, headView.frame.size.height-55, Mywidth/4, 55);
+    btn2.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn2.selected = NO;
+    btn2.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btn2 setTitle:@"认证信息" forState:UIControlStateNormal];
+    [btn2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [headView addSubview:btn2];
+    
+    btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn3.frame = CGRectMake(Mywidth/2, headView.frame.size.height-55, Mywidth/4, 55);
+    btn3.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn3.selected = NO;
+    btn3.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btn3 setTitle:@"我的金币" forState:UIControlStateNormal];
+    [btn3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [headView addSubview:btn3];
+    
+    btn4 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn4.frame = CGRectMake(Mywidth/4*3, headView.frame.size.height-55, Mywidth/4, 55);
+    btn4.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn4.selected = NO;
+    btn4.titleLabel.font = [UIFont systemFontOfSize:14];
+    [btn4 setTitle:@"我的信用" forState:UIControlStateNormal];
+    [btn4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [headView addSubview:btn4];
+    
+    [btn1 addTarget:self action:@selector(didMyBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [btn2 addTarget:self action:@selector(didMyBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [btn3 addTarget:self action:@selector(didMyBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [btn4 addTarget:self action:@selector(didMyBtn:) forControlEvents:UIControlEventTouchUpInside];
+
 }
+
 #pragma mark - TabBar的设置
 -(void)setTabBar
 {
@@ -104,39 +177,121 @@
 #pragma mark-tableVIew  cell个数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 #pragma mark-tableVIew  cell个高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 4) {
+        return 80;
+    }
     return 40;
 }
 
-//#pragma mark-tableVIew  头部高度
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 450/2;
-//}
-//#pragma mark-tableVIew  头部高度
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return 0.01;
-//}
-//#pragma mark-tableVIew  头部View
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-// 
-////    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)];
-//    
-//    return headView;
-//}
-
+#pragma mark-tableVIew  底部高度
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
+#pragma mark-tableVIew cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.backgroundColor = [UIColor clearColor];
+    
+    if (indexPath.row == 4) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(60, 30, Mywidth-120, 35);
+        btn.backgroundColor = [UIColor greenColor];
+        btn.layer.masksToBounds = YES;
+        btn.alpha = 0.7;
+        btn.layer.cornerRadius = btn.frame.size.height/2;
+        [btn setTitle:@"修改密码" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [cell.contentView addSubview:btn];
+        return cell;
+    }
+    
+    
+    static NSString *str = @"mycellother";
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:str];
+    if (cell == nil) {
+        cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 10,120, 25)];
+        [self Customlable:label text:@"" fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
+        label.tag = 112;
+        
+        UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
+        
+        field.userInteractionEnabled = YES;
+        field.delegate = self;
+        field.returnKeyType = UIReturnKeyDone;
+        field.textAlignment = NSTextAlignmentRight;
+        field.font = [UIFont systemFontOfSize:15];
+        field.tag = 113;
+        field.textColor = [UIColor whiteColor];
+        field.text = @"aaaaaa";
+        [cell.contentView addSubview:label];
+        [cell.contentView addSubview:field];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 0.5)];
+        line.tag = 11111;
+        line.backgroundColor = [UIColor colorWithWhite:1 alpha:0.01];
+        [cell.contentView addSubview:line];
+        
+        if (indexPath.row != 0) {
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 0.5)];
+            line.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+            [cell.contentView addSubview:line];
+        }
+        
+    }
+    
+    UILabel *label = (UILabel *)[cell.contentView viewWithTag:112];
+    label.text = arrOfTitle[indexPath.row];
+    UITextField *field = (UITextField *)[cell.contentView viewWithTag:113];
+    if (indexPath.row == 0) {
+        field.text = @"18812341234";
+    }else if (indexPath.row == 1) {
+        field.text = @"湖南长沙";
+    }else if (indexPath.row == 2) {
+        field.text = @"123456";
+    }else if (indexPath.row == 3) {
+        field.text = @"xxxxxx@qq.com";
+    }
     return cell;
 }
+#pragma mark - 点击cell
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)didMyBtn:(UIButton *)sender
+{
+    
+    btn1.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn1.selected = NO;
+    btn3.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn3.selected = NO;
+    btn2.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn2.selected = NO;
+    btn4.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn4.selected = NO;
+    
+    sender.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+    sender.selected = YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
