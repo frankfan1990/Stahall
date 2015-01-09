@@ -55,7 +55,7 @@
     [self.view addSubview:headView];
     
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 450/2, Mywidth, Myheight-64-450/2) style:UITableViewStylePlain];
     _tableView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
     _tableView.sectionFooterHeight = 0.01;
     _tableView.delegate = self;
@@ -71,7 +71,7 @@
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:136/255.0 green:185/255.0 blue:163/255.0 alpha:1]];
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
