@@ -146,10 +146,12 @@
     
     if (indexPath.row == 0) {
         UITableViewCell *cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }else{
         UITableViewCell *cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         cell.backgroundColor = [UIColor clearColor];
         btn.frame = CGRectMake(60, 40, Mywidth-120, 35);
