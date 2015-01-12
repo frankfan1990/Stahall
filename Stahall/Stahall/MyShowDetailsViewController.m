@@ -57,12 +57,15 @@
 
 -(void)getData
 {
+    
+    [ProgressHUD show:@"正在加载"];
     [arrOfcontent removeAllObjects];
     [arrOfTitle removeAllObjects];
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
     manger.requestSerializer.timeoutInterval = 15;
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
     [manger GET:MyShowsDetailsIP parameters:@{@"showId":_dicData[@"showId"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [ProgressHUD showSuccess:@"加载成功"];
         data = (NSDictionary *)responseObject[@"data"];
         [arrOfcontent addObject:data[@"showName"]];
         [arrOfTitle addObject:@"演出名称"];

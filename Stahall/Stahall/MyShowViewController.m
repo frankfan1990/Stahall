@@ -146,6 +146,7 @@
     
 }
 
+
 -(void)getData{
 
     [dataOther1 removeAllObjects];
