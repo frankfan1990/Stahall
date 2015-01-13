@@ -16,6 +16,9 @@
 		5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */; };
 		5C2ECE461A58D8E5003A9711 /* lc111.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE441A58D8E5003A9711 /* lc111.png */; };
 		5C2ECE471A58D8E5003A9711 /* lc222.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE451A58D8E5003A9711 /* lc222.png */; };
+		5C3EE7611A64BE0800BBFA8A /* EditInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7601A64BE0800BBFA8A /* EditInformationViewController.m */; };
+		5C3EE7651A650F9200BBFA8A /* SecondAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7641A650F9200BBFA8A /* SecondAccountsViewController.m */; };
+		5C3EE7681A6511B600BBFA8A /* AddSecondAccoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7671A6511B600BBFA8A /* AddSecondAccoutsViewController.m */; };
 		5C40BFB21A5CBFA000AAAEE7 /* lc专属克服1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */; };
 		5C40BFB31A5CBFA000AAAEE7 /* lc专属克服2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB11A5CBFA000AAAEE7 /* lc专属克服2.png */; };
 		5C40BFB61A5CCB2800AAAEE7 /* CaseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40BFB51A5CCB2800AAAEE7 /* CaseDetailsViewController.m */; };
@@ -208,6 +211,12 @@
 		5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentCtrol.m; sourceTree = "<group>"; };
 		5C2ECE441A58D8E5003A9711 /* lc111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc111.png; sourceTree = "<group>"; };
 		5C2ECE451A58D8E5003A9711 /* lc222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc222.png; sourceTree = "<group>"; };
+		5C3EE75F1A64BE0800BBFA8A /* EditInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationViewController.h; sourceTree = "<group>"; };
+		5C3EE7601A64BE0800BBFA8A /* EditInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationViewController.m; sourceTree = "<group>"; };
+		5C3EE7631A650F9200BBFA8A /* SecondAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondAccountsViewController.h; sourceTree = "<group>"; };
+		5C3EE7641A650F9200BBFA8A /* SecondAccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondAccountsViewController.m; sourceTree = "<group>"; };
+		5C3EE7661A6511B600BBFA8A /* AddSecondAccoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSecondAccoutsViewController.h; sourceTree = "<group>"; };
+		5C3EE7671A6511B600BBFA8A /* AddSecondAccoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSecondAccoutsViewController.m; sourceTree = "<group>"; };
 		5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服1.png"; sourceTree = "<group>"; };
 		5C40BFB11A5CBFA000AAAEE7 /* lc专属克服2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服2.png"; sourceTree = "<group>"; };
 		5C40BFB41A5CCB2800AAAEE7 /* CaseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaseDetailsViewController.h; sourceTree = "<group>"; };
@@ -691,6 +700,12 @@
 				5C40BFB51A5CCB2800AAAEE7 /* CaseDetailsViewController.m */,
 				5C40BFC71A5E22AA00AAAEE7 /* CasePlayVideoViewController.h */,
 				5C40BFC81A5E22AA00AAAEE7 /* CasePlayVideoViewController.m */,
+				5C3EE75F1A64BE0800BBFA8A /* EditInformationViewController.h */,
+				5C3EE7601A64BE0800BBFA8A /* EditInformationViewController.m */,
+				5C3EE7631A650F9200BBFA8A /* SecondAccountsViewController.h */,
+				5C3EE7641A650F9200BBFA8A /* SecondAccountsViewController.m */,
+				5C3EE7661A6511B600BBFA8A /* AddSecondAccoutsViewController.h */,
+				5C3EE7671A6511B600BBFA8A /* AddSecondAccoutsViewController.m */,
 			);
 			name = LuCanViewCtrl;
 			sourceTree = "<group>";
@@ -1473,6 +1488,7 @@
 				6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */,
 				636F44831A44091300FD6783 /* SDWebImagePrefetcher.m in Sources */,
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
+				5C3EE7611A64BE0800BBFA8A /* EditInformationViewController.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
 				634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */,
@@ -1525,6 +1541,7 @@
 				63468EFA1A43D07400938E1E /* RTLabel.m in Sources */,
 				63258B361A3D8A490089C3F1 /* MyShowViewController.m in Sources */,
 				63BC6A701A3747F400087DFB /* UIView+MJExtension.m in Sources */,
+				5C3EE7681A6511B600BBFA8A /* AddSecondAccoutsViewController.m in Sources */,
 				5C65EDA01A3A9C7C00027A63 /* MyPageControl.m in Sources */,
 				636F44161A44077400FD6783 /* AFSecurityPolicy.m in Sources */,
 				636F44201A44077400FD6783 /* UIButton+AFNetworking.m in Sources */,
@@ -1543,6 +1560,7 @@
 				636F44821A44091300FD6783 /* SDWebImageManager.m in Sources */,
 				634BDC9F1A4BBD4200994401 /* StahallEvalutionDetailInfoViewController.m in Sources */,
 				6397FDC71A426EE10021B9E2 /* NSDateFormatter+Category.m in Sources */,
+				5C3EE7651A650F9200BBFA8A /* SecondAccountsViewController.m in Sources */,
 				636F44221A44077400FD6783 /* UIProgressView+AFNetworking.m in Sources */,
 				5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */,
 				636F441C1A44077400FD6783 /* README.md in Sources */,

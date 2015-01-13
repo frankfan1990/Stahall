@@ -357,7 +357,7 @@
 {
     
     _textField = textField;
-    myIndexPath = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
+//    myIndexPath = [_tableView indexPathForCell:(UITableViewCell *)[[textField superview] superview]];
     //这里可能不兼容其他系统
     
     CGPoint position = [textField convertPoint:CGPointZero toView:_tableView];
@@ -367,6 +367,12 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     [arrOfdata[myIndexPath.section] setObject:textField.text forKey:keys[myIndexPath.row]];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void)didCancelBtn:(UIButton *) sender{
@@ -382,11 +388,7 @@
         [_tableView reloadData];
     });
 }
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
+
 #pragma mark - 下一页
 -(void)didNextBtn
 {

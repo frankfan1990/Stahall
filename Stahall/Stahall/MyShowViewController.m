@@ -146,6 +146,7 @@
     
 }
 
+
 -(void)getData{
 
     [dataOther1 removeAllObjects];
@@ -297,11 +298,11 @@
         myview.alpha = 0.2;
         [backView addSubview:myview];
         
-        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 10, 20, 20)];
+        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 15, 20, 20)];
         imageV.layer.masksToBounds = YES;
         imageV.layer.cornerRadius = 10;
         
-        UILabel *labeilOfTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 60, 20)];
+        UILabel *labeilOfTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 15, 60, 20)];
         
         if (btnLeft.selected) {
             
