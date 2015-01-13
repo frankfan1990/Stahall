@@ -154,10 +154,16 @@
     }else{//有估价艺人
     
         MyEvalutionsCollectionViewController *myEvalutionCollcetionCV =[MyEvalutionsCollectionViewController new];
+        NSDictionary *tempDict = self.evalutionedStars[indexPath.row];
+        myEvalutionCollcetionCV.showTitle = tempDict[@"showName"];
+        myEvalutionCollcetionCV.valutionId = tempDict[@"valuationId"];
+        myEvalutionCollcetionCV.hasEvalutionedStars = self.evalutionedStars;
+        myEvalutionCollcetionCV.theSelectedStars = self.theSelectedStars;
         [self.navigationController pushViewController:myEvalutionCollcetionCV animated:YES];
         
     }
     
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

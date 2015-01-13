@@ -5,7 +5,7 @@
 //  Created by JM_Pro on 15-1-8.
 //  Copyright (c) 2015年 Rching. All rights reserved.
 //
-
+//FIXME: 发送邀约函
 #import "MyShowDetailsViewController.h"
 #import "AFNetworking.h"
 #import "Marcos.h"
@@ -14,6 +14,9 @@
 #import "SendInvitationCollectionViewCell.h"
 #import "StahallValuationViewController.h"
 #import "MyEvalutionedListViewController.h"
+#import <ReactiveCocoa.h>
+#import "UIImageView+WebCache.h"
+
 
 @interface MyShowDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
@@ -63,7 +66,7 @@
     
     
     UICollectionViewFlowLayout *flowlayout =[[UICollectionViewFlowLayout alloc]init];
-    flowlayout.itemSize = CGSizeMake(65, 65);
+    flowlayout.itemSize = CGSizeMake(65, 65+30);
     flowlayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
     self.collectionView =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0) collectionViewLayout:flowlayout];
@@ -71,8 +74,60 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor =[UIColor clearColor];
+    self.collectionView.scrollEnabled = NO;
+    
+#pragma mark - 接受通知，处理数据
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"sendSelectedStars" object:nil]subscribeNext:^(NSNotification *x) {
+        
+      
+        NSArray *tempArray = [x object];
+        [selectedStars removeLastObject];
+        [selectedStars addObjectsFromArray:tempArray];
+        [selectedStars addObject:@"end"];
+        [self.collectionView reloadData];
+        [_tableView reloadData];
+        
+    }];
     
     
+#pragma mark - 处理手势
+    //添加手势
+    UILongPressGestureRecognizer *longPress =[[UILongPressGestureRecognizer alloc]init];
+    longPress.minimumPressDuration = 1.2;
+    [[longPress rac_gestureSignal]subscribeNext:^(UILongPressGestureRecognizer *longPressGesture) {
+        
+        CGPoint pressPosition = [longPressGesture locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:pressPosition];
+
+        if(longPressGesture.state==UIGestureRecognizerStateBegan){
+            
+            UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"删除艺人" message:@"确定删除选中的艺人?" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            
+            [alertView show];
+            [[alertView rac_buttonClickedSignal]subscribeNext:^(NSNumber *number) {
+                
+                if(number.integerValue==0){//取消删除
+                
+                    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+                }else{//删除
+                
+                    if(![selectedStars[indexPath.row]isKindOfClass:[NSString class]]){
+                    
+                        [selectedStars removeObjectAtIndex:indexPath.row];
+                        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+                  
+                       
+                    }
+                    
+                }
+            
+            }];
+
+        }
+        
+    }];
+    [self.collectionView addGestureRecognizer:longPress];
+
 }
 
 -(void)getData
@@ -186,13 +241,13 @@
         
         if([selectedStars count]%4==0){
         
-            CGFloat height = ([selectedStars count]/4)*70;
+            CGFloat height = ([selectedStars count]/4)*105+35;
             self.collectionView.frame = CGRectMake(0, 35, self.view.bounds.size.width, height-35);
             return height;
         
-        }else{
+        }else if([selectedStars count]%4<4){
         
-            CGFloat height = ([selectedStars count]+1)*70;
+            CGFloat height = ([selectedStars count]/4+1)*105+35;
             self.collectionView.frame = CGRectMake(0, 35, self.view.bounds.size.width, height-35);
             return height;
             
@@ -309,6 +364,13 @@
     if([selectedStars[indexPath.row] isKindOfClass:[NSString class]]){
     
         cell.headerImageView.image =[UIImage imageNamed:@"fz-Plus"];
+        cell.starName.text = nil;
+    }else{
+    
+        NSDictionary *tempDict = selectedStars[indexPath.row];
+        [cell.headerImageView sd_setImageWithURL:[NSURL URLWithString:tempDict[@"header"]] placeholderImage:nil];
+        cell.starName.text = tempDict[@"artistName"];
+        
     }
     
     
@@ -346,18 +408,14 @@
     
     MyEvalutionedListViewController *myEvalutionCV =[MyEvalutionedListViewController new];
     myEvalutionCV.evalutionedStars = self.hasEvationStars;
-    [self.navigationController pushViewController:myEvalutionCV animated:YES];
     
+    myEvalutionCV.theSelectedStars = selectedStars;
     
-    if([self.hasEvationStars count]){//现在已有估价完的艺人
+    if(indexPath.row+1==[selectedStars count]){
     
-        
-        
-    }else{//现在没有估价完的艺人
-    
-    
+        [self.navigationController pushViewController:myEvalutionCV animated:YES];
     }
-
+    
 
 }
 

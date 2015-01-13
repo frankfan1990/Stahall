@@ -21,4 +21,6 @@
 
 @property (nonatomic,strong)UILabel *topTime;
 @property (nonatomic,strong)UILabel *bottomTime;
+
+@property (nonatomic,strong)UIImageView *checkIcon;
 @end

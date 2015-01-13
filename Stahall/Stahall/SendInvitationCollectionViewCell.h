@@ -11,4 +11,5 @@
 @interface SendInvitationCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic,strong)UIImageView *headerImageView;
+@property (nonatomic,strong)UILabel *starName;
 @end

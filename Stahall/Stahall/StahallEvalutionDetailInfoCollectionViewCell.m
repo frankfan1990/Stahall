@@ -70,6 +70,12 @@
         self.bottomTime.textAlignment = NSTextAlignmentCenter;
         [bacView addSubview:self.bottomTime];
         
+        //勾选
+        self.checkIcon =[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+        self.checkIcon.center = self.staHeaderImageView.center;
+        self.checkIcon.image =[UIImage imageNamed:@"fz选中对勾"];
+        [self.staHeaderImageView addSubview:self.checkIcon];
+        self.checkIcon.hidden = YES;
         
     }
     

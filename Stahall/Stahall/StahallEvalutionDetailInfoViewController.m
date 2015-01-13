@@ -222,7 +222,7 @@ static NSInteger stepHour = 1;
             self.starsList = dataDict[@"valuationRelevances"];
             justTestDataSource = [self.starsList count];
             
-            if(dataDict[@"urgent"]){//已加急
+            if([dataDict[@"urgent"]integerValue]){//已加急
             
                 [speedButton setTitle:@"已加急" forState:UIControlStateNormal];
                 speedButton.enabled = NO;
@@ -375,7 +375,7 @@ static NSInteger stepHour = 1;
             cell.bottomPrice.text = [NSString stringWithFormat:@"%@万",tempDict[@"alternativeRate"]];
         }
         
-        
+        cell.starName.text = tempDict[@"artistName"];
         
     }
     

@@ -77,6 +77,7 @@
 		63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */; };
 		63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */; };
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
+		633E47201A64F5D00017B8EA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E471F1A64F5D00017B8EA /* QuartzCore.framework */; };
 		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
 		634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 634BDC9B1A4ABB1A00994401 /* StarDetailCollectionViewCell.m */; };
@@ -94,6 +95,8 @@
 		63649A521A496FBD0024E3F7 /* 日历切换right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A4D1A496FBD0024E3F7 /* 日历切换right@2x.png */; };
 		63649A531A496FBD0024E3F7 /* 行程@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63649A4E1A496FBD0024E3F7 /* 行程@2x.png */; };
 		63649A561A4970100024E3F7 /* DetailDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63649A551A4970100024E3F7 /* DetailDayCell.m */; };
+		636E27D11A63C23B00F8B540 /* EvalutionDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 636E27D01A63C23B00F8B540 /* EvalutionDetailModel.m */; };
+		636E27D41A63C2FE00F8B540 /* EvalutionStarsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 636E27D31A63C2FE00F8B540 /* EvalutionStarsDetail.m */; };
 		636F44121A44077400FD6783 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */; };
 		636F44131A44077400FD6783 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43EE1A44077400FD6783 /* AFHTTPRequestOperationManager.m */; };
 		636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 636F43F01A44077400FD6783 /* AFHTTPSessionManager.m */; };
@@ -306,6 +309,7 @@
 		63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionReusableView.m; sourceTree = "<group>"; };
 		63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionViewCell.h; sourceTree = "<group>"; };
 		63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionViewCell.m; sourceTree = "<group>"; };
+		633E471F1A64F5D00017B8EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		63468EF81A43D07400938E1E /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		63468EF91A43D07400938E1E /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		63468EFE1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallEvalutionIlerItemViewController.h; sourceTree = "<group>"; };
@@ -335,6 +339,10 @@
 		63649A4E1A496FBD0024E3F7 /* 行程@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行程@2x.png"; sourceTree = "<group>"; };
 		63649A541A4970100024E3F7 /* DetailDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDayCell.h; sourceTree = "<group>"; };
 		63649A551A4970100024E3F7 /* DetailDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDayCell.m; sourceTree = "<group>"; };
+		636E27CF1A63C23B00F8B540 /* EvalutionDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvalutionDetailModel.h; sourceTree = "<group>"; };
+		636E27D01A63C23B00F8B540 /* EvalutionDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvalutionDetailModel.m; sourceTree = "<group>"; };
+		636E27D21A63C2FE00F8B540 /* EvalutionStarsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvalutionStarsDetail.h; sourceTree = "<group>"; };
+		636E27D31A63C2FE00F8B540 /* EvalutionStarsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvalutionStarsDetail.m; sourceTree = "<group>"; };
 		636F43EB1A44077400FD6783 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		636F43EC1A44077400FD6783 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		636F43ED1A44077400FD6783 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -499,6 +507,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633E47201A64F5D00017B8EA /* QuartzCore.framework in Frameworks */,
 				63D62AC51A5CDFAC00E107FA /* libPods-ReactiveCocoa.a in Frameworks */,
 				B438E808DE3A84B403680E33 /* libPods.a in Frameworks */,
 			);
@@ -517,6 +526,7 @@
 		28524D83D349BB9EB24D3D30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				633E471F1A64F5D00017B8EA /* QuartzCore.framework */,
 				63D62AC41A5CDFAC00E107FA /* libPods-ReactiveCocoa.a */,
 				EC95364EC00B62B1D96A429A /* libPods.a */,
 			);
@@ -895,6 +905,10 @@
 				634BDD2E1A51423B00994401 /* StarModel.h */,
 				634BDD2F1A51423B00994401 /* StarModel.m */,
 				63D62A471A5A37D800E107FA /* StarDetailInfo */,
+				636E27CF1A63C23B00F8B540 /* EvalutionDetailModel.h */,
+				636E27D01A63C23B00F8B540 /* EvalutionDetailModel.m */,
+				636E27D21A63C2FE00F8B540 /* EvalutionStarsDetail.h */,
+				636E27D31A63C2FE00F8B540 /* EvalutionStarsDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1535,12 +1549,14 @@
 				63BC6A6D1A3747F400087DFB /* MJRefreshHeaderView.m in Sources */,
 				63BC6A951A374C5800087DFB /* NSObject+FBKVOController.m in Sources */,
 				5C7D5CEA1A5148ED00163B07 /* Left_MyCollectionViewController.m in Sources */,
+				636E27D11A63C23B00F8B540 /* EvalutionDetailModel.m in Sources */,
 				636F44841A44091300FD6783 /* UIButton+WebCache.m in Sources */,
 				636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */,
 				63BC6A941A374C5800087DFB /* FBKVOController.m in Sources */,
 				63649A481A496F7F0024E3F7 /* LunarCalendar.m in Sources */,
 				5C40BFC91A5E22AA00AAAEE7 /* CasePlayVideoViewController.m in Sources */,
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
+				636E27D41A63C2FE00F8B540 /* EvalutionStarsDetail.m in Sources */,
 				634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				63D62A3A1A5A321F00E107FA /* StarDetailInfoModel.m in Sources */,
