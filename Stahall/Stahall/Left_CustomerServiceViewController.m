@@ -194,7 +194,7 @@
 #pragma mark - 呼叫客服
 -(void)didCallBtn:(UIButton *)sender
 {
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:13212341234"]]];
 }
 -(void)didGoBack
 {
@@ -212,4 +212,6 @@
     label.adjustsFontSizeToFitWidth = state;
     label.numberOfLines = numberOfLines;
 }
+
+
 @end

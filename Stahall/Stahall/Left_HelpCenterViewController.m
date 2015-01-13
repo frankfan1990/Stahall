@@ -7,7 +7,9 @@
 //
 
 #import "Left_HelpCenterViewController.h"
+#import "AFNetworking.h"
 #import "MainViewController.h"
+#import "ProgressHUD.h"
 #import "RESideMenu.h"
 #import "Marcos.h"
 #pragma mark - 帮助中心
@@ -16,6 +18,9 @@
     UIButton *btnLeft;
     UIButton *btnRight;
     UITableView *_tableView;
+    NSString *data1;
+    NSString *data2;
+    NSString *number;
 }
 @end
 
@@ -25,12 +30,13 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
+
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1]];
-    
+    [self getData];
     btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
     btnRight = [UIButton buttonWithType:UIButtonTypeCustom];
     btnLeft.selected = YES;
@@ -80,6 +86,41 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)getData
+{
+    [ProgressHUD show:nil];
+    __block int i = 0;
+    AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
+    manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
+    [manger GET:HelpCenterIP parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        i++;
+        if (i==2) {
+            [ProgressHUD showSuccess:@"加载成功"];
+        }
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        data2 = [NSString stringWithFormat:@"%@",dic[@"data"][@"helpCenter"]];
+        [_tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [ProgressHUD showError:@"网络异常"];
+    }];
+    
+    [manger GET:CompanyProfileIP parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        i++;
+        if (i==2) {
+            [ProgressHUD showSuccess:@"加载成功"];
+        }
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        data1 = dic[@"data"][@"aboutContent"];
+        [_tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [ProgressHUD showError:@"网络异常"];
+    }];
+
 }
 #pragma mark - TabBar的设置
 -(void)setTabBar
@@ -134,27 +175,48 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 300;
+        if (btnLeft.selected) {
+            return 370;
+        }else{
+            return 455;
+        }
+       
     }else{
-        return 150;
+        return 50;
     }
     
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     if (indexPath.row == 0) {
         UITableViewCell *cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor clearColor];
+        UIWebView *webView =[[UIWebView alloc] init];
+        if (btnLeft.selected) {
+            webView.frame = CGRectMake(0, 0, Mywidth, 370);
+            [webView loadHTMLString:data1 baseURL:nil];
+        }else{
+            webView.frame = CGRectMake(0, 0, Mywidth, 455);
+            [webView loadHTMLString:data2 baseURL:nil];
+        }
+        webView.backgroundColor = [UIColor clearColor];
+        webView.opaque = NO;
+        
+        [cell.contentView addSubview:webView];
+        
         return cell;
     }else{
         UITableViewCell *cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         cell.backgroundColor = [UIColor clearColor];
-        btn.frame = CGRectMake(60, 40, Mywidth-120, 35);
+        btn.frame = CGRectMake(60, 20, Mywidth-120, 35);
         [btn setTitle:@"联系我们" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btn.backgroundColor = [UIColor greenColor];
@@ -176,7 +238,7 @@
     [self.sideMenuViewController presentLeftMenuViewController];
 }
 
-#pragma mark -点击 我的项目 我的估价 事件
+#pragma mark -点击事件
 -(void)didLeftBtn{
     btnLeft.selected  = YES;
     btnRight.selected = NO;
@@ -200,7 +262,7 @@
 }
 
 -(void)didCall:(UIButton *)sender{
-    
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:13212341234"]]];
 }
 
 @end

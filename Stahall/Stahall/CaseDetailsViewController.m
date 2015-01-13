@@ -120,14 +120,8 @@
         self.navigationItem.leftBarButtonItem = btnLeftitem;
     }
     
-    
-    UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
-    title.text = _caseName;
-    title.textAlignment = NSTextAlignmentCenter;
-    title.font = [UIFont systemFontOfSize:19];
-    title.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = title;
-    
+    self.title = _caseName;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
 }
 
 -(void)getdata
@@ -135,15 +129,14 @@
     
     pictureData = [NSMutableArray array];
     
-//    __weak typeof (self)Myself = self;
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
     NSDictionary *dic = @{@"caseId":_caseId};
     [manger GET:CaseDetailIP parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *data = (NSDictionary *)responseObject;
-        introduce = data[@"data"][@"introduction"];
-        starsData = data[@"data"][@"stars"];
+        introduce  = data[@"data"][@"introduction"];
+        starsData  = data[@"data"][@"stars"];
         videosData = data[@"data"][@"videos"];
         
         

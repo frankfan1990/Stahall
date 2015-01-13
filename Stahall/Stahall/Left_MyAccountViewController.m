@@ -11,6 +11,8 @@
 #import "RESideMenu.h"
 #import "UIImageView+WebCache.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "EditInformationViewController.h"
+#import "SecondAccountsViewController.h"
 #import "Marcos.h"
 #pragma mark - 我的账户
 @interface Left_MyAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -205,14 +207,14 @@
         btn.frame = CGRectMake(60, 30, Mywidth-120, 35);
         btn.backgroundColor = [UIColor greenColor];
         btn.layer.masksToBounds = YES;
-        btn.alpha = 0.7;
+        btn.alpha = 0.8;
         btn.layer.cornerRadius = btn.frame.size.height/2;
-        [btn setTitle:@"修改密码" forState:UIControlStateNormal];
+        [btn setTitle:@"编辑资料" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(didEdit) forControlEvents:UIControlEventTouchUpInside];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [cell.contentView addSubview:btn];
         return cell;
     }
-    
     
     static NSString *str = @"mycellother";
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:str];
@@ -226,14 +228,11 @@
         
         UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
         
-        field.userInteractionEnabled = YES;
-        field.delegate = self;
-        field.returnKeyType = UIReturnKeyDone;
+        field.userInteractionEnabled = NO;
         field.textAlignment = NSTextAlignmentRight;
         field.font = [UIFont systemFontOfSize:15];
         field.tag = 113;
         field.textColor = [UIColor whiteColor];
-        field.text = @"aaaaaa";
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:field];
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 0.5)];
@@ -270,12 +269,6 @@
 }
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
-}
-
 -(void)didMyBtn:(UIButton *)sender
 {
     
@@ -290,6 +283,12 @@
     
     sender.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
     sender.selected = YES;
+    
+    if (btn1.selected) {
+        SecondAccountsViewController *sendCtrl = [[SecondAccountsViewController alloc] init];
+        [self.navigationController pushViewController:sendCtrl animated:YES];
+    }
+    
 }
 
 
@@ -311,6 +310,13 @@
     MainViewController *mainViewController =[MainViewController new];
     [self.sideMenuViewController setContentViewController:[[UINavigationController alloc]initWithRootViewController:mainViewController] animated:YES];
     [self.sideMenuViewController presentLeftMenuViewController];
+}
+
+#pragma mark - 编辑资料
+-(void)didEdit
+{
+    EditInformationViewController *editCtrl = [[EditInformationViewController alloc] init];
+    [self.navigationController pushViewController:editCtrl animated:YES];
 }
 
 #pragma mark - UIlabel的方法

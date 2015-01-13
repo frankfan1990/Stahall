@@ -260,6 +260,8 @@ bool selected;//是否是出于编辑模式的标志位
         [sender setTitle:@"编辑" forState:UIControlStateNormal];
         [self.collectionView reloadData];
     }
+    
+    [self.collectionView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 
@@ -450,6 +452,14 @@ bool selected;//是否是出于编辑模式的标志位
             
         }
         
+        if([starsSelected[indexPath.row]isKindOfClass:[NSString class]]){
+        
+            stahallEvalueCell.deleteButton.hidden = YES;
+        }else{
+            stahallEvalueCell.deleteButton.hidden = NO;
+        }
+        
+        
     }
 
     if([starsSelected count]==1){//如果数据源只有一个数据
@@ -461,10 +471,10 @@ bool selected;//是否是出于编辑模式的标志位
             stahallEvalueCell.starName.text = nil;
         }
         
-    }else{//如果数据源超过一个数据
+    }else{//如果数据源超过一个数据-indexPath.row==indexRow
     
         NSInteger indexRow = [starsSelected count]-1;
-        if(indexPath.row==indexRow){
+        if([[starsSelected lastObject]isKindOfClass:[NSString class]]){
         
             stahallEvalueCell.addIcon.image =[UIImage imageNamed:@"fz加"];
             if(stahallEvalueCell.starHeaderImage.image){
@@ -483,10 +493,7 @@ bool selected;//是否是出于编辑模式的标志位
             stahallEvalueCell.addIcon.image =nil;
         }
     }
-    
-//    stahallEvalueCell.starName.text = starsSelected[indexPath.row];
-    
-    
+
     
     if([starsSelected count]==9 || [starsSelected count]==13){
         
@@ -499,8 +506,6 @@ bool selected;//是否是出于编辑模式的标志位
         [self.collectionView setContentOffset:CGPointMake(0, 220) animated:YES];
     }
 
-    
-    //
    
     if([starsSelected count]>1){
         
@@ -516,7 +521,15 @@ bool selected;//是否是出于编辑模式的标志位
         
     }
     
-  
+    if([starsSelected[indexPath.row]isKindOfClass:[NSString class]]){
+    
+        stahallEvalueCell.addIcon.hidden = NO;
+        
+    }else{
+        stahallEvalueCell.addIcon.hidden = YES;
+    }
+    
+    
     return stahallEvalueCell;
 }
 
@@ -544,6 +557,7 @@ bool selected;//是否是出于编辑模式的标志位
         staHallViewController.isSearchMode = YES;
         [self.navigationController pushViewController:staHallViewController animated:YES];
         
+        staHallViewController.reciveTheHasSelecedStars = starsSelected;
         NSLog(@"跳到挑选艺人界面");
 
     
@@ -569,8 +583,16 @@ bool selected;//是否是出于编辑模式的标志位
     NSIndexPath *indexPath =[self.collectionView indexPathForItemAtPoint:buttonPosition];
     
     if([starsSelected count]>1){
-
+        
         [starsSelected removeObjectAtIndex:indexPath.row];
+        if([starsSelected count]<20){
+            
+            if(![[starsSelected lastObject]isKindOfClass:[NSString class]]){
+                
+                [starsSelected addObject:@"end"];
+            }
+            
+        }
         [self.collectionView reloadData];
 
     }
@@ -597,7 +619,6 @@ bool selected;//是否是出于编辑模式的标志位
         [starsSelected addObjectsFromArray:selectedCells];
         [starsSelected addObject:@"end"];
 
-        
         if([starsSelected count]>20){
  
             [starsSelected removeObjectsInRange:NSMakeRange(20, [starsSelected count]-20)];
@@ -617,6 +638,7 @@ bool selected;//是否是出于编辑模式的标志位
 #pragma mark - 导航栏回退按钮触发
 - (void)buttonClicked:(UIButton *)sender{
 
+    selected = NO;
     [self.navigationController popViewControllerAnimated:YES];
     [ProgressHUD dismiss];
 }

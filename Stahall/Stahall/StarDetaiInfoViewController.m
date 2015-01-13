@@ -5,7 +5,6 @@
 //  Created by frankfan on 14/12/23.
 //  Copyright (c) 2014年 Rching. All rights reserved.
 //
-//FIXME: 艺人详情
 
 
 #import "StarDetaiInfoViewController.h"
