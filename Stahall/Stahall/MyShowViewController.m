@@ -45,6 +45,7 @@
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:YES];
     [ProgressHUD dismiss];
 }
 - (void)viewDidLoad {
@@ -315,10 +316,12 @@
             }
             
             [self Customlable:labeilOfTitle text:arrOfHeadTitleOne[section-1] fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:NO numberOfLines:1];
+            labeilOfTitle.textColor = [UIColor whiteColor];
             
         }else{
-            [self Customlable:labeilOfTitle text:arrOfHeadTitleTwo[section-1] fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:NO numberOfLines:1];
             
+            [self Customlable:labeilOfTitle text:arrOfHeadTitleTwo[section-1] fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:NO numberOfLines:1];
+            labeilOfTitle.textColor = [UIColor whiteColor];
             if (section == 1) {
                 imageV.backgroundColor = [UIColor orangeColor];
             }else if (section == 2){
@@ -377,6 +380,8 @@
     }
     UILabel *labelContent = (UILabel *)[cell.contentView viewWithTag:10000];
     UILabel *labelOfDate = (UILabel *)[cell.contentView viewWithTag:100000];
+    labelOfDate.textColor = [UIColor whiteColor];
+    labelContent.textColor = [UIColor whiteColor];
     UIView *view = (UIView *)[cell.contentView viewWithTag:10003];
     if (indexPath.row == 0 ) {
         view.hidden = YES;

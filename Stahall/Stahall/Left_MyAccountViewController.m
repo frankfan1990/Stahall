@@ -96,8 +96,8 @@
     
     btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     btn1.frame = CGRectMake(0, headView.frame.size.height-55, Mywidth/4, 55);
-    btn1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
-    btn1.selected = YES;
+    btn1.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+    btn1.selected = NO;
     btn1.titleLabel.font = [UIFont systemFontOfSize:14];
     [btn1 setTitle:@"二级账户" forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

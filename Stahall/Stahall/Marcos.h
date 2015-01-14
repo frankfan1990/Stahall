@@ -84,12 +84,26 @@
 /*
   帮助中心
  */
-#define HelpCenterIP @"http://192.168.1.116:8080/stahall/help"
+#define HelpCenterIP @"http://218.244.158.59/stahall/help"
 
 /*
  公司简介
  */
-#define CompanyProfileIP @"http://192.168.1.116:8080/stahall/help/about"
+#define CompanyProfileIP @"http://218.244.158.59/stahall/help/about"
+
+
+/*
+ 二级账户列表
+ */
+#define SecondAccountListIP @"http://218.244.158.59/stahall/business/children"
+
+
+/*
+ 增加二级账户
+ */
+#define AddSecondIP @"http://218.244.158.59/stahall/business/add/child"
+
+
 
 // rgb颜色转换（16进制->10进制）
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]

@@ -423,7 +423,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-#pragma mark - 第几三个按钮事件
+#pragma mark - 第几个按钮事件
 -(void)didMyBtn:(UIButton *)sender
 {
     btnVideo.selected = NO;

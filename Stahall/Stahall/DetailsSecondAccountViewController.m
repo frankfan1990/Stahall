@@ -1,20 +1,19 @@
 //
-//  AddSecondAccoutsViewController.m
+//  DetailsSecondAccountViewController.m
 //  Stahall
 //
-//  Created by JM_Pro on 15-1-13.
+//  Created by JM_Pro on 15-1-14.
 //  Copyright (c) 2015年 Rching. All rights reserved.
 //
 
-#import "AddSecondAccoutsViewController.h"
+#import "DetailsSecondAccountViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "SecondAccountsViewController.h"
 #import "AFNetworking.h"
 #import "ProgressHUD.h"
 #import "Email_Phone.h"
 #import "Marcos.h"
-#pragma mark - 增加二级账户
-@interface AddSecondAccoutsViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface DetailsSecondAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *_tableView;
     NSArray *arrOfTitle;
@@ -27,7 +26,7 @@
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @end
 
-@implementation AddSecondAccoutsViewController
+@implementation DetailsSecondAccountViewController
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -35,18 +34,17 @@
     self.navigationController.navigationBar.hidden = NO;
     [self setTabBar];
 }
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:YES];
-    [ProgressHUD dismiss];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     dataDict = [NSMutableDictionary dictionary];
-    arrOfTitle = @[@"姓名",@"公司所在职位",@"手机号码",@"用户密码",@"确认密码"];
-    arrOfContent = @[@"输入姓名",@"输入职位名称",@"请输入手机号码",@"输入用户密码",@"确认密码"];
-
+    arrOfTitle = @[@"姓名",@"公司所在职位",@"手机号码",@"新密码",@"确认密码"];
+    arrOfContent = @[_data[@"nickName"],_data[@"position"],_data[@"number"],_data[@"telphone"],@"",@""];
+    [dataDict setObject:_data[@"nickName"] forKey:@"nickName"];
+    [dataDict setObject:_data[@"position"] forKey:@"position"];
+    [dataDict setObject:_data[@"number"] forKey:@"number"];
+    [dataDict setObject:_data[@"telphone"] forKey:@"telphone"];
+    
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
@@ -60,6 +58,8 @@
     _tableView.dataSource = self;
     [_tpscrollerView addSubview:_tableView];
 }
+
+#pragma mark - tabBar的设置
 -(void)setTabBar
 {
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -81,10 +81,10 @@
     UIBarButtonItem *btnLeftitem = [[UIBarButtonItem alloc] initWithCustomView:btnLeft];
     
     UIButton*  btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    [btn2 setTitle:@"完成" forState:UIControlStateNormal];
+    [btn2 setTitle:@"删除" forState:UIControlStateNormal];
     [btn2 setFrame:CGRectMake(0, 10, 40, 45)];;
     [btn2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn2 addTarget:self action:@selector(didFinish) forControlEvents:UIControlEventTouchUpInside];
+    [btn2 addTarget:self action:@selector(didDelete) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *btnright = [[UIBarButtonItem alloc] initWithCustomView:btn2];
     
     if(([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0?20:0)){
@@ -100,11 +100,13 @@
     
     
     UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
-    title.text = @"增加二级账号";
+    title.text = @"账号详情";
     title.font = [UIFont systemFontOfSize:19];
     title.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = title;
 }
+
+
 
 #pragma mark-tableVIew  cell个数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -148,6 +150,7 @@
         field.textColor = [UIColor whiteColor];
         [cell.contentView addSubview:label];
         [cell.contentView addSubview:field];
+        
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 0.5)];
         line.tag = 11111;
         line.backgroundColor = [UIColor colorWithWhite:1 alpha:0.01];
@@ -164,9 +167,8 @@
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:112];
     label.text = arrOfTitle[indexPath.row];
     UITextField *feild = (UITextField *)[cell.contentView viewWithTag:113];
-  
-    feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:arrOfContent[indexPath.row] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-   
+    feild.text = arrOfContent[indexPath.row];
+    
     return cell;
 }
 #pragma mark - 点击cell
@@ -212,88 +214,20 @@
 }
 
 
+
+
 #pragma mark - 返回上一页
 -(void)didGoBack
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - 点击完成
--(void)didFinish
+#pragma mark - 点击删除
+-(void)didDelete
 {
-    [_textField resignFirstResponder];
     
-    NSLog(@"%@",self.navigationController.viewControllers);
-    
-    NSString *msg = @"";
-    if (![dataDict[@"nickName"] length]) {
-        msg = @"\n请填写姓名";
-    }else if(![dataDict[@"position"] length]){
-        msg = @"\n请填写职位名称";
-    }else if(![dataDict[@"telphone"] length]){
-        msg = @"\n请填写手机号码";
-    }else if(![dataDict[@"passWord"] length]){
-        msg = @"\n请填写密码";
-    }else if (![dataDict[@"passWord_two"] length]){
-        msg = @"\n请确认密码";
-    } else if (!isValidatePhone(dataDict[@"telphone"])){
-        msg = @"\n请填写正确的手机号码";
-    }else if(![dataDict[@"passWord"] isEqualToString:dataDict[@"passWord_two"]]){
-        msg = @"\n两次密码不一致";
-    }else if ([dataDict[@"passWord"] length] < 6){
-        msg = @"\n密码长度必须大于六位";
-    }
-    
-    if ([msg length]) {
-        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alerView show];
-        return;
-    }else{
-        
-        [ProgressHUD show:@"正在添加"];
-        //一级账户的id
-        [dataDict setObject:@"78955a4c-6b00-4999-96eb-1b2334b4f7b5" forKey:@"parentId"];
-        
-        [dataDict removeObjectForKey:@"passWord_two"];
-        
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        //如果报接受类型不一致请替换一致text/html或别的
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
-        __weak typeof (self)mySelf = self;
-        [manager POST:AddSecondIP parameters:dataDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-            if ([responseObject[@"success"] intValue] == 0) {
-                [ProgressHUD dismiss];
-                UIAlertView *aler=[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"\n%@",responseObject[@"data"]] delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
-                [aler show];
-                [dataDict setObject:passWordStr forKey:@"passWord_two"];
-            }else{
-                [ProgressHUD showSuccess:@"添加成功"];
-                [mySelf.navigationController.viewControllers[1] getData];
-                [mySelf.navigationController popViewControllerAnimated:YES];
-                
-            }
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [ProgressHUD dismiss];
-            UIAlertView *aler=[[UIAlertView alloc] initWithTitle:@"添加失败" message:@"\n请检查网络设置" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil];
-            [aler show];
-            [dataDict setObject:passWordStr forKey:@"passWord_two"];
-            NSLog(@"%@",error);
-        }];
-
-    }
-    
-    
-    
-    
-    NSLog(@"%@",dataDict);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - UIlabel的方法
 -(void)Customlable:(UILabel *)label text:(NSString *)textStr fontSzie:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment adjustsFontSizeToFitWidth:(BOOL)state numberOfLines:(NSInteger)numberOfLines
@@ -305,5 +239,11 @@
     label.adjustsFontSizeToFitWidth = state;
     label.numberOfLines = numberOfLines;
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 
 @end
