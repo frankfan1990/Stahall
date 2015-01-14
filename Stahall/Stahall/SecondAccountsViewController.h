@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SecondAccountsViewController : UIViewController
-
+-(void)getData;
 @end

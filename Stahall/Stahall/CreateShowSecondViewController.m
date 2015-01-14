@@ -220,7 +220,7 @@
         label.frame = CGRectMake(-1, 0, Mywidth+2, 45);
         [self Customlable:label text:@"增加场次" fontSzie:16 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell2.contentView addSubview:label];
-        return cell2;
+        return cell2; 
     }
     else if(indexPath.section == arrOfSection.count+1){
         static NSString * cellName = @"cell3";
