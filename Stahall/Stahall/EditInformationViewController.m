@@ -8,6 +8,7 @@
 
 #import "EditInformationViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "Email_Phone.h"
 #import "Marcos.h"
 @interface EditInformationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -180,6 +181,9 @@
     CGPoint position = [textField convertPoint:CGPointZero toView:_tableView];
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:position];
     myIndexPath = indexPath;
+    if (myIndexPath.row == 0 || myIndexPath.row == 2) {
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
     
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -197,6 +201,8 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    
+
     return YES;
 }
 
@@ -215,6 +221,28 @@
 -(void)didFinish
 {
     [_textField resignFirstResponder];
+    
+    
+    NSString *msg = @"";
+    if (![dataDict[@"Number"] length]) {
+        msg = @"\n手机号码不能为空";
+    }else if(![dataDict[@"Address"] length]){
+        msg = @"\n地址不能为空";
+    }else if(![dataDict[@"QQnumber"] length]){
+        msg = @"\nQQ号码不能为空";
+    }else if(![dataDict[@"email"] length]){
+        msg = @"\n邮箱不能为空";
+    }else if (!isValidatePhone(dataDict[@"Number"])){
+        msg = @"\n请填写正确的手机号码";
+    }else if(!isValidateEmail(dataDict[@"email"])){
+        msg = @"\n请填写正确的邮箱";
+    }
+    
+    if ([msg length]) {
+        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alerView show];
+    }
+    
     NSLog(@"%@",dataDict);
 }
 

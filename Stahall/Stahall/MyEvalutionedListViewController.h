@@ -11,4 +11,5 @@
 @interface MyEvalutionedListViewController : UIViewController
 
 @property (nonatomic,strong)NSMutableArray *evalutionedStars;
+@property (nonatomic,strong)NSMutableArray *theSelectedStars;//接受从上页传下来的选择的艺人
 @end

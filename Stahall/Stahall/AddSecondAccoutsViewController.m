@@ -8,6 +8,7 @@
 
 #import "AddSecondAccoutsViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "Email_Phone.h"
 #import "Marcos.h"
 #pragma mark - 增加二级账户
 @interface AddSecondAccoutsViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -34,8 +35,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     dataDict = [NSMutableDictionary dictionary];
-    arrOfTitle = @[@"姓名",@"公司所在职位",@"手机号码",@"登陆密码",@"确认密码"];
-    arrOfContent = @[@"输入姓名",@"输入职位名称",@"请输入手机号码",@"输入登陆密码",@"确认密码"];
+    arrOfTitle = @[@"姓名",@"公司所在职位",@"手机号码",@"用户密码",@"确认密码"];
+    arrOfContent = @[@"输入姓名",@"输入职位名称",@"请输入手机号码",@"输入用户密码",@"确认密码"];
         [dataDict setObject:@"" forKey:@"Name"];
         [dataDict setObject:@"" forKey:@"JobTitle"];
         [dataDict setObject:@"" forKey:@"number"];
@@ -45,9 +46,10 @@
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
+    self.tpscrollerView.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     [self.view addSubview:self.tpscrollerView];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
-    _tableView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
+    _tableView.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     _tableView.sectionFooterHeight = 0.01;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.delegate = self;
@@ -175,6 +177,12 @@
     CGPoint position = [textField convertPoint:CGPointZero toView:_tableView];
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:position];
     myIndexPath = indexPath;
+    if (myIndexPath.row >2) {
+        textField.secureTextEntry = YES;
+    }else if(myIndexPath.row == 2){
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    
     
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -207,6 +215,30 @@
 -(void)didFinish
 {
     [_textField resignFirstResponder];
+    
+    
+    NSString *msg = @"";
+    if (![dataDict[@"Name"] length]) {
+        msg = @"\n请填写姓名";
+    }else if(![dataDict[@"JobTitle"] length]){
+        msg = @"\n请填写职位名称";
+    }else if(![dataDict[@"number"] length]){
+        msg = @"\n请填写手机号码";
+    }else if(![dataDict[@"Password"] length] || ![dataDict[@"Password_two"] length]){
+        msg = @"\n请填写密码";
+    }else if (!isValidatePhone(dataDict[@"number"])){
+        msg = @"\n请填写正确的手机号码";
+    }else if(![dataDict[@"Password"] isEqualToString:dataDict[@"Password_two"]]){
+        msg = @"\n两次密码不一致";
+    }
+    
+    if ([msg length]) {
+        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alerView show];
+    }
+    
+    
+    
     NSLog(@"%@",dataDict);
 }
 

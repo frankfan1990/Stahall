@@ -21,6 +21,13 @@
         self.headerImageView.layer.borderWidth = 3;
         self.headerImageView.layer.borderColor =[UIColor colorWithWhite:0.6 alpha:0.75].CGColor;
         [self.contentView addSubview:self.headerImageView];
+        
+        self.starName =[[UILabel alloc]initWithFrame:CGRectMake(0, 65, self.bounds.size.width, 30)];
+        self.starName.font =[UIFont systemFontOfSize:14];
+        self.starName.textColor =[UIColor whiteColor];
+        [self.contentView addSubview:self.starName];
+        self.starName.textAlignment = NSTextAlignmentCenter;
+        
     }
     
     return self;
