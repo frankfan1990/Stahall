@@ -9,6 +9,7 @@
 #import "AddSecondAccoutsViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "Marcos.h"
+#pragma mark - 增加二级账户
 @interface AddSecondAccoutsViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *_tableView;
@@ -16,6 +17,7 @@
     UITextField *_textField;
     NSIndexPath *myIndexPath;
     NSMutableDictionary *dataDict;
+    NSArray *arrOfContent;
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 @end
@@ -32,7 +34,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     dataDict = [NSMutableDictionary dictionary];
-    arrOfTitle = @[@"姓名",@"公司所在职位",@"手机号码",@"登陆密码"];
+    arrOfTitle = @[@"姓名",@"公司所在职位",@"手机号码",@"登陆密码",@"确认密码"];
+    arrOfContent = @[@"输入姓名",@"输入职位名称",@"请输入手机号码",@"输入登陆密码",@"确认密码"];
+        [dataDict setObject:@"" forKey:@"Name"];
+        [dataDict setObject:@"" forKey:@"JobTitle"];
+        [dataDict setObject:@"" forKey:@"number"];
+        [dataDict setObject:@"" forKey:@"Password"];
+        [dataDict setObject:@"" forKey:@"Password_two"];
+
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
@@ -147,16 +156,10 @@
     
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:112];
     label.text = arrOfTitle[indexPath.row];
-    UITextField *field = (UITextField *)[cell.contentView viewWithTag:113];
-    if (indexPath.row == 0) {
-        field.text = @"18812341234";
-    }else if (indexPath.row == 1) {
-        field.text = @"湖南长沙";
-    }else if (indexPath.row == 2) {
-        field.text = @"123456";
-    }else if (indexPath.row == 3) {
-        field.text = @"xxxxxx@qq.com";
-    }
+    UITextField *feild = (UITextField *)[cell.contentView viewWithTag:113];
+  
+    feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:arrOfContent[indexPath.row] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+   
     return cell;
 }
 #pragma mark - 点击cell
@@ -177,13 +180,15 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (myIndexPath.row == 0) {
-        [dataDict setObject:textField.text forKey:@"name"];
+        [dataDict setObject:textField.text forKey:@"Name"];
     }else if (myIndexPath.row == 1){
-        [dataDict setObject:textField.text forKey:@"zhiwei"];
+        [dataDict setObject:textField.text forKey:@"JobTitle"];
     }else if (myIndexPath.row == 2){
         [dataDict setObject:textField.text forKey:@"number"];
     }else if (myIndexPath.row == 3){
-        [dataDict setObject:textField.text forKey:@"mima"];
+        [dataDict setObject:textField.text forKey:@"Password"];
+    }else if (myIndexPath.row == 4){
+        [dataDict setObject:textField.text forKey:@"Password_two"];
     }
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
