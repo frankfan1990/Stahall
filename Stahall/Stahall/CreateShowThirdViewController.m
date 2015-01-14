@@ -536,6 +536,10 @@
     return size.height;
 }
 
+#pragma mark - 优化图片大小
+
+
+
 #pragma mark - UIlabel的方法
 -(void)Customlable:(UILabel *)label text:(NSString *)textStr fontSzie:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment adjustsFontSizeToFitWidth:(BOOL)state numberOfLines:(NSInteger)numberOfLines
 {
