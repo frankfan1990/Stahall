@@ -338,7 +338,7 @@
             cell3.selectionStyle = UITableViewCellSelectionStyleNone;
             UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
             btn1.frame = CGRectMake(60, 15, Mywidth-120, 35);
-            btn1.backgroundColor = [UIColor greenColor];
+            btn1.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
             btn1.layer.masksToBounds = YES;
             btn1.layer.cornerRadius = btn1.frame.size.height/2;
             [btn1 setTitle:@"发送邀约函" forState:UIControlStateNormal];

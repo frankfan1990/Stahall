@@ -20,6 +20,8 @@
 		5C3EE7651A650F9200BBFA8A /* SecondAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7641A650F9200BBFA8A /* SecondAccountsViewController.m */; };
 		5C3EE7681A6511B600BBFA8A /* AddSecondAccoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7671A6511B600BBFA8A /* AddSecondAccoutsViewController.m */; };
 		5C3EE76B1A665C1D00BBFA8A /* DetailsSecondAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE76A1A665C1D00BBFA8A /* DetailsSecondAccountViewController.m */; };
+		5C3EE76E1A67680900BBFA8A /* AttestationMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE76D1A67680900BBFA8A /* AttestationMessageViewController.m */; };
+		5C3EE7711A679DEC00BBFA8A /* CompanyAttestationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7701A679DEC00BBFA8A /* CompanyAttestationViewController.m */; };
 		5C40BFB21A5CBFA000AAAEE7 /* lc专属克服1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */; };
 		5C40BFB31A5CBFA000AAAEE7 /* lc专属克服2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C40BFB11A5CBFA000AAAEE7 /* lc专属克服2.png */; };
 		5C40BFB61A5CCB2800AAAEE7 /* CaseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40BFB51A5CCB2800AAAEE7 /* CaseDetailsViewController.m */; };
@@ -220,6 +222,10 @@
 		5C3EE7671A6511B600BBFA8A /* AddSecondAccoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSecondAccoutsViewController.m; sourceTree = "<group>"; };
 		5C3EE7691A665C1D00BBFA8A /* DetailsSecondAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsSecondAccountViewController.h; sourceTree = "<group>"; };
 		5C3EE76A1A665C1D00BBFA8A /* DetailsSecondAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsSecondAccountViewController.m; sourceTree = "<group>"; };
+		5C3EE76C1A67680900BBFA8A /* AttestationMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttestationMessageViewController.h; sourceTree = "<group>"; };
+		5C3EE76D1A67680900BBFA8A /* AttestationMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttestationMessageViewController.m; sourceTree = "<group>"; };
+		5C3EE76F1A679DEC00BBFA8A /* CompanyAttestationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyAttestationViewController.h; sourceTree = "<group>"; };
+		5C3EE7701A679DEC00BBFA8A /* CompanyAttestationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyAttestationViewController.m; sourceTree = "<group>"; };
 		5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服1.png"; sourceTree = "<group>"; };
 		5C40BFB11A5CBFA000AAAEE7 /* lc专属克服2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服2.png"; sourceTree = "<group>"; };
 		5C40BFB41A5CCB2800AAAEE7 /* CaseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaseDetailsViewController.h; sourceTree = "<group>"; };
@@ -711,6 +717,10 @@
 				5C3EE7671A6511B600BBFA8A /* AddSecondAccoutsViewController.m */,
 				5C3EE7691A665C1D00BBFA8A /* DetailsSecondAccountViewController.h */,
 				5C3EE76A1A665C1D00BBFA8A /* DetailsSecondAccountViewController.m */,
+				5C3EE76C1A67680900BBFA8A /* AttestationMessageViewController.h */,
+				5C3EE76D1A67680900BBFA8A /* AttestationMessageViewController.m */,
+				5C3EE76F1A679DEC00BBFA8A /* CompanyAttestationViewController.h */,
+				5C3EE7701A679DEC00BBFA8A /* CompanyAttestationViewController.m */,
 			);
 			name = LuCanViewCtrl;
 			sourceTree = "<group>";
@@ -1576,6 +1586,7 @@
 				636F44841A44091300FD6783 /* UIButton+WebCache.m in Sources */,
 				636F44141A44077400FD6783 /* AFHTTPSessionManager.m in Sources */,
 				63BC6A941A374C5800087DFB /* FBKVOController.m in Sources */,
+				5C3EE76E1A67680900BBFA8A /* AttestationMessageViewController.m in Sources */,
 				63649A481A496F7F0024E3F7 /* LunarCalendar.m in Sources */,
 				5C40BFC91A5E22AA00AAAEE7 /* CasePlayVideoViewController.m in Sources */,
 				631DC21C1A37408000F5E9AA /* Email_Phone.m in Sources */,
@@ -1588,6 +1599,7 @@
 				5C3EE76B1A665C1D00BBFA8A /* DetailsSecondAccountViewController.m in Sources */,
 				5C7D5CF31A514A8400163B07 /* Left_HelpCenterViewController.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
+				5C3EE7711A679DEC00BBFA8A /* CompanyAttestationViewController.m in Sources */,
 				636F44191A44077400FD6783 /* AFURLResponseSerialization.m in Sources */,
 				636F447C1A44091300FD6783 /* NSData+ImageContentType.m in Sources */,
 				5C40BFCC1A5E28B900AAAEE7 /* MyShowDetailsViewController.m in Sources */,

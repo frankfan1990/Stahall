@@ -158,7 +158,7 @@
     if (indexPath.section == 2) {
         return 20+[self caculateTheTextHeight:arrOfrule[indexPath.row] andFontSize:14 andDistance:Mywidth-65];
     }else if (indexPath.section ==1){
-        return 150;
+        return 140;
     } else{
         return 45;
     }
@@ -200,7 +200,7 @@
         cell2.selectionStyle = UITableViewCellSelectionStyleNone;
         cell2.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
         UILabel *label = [[UILabel alloc] init];
-        label.frame = CGRectMake(10, 0, Mywidth-10, 30);
+        label.frame = CGRectMake(10, 10, Mywidth-10, 20);
         [self Customlable:label text:@"授权书/委托函" fontSzie:16 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
         [cell2.contentView addSubview:label];
         
@@ -208,7 +208,7 @@
         laytoutView.itemSize = CGSizeMake(90, 80);
         laytoutView.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
         [laytoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        _colloectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, Mywidth, 110) collectionViewLayout:laytoutView];
+        _colloectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 30, Mywidth, 110) collectionViewLayout:laytoutView];
         _colloectionView.delegate = self;
         _colloectionView.dataSource = self;
         _colloectionView.backgroundColor = [UIColor clearColor];

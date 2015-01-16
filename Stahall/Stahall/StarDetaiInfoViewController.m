@@ -308,7 +308,7 @@
     
     //堂估价按钮
     stahallEvalutionButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    stahallEvalutionButton.backgroundColor =[UIColor greenColor];
+    stahallEvalutionButton.backgroundColor =[UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
     stahallEvalutionButton.frame = CGRectMake(0, self.view.bounds.size.height-50, self.view.bounds.size.width, 50);
     [stahallEvalutionButton setTitle:@"堂估价" forState:UIControlStateNormal];
     [[UIApplication sharedApplication].keyWindow addSubview:stahallEvalutionButton];
