@@ -52,7 +52,7 @@
 #pragma mark - 得到数据
 -(void)getData
 {
-    [ProgressHUD show:@"正在加载" Interaction:NO];
+       [ProgressHUD show:@"正在加载" Interaction:NO];
     
 //    __weak typeof (self)Myself = self;
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
@@ -63,6 +63,7 @@
         [_tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [ProgressHUD showError:@"网络异常"];
+        NSLog(@"%@",error);
     }];
 }
 #pragma mark - tabBar的设置

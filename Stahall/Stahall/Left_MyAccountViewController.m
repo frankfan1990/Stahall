@@ -7,12 +7,13 @@
 //
 
 #import "Left_MyAccountViewController.h"
-#import "MainViewController.h"
-#import "RESideMenu.h"
 #import "UIImageView+WebCache.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "EditInformationViewController.h"
 #import "SecondAccountsViewController.h"
+#import "AttestationMessageViewController.h"
+#import "MainViewController.h"
+#import "RESideMenu.h"
 #import "Marcos.h"
 #pragma mark - 我的账户
 @interface Left_MyAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
@@ -205,9 +206,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(60, 30, Mywidth-120, 35);
-        btn.backgroundColor = [UIColor greenColor];
+        btn.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         btn.layer.masksToBounds = YES;
-        btn.alpha = 0.8;
         btn.layer.cornerRadius = btn.frame.size.height/2;
         [btn setTitle:@"编辑资料" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(didEdit) forControlEvents:UIControlEventTouchUpInside];
@@ -287,6 +287,13 @@
     if (btn1.selected) {
         SecondAccountsViewController *sendCtrl = [[SecondAccountsViewController alloc] init];
         [self.navigationController pushViewController:sendCtrl animated:YES];
+    }else if (btn2.selected){
+        AttestationMessageViewController *attserCtrl = [[AttestationMessageViewController alloc] init];
+        [self.navigationController pushViewController:attserCtrl animated:YES];
+    }else if (btn3.selected){
+        
+    }else if (btn4.selected){
+        
     }
     
 }

@@ -269,8 +269,11 @@
                 [dataDict setObject:passWordStr forKey:@"passWord_two"];
             }else{
                 [ProgressHUD showSuccess:@"添加成功"];
-                [mySelf.navigationController.viewControllers[1] getData];
-                [mySelf.navigationController popViewControllerAnimated:YES];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [mySelf.navigationController.viewControllers[1] getData];
+                    [mySelf.navigationController popViewControllerAnimated:YES];
+                });
+               
                 
             }
             

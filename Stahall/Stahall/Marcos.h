@@ -103,6 +103,11 @@
  */
 #define AddSecondIP @"http://218.244.158.59/stahall/business/add/child"
 
+/*
+ 删除二级账户
+ */
+#define DeleteSecondIP @"http://218.244.158.59/stahall/business/delete"
+
 
 
 // rgb颜色转换（16进制->10进制）

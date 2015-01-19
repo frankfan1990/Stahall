@@ -17,6 +17,7 @@
     UITextField *_textField;
     NSIndexPath *myIndexPath;
     NSMutableDictionary *dataDict;
+    NSMutableDictionary *passwordDic;
 }
 @property (nonatomic,strong)TPKeyboardAvoidingScrollView *tpscrollerView;
 
@@ -35,7 +36,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     dataDict = [NSMutableDictionary dictionary];
-    arrOfTitle = @[@"手机号码",@"所在地址",@"QQ号码",@"邮箱地址"];
+    passwordDic = [NSMutableDictionary dictionary];
+    
+    
+    arrOfTitle = @[@"手机号码",@"所在地址",@"QQ号码",@"邮箱地址",@"原 密 码",@"新 密 码",@"确认密码"];
     [dataDict setObject:@"18812341234" forKey:@"Number"];
     [dataDict setObject:@"湖南长沙" forKey:@"Address"];
     [dataDict setObject:@"123456" forKey:@"QQnumber"];
@@ -44,7 +48,7 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.tpscrollerView];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStyleGrouped];
     _tableView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
     _tableView.sectionFooterHeight = 0.01;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -99,17 +103,52 @@
     self.navigationItem.titleView = title;
 }
 
+
+#pragma mark - 几组
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 #pragma mark-tableVIew  cell个数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arrOfTitle.count;
+    if (section == 0) {
+        return 4;
+    }else{
+        return 3;
+    }
 }
+
 #pragma mark-tableVIew  cell个高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
     return 40;
 }
+#pragma mark - 头部的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 40)];
+    headView.backgroundColor = [UIColor clearColor];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, Mywidth-30, 20)];
+    [self Customlable:label text:nil fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
+    
+    if (section == 0) {
+        label.text = @"修改资料";
+    }else{
+        label.text = @"修改密码";
+    }
+    
+    [headView addSubview:label];
+    
+    return headView;
+}
+
 
 #pragma mark-tableVIew  底部高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -155,17 +194,35 @@
     }
     
     UILabel *label = (UILabel *)[cell.contentView viewWithTag:112];
-    label.text = arrOfTitle[indexPath.row];
     UITextField *field = (UITextField *)[cell.contentView viewWithTag:113];
-    if (indexPath.row == 0) {
-        field.text = @"18812341234";
-    }else if (indexPath.row == 1) {
-        field.text = @"湖南长沙";
-    }else if (indexPath.row == 2) {
-        field.text = @"123456";
-    }else if (indexPath.row == 3) {
-        field.text = @"xxxxxx@qq.com";
+    
+    
+    if (indexPath.section == 0) {
+        
+        label.text = arrOfTitle[indexPath.row];
+        if (indexPath.row == 0) {
+            field.text = @"18812341234";
+        }else if (indexPath.row == 1) {
+            field.text = @"湖南长沙";
+        }else if (indexPath.row == 2) {
+            field.text = @"123456";
+        }else if (indexPath.row == 3) {
+            field.text = @"xxxxxx@qq.com";
+        }
+    }else{
+        label.text = arrOfTitle[indexPath.row+4];
+        
+        if (indexPath.row == 0) {
+            field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入原密码" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        }else if (indexPath.row == 1){
+            field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入新密码" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        }else if (indexPath.row == 2){
+            field.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请确认密码" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        }
+        
+        
     }
+ 
     return cell;
 }
 #pragma mark - 点击cell
@@ -181,22 +238,40 @@
     CGPoint position = [textField convertPoint:CGPointZero toView:_tableView];
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:position];
     myIndexPath = indexPath;
-    if (myIndexPath.row == 0 || myIndexPath.row == 2) {
-        textField.keyboardType = UIKeyboardTypeNumberPad;
+    if (myIndexPath.section == 0) {
+        
+        if (myIndexPath.row == 0 || myIndexPath.row == 2) {
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+        }
+        
+    }else{
+        textField.secureTextEntry = YES;
     }
+   
     
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (myIndexPath.row == 0) {
-        [dataDict setObject:textField.text forKey:@"Number"];
-    }else if (myIndexPath.row == 1){
-        [dataDict setObject:textField.text forKey:@"Address"];
-    }else if (myIndexPath.row == 2){
-        [dataDict setObject:textField.text forKey:@"QQnumber"];
-    }else if (myIndexPath.row == 3){
-        [dataDict setObject:textField.text forKey:@"email"];
+    if (myIndexPath.section == 0) {
+        if (myIndexPath.row == 0) {
+            [dataDict setObject:textField.text forKey:@"Number"];
+        }else if (myIndexPath.row == 1){
+            [dataDict setObject:textField.text forKey:@"Address"];
+        }else if (myIndexPath.row == 2){
+            [dataDict setObject:textField.text forKey:@"QQnumber"];
+        }else if (myIndexPath.row == 3){
+            [dataDict setObject:textField.text forKey:@"email"];
+        }
+    }else{
+        if (myIndexPath.row == 0) {
+            [passwordDic setObject:textField.text forKey:@"oldPassword"];
+        }else if (myIndexPath.row == 1){
+            [passwordDic setObject:textField.text forKey:@"newPassword"];
+        }else if (myIndexPath.row == 2){
+            [passwordDic setObject:textField.text forKey:@"newPassword_two"];
+        }
     }
+    
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -222,28 +297,37 @@
 {
     [_textField resignFirstResponder];
     
-    
+    BOOL ischange = YES;
     NSString *msg = @"";
     if (![dataDict[@"Number"] length]) {
         msg = @"\n手机号码不能为空";
-    }else if(![dataDict[@"Address"] length]){
-        msg = @"\n地址不能为空";
-    }else if(![dataDict[@"QQnumber"] length]){
-        msg = @"\nQQ号码不能为空";
-    }else if(![dataDict[@"email"] length]){
-        msg = @"\n邮箱不能为空";
     }else if (!isValidatePhone(dataDict[@"Number"])){
         msg = @"\n请填写正确的手机号码";
-    }else if(!isValidateEmail(dataDict[@"email"])){
-        msg = @"\n请填写正确的邮箱";
+    }else if (![passwordDic[@"oldPassword"] length] && ![passwordDic[@"newPassword"] length] && ![passwordDic[@"newPassword_two"] length]) {
+        ischange = NO;
+    }else{
+        if (![passwordDic[@"oldPassword"] length]) {
+            msg = @"\n请输入原密码";
+        }else if(![passwordDic[@"newPassword"] length]){
+            msg = @"\n请输入新密码";
+        }else if(![passwordDic[@"newPassword_two"] length]){
+            msg = @"\n请输入确认密码";
+        }else if (![passwordDic[@"newPassword"] isEqualToString:passwordDic[@"newPassword_two"]]){
+            msg = @"\n两次密码不一致";
+        }else if([passwordDic[@"newPassword"] length] <6){
+            msg = @"\n密码不得低于六位";
+        }
     }
+    
     
     if ([msg length]) {
         UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alerView show];
+        return;
     }
     
     NSLog(@"%@",dataDict);
+    NSLog(@"%@",passwordDic);
 }
 
 

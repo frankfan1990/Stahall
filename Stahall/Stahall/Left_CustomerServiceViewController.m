@@ -120,7 +120,7 @@
         imageV2.layer.cornerRadius = imageV2.frame.size.width/2;
         
         UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn1.backgroundColor = [UIColor greenColor];
+        btn1.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         [btn1 setImage:[UIImage imageNamed:@"lc专属克服2"] forState:UIControlStateNormal];
         btn1.frame = CGRectMake(25, 140/2-25, 50, 50);
         btn1.layer.masksToBounds = YES;
@@ -128,7 +128,7 @@
         [btn1 addTarget:self action:@selector(didBtn:) forControlEvents:UIControlEventTouchUpInside];
         
         UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn2.backgroundColor = [UIColor greenColor];
+        btn2.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         [btn2 setImage:[UIImage imageNamed:@"lc专属克服1"] forState:UIControlStateNormal];
         btn2.frame = CGRectMake(Mywidth-25-50, 140/2-25, 50, 50);
         btn2.layer.masksToBounds = YES;
@@ -149,7 +149,7 @@
         callBtn.frame = CGRectMake(60, 60, Mywidth-120, 38);
         callBtn.layer.masksToBounds = YES;
         callBtn.layer.cornerRadius = callBtn.frame.size.height/2;
-        callBtn.backgroundColor = [UIColor greenColor];
+        callBtn.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         [callBtn setTitle:@"呼叫客服" forState:UIControlStateNormal];
         [callBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [callBtn addTarget:self action:@selector(didCallBtn:) forControlEvents:UIControlEventTouchUpInside];

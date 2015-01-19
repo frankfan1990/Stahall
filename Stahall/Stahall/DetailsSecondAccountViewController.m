@@ -13,7 +13,7 @@
 #import "ProgressHUD.h"
 #import "Email_Phone.h"
 #import "Marcos.h"
-@interface DetailsSecondAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface DetailsSecondAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIAlertViewDelegate>
 {
     UITableView *_tableView;
     NSArray *arrOfTitle;
@@ -28,6 +28,12 @@
 
 @implementation DetailsSecondAccountViewController
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [ProgressHUD dismiss];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -39,10 +45,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     dataDict = [NSMutableDictionary dictionary];
     arrOfTitle = @[@"姓名",@"公司所在职位",@"手机号码",@"新密码",@"确认密码"];
-    arrOfContent = @[_data[@"nickName"],_data[@"position"],_data[@"number"],_data[@"telphone"],@"",@""];
+    arrOfContent = @[_data[@"nickName"],_data[@"position"],_data[@"telphone"],@"",@""];
     [dataDict setObject:_data[@"nickName"] forKey:@"nickName"];
     [dataDict setObject:_data[@"position"] forKey:@"position"];
-    [dataDict setObject:_data[@"number"] forKey:@"number"];
     [dataDict setObject:_data[@"telphone"] forKey:@"telphone"];
     
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
@@ -225,9 +230,35 @@
 #pragma mark - 点击删除
 -(void)didDelete
 {
-    
+    UIAlertView *alertViwe = [[UIAlertView alloc] initWithTitle:nil message:@"\n是否确认删除该账户" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertViwe show];
 }
 
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        
+        [ProgressHUD show:@"正在删除" Interaction:NO];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        //如果报接受类型不一致请替换一致text/html或别的
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"application/json",nil];
+        __weak typeof (self)mySelf = self;
+        [manager POST:DeleteSecondIP parameters:@{@"businessIds":_data[@"businessId"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject[@"success"] intValue] == 1) {
+                [ProgressHUD showSuccess:@"删除成功"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController.viewControllers[self.navigationController.viewControllers.count-2] getData];
+                    [mySelf.navigationController popViewControllerAnimated:YES];
+                });
+            }else{
+                [ProgressHUD showError:@"删除失败"];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [ProgressHUD showError:@"网络异常"];
+        }];
+    }
+}
 
 #pragma mark - UIlabel的方法
 -(void)Customlable:(UILabel *)label text:(NSString *)textStr fontSzie:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment adjustsFontSizeToFitWidth:(BOOL)state numberOfLines:(NSInteger)numberOfLines

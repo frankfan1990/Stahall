@@ -224,9 +224,8 @@
         btn.frame = CGRectMake(60, 20, Mywidth-120, 35);
         [btn setTitle:@"联系我们" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btn.backgroundColor = [UIColor greenColor];
+        btn.backgroundColor = [UIColor colorWithRed:78/255.0 green:218/255.0 blue:68/255.0 alpha:1];
         btn.layer.masksToBounds = YES;
-        btn.alpha = 0.8;
         btn.layer.cornerRadius = btn.frame.size.height/2;
         [btn addTarget:self action:@selector(didCall:) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:btn];
