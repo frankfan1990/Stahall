@@ -349,6 +349,18 @@
             btn1.titleLabel.font = [UIFont systemFontOfSize:16];
             btn1.titleLabel.textColor = [UIColor whiteColor];
             [cell3.contentView addSubview:btn1];
+            
+#pragma mark - 发送邀请函触发
+            btn1.rac_command =[[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+                
+                
+                
+                
+                NSLog(@"发送邀请");
+                return [RACSignal empty];
+            }];
+            
+            
             return cell3;
         }
     }

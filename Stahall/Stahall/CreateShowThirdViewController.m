@@ -73,7 +73,7 @@
     }
     arrOfImages = [NSMutableArray array];
     imagePicker.delegate = self;
-
+    
 }
 
 #pragma mark - TabBar的设置
