@@ -133,12 +133,16 @@
 -(void)getData
 {
     
-    [ProgressHUD show:@"正在加载"];
+
     [arrOfcontent removeAllObjects];
     [arrOfTitle removeAllObjects];
     AFHTTPRequestOperationManager *manger = [AFHTTPRequestOperationManager manager];
     manger.requestSerializer.timeoutInterval = 15;
     manger.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",@"text/plain",@"text/html"]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [ProgressHUD show:nil];
+    });
     [manger GET:MyShowsDetailsIP parameters:@{@"showId":_dicData[@"showId"]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [ProgressHUD showSuccess:@"加载成功"];
         data = (NSDictionary *)responseObject[@"data"];
@@ -345,6 +349,18 @@
             btn1.titleLabel.font = [UIFont systemFontOfSize:16];
             btn1.titleLabel.textColor = [UIColor whiteColor];
             [cell3.contentView addSubview:btn1];
+            
+#pragma mark - 发送邀请函触发
+            btn1.rac_command =[[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+                
+                
+                
+                
+                NSLog(@"发送邀请");
+                return [RACSignal empty];
+            }];
+            
+            
             return cell3;
         }
     }
