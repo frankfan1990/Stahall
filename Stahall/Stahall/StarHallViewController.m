@@ -87,7 +87,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     recommendStars =[NSMutableArray array];
     selectIndexPaths =[NSMutableArray array];
     
-    _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
+   
     
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"StaHallBackImage"].CGImage;
 
@@ -180,6 +180,7 @@ static NSString *cacheKey3 = @"cacheKey3";
      *  开始进入网络层
      */
     
+    
     if([[TMCache sharedCache]objectForKey:cacheKey]){
     
         hotStars = [[TMCache sharedCache]objectForKey:cacheKey];
@@ -197,6 +198,7 @@ static NSString *cacheKey3 = @"cacheKey3";
         recommendStars = [[TMCache sharedCache]objectForKey:cacheKey3];
     }
     
+     _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     if(![_reachability isReachable]){
     
