@@ -9,6 +9,8 @@
 #import "ShowMallsViewController.h"
 #import "ShowMallsTableViewCell.h"
 #import "ShowDetailsViewController.h"
+#import "MyNeedViewController.h"
+#import "MyRecommendViewController.h"
 #import "CycleScrollView.h"
 #import "ShowMallDetailsViewController.h"
 #import "AFNetworking.h"
@@ -41,6 +43,7 @@
 @property (nonatomic,strong)NSMutableArray *arrOfimages_one; // 第一个cell里的图片
 @end
 @implementation ShowMallsViewController
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -386,8 +389,12 @@
             
         }];
     }else if (sender.tag == 99){
+        MyRecommendViewController *commendCtrl = [[MyRecommendViewController alloc] init];
+        [self.navigationController pushViewController:commendCtrl animated:YES];
         NSLog(@"我推荐");
     }else if (sender.tag == 100){
+        MyNeedViewController *needCtrl = [[MyNeedViewController alloc] init];
+        [self.navigationController pushViewController:needCtrl animated:YES];
         NSLog(@"我需要");
     }
 }

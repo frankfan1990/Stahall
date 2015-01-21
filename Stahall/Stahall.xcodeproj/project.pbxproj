@@ -16,6 +16,8 @@
 		5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */; };
 		5C2ECE461A58D8E5003A9711 /* lc111.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE441A58D8E5003A9711 /* lc111.png */; };
 		5C2ECE471A58D8E5003A9711 /* lc222.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2ECE451A58D8E5003A9711 /* lc222.png */; };
+		5C35F37A1A6F3897006FB5F5 /* MyRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C35F3791A6F3897006FB5F5 /* MyRecommendViewController.m */; };
+		5C35F37D1A6F38A9006FB5F5 /* MyNeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C35F37C1A6F38A9006FB5F5 /* MyNeedViewController.m */; };
 		5C3EE7611A64BE0800BBFA8A /* EditInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7601A64BE0800BBFA8A /* EditInformationViewController.m */; };
 		5C3EE7651A650F9200BBFA8A /* SecondAccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7641A650F9200BBFA8A /* SecondAccountsViewController.m */; };
 		5C3EE7681A6511B600BBFA8A /* AddSecondAccoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3EE7671A6511B600BBFA8A /* AddSecondAccoutsViewController.m */; };
@@ -214,6 +216,10 @@
 		5C2ECE421A58D54B003A9711 /* MySegmentCtrol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySegmentCtrol.m; sourceTree = "<group>"; };
 		5C2ECE441A58D8E5003A9711 /* lc111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc111.png; sourceTree = "<group>"; };
 		5C2ECE451A58D8E5003A9711 /* lc222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lc222.png; sourceTree = "<group>"; };
+		5C35F3781A6F3897006FB5F5 /* MyRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRecommendViewController.h; sourceTree = "<group>"; };
+		5C35F3791A6F3897006FB5F5 /* MyRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRecommendViewController.m; sourceTree = "<group>"; };
+		5C35F37B1A6F38A9006FB5F5 /* MyNeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNeedViewController.h; sourceTree = "<group>"; };
+		5C35F37C1A6F38A9006FB5F5 /* MyNeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNeedViewController.m; sourceTree = "<group>"; };
 		5C3EE75F1A64BE0800BBFA8A /* EditInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationViewController.h; sourceTree = "<group>"; };
 		5C3EE7601A64BE0800BBFA8A /* EditInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationViewController.m; sourceTree = "<group>"; };
 		5C3EE7631A650F9200BBFA8A /* SecondAccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondAccountsViewController.h; sourceTree = "<group>"; };
@@ -721,6 +727,10 @@
 				5C3EE76D1A67680900BBFA8A /* AttestationMessageViewController.m */,
 				5C3EE76F1A679DEC00BBFA8A /* CompanyAttestationViewController.h */,
 				5C3EE7701A679DEC00BBFA8A /* CompanyAttestationViewController.m */,
+				5C35F3781A6F3897006FB5F5 /* MyRecommendViewController.h */,
+				5C35F3791A6F3897006FB5F5 /* MyRecommendViewController.m */,
+				5C35F37B1A6F38A9006FB5F5 /* MyNeedViewController.h */,
+				5C35F37C1A6F38A9006FB5F5 /* MyNeedViewController.m */,
 			);
 			name = LuCanViewCtrl;
 			sourceTree = "<group>";
@@ -1498,6 +1508,7 @@
 				63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */,
 				63BC6A6C1A3747F400087DFB /* MJRefreshFooterView.m in Sources */,
 				63649A461A496F7F0024E3F7 /* Datetime.m in Sources */,
+				5C35F37A1A6F3897006FB5F5 /* MyRecommendViewController.m in Sources */,
 				5C7D5CE41A5147F700163B07 /* Left_MyAccountViewController.m in Sources */,
 				63649A471A496F7F0024E3F7 /* JBCalendar.m in Sources */,
 				6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */,
@@ -1569,6 +1580,7 @@
 				636F44241A44077400FD6783 /* UIWebView+AFNetworking.m in Sources */,
 				63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */,
 				5C4519E01A4916100031685A /* NSDate+Utilities.m in Sources */,
+				5C35F37D1A6F38A9006FB5F5 /* MyNeedViewController.m in Sources */,
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
 				63D62A3D1A5A36D400E107FA /* ArtistSchedule.m in Sources */,
 				636F447E1A44091300FD6783 /* SDWebImageCompat.m in Sources */,

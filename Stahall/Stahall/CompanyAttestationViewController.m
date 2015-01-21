@@ -11,6 +11,8 @@
 #import "Email_Phone.h"
 #import "Marcos.h"
 #import "AFNetworking.h"
+
+#pragma mark - 公司认证
 @interface CompanyAttestationViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 {
     UITableView *_tableView;
@@ -77,7 +79,7 @@
     
     
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
-    
+    _tpscrollerView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.tpscrollerView];
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight - 64) style:UITableViewStyleGrouped];
@@ -486,11 +488,6 @@
             UIAlertView *alert =[[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
             break;
-        }else if (!isValidatePhone(datadic1[arrOfKeys[5]])){
-            msg = @"\n请输入正确的手机号";
-            UIAlertView *alert =[[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alert show];
-            break;
         }
        
     }
@@ -498,7 +495,12 @@
         return;
     }
 
-    
+    if (!isValidatePhone(datadic1[arrOfKeys[5]])){
+        msg = @"\n请输入正确的手机号";
+        UIAlertView *alert =[[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
     
     
     

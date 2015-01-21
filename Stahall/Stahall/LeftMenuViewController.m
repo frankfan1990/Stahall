@@ -11,7 +11,6 @@
 #import "LeftMenuViewController.h"
 #import "MyShowViewController.h"
 #import "RESideMenu.h"
-
 #import "Left_MyStarViewController.h"
 #import "Left_MyAccountViewController.h"
 #import "Left_MyCollectionViewController.h"
@@ -21,7 +20,6 @@
 #import "Left_ CancellationViewController.h"
 @interface LeftMenuViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
-
     NSArray *itemNames;//侧边栏名字
 }
 @property (nonatomic,strong)UITableView *tableView;
