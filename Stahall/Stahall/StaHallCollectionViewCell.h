@@ -5,8 +5,6 @@
 //  Created by frankfan on 14/12/15.
 //  Copyright (c) 2014年 Rching. All rights reserved.
 //
-//FIXME: 艺人堂cell
-
 #import <UIKit/UIKit.h>
 
 @interface StaHallCollectionViewCell : UICollectionViewCell

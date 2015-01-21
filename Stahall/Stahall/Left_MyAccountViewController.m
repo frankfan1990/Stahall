@@ -5,7 +5,7 @@
 //  Created by JM_Pro on 14-12-29.
 //  Copyright (c) 2014年 Rching. All rights reserved.
 //
-
+//FIXME: 我的账户页面
 #import "Left_MyAccountViewController.h"
 #import "UIImageView+WebCache.h"
 #import "TPKeyboardAvoidingScrollView.h"
@@ -15,6 +15,8 @@
 #import "MainViewController.h"
 #import "RESideMenu.h"
 #import "Marcos.h"
+#import "MyGoldViewController.h"
+#import "MyCreditableViewController.h"
 #pragma mark - 我的账户
 @interface Left_MyAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -289,10 +291,15 @@
     }else if (btn2.selected){
         AttestationMessageViewController *attserCtrl = [[AttestationMessageViewController alloc] init];
         [self.navigationController pushViewController:attserCtrl animated:YES];
-    }else if (btn3.selected){
+    }else if (btn3.selected){//我的金币模块
         
-    }else if (btn4.selected){
+        MyGoldViewController *mygoldCV =[MyGoldViewController new];
+        [self.navigationController pushViewController:mygoldCV animated:YES];
         
+    }else if (btn4.selected){//我的信用模块
+        
+        MyCreditableViewController *myCreditableCV =[MyCreditableViewController new];
+        [self.navigationController pushViewController:myCreditableCV animated:YES];
     }
     
 }

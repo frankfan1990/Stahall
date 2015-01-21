@@ -286,6 +286,7 @@
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
         
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
+        feild.textColor = [UIColor whiteColor];
         label.text = arrOfname[indexPath.row];
         feild.text = [arrOfdata[indexPath.section] objectForKey:keys[indexPath.row]];
         feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:arrOfContent[indexPath.row] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
