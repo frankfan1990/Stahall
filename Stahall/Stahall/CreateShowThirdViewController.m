@@ -121,6 +121,7 @@
 
 
 
+
 #pragma mark - _tableView的代理
 #pragma mark - 好多section
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -273,7 +274,7 @@
         
         UILabel *label = (UILabel *)[cell1.contentView viewWithTag:112];
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
-        
+        feild.textColor = [UIColor whiteColor];
         if (indexPath.row == 0) {
             feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入申请人名字" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
             field1 = feild;

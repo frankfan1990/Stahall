@@ -216,7 +216,7 @@
         UITextField *feild = (UITextField *)[cell1.contentView viewWithTag:113];
         label.text = arrOfname[indexPath.row];
         feild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:arrOfContent[indexPath.row] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-        
+        feild.textColor = [UIColor whiteColor];
         UIButton *btn = (UIButton *)[cell1.contentView viewWithTag:120];
         if (indexPath.row >1) {
             btn.hidden = NO;

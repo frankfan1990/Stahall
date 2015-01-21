@@ -35,7 +35,6 @@
     CCSegmentedControl *segmentCtrl;
     UICollectionView *collectionViewOther;
     NSInteger _type;
-    
     NSArray *advanceData;//预告数据
     NSArray *caseData;//案例数据
 }
@@ -45,6 +44,7 @@
 @property (nonatomic,strong) NSMutableArray *arrOfLabelContent_one;//第一个cell里的图片里的label的内容
 @end
 
+
 @implementation MainViewController
 
 -(void)viewWillAppear:(BOOL)animated
@@ -52,6 +52,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTabBar];
@@ -91,8 +92,8 @@
 -(void)Variableinitialization
 {
     _type = 0;
-    _arrOfimages_one = [NSMutableArray array]; //WithObjects:@"七夕",@"七夕",@"七夕",@"七夕",nil];
-    _arrOfLabelContent_one = [NSMutableArray array];//WithObjects:@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场",@"《七夕恋爱》电影选角艺人堂专场", nil];
+    _arrOfimages_one = [NSMutableArray array];
+    _arrOfLabelContent_one = [NSMutableArray array];
     arrOfSegmentTitle = @[@"演唱会",@"舞台剧",@"企业活动"];
     arrOfTitle = @[@"预告",@"案例",@"行程"];
     arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
@@ -226,7 +227,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 5;
 }
-
+ 
 #pragma mark - 每个分段里的cell个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
