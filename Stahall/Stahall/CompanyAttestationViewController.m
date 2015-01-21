@@ -478,24 +478,31 @@
 -(void)didNextBtn
 {
     [_textField resignFirstResponder];
+     NSString * msg;
     for (int i = 0; i< arrOfKeys.count; i++) {
-        NSString * msg;
+       
         if (![datadic1[arrOfKeys[i]] length]) {
             msg = [NSString stringWithFormat:@"\n请输入%@",arrOfname[i]];
             UIAlertView *alert =[[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
-            return;
+            break;
         }else if (!isValidatePhone(datadic1[arrOfKeys[5]])){
             msg = @"\n请输入正确的手机号";
             UIAlertView *alert =[[UIAlertView alloc] initWithTitle:nil message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
-            return;
+            break;
         }
        
+    }
+    if ([msg length]) {
+        return;
     }
 
     
     
+    
+    
+    NSLog(@"%@",datadic1);
     
 }
 

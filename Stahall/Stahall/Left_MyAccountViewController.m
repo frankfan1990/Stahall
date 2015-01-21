@@ -213,8 +213,7 @@
         btn.layer.cornerRadius = btn.frame.size.height/2;
         [btn setTitle:@"编辑资料" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(didEdit) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [cell.contentView addSubview:btn];
+             [cell.contentView addSubview:btn];
         return cell;
     }
     
