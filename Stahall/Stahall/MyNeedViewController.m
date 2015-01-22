@@ -147,7 +147,7 @@
     
     nextBtn.layer.masksToBounds = YES;
     nextBtn.layer.cornerRadius = 20;
-    [nextBtn setTitle:@"申请认证" forState:UIControlStateNormal];
+    [nextBtn setTitle:@"我需要" forState:UIControlStateNormal];
     [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     nextBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextBtn addTarget:self action:@selector(didNextBtn) forControlEvents:UIControlEventTouchUpInside];

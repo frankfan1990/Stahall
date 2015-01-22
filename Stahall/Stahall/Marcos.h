@@ -33,7 +33,7 @@
 #define CaseIP @"http://218.244.158.59/stahall/case"
 
 /*
- 首页案例
+ 首页案例详情
  */
 #define CaseDetailIP @"http://218.244.158.59/stahall/case/getCase"
 

@@ -10,6 +10,6 @@
 
 @interface AdvanceNoticeViewController : UIViewController
 @property(nonatomic,strong)NSString *titleViewStr;
-@property(nonatomic,assign)NSInteger type;//1：预告详情  2：案例详情  3：行程详情
+@property(nonatomic,assign)NSInteger type;//1：预告详情   3：行程详情
 @property(nonatomic,assign)NSDictionary *dictData;
 @end
