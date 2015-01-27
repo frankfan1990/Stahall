@@ -147,7 +147,7 @@
     
     nextBtn.layer.masksToBounds = YES;
     nextBtn.layer.cornerRadius = 20;
-    [nextBtn setTitle:@"申请认证" forState:UIControlStateNormal];
+    [nextBtn setTitle:@"我需要" forState:UIControlStateNormal];
     [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     nextBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [nextBtn addTarget:self action:@selector(didNextBtn) forControlEvents:UIControlEventTouchUpInside];
@@ -169,7 +169,6 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12, 10,120, 25)];
         [self Customlable:label text:@"" fontSzie:15 textColor:[UIColor colorWithRed:22/255.0 green:89/255.0 blue:134/255.0 alpha:1] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:1];
         label.tag = 112;
-        
         UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, Mywidth-135, 25)];
         field.userInteractionEnabled = YES;
         field.delegate = self;

@@ -324,10 +324,13 @@
 {
     if (tableView.tag == 1200){
         
-        ShowMallDetailsViewController *details = [[ShowMallDetailsViewController alloc] init];
-        details.mallId = arrData[indexPath.row][@"mallId"];
-        details.imageUrl = arrData[indexPath.row][@"titlePage"];
-        [self.navigationController pushViewController:details animated:YES];
+        if (indexPath.section == 1) {
+            ShowMallDetailsViewController *details = [[ShowMallDetailsViewController alloc] init];
+            details.mallId = arrData[indexPath.row][@"mallId"];
+            details.imageUrl = arrData[indexPath.row][@"titlePage"];
+            [self.navigationController pushViewController:details animated:YES];
+        }
+     
     }else if (tableView.tag == 2000){
         [MyBtn setTitle:arrOfTableData[indexPath.row] forState:UIControlStateNormal];
         if (MyBtn != nil) {
