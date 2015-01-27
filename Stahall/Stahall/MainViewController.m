@@ -46,7 +46,6 @@
 
 
 @implementation MainViewController
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -395,6 +394,7 @@
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"My_collectionViewCell_Two"];
         [cell_four addSubview:_collectionView];
         return cell_four;
+        
     }
     else{
         UITableViewCell *cell_five = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];

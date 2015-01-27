@@ -5,8 +5,6 @@
 //  Created by frankfan on 14/12/29.
 //  Copyright (c) 2014年 Rching. All rights reserved.
 //
-//FIXME: 艺人数据层对象
-
 #import "MTLModel.h"
 
 @interface StarModel : MTLModel
