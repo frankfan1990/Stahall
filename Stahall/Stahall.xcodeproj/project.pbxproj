@@ -1800,7 +1800,7 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f7f3d681-d2af-455b-8b88-63a58264fb72";
+				PROVISIONING_PROFILE = "0ef76426-266b-4f1a-8712-899ee0503ad0";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -1838,7 +1838,7 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f7f3d681-d2af-455b-8b88-63a58264fb72";
+				PROVISIONING_PROFILE = "0ef76426-266b-4f1a-8712-899ee0503ad0";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;

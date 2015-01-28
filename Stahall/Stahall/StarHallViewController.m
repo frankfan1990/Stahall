@@ -716,19 +716,21 @@ static NSString *cacheKey3 = @"cacheKey3";
                 
                 [self.reciveTheHasSelecedStars removeLastObject];
                 
-                [self.reciveTheHasSelecedStars enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
-                    
-                    for (NSDictionary *dict2 in selectedCells) {
-                        
-                        if([dict[@"artistId"]isEqualToString:dict2[@"artistId"]]){
-                          
-                            [selectedCells removeObject:dict2];
-                            
-                        }
-                    }
-                    
-                }];
-            
+                
+                
+//                [self.reciveTheHasSelecedStars enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
+//                    
+//                    for (NSDictionary *dict2 in selectedCells) {
+//                        
+//                        if([dict[@"artistId"]isEqualToString:dict2[@"artistId"]]){
+//                          
+//                            [selectedCells removeObject:dict2];
+//                            
+//                        }
+//                    }
+//                    
+//                }];
+                
             }
         
         
