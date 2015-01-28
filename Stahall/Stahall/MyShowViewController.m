@@ -64,7 +64,6 @@
     [btnLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnLeft addTarget:self action:@selector(didLeftBtn) forControlEvents:UIControlEventTouchUpInside];
     
-    
     [btnRight setTitle:@"我的估价" forState:UIControlStateNormal];
     [btnRight setTitleColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1] forState:UIControlStateSelected];
     [btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -82,15 +81,12 @@
     
     UIButton *addNewShowBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     addNewShowBtn.frame = CGRectMake(0, Myheight-45-64,Mywidth, 45);
-    
     [addNewShowBtn setTitle:@"新建演出" forState:UIControlStateNormal];
     [addNewShowBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     addNewShowBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
     
     [addNewShowBtn addTarget:self action:@selector(didAddNewShow) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addNewShowBtn];
-    
-
     
 }
 
