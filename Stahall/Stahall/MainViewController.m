@@ -25,9 +25,10 @@
 #import "CycleScrollView.h"
 #import "RESideMenu.h"
 #import "Marcos.h"
-@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface MainViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UITextFieldDelegate>
 {
-    
+    UIButton *btnRight;
+    UITextField *textField;
     NSArray *arrOfTitle;
     NSArray *arrOfTitleOther;
     NSArray *arrOfSegmentTitle;
@@ -94,8 +95,10 @@
     _arrOfimages_one = [NSMutableArray array];
     _arrOfLabelContent_one = [NSMutableArray array];
     arrOfSegmentTitle = @[@"演唱会",@"舞台剧",@"企业活动"];
-    arrOfTitle = @[@"预告",@"案例",@"行程"];
-    arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
+//    arrOfTitle = @[@"预告",@"案例",@"行程"];
+//    arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
+    arrOfTitle = @[@"案例",@"行程"];
+    arrOfTitleOther = @[@"SHOW",@"SHOW"];
     
 }
 
@@ -158,7 +161,6 @@
      获取预告数据
      
      */
-    
     NSDictionary *dic = @{@"start":@"0",@"limit":@"20"};
     [manger GET:advanceIp  parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -181,16 +183,17 @@
     [manger GET:CaseIP parameters:dic2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dictiondata = (NSDictionary *)responseObject;
         caseData = dictiondata[@"results"];
+        UICollectionView *collec = (UICollectionView *)[_tableView viewWithTag:10003];
+        [collec reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
-    
-    
 }
 
 #pragma mark - TabBar的设置
 -(void)setTabBar
 {
+
     UIView *tabBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 65)];
     tabBarView.backgroundColor = [UIColor clearColor];
     
@@ -207,24 +210,44 @@
     [tabBarView addSubview:btnLeft];
     
     CGRect rect = CGRectMake(Mywidth/2-95+2,25, 200, 30);
-    UIView *topview=[[UIView alloc] initWithFrame:rect];
-    topview.layer.masksToBounds=YES;
-    topview.backgroundColor = [UIColor purpleColor];
-    topview.alpha = 0.4;
-    topview.layer.cornerRadius=15;
-    [tabBarView addSubview:topview];
+    textField=[[UITextField alloc] initWithFrame:rect];
+    textField.layer.masksToBounds=YES;
+    textField.delegate = self;
+    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"面包"]];
     
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    [btn2 setBackgroundImage:[UIImage imageNamed:@"面包"]  forState:UIControlStateNormal];
-    [btn2 setFrame:CGRectMake(Mywidth-45, 15, 40, 45)];
-    [btn2 addTarget:self action:@selector(didSearch) forControlEvents:UIControlEventTouchUpInside];
-    [tabBarView addSubview:btn2];
+    textField.leftView = image;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.backgroundColor = [UIColor purpleColor];
+    textField.alpha = 0.4;
+//    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.layer.cornerRadius=14;
+    [tabBarView addSubview:textField];
+    
+    btnRight = [UIButton buttonWithType:UIButtonTypeSystem];
+    [btnRight setFrame:CGRectMake(Mywidth-45, 17, 40, 45)];
+    btnRight.hidden = YES;
+    [btnRight setTitle:@"取消" forState:UIControlStateNormal];
+    [btnRight setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnRight.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [btnRight addTarget:self action:@selector(didSearch) forControlEvents:UIControlEventTouchUpInside];
+    [tabBarView addSubview:btnRight];
     [self.view  addSubview:tabBarView];
 }
 
+#pragma mark - textField的代理
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    btnRight.hidden = NO;
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    btnRight.hidden = YES;
+}
+
+
 #pragma mark - 创建分段个数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return arrOfTitle.count + 2;
 }
  
 #pragma mark - 每个分段里的cell个数
@@ -269,7 +292,7 @@
         imageV.alpha = 0.6;
         [headView addSubview:imageV];
         
-        if (section == 4) {
+        if (section == arrOfTitle.count+1) {
             segmentCtrl = [[CCSegmentedControl alloc] initWithItems:arrOfSegmentTitle];
             segmentCtrl.frame = CGRectMake(imageV.frame.origin.x+imageV.frame.size.width +40, 10, Mywidth-(imageV.frame.origin.x+imageV.frame.size.width +50), 30);
             segmentCtrl.segmentTextColor = [UIColor whiteColor];
@@ -342,9 +365,6 @@
         [btn2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn3 setTitle:@"秀MALL" forState:UIControlStateNormal];
         [btn3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [btn1 setImage:[UIImage imageNamed:@"lc_there"] forState:UIControlStateNormal];
-//        [btn2 setImage:[UIImage imageNamed:@"lc_one"] forState:UIControlStateNormal];
-//        [btn3 setImage:[UIImage imageNamed:@"lc_two"] forState:UIControlStateNormal];
         
         [btn1.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [btn2.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -358,26 +378,26 @@
         [cell_two.contentView addSubview:btn3];
         return cell_two;
     }
+//    else if (indexPath.section == 2){
+//        
+//        UITableViewCell *cell_there = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+//        cell_there.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell_there.backgroundColor = [UIColor clearColor];
+//        UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
+//        layoutView.itemSize = CGSizeMake(Mywidth-10, 165);
+//        [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+//        
+//        UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, Mywidth, 165) collectionViewLayout:layoutView];
+//        _collectionView.pagingEnabled = YES;
+//        _collectionView.delegate = self;
+//        _collectionView.tag = 10002;
+//        _collectionView.dataSource = self;
+//        _collectionView.backgroundColor = [UIColor clearColor];
+//        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"My_collectionViewCell_One"];
+//        [cell_there addSubview:_collectionView];
+//        return cell_there;
+//    }
     else if (indexPath.section == 2){
-        
-        UITableViewCell *cell_there = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell_there.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell_there.backgroundColor = [UIColor clearColor];
-        UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
-        layoutView.itemSize = CGSizeMake(Mywidth-10, 165);
-        [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        
-        UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, Mywidth, 165) collectionViewLayout:layoutView];
-        _collectionView.pagingEnabled = YES;
-        _collectionView.delegate = self;
-        _collectionView.tag = 10002;
-        _collectionView.dataSource = self;
-        _collectionView.backgroundColor = [UIColor clearColor];
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"My_collectionViewCell_One"];
-        [cell_there addSubview:_collectionView];
-        return cell_there;
-    }
-    else if (indexPath.section == 3){
         
         UITableViewCell *cell_four = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         cell_four.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -433,47 +453,47 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (collectionView.tag == 10002) {
-        
-        UICollectionViewCell *cell_one = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_One" forIndexPath:indexPath];
-        
-        UIImageView *imageV = [[UIImageView alloc] init];
-        if (indexPath.row == advanceData.count-1) {
-            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            imageV.frame = CGRectMake(0, 0,Mywidth-20, 165);
-        }else{
-            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            imageV.frame = CGRectMake(10, 0,Mywidth-20, 165);
-        }
-        
-        UIView *labelView = [[UIView alloc] initWithFrame:CGRectMake(0,165-73, Mywidth-20, 73)];
-        labelView.backgroundColor = [UIColor blackColor];
-        labelView.alpha = 0.8;
-        
-        UILabel *labelOfName = [[UILabel alloc] initWithFrame:CGRectMake(15, 5+3, Mywidth-20-15, 25)];
-        UILabel *labelOfAddress = [[UILabel alloc] initWithFrame:CGRectMake(15, 30+3, Mywidth-20-15, 15)];
-        UILabel *labelOfDate = [[UILabel alloc] initWithFrame:CGRectMake(15, 45+3, Mywidth-20-15, 20)];
-        
-        [self Customlable:labelOfName text:@"" fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-        [self Customlable:labelOfAddress text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-        [self Customlable:labelOfDate text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-        
-        labelOfName.text = advanceData[indexPath.row][@"trailerTitle"];
-        labelOfAddress.text = [NSString stringWithFormat:@"%@  %@",advanceData[indexPath.row][@"address"],advanceData[indexPath.row][@"venues"]];
-        labelOfDate.text = advanceData[indexPath.row][@"timer"];
-        [imageV sd_setImageWithURL:[NSURL URLWithString:advanceData[indexPath.row][@"poster"]] placeholderImage:[UIImage imageNamed:@""]];
-        
-        
-        [labelView addSubview:labelOfName];
-        [labelView addSubview:labelOfAddress];
-        [labelView addSubview:labelOfDate];
-        
-        [imageV addSubview:labelView];
-        [cell_one addSubview:imageV];
-        return cell_one;
-        
-    }
-    else if (collectionView.tag == 10003) {
+//    if (collectionView.tag == 10002) {
+//        
+//        UICollectionViewCell *cell_one = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_One" forIndexPath:indexPath];
+//        
+//        UIImageView *imageV = [[UIImageView alloc] init];
+//        if (indexPath.row == advanceData.count-1) {
+//            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//            imageV.frame = CGRectMake(0, 0,Mywidth-20, 165);
+//        }else{
+//            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//            imageV.frame = CGRectMake(10, 0,Mywidth-20, 165);
+//        }
+//        
+//        UIView *labelView = [[UIView alloc] initWithFrame:CGRectMake(0,165-73, Mywidth-20, 73)];
+//        labelView.backgroundColor = [UIColor blackColor];
+//        labelView.alpha = 0.8;
+//        
+//        UILabel *labelOfName = [[UILabel alloc] initWithFrame:CGRectMake(15, 5+3, Mywidth-20-15, 25)];
+//        UILabel *labelOfAddress = [[UILabel alloc] initWithFrame:CGRectMake(15, 30+3, Mywidth-20-15, 15)];
+//        UILabel *labelOfDate = [[UILabel alloc] initWithFrame:CGRectMake(15, 45+3, Mywidth-20-15, 20)];
+//        
+//        [self Customlable:labelOfName text:@"" fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+//        [self Customlable:labelOfAddress text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+//        [self Customlable:labelOfDate text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+//        
+//        labelOfName.text = advanceData[indexPath.row][@"trailerTitle"];
+//        labelOfAddress.text = [NSString stringWithFormat:@"%@  %@",advanceData[indexPath.row][@"address"],advanceData[indexPath.row][@"venues"]];
+//        labelOfDate.text = advanceData[indexPath.row][@"timer"];
+//        [imageV sd_setImageWithURL:[NSURL URLWithString:advanceData[indexPath.row][@"poster"]] placeholderImage:[UIImage imageNamed:@""]];
+//        
+//        
+//        [labelView addSubview:labelOfName];
+//        [labelView addSubview:labelOfAddress];
+//        [labelView addSubview:labelOfDate];
+//        
+//        [imageV addSubview:labelView];
+//        [cell_one addSubview:imageV];
+//        return cell_one;
+//        
+//    }
+     if (collectionView.tag == 10003) {
         UICollectionViewCell *cell_two = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_Two" forIndexPath:indexPath];
         
         UIImageView *imageV = [[UIImageView alloc] init];
@@ -545,16 +565,15 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-   
-    
-    if (collectionView.tag == 10002) {
-        AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
-        advanceCtrl.titleViewStr = @"预告详情";
-        advanceCtrl.dictData = advanceData[indexPath.row];
-        advanceCtrl.type = 1;
-        [self.navigationController pushViewController:advanceCtrl animated:YES];
-    }else if (collectionView.tag == 10003){
+
+//    if (collectionView.tag == 10002) {
+//        AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
+//        advanceCtrl.titleViewStr = @"预告详情";
+//        advanceCtrl.dictData = advanceData[indexPath.row];
+//        advanceCtrl.type = 1;
+//        [self.navigationController pushViewController:advanceCtrl animated:YES];
+//    }
+     if (collectionView.tag == 10003){
         CaseDetailsViewController *caseCtrl = [[CaseDetailsViewController alloc] init];
         caseCtrl.caseId = caseData[indexPath.row][@"caseId"];
         caseCtrl.caseName = caseData[indexPath.row][@"caseName"];
@@ -576,8 +595,10 @@
 #pragma mark - 右上角按钮 跳到搜索艺人的页面
 -(void)didSearch
 {
-    SearchStarViewController *seacrchCtrl = [[SearchStarViewController alloc] init];
-    [self.navigationController pushViewController:seacrchCtrl animated:YES];
+    [textField resignFirstResponder];
+    
+//    SearchStarViewController *seacrchCtrl = [[SearchStarViewController alloc] init];
+//    [self.navigationController pushViewController:seacrchCtrl animated:YES];
 }
 
 #pragma mark - 去 堂汇页面 按钮
@@ -609,7 +630,7 @@
     ListAdvanceViewController *listCtrl = [[ListAdvanceViewController alloc] init];
     
     listCtrl.type = sender.tag - 66667;
-    if (listCtrl.type == 1) {
+    if (listCtrl.type == 2) {
         listCtrl.arrOfdata = advanceData;
     }
     [self.navigationController pushViewController:listCtrl animated:YES];

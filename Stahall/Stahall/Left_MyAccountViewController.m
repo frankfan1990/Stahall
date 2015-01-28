@@ -11,7 +11,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "EditInformationViewController.h"
 #import "SecondAccountsViewController.h"
-#import "AttestationMessageViewController.h"
+#import "CompanyAttestationViewController.h"
 #import "MainViewController.h"
 #import "RESideMenu.h"
 #import "Marcos.h"
@@ -289,7 +289,7 @@
         SecondAccountsViewController *sendCtrl = [[SecondAccountsViewController alloc] init];
         [self.navigationController pushViewController:sendCtrl animated:YES];
     }else if (btn2.selected){
-        AttestationMessageViewController *attserCtrl = [[AttestationMessageViewController alloc] init];
+        CompanyAttestationViewController *attserCtrl = [[CompanyAttestationViewController alloc] init];
         [self.navigationController pushViewController:attserCtrl animated:YES];
     }else if (btn3.selected){//我的金币模块
         
