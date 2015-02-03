@@ -515,8 +515,6 @@ bool selected;//是否是出于编辑模式的标志位
             StarModel *starModel =[StarModel modelWithDictionary:starDict error:nil];
             [stahallEvalueCell.starHeaderImage sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
             stahallEvalueCell.starName.text = starModel.artistName;
-
-        
         }
         
     }
