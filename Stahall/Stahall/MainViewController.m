@@ -43,6 +43,7 @@
 @property (nonatomic,strong)UITableView *tableView;//主页骨架
 @property (nonatomic,strong)NSMutableArray *arrOfimages_one; // 第一个cell里的图片
 @property (nonatomic,strong) NSMutableArray *arrOfLabelContent_one;//第一个cell里的图片里的label的内容
+@property (nonatomic,strong) NSString *strrr;
 @end
 
 
@@ -59,7 +60,7 @@
     [self Variableinitialization];
     [self getData];
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"MainViewBackImage"].CGImage;
-    
+  
     /**
      *  @author frankfan, 14-12-12 00:12:20
      *
@@ -83,7 +84,7 @@
     self.tableView.backgroundColor =[UIColor clearColor];
     self.tableView.sectionHeaderHeight = 0.1;
     [self.view addSubview:self.tableView];
-    
+
     
 }
 
@@ -95,8 +96,8 @@
     _arrOfimages_one = [NSMutableArray array];
     _arrOfLabelContent_one = [NSMutableArray array];
     arrOfSegmentTitle = @[@"演唱会",@"舞台剧",@"企业活动"];
-//    arrOfTitle = @[@"预告",@"案例",@"行程"];
-//    arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
+    arrOfTitle = @[@"预告",@"案例",@"行程"];
+    arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
     arrOfTitle = @[@"案例",@"行程"];
     arrOfTitleOther = @[@"SHOW",@"SHOW"];
     
@@ -115,6 +116,7 @@
      
      */
     
+
     [manger GET:home_HeadIP parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *datadic = (NSDictionary *)responseObject;
@@ -209,19 +211,25 @@
     [btnLeft addTarget:self action:@selector(didGoLeftMenu) forControlEvents:UIControlEventTouchUpInside];
     [tabBarView addSubview:btnLeft];
     
-    CGRect rect = CGRectMake(Mywidth/2-95+2,25, 200, 30);
-    textField=[[UITextField alloc] initWithFrame:rect];
-    textField.layer.masksToBounds=YES;
-    textField.delegate = self;
-    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"面包"]];
+    CGRect rect = CGRectMake(Mywidth/ 2-95+2,25, 200, 30);
+    UIView *view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor purpleColor];
+    view.layer.cornerRadius = 15;
+    view.alpha = 0.7;
     
+    [tabBarView addSubview:view];
+    
+    
+    textField=[[UITextField alloc] initWithFrame:CGRectMake(10, 0, 180, 30)];
+    textField.delegate = self;
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@" Serach.." attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"搜索白色"]];
     textField.leftView = image;
     textField.leftViewMode = UITextFieldViewModeAlways;
-    textField.backgroundColor = [UIColor purpleColor];
-    textField.alpha = 0.4;
-//    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.layer.cornerRadius=14;
-    [tabBarView addSubview:textField];
+    textField.backgroundColor = [UIColor clearColor];
+    textField.font = [UIFont systemFontOfSize:15];
+    textField.textColor = [UIColor whiteColor];
+    [view addSubview:textField];
     
     btnRight = [UIButton buttonWithType:UIButtonTypeSystem];
     [btnRight setFrame:CGRectMake(Mywidth-45, 17, 40, 45)];
@@ -243,7 +251,6 @@
 {
     btnRight.hidden = YES;
 }
-
 
 #pragma mark - 创建分段个数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -315,6 +322,8 @@
         return nil;
     }
 }
+
+
 #pragma mark - 每个headView的高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -324,6 +333,8 @@
         return 0.1;
     }
 }
+
+
 
 #pragma mark - 创建cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -39,6 +39,7 @@
 		5C4519E61A4956840031685A /* lc添加照片.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4519E51A4956840031685A /* lc添加照片.png */; };
 		5C4519EC1A4BDC870031685A /* HomeHeadDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */; };
 		5C46B6D41A5BC71E00DFE733 /* lc专属克服.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C46B6D31A5BC71E00DFE733 /* lc专属克服.png */; };
+		5C4C8D2D1A80744C003EB140 /* 搜索白色@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4C8D2C1A80744C003EB140 /* 搜索白色@2x.png */; };
 		5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */; };
 		5C4CF1861A3E890F00F6EC11 /* 张杰.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1851A3E890F00F6EC11 /* 张杰.png */; };
 		5C4CF1881A3E891C00F6EC11 /* 甲壳虫.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4CF1871A3E891C00F6EC11 /* 甲壳虫.png */; };
@@ -261,6 +262,7 @@
 		5C4519EA1A4BDC870031685A /* HomeHeadDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadDetailsViewController.h; sourceTree = "<group>"; };
 		5C4519EB1A4BDC870031685A /* HomeHeadDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadDetailsViewController.m; sourceTree = "<group>"; };
 		5C46B6D31A5BC71E00DFE733 /* lc专属克服.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc专属克服.png"; sourceTree = "<group>"; };
+		5C4C8D2C1A80744C003EB140 /* 搜索白色@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索白色@2x.png"; sourceTree = "<group>"; };
 		5C4CF1821A3E88D100F6EC11 /* CCSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSegmentedControl.h; sourceTree = "<group>"; };
 		5C4CF1831A3E88D100F6EC11 /* CCSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSegmentedControl.m; sourceTree = "<group>"; };
 		5C4CF1851A3E890F00F6EC11 /* 张杰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "张杰.png"; sourceTree = "<group>"; };
@@ -601,6 +603,7 @@
 		5C5EF6761A3A817600EE8D78 /* TestImage */ = {
 			isa = PBXGroup;
 			children = (
+				5C4C8D2C1A80744C003EB140 /* 搜索白色@2x.png */,
 				5C40BFB91A5D11AC00AAAEE7 /* lc范冰冰.png */,
 				5C40BFB71A5D0E9F00AAAEE7 /* lc刘德华.png */,
 				5C40BFB01A5CBFA000AAAEE7 /* lc专属克服1.png */,
@@ -700,8 +703,8 @@
 				5C1C8C441A42D6AE00A94E7A /* ListAdvanceViewController.h */,
 				5C1C8C451A42D6AE00A94E7A /* ListAdvanceViewController.m */,
 				5C4519D01A47AD790031685A /* CreateShowFirstViewController.h */,
-				5C4519D71A4817A80031685A /* CreateShowSecondViewController.h */,
 				5C4519D11A47AD790031685A /* CreateShowFirstViewController.m */,
+				5C4519D71A4817A80031685A /* CreateShowSecondViewController.h */,
 				5C4519D81A4817A80031685A /* CreateShowSecondViewController.m */,
 				5C4519E21A4940650031685A /* CreateShowThirdViewController.h */,
 				5C4519E31A4940650031685A /* CreateShowThirdViewController.m */,
@@ -1469,6 +1472,7 @@
 				63A9EA781A3F30F000C5DAE6 /* 朝右箭头icon@2x.png in Resources */,
 				63649A521A496FBD0024E3F7 /* 日历切换right@2x.png in Resources */,
 				5C2ECE471A58D8E5003A9711 /* lc222.png in Resources */,
+				5C4C8D2D1A80744C003EB140 /* 搜索白色@2x.png in Resources */,
 				6378C0311A47BD9D00CDED3E /* fz选中对勾@2x.png in Resources */,
 				631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */,
 				5C1E1F111A401B6E0085BD64 /* lc2.png in Resources */,

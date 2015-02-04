@@ -246,10 +246,10 @@
         backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 45)];
 //        backView.backgroundColor = [UIColor whiteColor];
         btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn1 frame:CGRectMake(15, 10, (Mywidth-80)/3, 25) title:@"不限" buttonTag:10001 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
+        [self CustomButton:btn1 frame:CGRectMake(15, 10, (Mywidth-80)/3, 25) title:@"类别" buttonTag:10001 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
         
         btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn2 frame:CGRectMake(15+(Mywidth-80)/3+25, 10, (Mywidth-80)/3, 25) title:@"类别" buttonTag:10002 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
+        [self CustomButton:btn2 frame:CGRectMake(15+(Mywidth-80)/3+25, 10, (Mywidth-80)/3, 25) title:@"场馆" buttonTag:10002 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
         
         btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
         [self CustomButton:btn3 frame:CGRectMake(15+(Mywidth-80)/3*2+50, 10, (Mywidth-80)/3, 25) title:@"价格区间" buttonTag:10003 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
@@ -421,11 +421,11 @@
     
     
     if (sender.tag == 10001) {
-        arrOfTableData = [NSMutableArray arrayWithObjects:@"热门",@"不限",@"中国最强音",@"星光大道",@"春晚",@"中国最强音",@"我是歌手",@"超男快女",@"网络", nil];
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"演唱会",@"舞台剧",@"儿童剧",@"其他",nil];
     }else if (sender.tag == 10002){
-        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"影视",@"主持",@"歌手",@"曲艺",nil];
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"体育场",@"体育馆",@"剧院",@"其他",nil];
     }else if (sender.tag == 10003){
-        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"0-1万元",@"1-5万元",@"5-10万元",@"10-20万元",@"20-30万元",nil];
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"0-10万元",@"10-50万元",@"50-100万元",@"100-300万元",@"300-500万元",@"500万以上",nil];
     }
     
     CGFloat height = arrOfTableData.count*25;
