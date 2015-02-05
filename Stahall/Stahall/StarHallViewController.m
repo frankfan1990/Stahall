@@ -1020,7 +1020,6 @@ bool isExpand;
     return cell;
  
 
-
 }
 
 #pragma mark - viewWillDisappear
@@ -1034,7 +1033,6 @@ bool isExpand;
     
     [ProgressHUD dismiss];
 }
-
 
 
 
@@ -1075,9 +1073,6 @@ bool isExpand;
     _start3 = 9;
     
 }
-
-
-
 
 
 - (void)didReceiveMemoryWarning {
