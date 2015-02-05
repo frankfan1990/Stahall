@@ -86,7 +86,7 @@
    
     
     EDStarRating *star1 =[[EDStarRating alloc]initWithFrame:CGRectMake(70, 10, 123, 30)];
-    
+
 #pragma mark - 信用值
     star1.rating = 3;
     star1.tag = 3000;

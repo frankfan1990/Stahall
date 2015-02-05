@@ -93,7 +93,8 @@
     // 当前的contentOffset
     CGFloat currentOffsetY = self.scrollView.mj_contentOffsetY;
     // 尾部控件刚好出现的offsetY
-    CGFloat happenOffsetY = [self happenOffsetY];
+#warning -200【用于提前加载数据】
+    CGFloat happenOffsetY = [self happenOffsetY]-200;
     
     // 如果是向下滚动到看不见尾部控件，直接返回
     if (currentOffsetY <= happenOffsetY) return;

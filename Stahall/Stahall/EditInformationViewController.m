@@ -10,6 +10,8 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "Email_Phone.h"
 #import "Marcos.h"
+
+#pragma mark - 编辑账户信息
 @interface EditInformationViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *_tableView;

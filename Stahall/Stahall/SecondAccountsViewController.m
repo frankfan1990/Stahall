@@ -13,7 +13,6 @@
 #import "Marcos.h"
 #import "ProgressHUD.h"
 #pragma mark - 二级账号列表
-
 @interface SecondAccountsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;

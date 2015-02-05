@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "CasePlayVideoViewController.h"
 #import "Marcos.h"
+#pragma mark - 案例详情
 @interface CaseDetailsViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     CycleScrollView *headScrollView;

@@ -197,12 +197,6 @@
        
         advanceCtrl.type = 1;
         
-    }else if (_type == 1){
-        advanceCtrl.titleViewStr = @"案例详情";
-        advanceCtrl.type = 2;
-    }else if (_type == 1){
-        advanceCtrl.titleViewStr = @"行程详情";
-        advanceCtrl.type = 3;
     }
     [self.navigationController pushViewController:advanceCtrl animated:YES];
 }

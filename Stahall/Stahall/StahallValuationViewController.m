@@ -5,7 +5,7 @@
 //  Created by frankfan on 14/12/16.
 //  Copyright (c) 2014年 Rching. All rights reserved.
 //
-
+//FIXME: 堂估价选中艺人页面
 #import "StahallValuationViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "StahallEvalueCollectionViewCell.h"
@@ -218,7 +218,7 @@ bool selected;//是否是出于编辑模式的标志位
         [self.collectionView reloadData];
         
     }];
-    
+
 
     
 }
@@ -515,8 +515,6 @@ bool selected;//是否是出于编辑模式的标志位
             StarModel *starModel =[StarModel modelWithDictionary:starDict error:nil];
             [stahallEvalueCell.starHeaderImage sd_setImageWithURL:[NSURL URLWithString:starModel.header] placeholderImage:nil];
             stahallEvalueCell.starName.text = starModel.artistName;
-
-        
         }
         
     }
@@ -617,6 +615,12 @@ bool selected;//是否是出于编辑模式的标志位
     
         [starsSelected removeLastObject];
         [starsSelected addObjectsFromArray:selectedCells];
+        
+        
+        NSSet *tempSet = [NSSet setWithArray:starsSelected];
+        starsSelected = [[tempSet allObjects ]mutableCopy];
+
+        
         [starsSelected addObject:@"end"];
 
         if([starsSelected count]>20){
@@ -639,7 +643,12 @@ bool selected;//是否是出于编辑模式的标志位
 - (void)buttonClicked:(UIButton *)sender{
 
     selected = NO;
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if([[NSUserDefaults standardUserDefaults]boolForKey:@"isAgreen"]){
+    
+        UIViewController *viewCV =(UIViewController *)[[self.navigationController viewControllers]objectAtIndex:1];
+        [self.navigationController popToViewController:viewCV animated:YES];
+    }
     [ProgressHUD dismiss];
 }
 

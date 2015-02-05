@@ -64,6 +64,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     
     NSMutableArray *selectIndexPaths;//记录选中的indexPath
     
+    NSMutableArray *textIsLoadMoreList;//记录下拉按钮的title
     BOOL isPushModel;
     
 }
@@ -86,7 +87,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     localStars =[NSMutableArray array];
     recommendStars =[NSMutableArray array];
     selectIndexPaths =[NSMutableArray array];
-    
+    textIsLoadMoreList = [NSMutableArray arrayWithObjects:@"加载更多",@"加载更多",@"加载更多", nil];
    
     
     self.view.layer.contents = (__bridge id)[UIImage imageNamed:@"StaHallBackImage"].CGImage;
@@ -209,7 +210,7 @@ static NSString *cacheKey3 = @"cacheKey3";
         AFHTTPRequestOperationManager *manager =[NetworkHelper createRequestManagerWithContentType:application_json];
         AFHTTPRequestOperationManager *manager2 =[NetworkHelper createRequestManagerWithContentType:application_json];
         AFHTTPRequestOperationManager *manager3 =[NetworkHelper createRequestManagerWithContentType:application_json];
-        
+    
         manager.requestSerializer.timeoutInterval = 15;
         manager2.requestSerializer.timeoutInterval = 15;
         manager3.requestSerializer.timeoutInterval = 15;
@@ -273,7 +274,6 @@ static NSString *cacheKey3 = @"cacheKey3";
         }];
    
     }
-    
     
     
 }
@@ -454,10 +454,11 @@ static NSString *cacheKey3 = @"cacheKey3";
         
         return reusableView;
         
+#warning 点加载更多的button位置
     }else{//尾部
     
         reusableFooterView.loadMoreButton.tag = indexPath.section+2000;
-        
+        [reusableFooterView.loadMoreButton setTitle:textIsLoadMoreList[indexPath.section] forState:UIControlStateNormal];
         
         [reusableFooterView.loadMoreButton addTarget:self action:@selector(loadMoreButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -716,20 +717,7 @@ static NSString *cacheKey3 = @"cacheKey3";
             if([[self.reciveTheHasSelecedStars lastObject]isKindOfClass:[NSString class]]){
                 
                 [self.reciveTheHasSelecedStars removeLastObject];
-                
-                [self.reciveTheHasSelecedStars enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
-                    
-                    for (NSDictionary *dict2 in selectedCells) {
-                        
-                        if([dict[@"artistId"]isEqualToString:dict2[@"artistId"]]){
-                          
-                            [selectedCells removeObject:dict2];
-                            
-                        }
-                    }
-                    
-                }];
-            
+             
             }
         
         
@@ -857,6 +845,8 @@ bool isExpand;
                     
                         
                         [sender setTitle:@"没有更多数据" forState:UIControlStateNormal];
+                        [textIsLoadMoreList removeObjectAtIndex:0];
+                        [textIsLoadMoreList insertObject:@"没有更多数据" atIndex:0];
                     }
                    
                     sender.enabled = YES;
@@ -905,6 +895,9 @@ bool isExpand;
                         
                         
                         [sender setTitle:@"没有更多数据" forState:UIControlStateNormal];
+                        [textIsLoadMoreList removeObjectAtIndex:1];
+                        [textIsLoadMoreList insertObject:@"没有更多数据" atIndex:1];
+
                     }
                     
                     sender.enabled = YES;
@@ -950,6 +943,9 @@ bool isExpand;
                         
                         
                         [sender setTitle:@"没有更多数据" forState:UIControlStateNormal];
+                        [textIsLoadMoreList removeObjectAtIndex:2];
+                        [textIsLoadMoreList insertObject:@"没有更多数据" atIndex:2];
+
                     }
                     
                     sender.enabled = YES;

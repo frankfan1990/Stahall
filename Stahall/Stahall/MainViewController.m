@@ -84,7 +84,7 @@
     self.tableView.backgroundColor =[UIColor clearColor];
     self.tableView.sectionHeaderHeight = 0.1;
     [self.view addSubview:self.tableView];
-
+    
     
 }
 
@@ -163,18 +163,18 @@
      获取预告数据
      
      */
-    NSDictionary *dic = @{@"start":@"0",@"limit":@"20"};
-    [manger GET:advanceIp  parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSDictionary *dictiondata = (NSDictionary *)responseObject;
-        advanceData = dictiondata[@"results"];
-        UICollectionView *collec = (UICollectionView *)[_tableView viewWithTag:10002];
-        [collec reloadData];
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
+//    NSDictionary *dic = @{@"start":@"0",@"limit":@"20"};
+//    [manger GET:advanceIp  parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSDictionary *dictiondata = (NSDictionary *)responseObject;
+//        advanceData = dictiondata[@"results"];
+//        UICollectionView *collec = (UICollectionView *)[_tableView viewWithTag:10002];
+//        [collec reloadData];
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
     
     /*
      
