@@ -8,6 +8,8 @@
 
 #import "HomeHeadDetailsViewController.h"
 #import "Marcos.h"
+
+#pragma mark - 海报详情
 @interface HomeHeadDetailsViewController ()
 {
     UIWebView *_webView;

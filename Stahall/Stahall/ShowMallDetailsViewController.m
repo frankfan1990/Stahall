@@ -10,6 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "AFNetworking.h"
 #import "Marcos.h"
+
+#pragma mark -showMall详情
 @interface ShowMallDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;

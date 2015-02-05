@@ -243,7 +243,7 @@
     }else if (sender.tag == 10004){
         arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"大陆",@"港台",@"新马泰",@"日韩",nil];
     }else if (sender.tag == 10005){
-        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"0-1万元",@"1-5万元",@"5-10万元",@"10-20万元",@"20-30万元",nil];
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"0-10万元",@"10-50万元",@"50-100万元",@"100-300万元",@"300-500万元",@"500万以上",nil];
     }else if (sender.tag == 10006){
         arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",nil];
     }

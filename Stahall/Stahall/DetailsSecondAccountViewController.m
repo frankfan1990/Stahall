@@ -13,6 +13,7 @@
 #import "ProgressHUD.h"
 #import "Email_Phone.h"
 #import "Marcos.h"
+#pragma mark - 二级账户详情
 @interface DetailsSecondAccountViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIAlertViewDelegate>
 {
     UITableView *_tableView;
