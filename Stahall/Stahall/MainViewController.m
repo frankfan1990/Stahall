@@ -67,17 +67,17 @@
      *  开始创建tableView,构建骨架，5个section
      */
     
-    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(20, 20, Mywidth-40, 210) animationDuration:3 andShowControlDot:YES];
+    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(10, 8, Mywidth-20, 220) animationDuration:3 andShowControlDot:YES];
     headScrollView.userInteractionEnabled = YES;
     headScrollView.scrollView.scrollEnabled = NO;
     
-    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,Mywidth-40, 170)];
+    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,Mywidth-20, 200)];
     imageV.image = [UIImage imageNamed:@"七夕"];
     [headScrollView.scrollView addSubview:imageV];
     
     headScrollView.backgroundColor = [UIColor clearColor];
   
-    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height-65) style:UITableViewStyleGrouped];
+    self.tableView =[[UITableView alloc]initWithFrame:CGRectMake(0, 62, self.view.bounds.size.width, self.view.bounds.size.height-70) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -128,16 +128,16 @@
         };
         
         headScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-            UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Myself.view.frame.size.width-40, 170)];
+            UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Myself.view.frame.size.width-20, 190)];
             
             [imageV sd_setImageWithURL:[NSURL URLWithString:arrData[pageIndex][@"posterCover"]] placeholderImage:[UIImage imageNamed:@"七夕"]];
             
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 130, Myself.view.frame.size.width-40, 40)];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 140, Myself.view.frame.size.width-20, 50)];
             label.text = arrData[pageIndex][@"posterTitle"];
             
             label.textAlignment = NSTextAlignmentCenter;
             label.font = [UIFont systemFontOfSize:16];
-            label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
+            label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.3];
             label.textColor = [UIColor whiteColor];
             label.adjustsFontSizeToFitWidth = YES;
             [imageV addSubview:label];
@@ -199,9 +199,15 @@
     UIView *tabBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 65)];
     tabBarView.backgroundColor = [UIColor clearColor];
     
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(14, 20, 40, 40)];
+    view1.backgroundColor = [UIColor whiteColor];
+    view1.layer.cornerRadius = view1.frame.size.width/2;
+    [tabBarView addSubview:view1];
+    
+    
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
-    [btnLeft setFrame:CGRectMake(10, 17, 48, 48)];
+    [btnLeft setFrame:CGRectMake(1, 1, 38, 38)];
      btnLeft.layer.cornerRadius = btnLeft.frame.size.width/2;
     [btnLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -209,18 +215,17 @@
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"lc汪峰头像.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [btnLeft addTarget:self action:@selector(didGoLeftMenu) forControlEvents:UIControlEventTouchUpInside];
-    [tabBarView addSubview:btnLeft];
+    [view1 addSubview:btnLeft];
     
-    CGRect rect = CGRectMake(Mywidth/ 2-95+2,25, 200, 30);
-    UIView *view = [[UIView alloc] initWithFrame:rect];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(view1.frame.origin.x+view1.frame.size.width+10, 27,Mywidth-(view1.frame.origin.x+view1.frame.size.width+10+40), 25)];
     view.backgroundColor = [UIColor purpleColor];
-    view.layer.cornerRadius = 15;
+    view.layer.cornerRadius = 12.5;
     view.alpha = 0.7;
     
     [tabBarView addSubview:view];
     
     
-    textField=[[UITextField alloc] initWithFrame:CGRectMake(10, 0, 180, 30)];
+    textField=[[UITextField alloc] initWithFrame:CGRectMake(10, 0, Mywidth-(view1.frame.origin.x+view1.frame.size.width+10+40)-10, 25)];
     textField.delegate = self;
     textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@" Serach.." attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"搜索白色"]];
@@ -266,33 +271,51 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        return 210;
+        return 230-5;
     }else if(indexPath.section == 1){
-        return 90;
+        return 85;
     }else{
-        return 175;
+        return 180;
     }
 }
+
+#pragma mark - 每个headView的高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section >1) {
+        return 35;
+    }else{
+        return 0.1;
+    }
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
+
 #pragma mark - 每个section的headView
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section > 1) {
-        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 53)];
+        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 35)];
         headView.backgroundColor = [UIColor clearColor];
         
-        UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 45, 20)];
+        UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 40, 20)];
         [self Customlable:labelTitle text:arrOfTitle[section-2] fontSzie:19 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
         
         [headView addSubview:labelTitle];
         
-        UILabel *labelTitleOther = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 15)];
+        UILabel *labelTitleOther = [[UILabel alloc] initWithFrame:CGRectMake(53, 15, 35, 15)];
         
         [self Customlable:labelTitleOther text:arrOfTitleOther[section-2] fontSzie:11 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
         
         [headView addSubview:labelTitleOther];
         
         UIImageView *imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lc向右灰"]];
-        imageV.frame = CGRectMake(labelTitle.frame.origin.x + labelTitle.frame.size.width, 12, 17, 17);
+        imageV.frame = CGRectMake(labelTitleOther.frame.origin.x + labelTitleOther.frame.size.width+12, 12, 15, 15);
         imageV.layer.masksToBounds = YES;
         imageV.layer.cornerRadius = imageV.frame.size.width/2;
         imageV.backgroundColor = [UIColor whiteColor];
@@ -301,7 +324,7 @@
         
         if (section == arrOfTitle.count+1) {
             segmentCtrl = [[CCSegmentedControl alloc] initWithItems:arrOfSegmentTitle];
-            segmentCtrl.frame = CGRectMake(imageV.frame.origin.x+imageV.frame.size.width +40, 10, Mywidth-(imageV.frame.origin.x+imageV.frame.size.width +50), 30);
+            segmentCtrl.frame = CGRectMake(imageV.frame.origin.x+imageV.frame.size.width +20, 3, Mywidth-(imageV.frame.origin.x+imageV.frame.size.width +30), 30);
             segmentCtrl.segmentTextColor = [UIColor whiteColor];
             segmentCtrl.selectedSegmentTextColor = [UIColor orangeColor];
             segmentCtrl.backgroundColor = [UIColor clearColor];
@@ -324,21 +347,11 @@
 }
 
 
-#pragma mark - 每个headView的高度
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section >1) {
-        return 45;
-    }else{
-        return 0.1;
-    }
-}
-
-
 
 #pragma mark - 创建cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+
     if (indexPath.section == 0) {
         
         UITableViewCell *cell_One = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -355,9 +368,9 @@
         UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeSystem];
         UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeSystem];
         UIButton *btn3 = [UIButton buttonWithType:UIButtonTypeSystem];
-        btn1.frame = CGRectMake(10, 10, (Mywidth - 50)/3, 80);
-        btn2.frame = CGRectMake(btn1.frame.origin.x+15 + (Mywidth - 50)/3, 10, (Mywidth - 50)/3, 80);
-        btn3.frame = CGRectMake(btn2.frame.origin.x+15 + (Mywidth - 50)/3, 10, (Mywidth - 50)/3, 80);
+        btn1.frame = CGRectMake(10, 0, (Mywidth - 50)/3, 80);
+        btn2.frame = CGRectMake(btn1.frame.origin.x+10 + (Mywidth - 40)/3, 0, (Mywidth - 40)/3, 80);
+        btn3.frame = CGRectMake(btn2.frame.origin.x+10 + (Mywidth - 40)/3, 0, (Mywidth - 40)/3, 80);
         
         btn1.backgroundColor = [UIColor colorWithRed:20/255.0 green:148/255.0 blue:255/255.0 alpha:1];
         btn2.backgroundColor = [UIColor colorWithRed:116/255.0 green:74/255.0 blue:230/255.0 alpha:1];
@@ -414,10 +427,10 @@
         cell_four.selectionStyle = UITableViewCellSelectionStyleNone;
         cell_four.backgroundColor = [UIColor clearColor];
         UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
-        layoutView.itemSize = CGSizeMake(130, 170);
+        layoutView.itemSize = CGSizeMake(120, 170);
         [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(10, 10, Mywidth-20, 170) collectionViewLayout:layoutView];
+        UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(10, 5, Mywidth-20, 170) collectionViewLayout:layoutView];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.tag = 10003;
@@ -435,7 +448,7 @@
         layoutView.itemSize = CGSizeMake(Mywidth-10, 175);
         [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
-        UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, Mywidth, 175) collectionViewLayout:layoutView];
+        UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 5, Mywidth, 175) collectionViewLayout:layoutView];
         _collectionView.pagingEnabled = YES;
         _collectionView.delegate = self;
         _collectionView.tag = 10004;
@@ -615,6 +628,8 @@
 #pragma mark - 去 堂汇页面 按钮
 -(void)didBtn1:(UIButton *)sender{
     TangHuiListViewController *TangCtrl = [[TangHuiListViewController alloc] init];
+    TangCtrl.index = 101;
+    TangCtrl.title = @"堂汇";
     [self.navigationController pushViewController:TangCtrl animated:YES];
     NSLog(@"去 堂汇页面  按钮");
 }
@@ -637,14 +652,13 @@
 #pragma mark -点击cell头部
 -(void)didHeadBtn:(UIButton *)sender
 {
-    NSLog(@"%ld",(long)sender.tag);
-    ListAdvanceViewController *listCtrl = [[ListAdvanceViewController alloc] init];
-    
-    listCtrl.type = sender.tag - 66667;
-    if (listCtrl.type == 2) {
-        listCtrl.arrOfdata = advanceData;
+    if (sender.tag == 66669) {
+        TangHuiListViewController *TangCtrl = [[TangHuiListViewController alloc] init];
+        TangCtrl.index = 100;
+        TangCtrl.title = @"行程";
+        [self.navigationController pushViewController:TangCtrl animated:YES];
     }
-    [self.navigationController pushViewController:listCtrl animated:YES];
+   
 }
 
 #pragma mark - 点击 分段控制器

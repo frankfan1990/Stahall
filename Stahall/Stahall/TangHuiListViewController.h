@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TangHuiListViewController : UIViewController
-
+@property (nonatomic,assign)NSInteger index;
 @end
