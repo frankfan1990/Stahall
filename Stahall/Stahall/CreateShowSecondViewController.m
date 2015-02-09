@@ -62,6 +62,7 @@
     [arrOfdata addObject:dic];
     
     [self setTabBar];
+    
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.tpscrollerView];
     self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
