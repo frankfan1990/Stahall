@@ -35,7 +35,6 @@
         [_backView addSubview:_imageV];
         [_backView addSubview:_labelOfTitle];
         [_backView addSubview:_labelOfDate];
-        
     }
     return self;
 }
