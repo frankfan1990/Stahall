@@ -25,6 +25,7 @@
 #import "UIImageView+WebCache.h"
 #import <TMCache.h>
 #import <ReactiveCocoa.h>
+#import "StarDetailInfoViewController.h"
 
 static NSInteger _start = 9;
 static NSInteger _start2 = 9;
@@ -144,7 +145,7 @@ static NSString *cacheKey3 = @"cacheKey3";
  
     
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width-20, self.view.bounds.size.height-50-20-50) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 35, self.view.bounds.size.width-20, self.view.bounds.size.height-50-20-50) collectionViewLayout:flowLayout];
     
     [self.collectionView registerClass:[StaHallCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.collectionView registerClass:[StaHallCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
@@ -159,7 +160,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     
     //堂估价按钮455
     UIButton *Hallvaluation =[UIButton buttonWithType:UIButtonTypeCustom];
-    Hallvaluation.frame = CGRectMake(10,self.view.bounds.size.height-115, self.view.bounds.size.width-20, 45);
+    Hallvaluation.frame = CGRectMake(10,self.view.bounds.size.height-70, self.view.bounds.size.width-20, 45);
     Hallvaluation.layer.cornerRadius = 3;
     [Hallvaluation setTitle:@"堂估价" forState:UIControlStateNormal];
     
@@ -219,6 +220,7 @@ static NSString *cacheKey3 = @"cacheKey3";
         manager2.requestSerializer.HTTPShouldUsePipelining = YES;
         manager3.requestSerializer.HTTPShouldUsePipelining = YES;
         
+#if 0
         NSDictionary *parameters = @{Query:@"热门艺人",Start:@0,Limit:@8};
 
         [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -272,7 +274,8 @@ static NSString *cacheKey3 = @"cacheKey3";
             [ProgressHUD showError:@"网络异常"];
             
         }];
-   
+#endif
+        
     }
     
     
@@ -664,6 +667,9 @@ static NSString *cacheKey3 = @"cacheKey3";
         isPushModel = YES;
         StarDetaiInfoViewController *starDetaiInfo =[StarDetaiInfoViewController new];
         
+        //new-改版后的
+        StarDetailInfoViewController *new_starDetailInfo =[StarDetailInfoViewController new];
+        
         NSMutableArray *tempArray = nil;
         if(indexPath.section==0){
             
@@ -682,7 +688,7 @@ static NSString *cacheKey3 = @"cacheKey3";
         starDetaiInfo.starId = starModel.artistId;
         starDetaiInfo.starDict = tempDict;
         
-        [self.navigationController pushViewController:starDetaiInfo animated:YES];
+        [self.navigationController pushViewController:new_starDetailInfo animated:YES];
     
     }
   
@@ -1037,30 +1043,52 @@ bool isExpand;
 
 
 #pragma mark - viewWillAppear
+#if 1
 - (void)viewWillAppear:(BOOL)animated{
-
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
-  
-    if(!isPushModel){
     
+    dispatch_queue_t bkQueue = dispatch_queue_create("frankafn.baqueue1", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(bkQueue, ^{
         
-        if([hotStars count]>8){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [super viewDidAppear:animated];
+            self.navigationController.navigationBar.hidden = NO;
+            self.navigationController.navigationBar.translucent = NO;
+            [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
+ 
+        });
         
-            [hotStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
-        }else if ([localStars count]>8){
-        
-            [localStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
-        }else if ([recommendStars count]>8){
-        
-            [recommendStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
+        if(!isPushModel){
+            
+            
+            if([hotStars count]>8){
+                
+                [hotStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
+            }else if ([localStars count]>8){
+                
+                [localStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
+            }else if ([recommendStars count]>8){
+                
+                [recommendStars removeObjectsInRange:NSMakeRange(8, [hotStars count]-8)];
+            }
+            
         }
-
-    }
+    });
+    
     
 }
+#endif
+
+//- (void)viewDidAppear:(BOOL)animated{
+//
+//    [super viewDidAppear:animated];
+//    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.translucent = NO;
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:76/255.0 green:60/255.0 blue:136/255.0 alpha:1]];
+//
+//}
+
+
 
 
 #pragma mark - 导航栏事件触发

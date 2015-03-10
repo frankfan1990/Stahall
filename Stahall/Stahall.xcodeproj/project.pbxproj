@@ -76,6 +76,7 @@
 		5CD5FD391A43B9C700316965 /* lc张学友.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD5FD381A43B9C700316965 /* lc张学友.png */; };
 		5CD5FE651A43F87E00316965 /* GNWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD5FE641A43F87E00316965 /* GNWheelView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5CE0D8A81A3EAFA300CBC562 /* AdvanceNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */; };
+		630B8AF61AA042E300F0E05C /* StarDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 630B8AF51AA042E300F0E05C /* StarDetailInfoViewController.m */; };
 		631DC1ED1A3738EF00F5E9AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EC1A3738EF00F5E9AA /* main.m */; };
 		631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DC1EF1A3738EF00F5E9AA /* AppDelegate.m */; };
 		631DC1F81A3738EF00F5E9AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631DC1F71A3738EF00F5E9AA /* Images.xcassets */; };
@@ -322,6 +323,8 @@
 		5CD5FE641A43F87E00316965 /* GNWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNWheelView.m; sourceTree = "<group>"; };
 		5CE0D8A61A3EAFA300CBC562 /* AdvanceNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceNoticeViewController.h; sourceTree = "<group>"; };
 		5CE0D8A71A3EAFA300CBC562 /* AdvanceNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceNoticeViewController.m; sourceTree = "<group>"; };
+		630B8AF41AA042E300F0E05C /* StarDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDetailInfoViewController.h; sourceTree = "<group>"; };
+		630B8AF51AA042E300F0E05C /* StarDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDetailInfoViewController.m; sourceTree = "<group>"; };
 		631DC1E71A3738EF00F5E9AA /* Stahall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stahall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		631DC1EB1A3738EF00F5E9AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		631DC1EC1A3738EF00F5E9AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1018,6 +1021,8 @@
 				6321DD051A6E44FC0040FE32 /* MyGoldViewController.m */,
 				6321DD071A6E70870040FE32 /* MyCreditableViewController.h */,
 				6321DD081A6E70870040FE32 /* MyCreditableViewController.m */,
+				630B8AF41AA042E300F0E05C /* StarDetailInfoViewController.h */,
+				630B8AF51AA042E300F0E05C /* StarDetailInfoViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1420,7 +1425,7 @@
 				TargetAttributes = {
 					631DC1E61A3738EF00F5E9AA = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = MXP6GNCU77;
+						DevelopmentTeam = 32PPUK7BX7;
 					};
 					631DC1FF1A3738EF00F5E9AA = {
 						CreatedOnToolsVersion = 6.1;
@@ -1666,6 +1671,7 @@
 				636E27D41A63C2FE00F8B540 /* EvalutionStarsDetail.m in Sources */,
 				634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				630B8AF61AA042E300F0E05C /* StarDetailInfoViewController.m in Sources */,
 				63D62A3A1A5A321F00E107FA /* StarDetailInfoModel.m in Sources */,
 				5C7D5CF01A5149F300163B07 /* Left_CustomerServiceViewController.m in Sources */,
 				5C7D5CED1A51496900163B07 /* Lef_MyMessageViewController.m in Sources */,
@@ -1820,7 +1826,7 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ef76426-266b-4f1a-8712-899ee0503ad0";
+				PROVISIONING_PROFILE = "9bfa662f-0562-4804-ad32-0f96fa120101";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -1858,7 +1864,7 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0ef76426-266b-4f1a-8712-899ee0503ad0";
+				PROVISIONING_PROFILE = "9bfa662f-0562-4804-ad32-0f96fa120101";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
