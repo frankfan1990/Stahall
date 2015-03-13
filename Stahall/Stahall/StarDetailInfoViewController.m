@@ -8,6 +8,7 @@
 //FIXME: 艺人详情【改版】
 #import "StarDetailInfoViewController.h"
 #import "UIImageView+WebCache.h"
+#import "UIViewController+AddTitle.h"
 
 @interface StarDetailInfoViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource>
 {
@@ -15,6 +16,10 @@
     UIImageView *_backStarImage;
     @private
     UIView *_bottomBlackView;
+    NSArray *_itemTitleList1;
+    NSArray *_itemTitleList2;
+    
+    
 }
 
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -26,11 +31,19 @@
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor whiteColor];
     //
+    /*title*/
+    [self setTheTitle:@"艺人姓名"];
+    
+    /*回退按钮*/
+    [self setTheBackArrow];
+    //
     _backStarImage =[[UIImageView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:_backStarImage];
     
     //demo
     _backStarImage.image =[UIImage imageNamed:@"汪峰"];
+    _itemTitleList1 = @[@"Rock",@"资料",@"影像",@"演出",@"音乐",@"视频"];
+    _itemTitleList2 = @[@"首支单曲",@"自由 摇滚 先锋",@"一些照片",@"perform",@"music",@"video"];
     
     //
     _bottomBlackView =[[UIView alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-300, self.view.bounds.size.width, 300)];
@@ -73,26 +86,36 @@
 
     UICollectionViewCell *collcetionCell =[collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
 
-    collcetionCell.backgroundColor =[UIColor orangeColor];
+    collcetionCell.backgroundColor =[UIColor clearColor];
     if(indexPath.row==1 || indexPath.row==4){
     
-        UIView *lineView =[[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 80)];
+        UIView *lineView =[[UIView alloc]initWithFrame:CGRectMake(0, 10, 1, 60)];
         lineView.backgroundColor =[UIColor whiteColor];
         
-        UIView *lineView2 =[[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/3.0-20-1, 0, 1, 80)];
+        UIView *lineView2 =[[UIView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width/3.0-20-1, 10, 1, 60)];
         lineView2.backgroundColor =[UIColor whiteColor];
         
         [collcetionCell addSubview:lineView];
         [collcetionCell addSubview:lineView2];
     }
     
-    UILabel *itemLable1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 16,self.view.bounds.size.width/3.0-10, 30)];
+    //大标题
+    UILabel *itemLable1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 16,self.view.bounds.size.width/3.0-40, 30)];
+    itemLable1.textAlignment = NSTextAlignmentCenter;
     itemLable1.textColor =[UIColor whiteColor];
     itemLable1.font =[UIFont systemFontOfSize:14];
     [collcetionCell.contentView addSubview:itemLable1];
+    itemLable1.text = _itemTitleList1[indexPath.row];
     
-    itemLable1.text =@"hellommm";
-
+    
+    //小标题
+    UILabel *itemLable2 = [[UILabel alloc]initWithFrame:CGRectMake(10, 16+20,self.view.bounds.size.width/3.0-40, 30)];
+    itemLable2.textAlignment = NSTextAlignmentCenter;
+    itemLable2.textColor =[UIColor whiteColor];
+    itemLable2.font =[UIFont systemFontOfSize:9];
+    [collcetionCell.contentView addSubview:itemLable2];
+    itemLable2.text = _itemTitleList2[indexPath.row];
+    
     
     return collcetionCell;
 

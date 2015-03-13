@@ -96,6 +96,7 @@
 		63258B3E1A3D9DB50089C3F1 /* StaHallBackImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 63258B3D1A3D9DB50089C3F1 /* StaHallBackImage.png */; };
 		63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */; };
 		63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */; };
+		63258CFB1AB2C26D00B21E51 /* UIViewController+AddTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 63258CFA1AB2C26D00B21E51 /* UIViewController+AddTitle.m */; };
 		633E47201A64F5D00017B8EA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633E471F1A64F5D00017B8EA /* QuartzCore.framework */; };
 		63468EFA1A43D07400938E1E /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EF91A43D07400938E1E /* RTLabel.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63468EFF1A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m */; };
@@ -359,6 +360,8 @@
 		63258B911A3E78170089C3F1 /* StaHallCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionReusableView.m; sourceTree = "<group>"; };
 		63258B951A3E7CD70089C3F1 /* StaHallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaHallCollectionViewCell.h; sourceTree = "<group>"; };
 		63258B961A3E7CD70089C3F1 /* StaHallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaHallCollectionViewCell.m; sourceTree = "<group>"; };
+		63258CF91AB2C26D00B21E51 /* UIViewController+AddTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AddTitle.h"; sourceTree = "<group>"; };
+		63258CFA1AB2C26D00B21E51 /* UIViewController+AddTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AddTitle.m"; sourceTree = "<group>"; };
 		633E471F1A64F5D00017B8EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		63468EF81A43D07400938E1E /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		63468EF91A43D07400938E1E /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
@@ -1162,6 +1165,8 @@
 			children = (
 				6378C0331A47E4D600CDED3E /* FrankfanApis.h */,
 				637F9B1A1A514B550066D4CE /* FrankfanMarcos.h */,
+				63258CF91AB2C26D00B21E51 /* UIViewController+AddTitle.h */,
+				63258CFA1AB2C26D00B21E51 /* UIViewController+AddTitle.m */,
 			);
 			name = "frankfan-constant";
 			sourceTree = "<group>";
@@ -1590,6 +1595,7 @@
 				5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */,
 				636F44801A44091300FD6783 /* SDWebImageDownloader.m in Sources */,
 				63258B921A3E78170089C3F1 /* StaHallCollectionReusableView.m in Sources */,
+				63258CFB1AB2C26D00B21E51 /* UIViewController+AddTitle.m in Sources */,
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
 				5C7D5CF71A514AE100163B07 /* Left_ CancellationViewController.m in Sources */,

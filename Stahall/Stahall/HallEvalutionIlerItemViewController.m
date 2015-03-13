@@ -208,6 +208,7 @@
 - (void)buttonClicked:(UIButton *)sender{
     
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 

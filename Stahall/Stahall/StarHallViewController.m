@@ -68,6 +68,8 @@ static NSString *cacheKey3 = @"cacheKey3";
     NSMutableArray *textIsLoadMoreList;//记录下拉按钮的title
     BOOL isPushModel;
     
+    //fixbug
+    UIView *_backView;
 }
 @property (nonatomic,strong)ZSYPopoverListView *popView;
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -79,7 +81,11 @@ static NSString *cacheKey3 = @"cacheKey3";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    //
+    _backView =[[UIView alloc]initWithFrame:self.view.bounds];
+    _backView.backgroundColor =[UIColor blueColor];
+    [self.view addSubview:_backView];
+    
     recodeRotateExpend =[NSMutableArray array];
     arrowButtonStatue =[NSMutableArray arrayWithObjects:@0,@0,@0, nil];
     selectedCells = [NSMutableArray array];
@@ -154,9 +160,10 @@ static NSString *cacheKey3 = @"cacheKey3";
     self.collectionView.backgroundColor =[UIColor clearColor];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [self.view addSubview:self.collectionView];
+    [_backView addSubview:self.collectionView];
     self.collectionView.showsVerticalScrollIndicator = NO;
-    
+#warning bug!!!
+    self.collectionView.backgroundColor =[UIColor blackColor];
     
     //堂估价按钮455
     UIButton *Hallvaluation =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -171,7 +178,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     
     [Hallvaluation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [Hallvaluation setBackgroundColor:[UIColor purpleColor]];
-    [self.view addSubview:Hallvaluation];
+    [_backView addSubview:Hallvaluation];
     [Hallvaluation setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
     [Hallvaluation addTarget:self action:@selector(stahallValueButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
@@ -220,7 +227,8 @@ static NSString *cacheKey3 = @"cacheKey3";
         manager2.requestSerializer.HTTPShouldUsePipelining = YES;
         manager3.requestSerializer.HTTPShouldUsePipelining = YES;
         
-#if 0
+        
+
         NSDictionary *parameters = @{Query:@"热门艺人",Start:@0,Limit:@8};
 
         [manager GET:API_StarInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -274,7 +282,7 @@ static NSString *cacheKey3 = @"cacheKey3";
             [ProgressHUD showError:@"网络异常"];
             
         }];
-#endif
+
         
     }
     
@@ -1043,7 +1051,7 @@ bool isExpand;
 
 
 #pragma mark - viewWillAppear
-#if 1
+
 - (void)viewWillAppear:(BOOL)animated{
     
     dispatch_queue_t bkQueue = dispatch_queue_create("frankafn.baqueue1", DISPATCH_QUEUE_SERIAL);
@@ -1077,7 +1085,7 @@ bool isExpand;
     
     
 }
-#endif
+
 
 //- (void)viewDidAppear:(BOOL)animated{
 //
