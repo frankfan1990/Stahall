@@ -187,7 +187,7 @@
     UIButton *btnLeft2 = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft2.layer.masksToBounds = YES;
     btnLeft2.layer.cornerRadius = 20;
-    [btnLeft2 setFrame:CGRectMake(0, 0, 35, 35)];
+    [btnLeft2 setFrame:CGRectMake(0, 0, 30, 30)];
     [btnLeft2 setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateNormal];
     [btnLeft2 setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateHighlighted];
     [btnLeft2 setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];

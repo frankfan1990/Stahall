@@ -70,18 +70,20 @@
 
 #pragma mark tabBar的设置
 -(void)setTabBar{
+    
+
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.extendedLayoutIncludesOpaqueBars = NO;
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     self.navigationController.navigationBar.translucent = NO;
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1]];
     
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
     btnLeft.layer.cornerRadius = 20;
-    [btnLeft setFrame:CGRectMake(0, 0, 35, 35)];
+    [btnLeft setFrame:CGRectMake(0, 0, 30, 30)];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateNormal];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
@@ -97,13 +99,15 @@
     }else{
         self.navigationItem.leftBarButtonItem = btnLeftitem;
     }
-    
-    
-    UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
-    title.text = dictData[@"mallName"];
-    title.font = [UIFont systemFontOfSize:19];
-    title.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = title;
+
+    self.title = @"秀Mall详情";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+
+//    UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
+//    title.text = @"秀MALL";
+//    title.font = [UIFont systemFontOfSize:19];
+//    title.textColor = [UIColor whiteColor];
+//    self.navigationItem.titleView = title;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

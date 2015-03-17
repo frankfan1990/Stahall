@@ -12,6 +12,9 @@
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
 #import "AdvanceNoticeViewController.h"
+
+#pragma mark - 3D效果
+
 @interface ListAdvanceViewController ()<GNWheelViewDelegate>
 {
     NSMutableArray *arrays;
@@ -84,7 +87,7 @@
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
     btnLeft.layer.cornerRadius = 20;
-    [btnLeft setFrame:CGRectMake(0, 0, 35, 35)];
+    [btnLeft setFrame:CGRectMake(0, 0, 30, 30)];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateNormal];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
@@ -101,19 +104,15 @@
         self.navigationItem.leftBarButtonItem = btnLeftitem;
     }
     
-    
-    UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
-    if (_type == 1) {
-        title.text = @"劲爆预告";
-    }else if (_type == 2){
-        title.text = @"演出案例";
-    }else if (_type == 3){
-        title.text = @"演出行程";
-    }
 
-    title.font = [UIFont systemFontOfSize:19];
-    title.textColor = [UIColor whiteColor];
-    self.navigationItem.titleView = title;
+    self.title = @"劲爆案例";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+//    UILabel *title =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 40)];
+//
+//
+//    title.font = [UIFont systemFontOfSize:19];
+//    title.textColor = [UIColor whiteColor];
+//    self.navigationItem.titleView = title;
     
 }
 
@@ -185,20 +184,20 @@
 
 -(void)wheelView:(GNWheelView *)wheelView didSelectedRowAtIndex:(NSInteger)index
 {
-    AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
-    
-    if (_type == 1) {
-        advanceCtrl.titleViewStr = @"预告详情";
-        if (_arrOfdata) {
-            advanceCtrl.dictData = _arrOfdata[index];
-        }else{
-            advanceCtrl.dictData = nil;
-        }
-       
-        advanceCtrl.type = 1;
-        
-    }
-    [self.navigationController pushViewController:advanceCtrl animated:YES];
+//    AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
+//    
+//    if (_type == 1) {
+//        advanceCtrl.titleViewStr = @"预告详情";
+//        if (_arrOfdata) {
+//            advanceCtrl.dictData = _arrOfdata[index];
+//        }else{
+//            advanceCtrl.dictData = nil;
+//        }
+//       
+//        advanceCtrl.type = 1;
+//        
+//    }
+//    [self.navigationController pushViewController:advanceCtrl animated:YES];
 }
 
 - (void)theAnimationStoped{

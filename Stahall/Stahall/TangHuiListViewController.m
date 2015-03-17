@@ -11,6 +11,7 @@
 #import "ShowDetailsViewController.h"
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
+#import "TravelDetailViewController.h"
 #import "Marcos.h"
 //#import <objc/runtime.h>
 #pragma mark -  堂汇 列表
@@ -19,7 +20,9 @@
     UITableView *_tableView;
     UITableView *_tableViewOther;
     UIButton *categoryBtn;
-    NSArray *arrData;
+//    NSArray *arrData;
+    
+    NSMutableArray *arrOfdataOther;
     NSArray *arrOfTag;
 }
 
@@ -46,6 +49,8 @@
     }else{
          arrOfTag = @[@"分类一  ",@"分类二  ",@"分类三  "];
     }
+    
+    arrOfdataOther = [[NSMutableArray alloc] initWithArray:_arrOfdata];
     [self.view setBackgroundColor:[UIColor colorWithRed:248/255.0 green:248/255.0 blue:248/255.0 alpha:1]];
     
     //取数据
@@ -59,7 +64,7 @@
     _tableView.tag = 1200;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    
+
     _tableViewOther = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
     _tableViewOther.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableViewOther.delegate = self;
@@ -85,7 +90,7 @@
     UIButton *allBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     allBtn.backgroundColor = [UIColor clearColor];
     allBtn.frame = CGRectMake(20, (38-25)/2.0, 55, 25);
-    [allBtn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [allBtn.titleLabel setFont:[UIFont systemFontOfSize:11]];
     [allBtn setTitle:@"全部" forState:UIControlStateNormal];
     [allBtn setTitleColor:UIColorFromRGB(0x6B6B6B) forState:UIControlStateNormal];
     [allBtn addTarget:self action:@selector(didAllBtn) forControlEvents:UIControlEventTouchUpInside];
@@ -96,7 +101,7 @@
     categoryBtn.frame = CGRectMake(Mywidth-90-3, (38-25)/2.0, 85, 25);
     categoryBtn.backgroundColor = [UIColor whiteColor];
     categoryBtn.layer.cornerRadius = 3;
-    [categoryBtn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [categoryBtn.titleLabel setFont:[UIFont systemFontOfSize:11]];
     [categoryBtn setTitle:@"选择分类   " forState:UIControlStateNormal];
     [categoryBtn setTitleColor:UIColorFromRGB(0x6B6B6B) forState:UIControlStateNormal];
     [categoryBtn addTarget:self action:@selector(didCategoryBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -122,7 +127,7 @@
     UIButton *btnLeft = [UIButton buttonWithType:UIButtonTypeSystem];
     btnLeft.layer.masksToBounds = YES;
     btnLeft.layer.cornerRadius = 20;
-    [btnLeft setFrame:CGRectMake(0, 0, 35, 35)];
+    [btnLeft setFrame:CGRectMake(0, 0, 30, 30)];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateNormal];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"朝左箭头icon@2x.png"] forState:UIControlStateHighlighted];
     [btnLeft setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
@@ -159,7 +164,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 1200) {
-        return 8;
+        return arrOfdataOther.count;
     }
     return arrOfTag.count;
 }
@@ -182,10 +187,10 @@
             cell.backgroundColor = [UIColor clearColor];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        cell.imageV.image = [UIImage imageNamed:@"LCTEST1"];
-        cell.titleOfLabel.text = @"金曲原唱";
-        cell.keyOfLabel.text = [NSString stringWithFormat:@"关键词:也许你没有听过这个名字"];
-        cell.stahallOfLabel.text = [NSString stringWithFormat:@"艺人：黄杰、杨臣刚、张杰、陈奕迅、伟建等"];
+        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:arrOfdataOther[indexPath.row][@"cover"]] placeholderImage:[UIImage imageNamed:@"LCTEST1"]];
+        cell.titleOfLabel.text = arrOfdataOther[indexPath.row][@"travelName"];
+        cell.keyOfLabel.text = [NSString stringWithFormat:@"关键词:%@",arrOfdataOther[indexPath.row][@"keyword"]];
+        cell.stahallOfLabel.text = [NSString stringWithFormat:@"艺人：%@",arrOfdataOther[indexPath.row][@"artistName"]];
         
         
         return cell;
@@ -212,8 +217,7 @@
 {
     if (tableView.tag == 1200) {
         
-        ShowDetailsViewController *details = [[ShowDetailsViewController alloc] init];
-        details.titleViewStr  = @"堂汇详情";
+        TravelDetailViewController *details = [[TravelDetailViewController alloc] init];
         [self.navigationController pushViewController:details animated:YES];
         
     }else{
@@ -222,13 +226,39 @@
         [UIView animateWithDuration:0.2 animations:^{
             _tableViewOther.alpha = 0;
         }];
+        
+        [arrOfdataOther removeAllObjects];
+        for (NSDictionary *dd in _arrOfdata) {
+            if (indexPath.row == 0) {
+                if ([dd[@"typeId"] intValue] == 2) {
+                    [arrOfdataOther addObject:dd];
+                }
+            }else if (indexPath.row == 1){
+                if ([dd[@"typeId"] intValue] == 1) {
+                    [arrOfdataOther addObject:dd];
+                }
+            }else{
+                if ([dd[@"typeId"] intValue] == 3) {
+                    [arrOfdataOther addObject:dd];
+                }
+            }
+        }
+        [_tableView reloadData];
     }
-   
+    
 }
-
 
 -(void)didAllBtn
 {
+    
+    [UIView animateWithDuration:0.4 animations:^{
+            _tableViewOther.alpha = 0;
+    }];
+    [arrOfdataOther removeAllObjects];
+    [categoryBtn setTitle:@"选择分类   " forState:UIControlStateNormal];
+    categoryBtn.selected = YES;
+    [arrOfdataOther addObjectsFromArray:_arrOfdata];
+    [_tableView reloadData];
     NSLog(@"点击全部");
 }
 

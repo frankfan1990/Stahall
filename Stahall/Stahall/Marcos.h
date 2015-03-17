@@ -33,6 +33,12 @@
 #define CaseIP @"http://218.244.158.59/stahall/case"
 
 /*
+ 首页行程
+ */
+#define TravelIP @"http://218.244.158.59/stahall/travel/getTravel"
+
+
+/*
  首页案例详情
  */
 #define CaseDetailIP @"http://218.244.158.59/stahall/case/getCase"
@@ -65,6 +71,7 @@
  我的演出详情
  */
 #define MyShowsDetailsIP @"http://218.244.158.59/stahall/show/detail"
+
 
 
 

@@ -13,13 +13,14 @@
 #import "StarHallViewController.h"
 #import "HomeHeadDetailsViewController.h"
 #import "UIImageView+WebCache.h"
+#import "ListAdvanceViewController.h"
 #import "AdvanceNoticeViewController.h"
 #import "ShowDetailsViewController.h"
 #import "SearchStarViewController.h"
 #import "ShowMallsViewController.h"
 #import "TangHuiListViewController.h"
-#import "ListAdvanceViewController.h"
 #import "CaseDetailsViewController.h"
+#import "TravelDetailViewController.h"
 #import "CCSegmentedControl.h"
 #import "AFNetworking.h"
 #import "CycleScrollView.h"
@@ -35,9 +36,13 @@
     CycleScrollView *headScrollView;
     CCSegmentedControl *segmentCtrl;
     UICollectionView *collectionViewOther;
+    
     NSInteger _type;
-    NSArray *advanceData;//预告数据
+    
     NSArray *caseData;//案例数据
+    
+    NSArray *travelData;//行程数据
+    NSMutableArray *travelDataOther;
 }
 
 @property (nonatomic,strong)UITableView *tableView;//主页骨架
@@ -88,13 +93,14 @@
     
 }
 
-
 #pragma mark - 变量的初始化
 -(void)Variableinitialization
 {
     _type = 0;
     _arrOfimages_one = [NSMutableArray array];
     _arrOfLabelContent_one = [NSMutableArray array];
+    travelDataOther = [NSMutableArray array];
+
     arrOfSegmentTitle = @[@"演唱会",@"舞台剧",@"企业活动"];
     arrOfTitle = @[@"预告",@"案例",@"行程"];
     arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
@@ -116,7 +122,14 @@
      
      */
     
-
+    
+    NSDictionary *dic2222 = @{@"driverNo":@"15111111111",@"":@""};
+    [manger POST:@"http://192.168.13.116:8080/driver/driver" parameters:dic2222 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+   
     [manger GET:home_HeadIP parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *datadic = (NSDictionary *)responseObject;
@@ -160,24 +173,6 @@
     
     /*
      
-     获取预告数据
-     
-     */
-//    NSDictionary *dic = @{@"start":@"0",@"limit":@"20"};
-//    [manger GET:advanceIp  parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        NSDictionary *dictiondata = (NSDictionary *)responseObject;
-//        advanceData = dictiondata[@"results"];
-//        UICollectionView *collec = (UICollectionView *)[_tableView viewWithTag:10002];
-//        [collec reloadData];
-//        
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//    }];
-    
-    /*
-     
      获取案例数据
      
      */
@@ -190,6 +185,31 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
+    
+    /*
+     
+     获取行程数据
+     
+     */
+    NSDictionary *dic3 = @{@"typeId":@"NULL",@"start":@"0",@"limit":@"20"};
+    [manger GET:TravelIP parameters:dic3 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dictiondata = (NSDictionary *)responseObject;
+        travelData = dictiondata[@"results"];
+        [travelDataOther removeAllObjects];
+        for (NSDictionary *dd in travelData) {
+            
+          if ([dd[@"typeId"] intValue] == 2) {
+                [travelDataOther addObject:dd];
+            }
+        }
+
+        UICollectionView *collec = (UICollectionView *)[_tableView viewWithTag:10004];
+        [collec reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"行程数据:%@",error);
+    }];
+    
+    
 }
 
 #pragma mark - TabBar的设置
@@ -402,25 +422,6 @@
         [cell_two.contentView addSubview:btn3];
         return cell_two;
     }
-//    else if (indexPath.section == 2){
-//        
-//        UITableViewCell *cell_there = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-//        cell_there.selectionStyle = UITableViewCellSelectionStyleNone;
-//        cell_there.backgroundColor = [UIColor clearColor];
-//        UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
-//        layoutView.itemSize = CGSizeMake(Mywidth-10, 165);
-//        [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-//        
-//        UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, Mywidth, 165) collectionViewLayout:layoutView];
-//        _collectionView.pagingEnabled = YES;
-//        _collectionView.delegate = self;
-//        _collectionView.tag = 10002;
-//        _collectionView.dataSource = self;
-//        _collectionView.backgroundColor = [UIColor clearColor];
-//        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"My_collectionViewCell_One"];
-//        [cell_there addSubview:_collectionView];
-//        return cell_there;
-//    }
     else if (indexPath.section == 2){
         
         UITableViewCell *cell_four = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -445,10 +446,17 @@
         cell_five.selectionStyle = UITableViewCellSelectionStyleNone;
         cell_five.backgroundColor = [UIColor clearColor];
         UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
-        layoutView.itemSize = CGSizeMake(Mywidth-10, 175);
+        
+        layoutView.itemSize = CGSizeMake(Mywidth, 175);
+        layoutView.minimumLineSpacing = 0;
+        layoutView.minimumInteritemSpacing = 0;
+        layoutView.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        
         [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
         UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 5, Mywidth, 175) collectionViewLayout:layoutView];
+        _collectionView.bounces = NO;
+        _collectionView.scrollsToTop = NO;
         _collectionView.pagingEnabled = YES;
         _collectionView.delegate = self;
         _collectionView.tag = 10004;
@@ -465,59 +473,24 @@
 
 }
 
+
 #pragma mark - UICollectionView的代理
+
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (collectionView.tag == 10002) {
-        return advanceData.count;
-    }else if (collectionView.tag == 10003){
+
+    if (collectionView.tag == 10003){
         return caseData.count;
+    }else{
+        return travelDataOther.count;
     }
-    return 4;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (collectionView.tag == 10002) {
-//        
-//        UICollectionViewCell *cell_one = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_One" forIndexPath:indexPath];
-//        
-//        UIImageView *imageV = [[UIImageView alloc] init];
-//        if (indexPath.row == advanceData.count-1) {
-//            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//            imageV.frame = CGRectMake(0, 0,Mywidth-20, 165);
-//        }else{
-//            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//            imageV.frame = CGRectMake(10, 0,Mywidth-20, 165);
-//        }
-//        
-//        UIView *labelView = [[UIView alloc] initWithFrame:CGRectMake(0,165-73, Mywidth-20, 73)];
-//        labelView.backgroundColor = [UIColor blackColor];
-//        labelView.alpha = 0.8;
-//        
-//        UILabel *labelOfName = [[UILabel alloc] initWithFrame:CGRectMake(15, 5+3, Mywidth-20-15, 25)];
-//        UILabel *labelOfAddress = [[UILabel alloc] initWithFrame:CGRectMake(15, 30+3, Mywidth-20-15, 15)];
-//        UILabel *labelOfDate = [[UILabel alloc] initWithFrame:CGRectMake(15, 45+3, Mywidth-20-15, 20)];
-//        
-//        [self Customlable:labelOfName text:@"" fontSzie:15 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-//        [self Customlable:labelOfAddress text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-//        [self Customlable:labelOfDate text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
-//        
-//        labelOfName.text = advanceData[indexPath.row][@"trailerTitle"];
-//        labelOfAddress.text = [NSString stringWithFormat:@"%@  %@",advanceData[indexPath.row][@"address"],advanceData[indexPath.row][@"venues"]];
-//        labelOfDate.text = advanceData[indexPath.row][@"timer"];
-//        [imageV sd_setImageWithURL:[NSURL URLWithString:advanceData[indexPath.row][@"poster"]] placeholderImage:[UIImage imageNamed:@""]];
-//        
-//        
-//        [labelView addSubview:labelOfName];
-//        [labelView addSubview:labelOfAddress];
-//        [labelView addSubview:labelOfDate];
-//        
-//        [imageV addSubview:labelView];
-//        [cell_one addSubview:imageV];
-//        return cell_one;
-//        
-//    }
+
      if (collectionView.tag == 10003) {
+         //案例
         UICollectionViewCell *cell_two = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_Two" forIndexPath:indexPath];
         
         UIImageView *imageV = [[UIImageView alloc] init];
@@ -528,31 +501,24 @@
         return cell_two;
     }
     else{
+        //行程
         UICollectionViewCell *cell_one = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_There" forIndexPath:indexPath];
         
         UIView *view = [[UIView alloc] init];
-        if (indexPath.row == 3) {
-            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            view.frame = CGRectMake(0, 0,Mywidth-20, 175);
-        }else{
-            [cell_one.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-            view.frame = CGRectMake(10, 0,Mywidth-20, 175);
-        }
+        
+        view.frame = CGRectMake(10, 0,Mywidth-20, 175);
+        
+        
         view.backgroundColor = [UIColor colorWithRed:115/255.0 green:72/255.0 blue:241/255.0 alpha:1];
-        [cell_one addSubview:view];
+        [cell_one.contentView addSubview:view];
+        
+        
+        
         
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width/2-15, view.frame.size.height)];
-        if (_type == 0) {
-            imageV.image = [UIImage imageNamed:@"甲壳虫"];
-        }else if (_type == 1){
-            imageV.image = [UIImage imageNamed:@"汪峰"];
-        }else if (_type == 2){
-            imageV.image = [UIImage imageNamed:@"张杰"];
-        }
-        
-        [view addSubview:imageV];
-        
-        NSString *titleStr = @"汪峰 2014-2015 ”峰暴来临“ 超级巡回演唱会";
+        [imageV sd_setImageWithURL:[NSURL URLWithString:travelDataOther[indexPath.row][@"cover"]] placeholderImage:[UIImage imageNamed:@"张杰"]];
+
+        NSString *titleStr = travelDataOther[indexPath.row][@"travelName"];
         
         //固定高度不能超过 父视图的一半
         CGFloat height = [self caculateTheTextHeight:titleStr andFontSize:15 andDistance:view.frame.size.width-imageV.frame.size.width-30];
@@ -567,19 +533,20 @@
         
         
         UILabel *labelOfDate = [[UILabel alloc] initWithFrame:CGRectMake(imageV.frame.size.width+15, 10+height+heigeh0, view.frame.size.width-imageV.frame.size.width-30,20)];
+        [self Customlable:labelOfDate text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
+        labelOfDate.text = travelDataOther[indexPath.row][@"startDate"];
         
-        [self Customlable:labelOfDate text:@"2014-11-15 20:00" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
         
-        
-        NSString *addresStr = @"长沙 贺龙体育馆";
+        NSString *addresStr = travelDataOther[indexPath.row][@"venues"];;
         CGFloat height1 = [self caculateTheTextHeight:addresStr andFontSize:12 andDistance:view.frame.size.width-imageV.frame.size.width-30];
         if (height1 > 45) {
             height1 = 45;
         }
         UILabel *labelOfAddress = [[UILabel alloc] initWithFrame:CGRectMake(imageV.frame.size.width+15, labelOfDate.frame.origin.y+23, view.frame.size.width-imageV.frame.size.width-30,height1)];
-        
         [self Customlable:labelOfAddress text:addresStr fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:20];
         
+        
+        [view addSubview:imageV];
         [view addSubview:labelOfTitle];
         [view addSubview:labelOfDate];
         [view addSubview:labelOfAddress];
@@ -590,20 +557,14 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-//    if (collectionView.tag == 10002) {
-//        AdvanceNoticeViewController *advanceCtrl = [[AdvanceNoticeViewController alloc] init];
-//        advanceCtrl.titleViewStr = @"预告详情";
-//        advanceCtrl.dictData = advanceData[indexPath.row];
-//        advanceCtrl.type = 1;
-//        [self.navigationController pushViewController:advanceCtrl animated:YES];
-//    }
      if (collectionView.tag == 10003){
         CaseDetailsViewController *caseCtrl = [[CaseDetailsViewController alloc] init];
         caseCtrl.caseId = caseData[indexPath.row][@"caseId"];
         caseCtrl.caseName = caseData[indexPath.row][@"caseName"];
         [self.navigationController pushViewController:caseCtrl animated:YES];
     }else if (collectionView.tag == 10004){
-
+        TravelDetailViewController *traveCtrl = [[TravelDetailViewController alloc] init];
+        [self.navigationController pushViewController:traveCtrl animated:YES];
     }
   
     NSLog(@"%@",indexPath);
@@ -655,8 +616,13 @@
     if (sender.tag == 66669) {
         TangHuiListViewController *TangCtrl = [[TangHuiListViewController alloc] init];
         TangCtrl.index = 100;
+        TangCtrl.arrOfdata = travelData;
         TangCtrl.title = @"行程";
         [self.navigationController pushViewController:TangCtrl animated:YES];
+    }else if (sender.tag == 66668){
+        ListAdvanceViewController *list = [[ListAdvanceViewController alloc] init];
+//        list.arrOfdata = advanceData;
+        [self.navigationController pushViewController:list animated:YES];
     }
    
 }
@@ -665,10 +631,32 @@
 -(void)didSegment:(CCSegmentedControl *)segmentCtr
 {
     _type = segmentCtrl.selectedSegmentIndex;
+    
+    [travelDataOther removeAllObjects];
+    for (NSDictionary *dd in travelData) {
+        if (_type == 0) {
+            if ([dd[@"typeId"] intValue] == 2) {
+                [travelDataOther addObject:dd];
+            }
+        }else if (_type == 1){
+            if ([dd[@"typeId"] intValue] == 1) {
+                [travelDataOther addObject:dd];
+            }
+        }else{
+            if ([dd[@"typeId"] intValue] == 3) {
+                [travelDataOther addObject:dd];
+            }
+        }
+        
+    }
+
     collectionViewOther = (UICollectionView *)[_tableView viewWithTag:10004];
+    if ([travelDataOther count] == 0) {
+        return;
+    }
     [collectionViewOther reloadData];
     [collectionViewOther scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-    NSLog(@"%ld",(long)segmentCtrl.selectedSegmentIndex);
+    NSLog(@"%ld",_type);
 }
 
 - (void)didReceiveMemoryWarning {
