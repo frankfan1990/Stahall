@@ -64,7 +64,7 @@
     _tableView.tag = 1200;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    
+
     _tableViewOther = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
     _tableViewOther.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableViewOther.delegate = self;

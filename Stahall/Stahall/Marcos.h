@@ -35,7 +35,7 @@
 /*
  首页行程
  */
-#define TravelIP @"http://192.168.1.116:8080/stahall/travel/getTravel"
+#define TravelIP @"http://218.244.158.59/stahall/travel/getTravel"
 
 
 /*

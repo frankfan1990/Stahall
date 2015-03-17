@@ -122,6 +122,14 @@
      
      */
     
+    
+    NSDictionary *dic2222 = @{@"driverNo":@"15111111111",@"":@""};
+    [manger POST:@"http://192.168.13.116:8080/driver/driver" parameters:dic2222 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+   
     [manger GET:home_HeadIP parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *datadic = (NSDictionary *)responseObject;
@@ -440,11 +448,15 @@
         UICollectionViewFlowLayout *layoutView = [[UICollectionViewFlowLayout alloc] init];
         
         layoutView.itemSize = CGSizeMake(Mywidth, 175);
-//        layoutView.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+        layoutView.minimumLineSpacing = 0;
+        layoutView.minimumInteritemSpacing = 0;
+        layoutView.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         
         [layoutView setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         
         UICollectionView *_collectionView= [[UICollectionView alloc] initWithFrame:CGRectMake(0, 5, Mywidth, 175) collectionViewLayout:layoutView];
+        _collectionView.bounces = NO;
+        _collectionView.scrollsToTop = NO;
         _collectionView.pagingEnabled = YES;
         _collectionView.delegate = self;
         _collectionView.tag = 10004;
@@ -463,6 +475,8 @@
 
 
 #pragma mark - UICollectionView的代理
+
+
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 
@@ -476,7 +490,7 @@
 {
 
      if (collectionView.tag == 10003) {
-         
+         //案例
         UICollectionViewCell *cell_two = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_Two" forIndexPath:indexPath];
         
         UIImageView *imageV = [[UIImageView alloc] init];
@@ -487,18 +501,21 @@
         return cell_two;
     }
     else{
-        
+        //行程
         UICollectionViewCell *cell_one = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"My_collectionViewCell_There" forIndexPath:indexPath];
         
         UIView *view = [[UIView alloc] init];
         
-        
         view.frame = CGRectMake(10, 0,Mywidth-20, 175);
+        
+        
         view.backgroundColor = [UIColor colorWithRed:115/255.0 green:72/255.0 blue:241/255.0 alpha:1];
         [cell_one.contentView addSubview:view];
         
+        
+        
+        
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width/2-15, view.frame.size.height)];
-        imageV.image = [UIImage imageNamed:@"张杰"];
         [imageV sd_setImageWithURL:[NSURL URLWithString:travelDataOther[indexPath.row][@"cover"]] placeholderImage:[UIImage imageNamed:@"张杰"]];
 
         NSString *titleStr = travelDataOther[indexPath.row][@"travelName"];
@@ -516,7 +533,6 @@
         
         
         UILabel *labelOfDate = [[UILabel alloc] initWithFrame:CGRectMake(imageV.frame.size.width+15, 10+height+heigeh0, view.frame.size.width-imageV.frame.size.width-30,20)];
-        
         [self Customlable:labelOfDate text:@"" fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:YES numberOfLines:1];
         labelOfDate.text = travelDataOther[indexPath.row][@"startDate"];
         
@@ -527,7 +543,6 @@
             height1 = 45;
         }
         UILabel *labelOfAddress = [[UILabel alloc] initWithFrame:CGRectMake(imageV.frame.size.width+15, labelOfDate.frame.origin.y+23, view.frame.size.width-imageV.frame.size.width-30,height1)];
-        
         [self Customlable:labelOfAddress text:addresStr fontSzie:12 textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentLeft adjustsFontSizeToFitWidth:NO numberOfLines:20];
         
         
@@ -634,8 +649,7 @@
         }
         
     }
-    
-    
+
     collectionViewOther = (UICollectionView *)[_tableView viewWithTag:10004];
     if ([travelDataOther count] == 0) {
         return;

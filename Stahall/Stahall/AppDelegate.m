@@ -17,9 +17,15 @@
 
 @implementation AppDelegate
 
-
+-(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    NSLog(@"%s",__func__);
+    return YES;
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
+    NSLog(@"%s",__func__);
     self.window =[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     [self.window makeKeyAndVisible];
     self.window.backgroundColor =[UIColor whiteColor];
@@ -51,27 +57,27 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 
-    
+     NSLog(@"%s",__func__);
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
     
+    NSLog(@"%s",__func__);
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-
-
+    
+    NSLog(@"%s",__func__);
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   
-    
+     NSLog(@"%s",__func__);
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 
-    
+     NSLog(@"%s",__func__);
 }
 
 @end
