@@ -121,6 +121,11 @@
 
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+    self.comebackStatu = @"comeBack";
+}
 
 
 

@@ -70,6 +70,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     
     //fixbug
     UIView *_backView;
+    UIButton *_Hallvaluation;
 }
 @property (nonatomic,strong)ZSYPopoverListView *popView;
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -85,6 +86,7 @@ static NSString *cacheKey3 = @"cacheKey3";
     _backView =[[UIView alloc]initWithFrame:self.view.bounds];
     _backView.backgroundColor =[UIColor blueColor];
     [self.view addSubview:_backView];
+    
     
     recodeRotateExpend =[NSMutableArray array];
     arrowButtonStatue =[NSMutableArray arrayWithObjects:@0,@0,@0, nil];
@@ -166,21 +168,21 @@ static NSString *cacheKey3 = @"cacheKey3";
     self.collectionView.backgroundColor =[UIColor blackColor];
     
     //堂估价按钮455
-    UIButton *Hallvaluation =[UIButton buttonWithType:UIButtonTypeCustom];
-    Hallvaluation.frame = CGRectMake(10,self.view.bounds.size.height-70, self.view.bounds.size.width-20, 45);
-    Hallvaluation.layer.cornerRadius = 3;
-    [Hallvaluation setTitle:@"堂估价" forState:UIControlStateNormal];
+    _Hallvaluation =[UIButton buttonWithType:UIButtonTypeCustom];
+    _Hallvaluation.frame = CGRectMake(10,self.view.bounds.size.height-70, self.view.bounds.size.width-20, 45);
+    _Hallvaluation.layer.cornerRadius = 3;
+    [_Hallvaluation setTitle:@"堂估价" forState:UIControlStateNormal];
     
     if(self.isSearchMode){
     
-        [Hallvaluation setTitle:@"提交估价" forState:UIControlStateNormal];
+        [_Hallvaluation setTitle:@"提交估价" forState:UIControlStateNormal];
     }
     
-    [Hallvaluation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [Hallvaluation setBackgroundColor:[UIColor purpleColor]];
-    [_backView addSubview:Hallvaluation];
-    [Hallvaluation setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
-    [Hallvaluation addTarget:self action:@selector(stahallValueButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [_Hallvaluation setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_Hallvaluation setBackgroundColor:[UIColor purpleColor]];
+    [_backView addSubview:_Hallvaluation];
+    [_Hallvaluation setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
+    [_Hallvaluation addTarget:self action:@selector(stahallValueButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     
     /**
@@ -697,7 +699,17 @@ static NSString *cacheKey3 = @"cacheKey3";
         starDetaiInfo.starDict = tempDict;
         
         [self.navigationController pushViewController:new_starDetailInfo animated:YES];
-    
+        
+        //10, 35, self.view.bounds.size.width-20, self.view.bounds.size.height-50-20-50
+#warning fixbug!!!
+        [RACObserve(new_starDetailInfo, comebackStatu) subscribeNext:^(NSString *x) {
+            
+            if([x isEqualToString:@"comeBack"]&&self.collectionView.frame.origin.y == 35){
+            
+                self.collectionView.frame = CGRectMake(10, 0, self.view.bounds.size.width-20, self.view.bounds.size.height-50-20-50+35);
+                _Hallvaluation.frame = CGRectMake(10, self.view.bounds.size.height-70, self.view.bounds.size.width-20, 45);
+            }
+        }];
     }
   
 }
@@ -714,11 +726,32 @@ static NSString *cacheKey3 = @"cacheKey3";
         
             StahallValuationViewController *stahallValution =[StahallValuationViewController new];
             [self.navigationController pushViewController:stahallValution animated:YES];
-        
+            
+            [RACObserve(stahallValution, comeBackStatu) subscribeNext:^(NSString *x) {
+                
+                if([x isEqualToString:@"comeBack"]&&self.collectionView.frame.origin.y == 35){
+                
+                    self.collectionView.frame = CGRectMake(10, -5, self.view.bounds.size.width-20, self.view.bounds.size.height-50-20-50+35);
+                    _Hallvaluation.frame = CGRectMake(10, self.view.bounds.size.height-70-65, self.view.bounds.size.width-20, 45);
+                }
+                
+            }];
+            
+            
         }else{
         
             HallEvalutionIlerItemViewController *hallevalutionItem = [HallEvalutionIlerItemViewController new];
             [self.navigationController pushViewController:hallevalutionItem animated:YES];
+            [RACObserve(hallevalutionItem, comeBackStatu) subscribeNext:^(NSString *x) {
+                
+                if([x isEqualToString:@"comeBack"]&&self.collectionView.frame.origin.y == 35){
+                    
+                    self.collectionView.frame = CGRectMake(10, -10, self.view.bounds.size.width-20, self.view.bounds.size.height-50-20-50+35-55);
+                    //10,self.view.bounds.size.height-70, self.view.bounds.size.width-20, 45
+                    _Hallvaluation.frame = CGRectMake(10, self.view.bounds.size.height-70-65, self.view.bounds.size.width-20, 45);
+                }
+                
+            }];
 
         }
         
@@ -1053,6 +1086,7 @@ bool isExpand;
 #pragma mark - viewWillAppear
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     
     dispatch_queue_t bkQueue = dispatch_queue_create("frankafn.baqueue1", DISPATCH_QUEUE_SERIAL);
     dispatch_async(bkQueue, ^{

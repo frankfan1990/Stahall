@@ -63,7 +63,7 @@ bool selected;//是否是出于编辑模式的标志位
     deleteMode = NO;
     dateFormatter =[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
+//    _reachability =[Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     /*title*/
     self.navigationController.navigationBar.translucent = NO;
@@ -285,6 +285,7 @@ bool selected;//是否是出于编辑模式的标志位
         AFHTTPRequestOperationManager *manager = [NetworkHelper createRequestManagerWithContentType:application_json];
         manager.responseSerializer =[AFJSONResponseSerializer serializer];
         manager.requestSerializer =[AFJSONRequestSerializer serializer];
+        manager.requestSerializer.timeoutInterval = 15;
         
         NSMutableArray *starIDs = [NSMutableArray array];
         NSMutableArray *tempMutablArray;
@@ -314,13 +315,13 @@ bool selected;//是否是出于编辑模式的标志位
                                  @"businessId":@"47e92fdc-d546-46c9-af66-436568094d5c"};
         
         
-        
+#if 0
         if(![_reachability isReachable]){
         
             [ProgressHUD showError:@"网络异常"];
             return;
         }
-        
+#endif
         [ProgressHUD show:nil];
         [manager POST:API_PostStaHallValutionInfo parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
@@ -646,10 +647,12 @@ bool selected;//是否是出于编辑模式的标志位
     
     if([[NSUserDefaults standardUserDefaults]boolForKey:@"isAgreen"]){
     
+        self.comeBackStatu = @"comeBack";
         UIViewController *viewCV =(UIViewController *)[[self.navigationController viewControllers]objectAtIndex:1];
         [self.navigationController popToViewController:viewCV animated:YES];
     }
     [ProgressHUD dismiss];
+   
 }
 
 #pragma mark - view将要出现

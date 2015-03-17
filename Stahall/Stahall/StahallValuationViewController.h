@@ -12,5 +12,5 @@
 
 @interface StahallValuationViewController : UIViewController<SendTheSelectedCellsDelegate>
 
-
+@property (nonatomic,copy)NSString *comeBackStatu;
 @end

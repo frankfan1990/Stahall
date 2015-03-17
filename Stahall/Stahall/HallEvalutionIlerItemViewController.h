@@ -11,5 +11,5 @@
 
 
 @interface HallEvalutionIlerItemViewController : UIViewController
-
+@property (nonatomic,copy)NSString *comeBackStatu;
 @end
