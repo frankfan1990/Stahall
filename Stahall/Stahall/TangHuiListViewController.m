@@ -42,7 +42,7 @@
 }
 -(void)viewDidLoad
 {
-
+ 
     [super viewDidLoad];
     if (_index == 100) {
         arrOfTag = @[@"演唱会  ",@"舞台剧  ",@"企业活动  "];
@@ -65,6 +65,7 @@
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
 
+    
     _tableViewOther = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
     _tableViewOther.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableViewOther.delegate = self;
