@@ -73,6 +73,26 @@
 		5C9E088B1A3EF4C2007072E0 /* lc汪峰2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9E088A1A3EF4C2007072E0 /* lc汪峰2.png */; };
 		5C9E08F81A3F07C9007072E0 /* ShowMallsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */; };
 		5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */; };
+		5CB206E91ABFBC52004CD8DF /* BuyMyMallsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB206E81ABFBC52004CD8DF /* BuyMyMallsViewController.m */; };
+		5CB207801ABFFB54004CD8DF /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207591ABFFB54004CD8DF /* FSCalendar.m */; };
+		5CB207811ABFFB54004CD8DF /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2075B1ABFFB54004CD8DF /* FSCalendarCell.m */; };
+		5CB207821ABFFB54004CD8DF /* FSCalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2075D1ABFFB54004CD8DF /* FSCalendarHeader.m */; };
+		5CB207831ABFFB54004CD8DF /* NSCalendar+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2075F1ABFFB54004CD8DF /* NSCalendar+FSExtension.m */; };
+		5CB207841ABFFB54004CD8DF /* NSDate+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207611ABFFB54004CD8DF /* NSDate+FSExtension.m */; };
+		5CB207851ABFFB54004CD8DF /* UIView+FSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207631ABFFB54004CD8DF /* UIView+FSExtension.m */; };
+		5CB207861ABFFB54004CD8DF /* libLunar.c in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207651ABFFB54004CD8DF /* libLunar.c */; };
+		5CB207871ABFFB54004CD8DF /* SSHolidayCA.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207681ABFFB54004CD8DF /* SSHolidayCA.m */; };
+		5CB207881ABFFB54004CD8DF /* SSHolidayChina.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2076A1ABFFB54004CD8DF /* SSHolidayChina.m */; };
+		5CB207891ABFFB54004CD8DF /* SSHolidayCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2076C1ABFFB54004CD8DF /* SSHolidayCountry.m */; };
+		5CB2078A1ABFFB54004CD8DF /* SSHolidayHK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2076E1ABFFB54004CD8DF /* SSHolidayHK.m */; };
+		5CB2078B1ABFFB54004CD8DF /* SSHolidayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207701ABFFB54004CD8DF /* SSHolidayManager.m */; };
+		5CB2078C1ABFFB54004CD8DF /* SSHolidayTW.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207721ABFFB54004CD8DF /* SSHolidayTW.m */; };
+		5CB2078D1ABFFB54004CD8DF /* SSHolidayUK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207741ABFFB54004CD8DF /* SSHolidayUK.m */; };
+		5CB2078E1ABFFB54004CD8DF /* SSHolidayUS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207761ABFFB54004CD8DF /* SSHolidayUS.m */; };
+		5CB2078F1ABFFB54004CD8DF /* SSHolidayWest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB207781ABFFB54004CD8DF /* SSHolidayWest.m */; };
+		5CB207901ABFFB54004CD8DF /* SSLunarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2077A1ABFFB54004CD8DF /* SSLunarDate.m */; };
+		5CB207911ABFFB54004CD8DF /* SSLunarDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2077C1ABFFB54004CD8DF /* SSLunarDateFormatter.m */; };
+		5CB207921ABFFB54004CD8DF /* SSLunarDateHoliday.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB2077E1ABFFB54004CD8DF /* SSLunarDateHoliday.m */; };
 		5CBE61851AA6EDD9003326A4 /* TravelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CBE61841AA6EDD9003326A4 /* TravelDetailViewController.m */; };
 		5CD5FD391A43B9C700316965 /* lc张学友.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD5FD381A43B9C700316965 /* lc张学友.png */; };
 		5CD5FE651A43F87E00316965 /* GNWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD5FE641A43F87E00316965 /* GNWheelView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -320,6 +340,47 @@
 		5C9E08F71A3F07C9007072E0 /* ShowMallsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallsViewController.m; sourceTree = "<group>"; };
 		5C9E08FA1A3F094D007072E0 /* ShowMallsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowMallsTableViewCell.h; sourceTree = "<group>"; };
 		5C9E08FB1A3F094D007072E0 /* ShowMallsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowMallsTableViewCell.m; sourceTree = "<group>"; };
+		5CB206E71ABFBC52004CD8DF /* BuyMyMallsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyMyMallsViewController.h; sourceTree = "<group>"; };
+		5CB206E81ABFBC52004CD8DF /* BuyMyMallsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyMyMallsViewController.m; sourceTree = "<group>"; };
+		5CB207581ABFFB54004CD8DF /* FSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
+		5CB207591ABFFB54004CD8DF /* FSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
+		5CB2075A1ABFFB54004CD8DF /* FSCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarCell.h; sourceTree = "<group>"; };
+		5CB2075B1ABFFB54004CD8DF /* FSCalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarCell.m; sourceTree = "<group>"; };
+		5CB2075C1ABFFB54004CD8DF /* FSCalendarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarHeader.h; sourceTree = "<group>"; };
+		5CB2075D1ABFFB54004CD8DF /* FSCalendarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarHeader.m; sourceTree = "<group>"; };
+		5CB2075E1ABFFB54004CD8DF /* NSCalendar+FSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+FSExtension.h"; sourceTree = "<group>"; };
+		5CB2075F1ABFFB54004CD8DF /* NSCalendar+FSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+FSExtension.m"; sourceTree = "<group>"; };
+		5CB207601ABFFB54004CD8DF /* NSDate+FSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FSExtension.h"; sourceTree = "<group>"; };
+		5CB207611ABFFB54004CD8DF /* NSDate+FSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FSExtension.m"; sourceTree = "<group>"; };
+		5CB207621ABFFB54004CD8DF /* UIView+FSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FSExtension.h"; sourceTree = "<group>"; };
+		5CB207631ABFFB54004CD8DF /* UIView+FSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FSExtension.m"; sourceTree = "<group>"; };
+		5CB207651ABFFB54004CD8DF /* libLunar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libLunar.c; sourceTree = "<group>"; };
+		5CB207661ABFFB54004CD8DF /* libLunar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libLunar.h; sourceTree = "<group>"; };
+		5CB207671ABFFB54004CD8DF /* SSHolidayCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayCA.h; sourceTree = "<group>"; };
+		5CB207681ABFFB54004CD8DF /* SSHolidayCA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayCA.m; sourceTree = "<group>"; };
+		5CB207691ABFFB54004CD8DF /* SSHolidayChina.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayChina.h; sourceTree = "<group>"; };
+		5CB2076A1ABFFB54004CD8DF /* SSHolidayChina.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayChina.m; sourceTree = "<group>"; };
+		5CB2076B1ABFFB54004CD8DF /* SSHolidayCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayCountry.h; sourceTree = "<group>"; };
+		5CB2076C1ABFFB54004CD8DF /* SSHolidayCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayCountry.m; sourceTree = "<group>"; };
+		5CB2076D1ABFFB54004CD8DF /* SSHolidayHK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayHK.h; sourceTree = "<group>"; };
+		5CB2076E1ABFFB54004CD8DF /* SSHolidayHK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayHK.m; sourceTree = "<group>"; };
+		5CB2076F1ABFFB54004CD8DF /* SSHolidayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayManager.h; sourceTree = "<group>"; };
+		5CB207701ABFFB54004CD8DF /* SSHolidayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayManager.m; sourceTree = "<group>"; };
+		5CB207711ABFFB54004CD8DF /* SSHolidayTW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayTW.h; sourceTree = "<group>"; };
+		5CB207721ABFFB54004CD8DF /* SSHolidayTW.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayTW.m; sourceTree = "<group>"; };
+		5CB207731ABFFB54004CD8DF /* SSHolidayUK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayUK.h; sourceTree = "<group>"; };
+		5CB207741ABFFB54004CD8DF /* SSHolidayUK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayUK.m; sourceTree = "<group>"; };
+		5CB207751ABFFB54004CD8DF /* SSHolidayUS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayUS.h; sourceTree = "<group>"; };
+		5CB207761ABFFB54004CD8DF /* SSHolidayUS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayUS.m; sourceTree = "<group>"; };
+		5CB207771ABFFB54004CD8DF /* SSHolidayWest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHolidayWest.h; sourceTree = "<group>"; };
+		5CB207781ABFFB54004CD8DF /* SSHolidayWest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHolidayWest.m; sourceTree = "<group>"; };
+		5CB207791ABFFB54004CD8DF /* SSLunarDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLunarDate.h; sourceTree = "<group>"; };
+		5CB2077A1ABFFB54004CD8DF /* SSLunarDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLunarDate.m; sourceTree = "<group>"; };
+		5CB2077B1ABFFB54004CD8DF /* SSLunarDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLunarDateFormatter.h; sourceTree = "<group>"; };
+		5CB2077C1ABFFB54004CD8DF /* SSLunarDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLunarDateFormatter.m; sourceTree = "<group>"; };
+		5CB2077D1ABFFB54004CD8DF /* SSLunarDateHoliday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLunarDateHoliday.h; sourceTree = "<group>"; };
+		5CB2077E1ABFFB54004CD8DF /* SSLunarDateHoliday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLunarDateHoliday.m; sourceTree = "<group>"; };
+		5CB2077F1ABFFB54004CD8DF /* SSLunarDateType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLunarDateType.h; sourceTree = "<group>"; };
 		5CBE61831AA6EDD9003326A4 /* TravelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelDetailViewController.h; sourceTree = "<group>"; };
 		5CBE61841AA6EDD9003326A4 /* TravelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelDetailViewController.m; sourceTree = "<group>"; };
 		5CD5FD381A43B9C700316965 /* lc张学友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lc张学友.png"; sourceTree = "<group>"; };
@@ -713,6 +774,68 @@
 			name = AboutShowMallsCell;
 			sourceTree = "<group>";
 		};
+		5CB207561ABFFB54004CD8DF /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				5CB207571ABFFB54004CD8DF /* FSCalendar */,
+				5CB207641ABFFB54004CD8DF /* SSLunarDate */,
+			);
+			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		5CB207571ABFFB54004CD8DF /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				5CB207581ABFFB54004CD8DF /* FSCalendar.h */,
+				5CB207591ABFFB54004CD8DF /* FSCalendar.m */,
+				5CB2075A1ABFFB54004CD8DF /* FSCalendarCell.h */,
+				5CB2075B1ABFFB54004CD8DF /* FSCalendarCell.m */,
+				5CB2075C1ABFFB54004CD8DF /* FSCalendarHeader.h */,
+				5CB2075D1ABFFB54004CD8DF /* FSCalendarHeader.m */,
+				5CB2075E1ABFFB54004CD8DF /* NSCalendar+FSExtension.h */,
+				5CB2075F1ABFFB54004CD8DF /* NSCalendar+FSExtension.m */,
+				5CB207601ABFFB54004CD8DF /* NSDate+FSExtension.h */,
+				5CB207611ABFFB54004CD8DF /* NSDate+FSExtension.m */,
+				5CB207621ABFFB54004CD8DF /* UIView+FSExtension.h */,
+				5CB207631ABFFB54004CD8DF /* UIView+FSExtension.m */,
+			);
+			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		5CB207641ABFFB54004CD8DF /* SSLunarDate */ = {
+			isa = PBXGroup;
+			children = (
+				5CB207651ABFFB54004CD8DF /* libLunar.c */,
+				5CB207661ABFFB54004CD8DF /* libLunar.h */,
+				5CB207671ABFFB54004CD8DF /* SSHolidayCA.h */,
+				5CB207681ABFFB54004CD8DF /* SSHolidayCA.m */,
+				5CB207691ABFFB54004CD8DF /* SSHolidayChina.h */,
+				5CB2076A1ABFFB54004CD8DF /* SSHolidayChina.m */,
+				5CB2076B1ABFFB54004CD8DF /* SSHolidayCountry.h */,
+				5CB2076C1ABFFB54004CD8DF /* SSHolidayCountry.m */,
+				5CB2076D1ABFFB54004CD8DF /* SSHolidayHK.h */,
+				5CB2076E1ABFFB54004CD8DF /* SSHolidayHK.m */,
+				5CB2076F1ABFFB54004CD8DF /* SSHolidayManager.h */,
+				5CB207701ABFFB54004CD8DF /* SSHolidayManager.m */,
+				5CB207711ABFFB54004CD8DF /* SSHolidayTW.h */,
+				5CB207721ABFFB54004CD8DF /* SSHolidayTW.m */,
+				5CB207731ABFFB54004CD8DF /* SSHolidayUK.h */,
+				5CB207741ABFFB54004CD8DF /* SSHolidayUK.m */,
+				5CB207751ABFFB54004CD8DF /* SSHolidayUS.h */,
+				5CB207761ABFFB54004CD8DF /* SSHolidayUS.m */,
+				5CB207771ABFFB54004CD8DF /* SSHolidayWest.h */,
+				5CB207781ABFFB54004CD8DF /* SSHolidayWest.m */,
+				5CB207791ABFFB54004CD8DF /* SSLunarDate.h */,
+				5CB2077A1ABFFB54004CD8DF /* SSLunarDate.m */,
+				5CB2077B1ABFFB54004CD8DF /* SSLunarDateFormatter.h */,
+				5CB2077C1ABFFB54004CD8DF /* SSLunarDateFormatter.m */,
+				5CB2077D1ABFFB54004CD8DF /* SSLunarDateHoliday.h */,
+				5CB2077E1ABFFB54004CD8DF /* SSLunarDateHoliday.m */,
+				5CB2077F1ABFFB54004CD8DF /* SSLunarDateType.h */,
+			);
+			path = SSLunarDate;
+			sourceTree = "<group>";
+		};
 		5CD5FE661A43F88400316965 /* GNWheelView */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +898,8 @@
 				5C35F37C1A6F38A9006FB5F5 /* MyNeedViewController.m */,
 				5CBE61831AA6EDD9003326A4 /* TravelDetailViewController.h */,
 				5CBE61841AA6EDD9003326A4 /* TravelDetailViewController.m */,
+				5CB206E71ABFBC52004CD8DF /* BuyMyMallsViewController.h */,
+				5CB206E81ABFBC52004CD8DF /* BuyMyMallsViewController.m */,
 			);
 			name = LuCanViewCtrl;
 			sourceTree = "<group>";
@@ -905,6 +1030,7 @@
 		631DC2371A37411400F5E9AA /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				5CB207561ABFFB54004CD8DF /* FSCalendar */,
 				6321DD0A1A6E73A60040FE32 /* EDStarRating */,
 				5C2ECE401A58D54B003A9711 /* MySegment */,
 				63649A491A496F890024E3F7 /* Calendar */,
@@ -1579,22 +1705,29 @@
 				636F447F1A44091300FD6783 /* SDWebImageDecoder.m in Sources */,
 				636F44171A44077400FD6783 /* AFURLConnectionOperation.m in Sources */,
 				636F441E1A44077400FD6783 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				5CB207831ABFFB54004CD8DF /* NSCalendar+FSExtension.m in Sources */,
 				63258B971A3E7CD70089C3F1 /* StaHallCollectionViewCell.m in Sources */,
+				5CB207841ABFFB54004CD8DF /* NSDate+FSExtension.m in Sources */,
 				63BC6A6C1A3747F400087DFB /* MJRefreshFooterView.m in Sources */,
 				63649A461A496F7F0024E3F7 /* Datetime.m in Sources */,
 				5C35F37A1A6F3897006FB5F5 /* MyRecommendViewController.m in Sources */,
 				5C7D5CE41A5147F700163B07 /* Left_MyAccountViewController.m in Sources */,
 				63649A471A496F7F0024E3F7 /* JBCalendar.m in Sources */,
 				6397FDC31A426C3A0021B9E2 /* NSDate+Category.m in Sources */,
+				5CB2078E1ABFFB54004CD8DF /* SSHolidayUS.m in Sources */,
 				636F44831A44091300FD6783 /* SDWebImagePrefetcher.m in Sources */,
 				63BC6A8D1A374B8200087DFB /* ProgressHUD.m in Sources */,
 				5C3EE7611A64BE0800BBFA8A /* EditInformationViewController.m in Sources */,
+				5CB207911ABFFB54004CD8DF /* SSLunarDateFormatter.m in Sources */,
 				5C65EDA11A3A9C7C00027A63 /* NSTimer+Addition.m in Sources */,
 				5C9E08FC1A3F094D007072E0 /* ShowMallsTableViewCell.m in Sources */,
 				634BDCA21A4BFF8400994401 /* StahallEvalutionDetailInfoCollectionViewCell.m in Sources */,
 				5C7D5CE71A51485A00163B07 /* Left_MyStarViewController.m in Sources */,
 				63BC6A6F1A3747F400087DFB /* UIScrollView+MJRefresh.m in Sources */,
 				637FCECF1A5FD64300DFE594 /* MyEvalutionsCollectionViewController.m in Sources */,
+				5CB207901ABFFB54004CD8DF /* SSLunarDate.m in Sources */,
+				5CB207871ABFFB54004CD8DF /* SSHolidayCA.m in Sources */,
+				5CB2078D1ABFFB54004CD8DF /* SSHolidayUK.m in Sources */,
 				63D62B251A5F851400E107FA /* MyEvalutionedListViewController.m in Sources */,
 				5C4519E41A4940650031685A /* CreateShowThirdViewController.m in Sources */,
 				5C2ECE431A58D54B003A9711 /* MySegmentCtrol.m in Sources */,
@@ -1604,8 +1737,10 @@
 				63BC6A6A1A3747F400087DFB /* MJRefreshBaseView.m in Sources */,
 				631DC1F01A3738EF00F5E9AA /* AppDelegate.m in Sources */,
 				5C7D5CF71A514AE100163B07 /* Left_ CancellationViewController.m in Sources */,
+				5CB207921ABFFB54004CD8DF /* SSLunarDateHoliday.m in Sources */,
 				6321DD061A6E44FC0040FE32 /* MyGoldViewController.m in Sources */,
 				63A9EAF81A41C07600C5DAE6 /* StahallFooterReusableView.m in Sources */,
+				5CB2078F1ABFFB54004CD8DF /* SSHolidayWest.m in Sources */,
 				636F44891A44091300FD6783 /* UIImageView+WebCache.m in Sources */,
 				636F44231A44077400FD6783 /* UIRefreshControl+AFNetworking.m in Sources */,
 				636F44181A44077400FD6783 /* AFURLRequestSerialization.m in Sources */,
@@ -1626,6 +1761,7 @@
 				5C65ED9F1A3A9C7C00027A63 /* CycleScrollView.m in Sources */,
 				63BC6A9D1A3751DB00087DFB /* RECommonFunctions.m in Sources */,
 				5CE0D8A81A3EAFA300CBC562 /* AdvanceNoticeViewController.m in Sources */,
+				5CB2078C1ABFFB54004CD8DF /* SSHolidayTW.m in Sources */,
 				6321DD111A6E73A60040FE32 /* EDStarRating.m in Sources */,
 				5C9E087F1A3ED027007072E0 /* MarkupParser.m in Sources */,
 				636F44861A44091300FD6783 /* UIImage+MultiFormat.m in Sources */,
@@ -1644,9 +1780,11 @@
 				63D62A461A5A37A800E107FA /* Data.m in Sources */,
 				63468EFA1A43D07400938E1E /* RTLabel.m in Sources */,
 				63258B361A3D8A490089C3F1 /* MyShowViewController.m in Sources */,
+				5CB2078A1ABFFB54004CD8DF /* SSHolidayHK.m in Sources */,
 				63BC6A701A3747F400087DFB /* UIView+MJExtension.m in Sources */,
 				5C3EE7681A6511B600BBFA8A /* AddSecondAccoutsViewController.m in Sources */,
 				5C65EDA01A3A9C7C00027A63 /* MyPageControl.m in Sources */,
+				5CB207851ABFFB54004CD8DF /* UIView+FSExtension.m in Sources */,
 				636F44161A44077400FD6783 /* AFSecurityPolicy.m in Sources */,
 				636F44201A44077400FD6783 /* UIButton+AFNetworking.m in Sources */,
 				5C4CF1841A3E88D100F6EC11 /* CCSegmentedControl.m in Sources */,
@@ -1658,7 +1796,9 @@
 				636F44241A44077400FD6783 /* UIWebView+AFNetworking.m in Sources */,
 				5CBE61851AA6EDD9003326A4 /* TravelDetailViewController.m in Sources */,
 				63468F001A43D8CF00938E1E /* HallEvalutionIlerItemViewController.m in Sources */,
+				5CB207801ABFFB54004CD8DF /* FSCalendar.m in Sources */,
 				5C4519E01A4916100031685A /* NSDate+Utilities.m in Sources */,
+				5CB2078B1ABFFB54004CD8DF /* SSHolidayManager.m in Sources */,
 				5C35F37D1A6F38A9006FB5F5 /* MyNeedViewController.m in Sources */,
 				63BC6A9E1A3751DB00087DFB /* RESideMenu.m in Sources */,
 				63D62A3D1A5A36D400E107FA /* ArtistSchedule.m in Sources */,
@@ -1683,11 +1823,13 @@
 				636E27D41A63C2FE00F8B540 /* EvalutionStarsDetail.m in Sources */,
 				634BDC9C1A4ABB1A00994401 /* StarDetailCollectionViewCell.m in Sources */,
 				63BC6A7D1A374A1100087DFB /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				5CB207881ABFFB54004CD8DF /* SSHolidayChina.m in Sources */,
 				630B8AF61AA042E300F0E05C /* StarDetailInfoViewController.m in Sources */,
 				63D62A3A1A5A321F00E107FA /* StarDetailInfoModel.m in Sources */,
 				5C7D5CF01A5149F300163B07 /* Left_CustomerServiceViewController.m in Sources */,
 				5C7D5CED1A51496900163B07 /* Lef_MyMessageViewController.m in Sources */,
 				5C3EE76B1A665C1D00BBFA8A /* DetailsSecondAccountViewController.m in Sources */,
+				5CB207821ABFFB54004CD8DF /* FSCalendarHeader.m in Sources */,
 				5C7D5CF31A514A8400163B07 /* Left_HelpCenterViewController.m in Sources */,
 				63BC6A9F1A3751DB00087DFB /* UIViewController+RESideMenu.m in Sources */,
 				5C3EE7711A679DEC00BBFA8A /* CompanyAttestationViewController.m in Sources */,
@@ -1699,12 +1841,16 @@
 				636F44151A44077400FD6783 /* AFNetworkReachabilityManager.m in Sources */,
 				5C40BFB61A5CCB2800AAAEE7 /* CaseDetailsViewController.m in Sources */,
 				5C1C8C411A42675900A94E7A /* TangHuiListViewController.m in Sources */,
+				5CB207861ABFFB54004CD8DF /* libLunar.c in Sources */,
 				636F44131A44077400FD6783 /* AFHTTPRequestOperationManager.m in Sources */,
+				5CB206E91ABFBC52004CD8DF /* BuyMyMallsViewController.m in Sources */,
 				63258B3C1A3D97A40089C3F1 /* StarHallViewController.m in Sources */,
 				5C4519DC1A4915620031685A /* RZTimeSelectedViewController.m in Sources */,
 				636F44851A44091300FD6783 /* UIImage+GIF.m in Sources */,
 				63649A3D1A494CDE0024E3F7 /* StarDetaiInfoViewController.m in Sources */,
+				5CB207891ABFFB54004CD8DF /* SSHolidayCountry.m in Sources */,
 				63BC6A7A1A374A1100087DFB /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				5CB207811ABFFB54004CD8DF /* FSCalendarCell.m in Sources */,
 				5CD5FE651A43F87E00316965 /* GNWheelView.m in Sources */,
 				631DC1ED1A3738EF00F5E9AA /* main.m in Sources */,
 				5C9E08831A3ED02E007072E0 /* CustomLabel.m in Sources */,

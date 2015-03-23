@@ -102,9 +102,8 @@
     travelDataOther = [NSMutableArray array];
 
     arrOfSegmentTitle = @[@"演唱会",@"舞台剧",@"企业活动"];
-    arrOfTitle = @[@"预告",@"案例",@"行程"];
     arrOfTitleOther = @[@"PREVUE",@"SHOW",@"SHOW"];
-    arrOfTitle = @[@"案例",@"行程"];
+    arrOfTitle = @[@"案例",@"预告"];
     arrOfTitleOther = @[@"SHOW",@"SHOW"];
     
 }

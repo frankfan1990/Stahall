@@ -8,6 +8,7 @@
 
 #import "ShowMallDetailsViewController.h"
 #import "UIImageView+WebCache.h"
+#import "BuyMyMallsViewController.h"
 #import "AFNetworking.h"
 #import "Marcos.h"
 
@@ -36,7 +37,7 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1]];
     arrOfTitle = @[@"活动名称:",@"时       间:",@"地       点:",@"场       馆:",@"出场艺人:",@"主办单位:",@"活动介绍",@"艺人简介"];
     arrOfcontent = [NSMutableArray array];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, Myheight-64) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -135,6 +136,32 @@
     }else{
         return 50;
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 60;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footView = [[UIView alloc] init];
+    footView.backgroundColor = [UIColor clearColor];
+    
+    UIButton *buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    buyBtn.frame = CGRectMake(15, 10, Mywidth-30, 38);
+    buyBtn.layer.masksToBounds = YES;
+    buyBtn.layer.cornerRadius = 5;
+    [buyBtn setTitle:@"我要买" forState:UIControlStateNormal];
+    buyBtn.backgroundColor = [UIColor greenColor];
+    [buyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [buyBtn addTarget:self action:@selector(didBuyBtn) forControlEvents:UIControlEventTouchUpInside];
+    [footView addSubview:buyBtn];
+    
+    return footView;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -255,6 +282,14 @@
     label.textAlignment = textAlignment;
     label.adjustsFontSizeToFitWidth = state;
     label.numberOfLines = numberOfLines;
+}
+
+#pragma mark - 点击 我要买
+-(void)didBuyBtn
+{
+    BuyMyMallsViewController *buyCtrl = [[BuyMyMallsViewController alloc] init];
+    [self.navigationController pushViewController:buyCtrl animated:YES];
+    NSLog(@"我要买");
 }
 
 -(void)didGoBack

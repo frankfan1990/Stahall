@@ -32,6 +32,7 @@
     UIButton *btn1;
     UIButton *btn2;
     UIButton *btn3;
+    UIButton *btn4;
     NSMutableArray *arrOfTableData;
     UIView *backView;
     
@@ -64,12 +65,12 @@
     [self getData];
     _arrOfimages_one = [NSMutableArray arrayWithObjects:@"七夕",@"七夕",@"七夕",@"七夕",nil];
     isFollow = YES;
-    self.view.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:81/255.0 green:185/255.0 blue:222/255.0 alpha:1];
     [self createHeadSrcoView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0,Mywidth, Myheight -64) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
+    _tableView.backgroundColor = [UIColor clearColor];
     _tableView.delegate = self;
     _tableView.tag = 1200;
     _tableView.dataSource = self;
@@ -129,14 +130,14 @@
 }
 -(void)createHeadSrcoView
 {
-    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(10, 10, Mywidth-20, 170) animationDuration:3 andShowControlDot:YES];
+    headScrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 160) animationDuration:3 andShowControlDot:YES];
     headScrollView.backgroundColor = [UIColor clearColor];
     __weak typeof (self)Myself = self;
     headScrollView.totalPagesCount = ^NSInteger(void){
         return Myself.arrOfimages_one.count;
     };
     headScrollView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Myself.view.frame.size.width-20, 140)];
+        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Myself.view.frame.size.width, 160)];
         imageV.image = [UIImage imageNamed:Myself.arrOfimages_one[pageIndex]];
         return imageV;
     };
@@ -174,13 +175,24 @@
     UIBarButtonItem *btnLeftitem = [[UIBarButtonItem alloc] initWithCustomView:btnLeft];
     
     
+    UIButton *btnright = [UIButton buttonWithType:UIButtonTypeSystem];
+    [btnright setFrame:CGRectMake(0, 0, 30, 30)];
+    [btnright setBackgroundImage:[UIImage imageNamed:@"搜索白色@2x"] forState:UIControlStateNormal];
+    [btnright setBackgroundImage:[UIImage imageNamed:@"搜索白色@2x"] forState:UIControlStateHighlighted];
+    [btnright setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+    [btnright addTarget:self action:@selector(didSerch) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *btnrightitem = [[UIBarButtonItem alloc] initWithCustomView:btnright];
+    
+    
     if(([[[UIDevice currentDevice] systemVersion] floatValue]>=7.0?20:0)){
         UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        negativeSpacer.width = -10;
-        self.navigationItem.leftBarButtonItems= @[negativeSpacer, btnLeftitem];
+        negativeSpacer.width = -5;
+        self.navigationItem.leftBarButtonItems = @[negativeSpacer , btnLeftitem];
+        self.navigationItem.rightBarButtonItems = @[negativeSpacer , btnrightitem];
         
     }else{
         self.navigationItem.leftBarButtonItem = btnLeftitem;
+        self.navigationItem.rightBarButtonItem = btnrightitem;
     }
     
     
@@ -212,7 +224,7 @@
 {
     if (tableView.tag == 1200) {
         if (indexPath.section == 0) {
-            return 180;
+            return 165;
         }else{
             return 205;
         }
@@ -246,24 +258,31 @@
         backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Mywidth, 45)];
 //        backView.backgroundColor = [UIColor whiteColor];
         btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn1 frame:CGRectMake(15, 10, (Mywidth-80)/3, 25) title:@"类别" buttonTag:10001 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
+        [self CustomButton:btn1 frame:CGRectMake(10, 10, (Mywidth-65)/4, 25) title:@"所属地" buttonTag:10001 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
         
         btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn2 frame:CGRectMake(15+(Mywidth-80)/3+25, 10, (Mywidth-80)/3, 25) title:@"场馆" buttonTag:10002 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
+        [self CustomButton:btn2 frame:CGRectMake(btn1.frame.origin.x+(Mywidth-65)/4+15, 10, (Mywidth-65)/4, 25) title:@"类别" buttonTag:10002 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
         
         btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self CustomButton:btn3 frame:CGRectMake(15+(Mywidth-80)/3*2+50, 10, (Mywidth-80)/3, 25) title:@"价格区间" buttonTag:10003 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
+        [self CustomButton:btn3 frame:CGRectMake(btn2.frame.origin.x+(Mywidth-65)/4+15, 10, (Mywidth-65)/4, 25) title:@"场馆" buttonTag:10003 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
+        
+        btn4 = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self CustomButton:btn4 frame:CGRectMake(btn3.frame.origin.x+(Mywidth-65)/4+15, 10, (Mywidth-65)/4, 25) title:@"价格区间" buttonTag:10004 fontSize:13 titleColor:[UIColor whiteColor] backgroundColor:[UIColor clearColor]];
+        
         
         [btn1 addTarget:self action:@selector(didBtn:) forControlEvents:UIControlEventTouchUpInside];
         [btn2 addTarget:self action:@selector(didBtn:) forControlEvents:UIControlEventTouchUpInside];
         [btn3 addTarget:self action:@selector(didBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [btn4 addTarget:self action:@selector(didBtn:) forControlEvents:UIControlEventTouchUpInside];
         btn1.selected = YES;
         btn2.selected = YES;
         btn3.selected = YES;
+        btn4.selected = YES;
         
         [backView addSubview:btn1];
         [backView addSubview:btn2];
         [backView addSubview:btn3];
+        [backView addSubview:btn4];
        
         backView.backgroundColor = [UIColor colorWithRed:114/255.0 green:190/255.0 blue:222/255.0 alpha:1];
         return backView;
@@ -309,7 +328,7 @@
             cell.userInteractionEnabled = YES;
             UILabel *label  = [[UILabel alloc] init];
             label.tag = 101;
-            [self Customlable:label text:@"" fontSzie:13 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:YES numberOfLines:1];
+            [self Customlable:label text:@"" fontSzie:12 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter adjustsFontSizeToFitWidth:NO numberOfLines:1];
             label.frame = CGRectMake(0, 0, _tableViewOther.frame.size.width, 25);
             [cell.contentView addSubview:label];
         }
@@ -407,6 +426,14 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - 点击搜索
+-(void)didSerch
+{
+    NSLog(@"点击搜索");
+}
+
+
 #pragma mark - 点击选择分类
 -(void)didBtn:(UIButton *)sender
 {
@@ -421,11 +448,13 @@
     
     
     if (sender.tag == 10001) {
-        arrOfTableData = [NSMutableArray arrayWithObjects:@"演唱会",@"舞台剧",@"儿童剧",@"其他",nil];
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"所属地一",@"所属地二",@"所属地三",@"其他",nil];
     }else if (sender.tag == 10002){
-        arrOfTableData = [NSMutableArray arrayWithObjects:@"体育场",@"体育馆",@"剧院",@"其他",nil];
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"演唱会",@"舞台剧",@"儿童剧",@"其他",nil];
     }else if (sender.tag == 10003){
-        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"0-10万元",@"10-50万元",@"50-100万元",@"100-300万元",@"300-500万元",@"500万以上",nil];
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"体育场",@"体育馆",@"剧院",@"其他",nil];
+    }else if (sender.tag == 10004){
+        arrOfTableData = [NSMutableArray arrayWithObjects:@"不限",@"0-10万元",@"10-50万元",@"50-100万元",@"100万以上",nil];
     }
     
     CGFloat height = arrOfTableData.count*25;

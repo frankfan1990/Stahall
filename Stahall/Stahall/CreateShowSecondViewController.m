@@ -60,8 +60,7 @@
     
     arrOfdata = [NSMutableArray array];
     [arrOfdata addObject:dic];
-    
-    [self setTabBar];
+ 
     
     self.tpscrollerView =[[TPKeyboardAvoidingScrollView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.tpscrollerView];
